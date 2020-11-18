@@ -261,7 +261,7 @@
 					if (isQuery(element)) {
 						obj = {
 							href    : element.data('fancybox-href') || element.attr('href'),
-							title   : $('<div/>').text( element.data('fancybox-title') || element.attr('title') ).html(),
+							title   : $('<div/>').text( element.data('fancybox-title') || element.attr('blog.source._posts.操作系统.MIT-6.828课程.title') ).html(),
 							isDom   : true,
 							element : element
 						};

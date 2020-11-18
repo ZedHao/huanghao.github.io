@@ -44,13 +44,13 @@
 
 		onPlayStart: function () {
 			if (this.buttons) {
-				this.buttons.play.attr('title', 'Pause slideshow').addClass('btnPlayOn');
+				this.buttons.play.attr('blog.source._posts.操作系统.MIT-6.828课程.title', 'Pause slideshow').addClass('btnPlayOn');
 			}
 		},
 
 		onPlayEnd: function () {
 			if (this.buttons) {
-				this.buttons.play.attr('title', 'Start slideshow').removeClass('btnPlayOn');
+				this.buttons.play.attr('blog.source._posts.操作系统.MIT-6.828课程.title', 'Start slideshow').removeClass('btnPlayOn');
 			}
 		},
 

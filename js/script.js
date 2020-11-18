@@ -114,7 +114,7 @@
     var wrapImageWithFancyBox = function() {
         $('.site-content img').not('[hidden]').not('.group-picture img, .post-gallery img').each(function() {
             var $image = $(this);
-            var imageTitle = $image.attr('title');
+            var imageTitle = $image.attr('blog.source._posts.操作系统.MIT-6.828课程.title');
             var $imageWrapLink = $image.parent('a');
             if ($imageWrapLink.length < 1) {
                 var imageLink = $image.attr('data-original') ? this.getAttribute('data-original') : this.getAttribute('src');
@@ -125,7 +125,7 @@
             if (imageTitle) {
                 $imageWrapLink.append('<p class="image-caption">' + imageTitle + '</p>');
                 //make sure img title tag will show correctly in fancybox
-                $imageWrapLink.attr('title', imageTitle);
+                $imageWrapLink.attr('blog.source._posts.操作系统.MIT-6.828课程.title', imageTitle);
             }
         });
         $('.fancybox').fancybox({
