@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>NK一哥黄大脸</title>
+  
+  <subtitle>黄大脸是个小可爱</subtitle>
+  <link href="https://zedhao.github.io/huanghao.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://zedhao.github.io/huanghao.github.io/"/>
+  <updated>2020-11-18T10:20:35.356Z</updated>
+  <id>https://zedhao.github.io/huanghao.github.io/</id>
+  
+  <author>
+    <name>huanghao</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>入门导论</title>
+    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/18/title/"/>
+    <id>https://zedhao.github.io/huanghao.github.io/2020/11/18/title/</id>
+    <published>2020-11-18T09:32:04.000Z</published>
+    <updated>2020-11-18T10:20:35.356Z</updated>
+    
+    
+    
+    
+    <category term="操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="本科操作系统入门" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/"/>
+    
+    
+    <category term="本科操作系统入门" scheme="https://zedhao.github.io/huanghao.github.io/tags/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+</feed>
