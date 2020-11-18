@@ -6,7 +6,7 @@
   <link href="https://zedhao.github.io/huanghao.github.io/atom.xml" rel="self"/>
   
   <link href="https://zedhao.github.io/huanghao.github.io/"/>
-  <updated>2020-11-18T10:20:35.356Z</updated>
+  <updated>2020-11-18T10:31:53.428Z</updated>
   <id>https://zedhao.github.io/huanghao.github.io/</id>
   
   <author>
@@ -18,20 +18,86 @@
   
   <entry>
     <title>入门导论</title>
-    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/18/title/"/>
-    <id>https://zedhao.github.io/huanghao.github.io/2020/11/18/title/</id>
+    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/"/>
+    <id>https://zedhao.github.io/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/</id>
     <published>2020-11-18T09:32:04.000Z</published>
-    <updated>2020-11-18T10:20:35.356Z</updated>
+    <updated>2020-11-18T10:31:53.428Z</updated>
     
     
     
     
     <category term="操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
-    <category term="本科操作系统入门" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/"/>
+    <category term="本科操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
     <category term="本科操作系统入门" scheme="https://zedhao.github.io/huanghao.github.io/tags/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>入门导论2</title>
+    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/"/>
+    <id>https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/</id>
+    <published>2020-11-17T11:06:56.000Z</published>
+    <updated>2020-11-18T10:31:53.428Z</updated>
+    
+    
+    
+    
+    <category term="操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="本科操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一、操作系统基本介绍</title>
+    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/</id>
+    <published>2020-11-17T11:06:56.000Z</published>
+    <updated>2020-11-18T10:31:53.428Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基础概念和作用"><a href="#基础概念和作用" class="headerlink" title="基础概念和作用"></a>基础概念和作用</h1><h2 id="操作系统的作用"><a href="#操作系统的作用" class="headerlink" title="操作系统的作用"></a>操作系统的作用</h2><p>操作系统为用户与计算机硬件系统之间的接口；<br>操作系统是计算机资源的管理者/分配者，服务的提供者；<br>操作系统可以扩展机器</p><h2 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h2><h3 id="1-处理机管理功能"><a href="#1-处理机管理功能" class="headerlink" title="1 处理机管理功能"></a>1 处理机管理功能</h3><p>进程控制；进程同步；进程通信；调度</p><h3 id="2-储存器管理功能"><a href="#2-储存器管理功能" class="headerlink" title="2 储存器管理功能"></a>2 储存器管理功能</h3><p>内存分配；内存保护；地址映射；内存扩充虚拟储存</p><h3 id="3-设备管理功能"><a href="#3-设备管理功能" class="headerlink" title="3 设备管理功能"></a>3 设备管理功能</h3><p>缓冲管理；设备分配；设备处理</p><h3 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4 文件管理"></a>4 文件管理</h3><p>文件储存空间的管理；目录管理；文件的读写管理和保护</p><h3 id="5-用户接口"><a href="#5-用户接口" class="headerlink" title="5 用户接口"></a>5 用户接口</h3><p>命令接口：终端或控制台；程序接口：系统调用；图形接口</p><h2 id="操作系统基本特征"><a href="#操作系统基本特征" class="headerlink" title="操作系统基本特征"></a>操作系统基本特征</h2><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>并发性是指宏观上在一段时间内能同时运行多个程序，而并行性则指同一时刻能运行多个指令。</p><p>并行需要硬件支持，如多流水线或者多处理器。</p><p>操作系统通过引入进程和线程，使得程序能够并发运行。</p><h3 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h3><p>共享是指系统中的资源可以供多个并发的进程共同使用。</p><p>有两种共享方式：互斥共享和同时共享。</p><p>==互斥共享的资源称为临界资源，例如打印机等==，在同一时间只允许一个进程访问，否则会出现错误，需要用同步机制来实现对临界资源的访问。</p><h3 id="虚拟"><a href="#虚拟" class="headerlink" title="虚拟"></a>虚拟</h3><p>虚拟技术把一个物理实体转换为多个逻辑实体。主要有两种虚拟技术==：时分复用技术和空分复用技术==，例如多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换，这样就好像有多个处理器进行处理。</p><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>异步是指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进。</p><h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>如果一个进程在用户态需要用到操作系统的一些功能，就需要使用系统调用从而陷入内核，由操作系统代为完成。</p><p>可以由系统调用请求的功能有设备管理、文件管理、进程管理、进程通信、存储器管理等。</p><h2 id="中断分类"><a href="#中断分类" class="headerlink" title="中断分类"></a>中断分类</h2><h3 id="外中断"><a href="#外中断" class="headerlink" title="外中断"></a>外中断</h3><p>由 CPU 执行指令以外的事件引起，如 I/O 结束中断，表示设备输入/输出处理已经完成，处理器能够发送下一个输入/输出请求。此外还有时钟中断、控制台中断等。</p><h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>由 CPU 执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等。</p><h3 id="陷入"><a href="#陷入" class="headerlink" title="陷入"></a>陷入</h3><p>在用户程序中使用系统调用。</p><p>大内核和微内核</p><h3 id="大内核"><a href="#大内核" class="headerlink" title="大内核"></a>大内核</h3><p>大内核是将操作系统功能作为一个紧密结合的整体放到内核，由于各模块共享信息，因此有很高的性能。</p><h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><p>由于操作系统不断复杂，因此将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立。但是需要频繁地在用户态和核心态之间进行切换，会有一定的性能损失。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;基础概念和作用&quot;&gt;&lt;a href=&quot;#基础概念和作用&quot; class=&quot;headerlink&quot; title=&quot;基础概念和作用&quot;&gt;&lt;/a&gt;基础概念和作用&lt;/h1&gt;&lt;h2 id=&quot;操作系统的作用&quot;&gt;&lt;a href=&quot;#操作系统的作用&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    <category term="操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="本科操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二、进程线程</title>
+    <link href="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/"/>
+    <id>https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/</id>
+    <published>2020-11-17T11:06:56.000Z</published>
+    <updated>2020-11-18T10:31:53.428Z</updated>
+    
+    <content type="html"><![CDATA[<p>[toc]</p><h1 id="进程和线程和协程"><a href="#进程和线程和协程" class="headerlink" title="进程和线程和协程"></a>进程和线程和协程</h1><h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>共享内存 协程 不用等待请求返回</p><h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>进程和线程以及它们的区别</p><ol><li>==进程是对运行时程序的封装==，是==系统进行资源调度和分配的的基本单位==，实现了操作系统的并发；</li><li>==线程是进程的子任务，是CPU调度和分派的基本单位==，用于保证程序的 实时性，实现进程内部的并发；</li><li>一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在；</li><li>==进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存==</li></ol><p><a href="https://www.zhihu.com/question/25532384/answer/81152571">https://www.zhihu.com/question/25532384/answer/81152571</a></p><p>线程作为进程的一部分，==扮演的角色就是怎么利用中央处理器去运行代码==。这其中牵扯到的最重要资源的是中央处理器和其中的寄存器，和线程的栈（stack）。这里想强调的是，线程关注的是中央处理器的运行，而不是内存等资源的管理。</p><p>==进程更倾向于内存管理的概念==</p><p>他在自己的区域掌控自己的资源 也不越界</p><p>==线程更倾向于cpu的运行==</p><p>当前的计算机的cpu总要跑在一个线程上 但是又无法做到同时跑在多个线程上</p><p>看似多线程可以同时运行 其实他们之间是通过时间片的切换来做到的</p><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程定义："><a href="#进程定义：" class="headerlink" title="进程定义："></a>进程定义：</h3><ol><li>进程是程序的一次执行；</li><li>进程是一个程序及其数据在处理机上顺序执行时所发生的活动；</li><li>进程是程序在一个数据集合上运行的过程，是系统进行资源分配和调度的一个独立单位</li><li>进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位</li></ol><h3 id="进程的三种基本状态"><a href="#进程的三种基本状态" class="headerlink" title="进程的三种基本状态"></a>进程的三种基本状态</h3><p>==就绪、执行、阻塞==</p><p>阻塞状态是缺少需要的资源从而由运行状态转换而来，但是该资源不包括 CPU，缺少 CPU 会让进程从==运行态转换为就绪态==。</p><p>只有就绪态和运行态可以相互转换，其它的都是单向转换。就绪状态的进程通过调度算法从而获得 CPU 时间，转为运行状态；而运行状态的进程，在分配给它的 CPU 时间片用完之后就会转为就绪状态，等待下一次调度。</p><h3 id="进程间的通信五种方式"><a href="#进程间的通信五种方式" class="headerlink" title="进程间的通信五种方式"></a>进程间的通信五种方式</h3><h4 id="1-共享内存"><a href="#1-共享内存" class="headerlink" title="1 共享内存"></a>1 共享内存</h4><p>==即多个进程共享某块内存，共享内存是通信方式中最快的一种。==</p><p>操作系统建立一块共享内存，并将其映射到参与通信的每个进程的地址空间上，进程就可以直接对这块共享内存进行读写。</p><h4 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2 消息队列:"></a>2 消息队列:</h4><p>类似于用链表的结构存储消息。<br><img src="https://img-blog.csdn.net/20180513164327588?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>它克服了上两种通信方式中信号量有限的缺点，具有写权限得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限得进程则可以从消息队列中读取信息；</p><h4 id="3-管道pipe通信"><a href="#3-管道pipe通信" class="headerlink" title="3 管道pipe通信"></a>3 管道pipe通信</h4><p>==即管道为空时读进程会阻塞，管道为满时写进程会阻塞，以此实现进程之间的通信==。一个进程的输入作为另一个进程的输出<br>生产者消费者模式，内存不共享</p><h5 id="普通管道："><a href="#普通管道：" class="headerlink" title="普通管道："></a>普通管道：</h5><p>  它是半双工的，即只能单向传输。<br>  它是有进程关系限制的，只能在父子进程之间使用。</p><h5 id="流管道"><a href="#流管道" class="headerlink" title="流管道:"></a>流管道:</h5><p>   相对于普通管道而言，它不止是单向传输，可以双向传输。</p><h5 id="命名管道-FIFO-："><a href="#命名管道-FIFO-：" class="headerlink" title="命名管道(FIFO)："></a>命名管道(FIFO)：</h5><p> 相对于普通管道而言，它没有进程关系限制，可以在无关进程之间进行数据交换。</p><h4 id="4-套接字"><a href="#4-套接字" class="headerlink" title="4 套接字"></a>4 套接字</h4><pre><code>与其它通信机制不同是，套接字可用于不同机器间的进程通信，即可用于网络之间的进程通信。</code></pre><p><img src="https://img-blog.csdn.net/20180513165052722?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p><h4 id="5-信号量"><a href="#5-信号量" class="headerlink" title="5 信号量"></a>5 信号量</h4><p>   信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信数据。它是一个计数器，用来控制多个进程对共享资源的访问，常作为一种锁机制，实现进程间的同步和互斥。(JUC的Semaphore的设计思想来源吧)</p><h3 id="进程控制与同步"><a href="#进程控制与同步" class="headerlink" title="进程控制与同步"></a>进程控制与同步</h3><h4 id="1-信号量的应用"><a href="#1-信号量的应用" class="headerlink" title="1 信号量的应用"></a>1 信号量的应用</h4><p>实现进程互斥；<br>实现前驱关系</p><h4 id="2-经典进程的同步问题"><a href="#2-经典进程的同步问题" class="headerlink" title="2 经典进程的同步问题"></a>2 经典进程的同步问题</h4><p>生产者-消费者问题？<br>哲学家进餐问题？<br>读者-写者问题</p><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="线程定义"><a href="#线程定义" class="headerlink" title="线程定义"></a>线程定义</h3><p>==线程是程序中一个单一的顺序控制流程，是系统独立调度和分派CPU的基本单位==。==同一个进程的多个线程共享相同的：代码段、数据段、操作系统的资源，可并发执行==</p><h3 id="线程有几种状态？"><a href="#线程有几种状态？" class="headerlink" title="线程有几种状态？"></a>线程有几种状态？</h3><p>　　在 Java虚拟机 中，线程从最初的创建到最终的消亡，要经历若干个状态：创建(new)、就绪(runnable/start)、运行(running)、阻塞(blocked)、等待(waiting)、时间等待(time waiting) 和 消亡(dead/terminated)。在给定的时间点上，一个线程只能处于一种状态<br><img src="http://static.zybuluo.com/Rico123/ot7o6218591iwj9py999hs1u/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.jpg" alt="image"></p><h3 id="线程间的同步和通信"><a href="#线程间的同步和通信" class="headerlink" title="线程间的同步和通信"></a>线程间的同步和通信</h3><h4 id="1-互斥锁（mutex）"><a href="#1-互斥锁（mutex）" class="headerlink" title="1.互斥锁（mutex）"></a>1.互斥锁（mutex）</h4><p>互斥锁比较简单，用于实现线程间对资源互斥访问的机制。有两种状态，开锁和关锁状态。</p><p>当一个线程需要读/写一个共享数据时，线程首先应该为该数据段所设置的mutex执行关锁命令。首先判别mutex的状态，如果已经处于关锁状态，则访问该数据段的线程将被阻塞；如果mutex处于开锁状态，则将mutex关上之后进行读/写。</p><p>完成读/写之后将mutex设置成开锁状态，并唤醒阻塞在该互斥锁上的线程。</p><h4 id="2-条件变量"><a href="#2-条件变量" class="headerlink" title="2.条件变量"></a>2.条件变量</h4><p>只利用mutex来实现互斥访问可能会引起互斥锁。</p><p>每个条件变量通常都与一个互斥锁一起使用，在创建一个互斥锁的同时便联系一个条件变量。单纯的互斥锁用于短期锁定，主要是保证对临界区的互斥进入，条件变量则用于线程的长期等待，直至等待的资源成为可用的资源。</p><h4 id="3-信号量机制：分为私有信号量与公有信号量"><a href="#3-信号量机制：分为私有信号量与公有信号量" class="headerlink" title="3.信号量机制：分为私有信号量与公有信号量"></a>3.信号量机制：分为私有信号量与公有信号量</h4>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h1 id=&quot;进程和线程和协程&quot;&gt;&lt;a href=&quot;#进程和线程和协程&quot; class=&quot;headerlink&quot; title=&quot;进程和线程和协程&quot;&gt;&lt;/a&gt;进程和线程和协程&lt;/h1&gt;&lt;h2 id=&quot;协程&quot;&gt;&lt;a href=&quot;#协程&quot; class=&quot;hea</summary>
+      
+    
+    
+    
+    <category term="操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="本科操作系统" scheme="https://zedhao.github.io/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
     
   </entry>
   
