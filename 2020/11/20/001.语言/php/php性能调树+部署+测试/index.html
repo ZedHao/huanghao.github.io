@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] php.ini文件内存php.ini文件中的memory_limit设置单个php进程可以使用的系统内存最大值分配原则1.一共能分给php多少内存？（ngnix，MYSQL，memcache也要耗内存）2.单个php进程平均耗多少？3.能负担多少PHP-FPM内存？ zend OPcache（操作码缓存）文件上传最长执行时间(max_execution_time)处理会话（缓存存会话">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[TOC] php.ini文件内存php.ini文件中的memory_limit设置单个php进程可以使用的系统内存最大值分配原则1.一共能分给php多少内存？（ngnix，MYSQL，memcache也要耗内存）2.单个php进程平均耗多少？3.能负担多少PHP-FPM内存？ zend OPcache（操作码缓存）文件上传最长执行时间(max_execution_time)处理会话（缓存存会话">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.860Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.860Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-001.语言/php/php性能调树+部署+测试" class="post-001.语言/php/php性能调树+部署+测试 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/" data-id="ckhp0x7q8000o932u42s7h0fk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="php-ini文件"><a href="#php-ini文件" class="headerlink" title="php.ini文件"></a>php.ini文件</h1><h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>php.ini文件中的memory_limit设置单个php进程可以使用的系统内存最大值<br>分配原则<br>1.一共能分给php多少内存？（ngnix，MYSQL，memcache也要耗内存）<br>2.单个php进程平均耗多少？<br>3.能负担多少PHP-FPM内存？</p>
+<h1 id="zend-OPcache（操作码缓存）"><a href="#zend-OPcache（操作码缓存）" class="headerlink" title="zend OPcache（操作码缓存）"></a>zend OPcache（操作码缓存）</h1><h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h1 id="最长执行时间-max-execution-time"><a href="#最长执行时间-max-execution-time" class="headerlink" title="最长执行时间(max_execution_time)"></a>最长执行时间(max_execution_time)</h1><h1 id="处理会话（缓存存会话-可扩展）"><a href="#处理会话（缓存存会话-可扩展）" class="headerlink" title="处理会话（缓存存会话 可扩展）"></a>处理会话（缓存存会话 可扩展）</h1><h1 id="缓存输出"><a href="#缓存输出" class="headerlink" title="缓存输出"></a>缓存输出</h1><h1 id="测试百科"><a href="#测试百科" class="headerlink" title="测试百科"></a>测试百科</h1><p>分类：</p>
+<h2 id="单元测试（PHPUnit）搭配Xdebug（代码覆盖率）"><a href="#单元测试（PHPUnit）搭配Xdebug（代码覆盖率）" class="headerlink" title="单元测试（PHPUnit）搭配Xdebug（代码覆盖率）"></a>单元测试（PHPUnit）搭配Xdebug（代码覆盖率）</h2><h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><h1 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h1><h2 id="测试驱动开发（TDD）（小步向前）"><a href="#测试驱动开发（TDD）（小步向前）" class="headerlink" title="测试驱动开发（TDD）（小步向前）"></a>测试驱动开发（TDD）（小步向前）</h2><h2 id="行为驱动开发（BDD）"><a href="#行为驱动开发（BDD）" class="headerlink" title="行为驱动开发（BDD）"></a>行为驱动开发（BDD）</h2><h1 id="使用Travis-CI持续测试（自动化非常赞）"><a href="#使用Travis-CI持续测试（自动化非常赞）" class="headerlink" title="使用Travis CI持续测试（自动化非常赞）"></a>使用Travis CI持续测试（自动化非常赞）</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">
+    <time datetime="2020-11-19T16:00:28.860Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、mysql体系结构和存储引擎[TOC] 1.1 定义数据库和实例数据库 和数据库实例（&#x3D;&#x3D;数据库是文件的集合&#x3D;&#x3D;，数据库实例&#x3D;&#x3D;是数据管理软件，用户的增删改查，操作数据&#x3D;&#x3D;。应用程序通过数据库实例操作数据库） 1.2 MYSQL体系结构 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhoubaojian&#x2F;articles&#x2F;7866292.htmlMySQL的查询优化器会自动调整where子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一、mysql体系结构和存储引擎[TOC] 1.1 定义数据库和实例数据库 和数据库实例（&#x3D;&#x3D;数据库是文件的集合&#x3D;&#x3D;，数据库实例&#x3D;&#x3D;是数据管理软件，用户的增删改查，操作数据&#x3D;&#x3D;。应用程序通过数据库实例操作数据库） 1.2 MYSQL体系结构 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhoubaojian&#x2F;articles&#x2F;7866292.htmlMySQL的查询优化器会自动调整where子">
+<meta property="og:locale">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529939280026&di=640194ea19d2b235db300c73b15bf39e&imgtype=jpg&src=http://img4.imgtn.bdimg.com/it/u=4044845634,3630039161&fm=214&gp=0.jpg">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/6D5881C5E20F4E4085DF4B8F51C2F054">
+<meta property="article:published_time" content="2020-11-19T16:00:28.832Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.832Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529939280026&di=640194ea19d2b235db300c73b15bf39e&imgtype=jpg&src=http://img4.imgtn.bdimg.com/it/u=4044845634,3630039161&fm=214&gp=0.jpg">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/mysql体系结构和存储引擎" class="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/mysql体系结构和存储引擎 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" data-id="ckhp0x7ri0035932uglgm95bk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="一、mysql体系结构和存储引擎"><a href="#一、mysql体系结构和存储引擎" class="headerlink" title="一、mysql体系结构和存储引擎"></a>一、mysql体系结构和存储引擎</h1><p>[TOC]</p>
+<h2 id="1-1-定义数据库和实例"><a href="#1-1-定义数据库和实例" class="headerlink" title="1.1 定义数据库和实例"></a>1.1 定义数据库和实例</h2><p>数据库 和数据库实例（==数据库是文件的集合==，数据库实例==是数据管理软件，用户的增删改查，操作数据==。应用程序通过数据库实例操作数据库）</p>
+<h2 id="1-2-MYSQL体系结构"><a href="#1-2-MYSQL体系结构" class="headerlink" title="1.2 MYSQL体系结构"></a>1.2 MYSQL体系结构</h2><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529939280026&di=640194ea19d2b235db300c73b15bf39e&imgtype=jpg&src=http://img4.imgtn.bdimg.com/it/u=4044845634,3630039161&fm=214&gp=0.jpg" alt="image"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhoubaojian/articles/7866292.html">https://www.cnblogs.com/zhoubaojian/articles/7866292.html</a><br>MySQL的查询优化器会自动调整where子句的条件顺序以使用适合的索引<br>Mysql是由SQL接口，解析器，优化器，缓存，存储引擎组成的（SQL Interface、Parser、Optimizer、Caches&amp;Buffers、Pluggable Storage Engines）</p>
+<p>（1） Connectors【接口】指的是不同语言中与SQL的交互</p>
+<p>（2）Management Serveices &amp; Utilities：系统管理和控制工具，例如备份恢复、Mysql复制、集群等 </p>
+<p>（3）Connection Pool:连接池：管理缓冲用户连接、用户名、密码、权限校验、线程处理等需要缓存的需求</p>
+<p>（4）SQL Interface: SQL接口：接受用户的SQL命令，并且返回用户需要查询的结果。比如select from就是调用SQL Interface </p>
+<p>（5）Parser: 解析器，SQL命令传递到解析器的时候会被解析器验证和解析。解析器是由Lex和YACC实现的，是一个很长的脚本</p>
+<p>（6）Optimizer: 查询优化器，SQL语句在查询之前会使用查询优化器对查询进行优化。他使用的是“选取-投影-联接”策略进行查询。</p>
+<p>（7） Cache和Buffer（高速缓存区）： 查询缓存，如果查询缓存有命中的查询结果，查询语句就可以直接去查询缓存中取数据。<br>通过LRU算法将数据的冷端溢出，未来得及时刷新到磁盘的数据页，叫脏页。<br>这个缓存机制是由一系列小缓存组成的。比如表缓存，记录缓存，key缓存，权限缓存等 </p>
+<p>（8）Engine ：存储引擎。存储引擎是MySql中具体的与文件打交道的子系统。也是Mysql最具有特色的一个地方。<br>Mysql的存储引擎是插件式的。它根据MySql AB公司提供的文件访问层的一个抽象接口来定制一种文件访问机制（这种访问机制就叫存储引擎）<br>现在有很多种存储引擎，各个存储引擎的优势各不一样，最常用的MyISAM,InnoDB,BDB<br>默认下MySql是使用MyISAM引擎，它查询速度快，有较好的索引优化和数据压缩技术。但是它不支持事务。<br><img src="6D5881C5E20F4E4085DF4B8F51C2F054" alt="image"></p>
+<h1 id="mysql-var路径下的-ibd-frm"><a href="#mysql-var路径下的-ibd-frm" class="headerlink" title="mysql var路径下的.ibd .frm"></a>mysql var路径下的.ibd .frm</h1><p>.frm: 存储表结构<br>.myd: 存储数据，MYData的缩写<br>.myi: 存储索引，MYIndex的缩写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ibd是MySQL数据文件、索引文件，无法直接读取。</span><br><span class="line">frm是表结构文件，可以直接打开</span><br></pre></td></tr></table></figure>
+
+<h1 id="mysql引擎的分类-MyISAM-InnoDB-Memory-BDB-Merge-Federated-BlackHole-CSV"><a href="#mysql引擎的分类-MyISAM-InnoDB-Memory-BDB-Merge-Federated-BlackHole-CSV" class="headerlink" title="mysql引擎的分类(MyISAM,InnoDB,Memory,BDB,Merge,Federated,BlackHole,CSV)"></a>mysql引擎的分类(MyISAM,InnoDB,Memory,BDB,Merge,Federated,BlackHole,CSV)</h1><p>(1)==MyISAM==： 其特点是不支持事务、表锁和全文 索 引 </p>
+<p>(2)==InnoDB==：事务型数据库的首选引擎，支持ACID事务，支持行级锁定<br>使用多版本并发控制（MVCC)来获得髙并发性，并且实现了SQL标准的 4种隔离级別，默认为REPEATABLE级别。同时使用一种被称为next-key locking的策略来 避免幻读（phantom)现象的产生.除此之外，InnoDB储存引擎还提供了插入缓冲（insert b u ffer)、二 次 写 （double write)、 自 适 应 哈 希 索 引 （adaptive hash index) 、预 读 </p>
+<p>InnoDB存储引擎支持事务，主要面向在线事务处理（OLTP) 方面的应用。其特点是 行锁设计、支持外键，并支持类似于Oracle的非锁定读，</p>
+<p>(3)BDB：源自Berkeley DB，事务型数据库的另一种选择，支持COMMIT和ROLLBACK等其他事务特性</p>
+<p>(4)Memory ：<br>Memory存储引擎（之前称为HEAP存储引擎）将表中的数据存放在内存中，如果数据 库重启或发生崩溃，表中的数据都将消失。它非常适合用于存储临时数据的临时表，以及<br>数据仓库中的纬度表。它默认使用哈希索引，而不是我们熟悉的B+树索引。<br>(5)Merge：将一定数量的MyISAM表联合而成一个整体，在超大规模数据存储时很有用</p>
+<p>(6)Archive ：非常适合存储大量的独立的，作为历史记录的数据。因为它们不经常被读取。Archive拥有高效的插入速度，但其对查询的支持相对较差</p>
+<p>(7)Federated：将不同的Mysql服务器联合起来，逻辑上组成一个完整的数据库。非常适合分布式应用 Cluster/NDB ：高冗余的存储引擎，用多台数据机器联合提供服务以提高整体性能和安全性。适合数据量大，安全和性能要求高的应用</p>
+<p>(8)CSV：逻辑上由逗号分割数据的存储引擎。它会在数据库子目录里为每个数据表创建一个.CSV文件。这是一种普通文本文件，每个数据行占用一个文本行。CSV存储引擎不支持索引。</p>
+<p>(9)BlackHole：黑洞引擎，写入的任何数据都会消失，一般用于记录binlog做复制的中继</p>
+<h2 id="1-3-Mysql表存储引擎"><a href="#1-3-Mysql表存储引擎" class="headerlink" title="1.3 Mysql表存储引擎"></a>1.3 Mysql表存储引擎</h2><h3 id="1-3-1-InnoDB存储引擎"><a href="#1-3-1-InnoDB存储引擎" class="headerlink" title="1.3.1 InnoDB存储引擎"></a>1.3.1 InnoDB存储引擎</h3><h3 id="1-3-2-MyISAM存储引擎"><a href="#1-3-2-MyISAM存储引擎" class="headerlink" title="1.3.2 MyISAM存储引擎"></a>1.3.2 MyISAM存储引擎</h3><h3 id="1-3-3-NDB存储引擎"><a href="#1-3-3-NDB存储引擎" class="headerlink" title="1.3.3 NDB存储引擎"></a>1.3.3 NDB存储引擎</h3><h3 id="1-3-4-Memeroy存储引擎"><a href="#1-3-4-Memeroy存储引擎" class="headerlink" title="1.3.4 Memeroy存储引擎"></a>1.3.4 Memeroy存储引擎</h3><h3 id="1-3-5-Archive存储引擎"><a href="#1-3-5-Archive存储引擎" class="headerlink" title="1.3.5 Archive存储引擎"></a>1.3.5 Archive存储引擎</h3><h3 id="1-3-6-Federated存储引擎"><a href="#1-3-6-Federated存储引擎" class="headerlink" title="1.3.6 Federated存储引擎"></a>1.3.6 Federated存储引擎</h3><h3 id="1-3-7-Maria存储引擎"><a href="#1-3-7-Maria存储引擎" class="headerlink" title="1.3.7 Maria存储引擎"></a>1.3.7 Maria存储引擎</h3><h3 id="1-3-8-其他存储引擎"><a href="#1-3-8-其他存储引擎" class="headerlink" title="1.3.8 其他存储引擎"></a>1.3.8 其他存储引擎</h3><h2 id="1-4各种存储引擎之间比较"><a href="#1-4各种存储引擎之间比较" class="headerlink" title="1.4各种存储引擎之间比较"></a>1.4各种存储引擎之间比较</h2><h2 id="1-5链接MYSQL"><a href="#1-5链接MYSQL" class="headerlink" title="1.5链接MYSQL"></a>1.5链接MYSQL</h2><h3 id="1-5-1-TCP-IP"><a href="#1-5-1-TCP-IP" class="headerlink" title="1.5.1 TCP/IP"></a>1.5.1 TCP/IP</h3><h3 id="1-5-2-命名管道和共享内存"><a href="#1-5-2-命名管道和共享内存" class="headerlink" title="1.5.2 命名管道和共享内存"></a>1.5.2 命名管道和共享内存</h3><h3 id="1-5-3-Unix域套接字"><a href="#1-5-3-Unix域套接字" class="headerlink" title="1.5.3 Unix域套接字"></a>1.5.3 Unix域套接字</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">
+    <time datetime="2020-11-19T16:00:28.832Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%20%E5%87%A0%E7%A7%8D%E9%94%AE%E5%92%8C%E8%8C%83%E5%BC%8F%EF%BC%9A/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/%E6%96%87%E4%BB%B6/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

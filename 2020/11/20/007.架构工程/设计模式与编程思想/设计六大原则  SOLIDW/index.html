@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 设计原则https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huangenai&#x2F;p&#x2F;6219475.html 单一职责原则(Single Responsibility Principle)对象应该仅具有一种单一职责的概念。 换句话说就是让一个类只做一种类型责任，当这个类需要承担其他类型的责任的时候，就需要分解这个类。 例子  例如支付 123456789101112131415161718">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E8%AE%BE%E8%AE%A1%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99%20%20SOLIDW/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 设计原则https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huangenai&#x2F;p&#x2F;6219475.html 单一职责原则(Single Responsibility Principle)对象应该仅具有一种单一职责的概念。 换句话说就是让一个类只做一种类型责任，当这个类需要承担其他类型的责任的时候，就需要分解这个类。 例子  例如支付 123456789101112131415161718">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.784Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.784Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-007.架构工程/设计模式与编程思想/设计六大原则  SOLIDW" class="post-007.架构工程/设计模式与编程思想/设计六大原则  SOLIDW post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E8%AE%BE%E8%AE%A1%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99%20%20SOLIDW/" data-id="ckhp0x7qx001y932u0i3y1l1j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huangenai/p/6219475.html">https://www.cnblogs.com/huangenai/p/6219475.html</a></p>
+<h2 id="单一职责原则-Single-Responsibility-Principle"><a href="#单一职责原则-Single-Responsibility-Principle" class="headerlink" title="单一职责原则(Single Responsibility Principle)"></a>单一职责原则(Single Responsibility Principle)</h2><p>对象应该仅具有一种单一职责的概念。</p>
+<p>换句话说就是让一个类只做一种类型责任，当这个类需要承担其他类型的责任的时候，就需要分解这个类。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>  例如支付</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">namespace SOLID</span><br><span class="line">&#123;</span><br><span class="line">    public class Users</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 支付</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void Pay()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 数据库操作</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void DataAccess()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 日志操作</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void Logger()&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个用户类中有这三个功能：1.支付逻辑，2数据库逻辑，3.日志操作。如果将这三个功能结合在一个类中，可能会出现修改部分代码时会破坏其他的部分。多个功能也使这个用户类难以理解，降低了内聚性。所以最好就是将这个类分离为三个分离的类，每个类仅仅有一个功能。<br>改进 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">namespace SOLID</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 数据库操作</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class DataAccess &#123; &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 日志</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class Logger &#123; &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 支付</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class Pay &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单一职责原则是实现高内聚、低耦合的指导方针，它是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，而发现类的多重职责需要设计人员具有较强的分析设计能力和相关实践经验。</p>
+<p>例子：手机与照相机，它们都有照相的功能，但是手机的功能不仅仅只有照相还可以打电话，听音乐；但是照相机就只负责照相。因此这里面的手机职能就过多，在维护，等方面就会比单一职责的困难很多。</p>
+<h2 id="开闭原则（Open-Close-Principle）"><a href="#开闭原则（Open-Close-Principle）" class="headerlink" title="开闭原则（Open Close Principle）"></a>开闭原则（Open Close Principle）</h2><p>“软件体应该是对于扩展开放的，但是对于修改封闭的”的概念</p>
+<p>你不是要变化吗？，那么我就让你继承实现一个对象，用一个接口来抽象你的职责，你变化越多，继承实现的子类就越多。<br>例如抽象的 数据库操作 是可以 扩展为mysql 或 orcle  mysqlOdp 此思想</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">abstract class DataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        public abstract void OpenConnection();</span><br><span class="line">        public abstract void CloseConnection();</span><br><span class="line">        public abstract void ExecuteCommand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; SQL</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class SqlDataAccess : DataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 打开SQL数据库</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void OpenConnection()&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 关闭Sql数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void CloseConnection()&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 执行Sql数据命令</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void ExecuteCommand()&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; ORACLE</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class OracleDataAccess : DataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 打开Oracle数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void OpenConnection()&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 关闭Oracle数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void CloseConnection()&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 执行Oracle数据命令</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public override void ExecuteCommand()&#123;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="里氏代换原则-（Liskov-Substitution-Principle）"><a href="#里氏代换原则-（Liskov-Substitution-Principle）" class="headerlink" title="里氏代换原则 （Liskov Substitution Principle）"></a>里氏代换原则 （Liskov Substitution Principle）</h2><p>“程序中的对象应该是可以在不改变程序正确性的前提下被它的子类所替换的”<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenxkang/p/6657384.html">https://www.cnblogs.com/chenxkang/p/6657384.html</a><br>例子：企鹅是一种特殊的鸟，但是企鹅不会飞，若是在鸟这类中添加，飞这个行为，，那么企鹅将不能继承这个类。</p>
+<h2 id="接口隔离原则-（Interface-Segregation-Principle）"><a href="#接口隔离原则-（Interface-Segregation-Principle）" class="headerlink" title="接口隔离原则 （Interface Segregation Principle）"></a>接口隔离原则 （Interface Segregation Principle）</h2><p>“多个特定客户端接口要好于一个宽泛用途的接口”<br>==不能强迫用户去依赖那些他们不使用的接口==。</p>
+<h3 id="背景和例子"><a href="#背景和例子" class="headerlink" title="背景和例子"></a>背景和例子</h3><p> 换句话说，使用多个专门的接口比使用单一的总接口总要好。注意：在代码中应用ISP并不一定意味着服务就是绝对安全的。仍然需要采用良好的编码实践，以确保正确的验证与授权。<br>这个原则起源于施乐公司，他们需要建立了一个新的打印机系统，可以执行诸如装订的印刷品一套，传真多种任务。此系统软件创建从底层开始编制，并实现了这些 任务功能，但是不断增长的软件功能却使软件本身越来越难适应变化和维护。每一次改变，即使是最小的变化，有人可能需要近一个小时的重新编译和重新部署。这 是几乎不可能再继续发展，所以他们聘请罗伯特Robert帮助他们。他们首先设计了一个主要类Job,几乎能够用于实现所有任务功能。只要调用Job类的 一个方法就可以实现一个功能，Job类就变动非常大，是一个胖模型啊，对于客户端如果只需要一个打印功能，但是其他无关打印的方法功能也和其耦合，ISP 原则建议在客户端和Job类之间增加一个接口层，对于不同功能有不同接口，比如打印功能就是Print接口，然后将大的Job类切分为继承不同接口的子 类，这样有一个Print Job类，等等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">interface IDataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        void OpenConnection();</span><br><span class="line">        void CloseConnection();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    interface ISqlDataAccess : IDataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        void ExecuteSqlCommand();</span><br><span class="line">    &#125;</span><br><span class="line">    interface IOracleDataAccess : IDataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        void ExecuteOracleCommand();</span><br><span class="line">    &#125;</span><br><span class="line">    class SqlDataAccess : ISqlDataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 执行Sql数据命令</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void ExecuteSqlCommand()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 打开Sql数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void OpenConnection()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 关闭Sql数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void CloseConnection()&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    class OracleDataAccess : IOracleDataAccess</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 执行Oracle数据命令</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void ExecuteOracleCommand()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 打开Oracle数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void OpenConnection()&#123;&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 关闭Oracle数据连接</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        public void CloseConnection()&#123;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="依赖倒转原则-Dependency-Inversion-Principle（解耦必备原则）"><a href="#依赖倒转原则-Dependency-Inversion-Principle（解耦必备原则）" class="headerlink" title="依赖倒转原则  Dependency Inversion Principle（解耦必备原则）"></a>依赖倒转原则  Dependency Inversion Principle（解耦必备原则）</h2><p>我们是会用的电脑，cpu，内存等是分开的，当有那个地方出问题的时候，只需要将出问题的零件替换掉，但是想一想收音机，里面错综复杂，每个零件之间相互依赖，也许碰到一个其他的也会因此出问题。</p>
+<p>依赖于抽象而不是一个实例</p>
+<p>依赖反转原则： 依赖反转原则 认为一个方法应该遵从“依赖于抽象而不是一个实例” 的概念。依赖注入是该原则的一种实现方式。</p>
+<p>依赖倒置原则(Dependency Inversion Principle，DIP)规定：代码应当取决于抽象概念，而不是具体实现。<br>==高层模块不应该依赖于低层模块==，二者都应该依赖于抽象<br>抽象不应该依赖于细节，细节应该依赖于抽象 </p>
+<p>类可能依赖于其他类来执行其工作。但是，它们不应当依赖于该类的特定具体实现，而应当是它的抽象。这个原则实在是太重要了，社会的分工化，标准化都 是这个设计原则的体现。显然，这一概念会大大提高系统的灵活性。如果类只关心它们用于支持特定契约而不是特定类型的组件，就可以快速而轻松地修改这些低级 服务的功能，同时最大限度地降低对系统其余部分的影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">interface IBankAccount</span><br><span class="line">    &#123;</span><br><span class="line">        long BankNumber &#123; get; set; &#125; &#x2F;&#x2F; 卡号</span><br><span class="line">        decimal Balance &#123; get; set; &#125; &#x2F;&#x2F; 余额</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 转账人</span><br><span class="line">    interface ITransferSource : IBankAccount</span><br><span class="line">    &#123;</span><br><span class="line">        void CutPayment(decimal value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 收款人</span><br><span class="line">    interface ITransferDestination : IBankAccount</span><br><span class="line">    &#123;</span><br><span class="line">        void AddMoney(decimal value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class BankAccout : IBankAccount, ITransferSource, ITransferDestination</span><br><span class="line">    &#123;</span><br><span class="line">        public long BankNumber &#123; get; set; &#125;</span><br><span class="line">        public decimal Balance &#123; get; set; &#125;</span><br><span class="line">        public void CutPayment(decimal value)</span><br><span class="line">        &#123;</span><br><span class="line">            Balance -&#x3D; value;</span><br><span class="line">        &#125;</span><br><span class="line">        public void AddMoney(decimal value)</span><br><span class="line">        &#123;</span><br><span class="line">            Balance +&#x3D; value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    class TransferAmount</span><br><span class="line">    &#123;</span><br><span class="line">        public decimal Amount &#123; get; set; &#125;</span><br><span class="line">        public void Transfer(ITransferSource source, ITransferDestination dest)</span><br><span class="line">        &#123;</span><br><span class="line">            source.CutPayment(Amount);</span><br><span class="line">            dest.AddMoney(Amount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><p>迪米特法则(Law of Demeter )又叫做最少知识原则，也就是说，一个对象应当对其他对象尽可能少的了解。不和陌生人说话。英文简写为: LoD。</p>
+<p>目的</p>
+<p>　　在于降低类与类之间的耦合。由于每个类尽量减少对其他类的依赖，因此，很容易使得系统的功能模块功能独立，是的相互间存在尽可能少的依赖关系。</p>
+<p>优点</p>
+<p>　　迪米特法则的做法观念就是类间解耦，弱耦合，只有弱耦合了以后，类的复用率才可以提高。</p>
+<p>缺点</p>
+<p>  　  造成系统的不同模块之间的通信效率降低，使系统的不同模块之间不容易协调等缺点。</p>
+<p> 　　因为迪米特法则要求类与类之间尽量不直接通信，如果类之间需要通信就通过第三方转发的方式，这就直接导致了系统中存在大量的中介类，大大增加了系统的复杂度。</p>
+<p>　　解决这个问题的方式是：使用依赖倒转原则（通俗的讲就是要针对接口编程，不要针对具体编程）， 这要就可以是调用方和被调用方之间有了一个抽象层，被调用方在遵循抽象层的前提下就可以自由的变化，此时抽象层成了调用方的朋友。</p>
+<pre><code>第一：在类的划分上，应当创建弱耦合的类，类与类之间的耦合越弱，就越有利于实现可复用的目标。
+第二：在类的结构设计上，每个类都应该降低成员的访问权限。
+第三：在类的设计上，只要有可能，一个类应当设计成不变的类。
+第四：在对其他类的引用上，一个对象对其他类的对象的引用应该降到最低。
+第五：尽量限制局部变量的有效范围，降低类的访问权限。</code></pre>
+<p> 简单示例：</p>
+<p>　　上课时，教师让学习委员进行点名
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">namespace DesignPrinciples.LowOfDemeter</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            GroupLeader group &#x3D; new GroupLeader();</span><br><span class="line">            Teacher teacher &#x3D; new Teacher();</span><br><span class="line">            teacher.Command(group);</span><br><span class="line">            Console.WriteLine(&quot;&#x3D;&#x3D;&#x3D;&#x3D; 我是分割线 &#x3D;&#x3D;&#x3D;&#x3D;&quot;);</span><br><span class="line">            teacher.CommandByDemeter(group);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class Teacher</span><br><span class="line">    &#123; </span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 教师发送命令</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;group&quot;&gt;&lt;&#x2F;param&gt;</span><br><span class="line">        public void Command(GroupLeader group)</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;Student&gt; students &#x3D; new List&lt;Student&gt;();</span><br><span class="line">            for (int i &#x3D; 0; i &lt; 20; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                students.Add(new Student());</span><br><span class="line">            &#125;</span><br><span class="line">            group.Count(students);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void CommandByDemeter(GroupLeader group)</span><br><span class="line">        &#123; </span><br><span class="line">            group.CountByDemeter();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class GroupLeader</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 学习委员点名</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;girls&quot;&gt;&lt;&#x2F;param&gt;</span><br><span class="line">        public void Count(List&lt;Student&gt; girls)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;学生人数：&quot; + girls.Count);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void CountByDemeter()</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;Student&gt; students &#x3D; new List&lt;Student&gt;();</span><br><span class="line">            for (int i &#x3D; 0; i &lt; 20; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                students.Add(new Student());</span><br><span class="line">            &#125;</span><br><span class="line">            Console.WriteLine(&quot;学生人数（迪米特）：&quot; + students.Count);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class Student</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E8%AE%BE%E8%AE%A1%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99%20%20SOLIDW/">
+    <time datetime="2020-11-19T16:00:28.784Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%EF%BC%8C%20%E7%BB%A7%E6%89%BF%E3%80%81%E5%B0%81%E8%A3%85%20%E5%A4%9A%E6%80%81%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

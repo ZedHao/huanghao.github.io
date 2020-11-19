@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 数据库安全php 连接mysql的三种方式PHP的MySQL扩展太古老 高版本不支持本扩展自 PHP 5.5.0 起已废弃，并在将来会被移除），PHP原生的方式去连接数据库，是面向过程的 12345678910111213141516171819202122232425262728&lt;?php$mysql_conf &#x3D; array(    &#39;host&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E8%8C%83%E7%95%B4%EF%BC%88sql%E6%B3%A8%E5%85%A5%20xxs%20crsf%E7%AD%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 数据库安全php 连接mysql的三种方式PHP的MySQL扩展太古老 高版本不支持本扩展自 PHP 5.5.0 起已废弃，并在将来会被移除），PHP原生的方式去连接数据库，是面向过程的 12345678910111213141516171819202122232425262728&lt;?php$mysql_conf &#x3D; array(    &#39;host&#39;">
+<meta property="og:locale">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704220225331-622725464.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704221329987-250861756.png">
+<meta property="article:published_time" content="2020-11-19T16:00:28.858Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.859Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704220225331-622725464.png">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-001.语言/php/php手册(1)/七、安全范畴（sql注入 xxs crsf等）" class="post-001.语言/php/php手册(1)/七、安全范畴（sql注入 xxs crsf等） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E8%8C%83%E7%95%B4%EF%BC%88sql%E6%B3%A8%E5%85%A5%20xxs%20crsf%E7%AD%89%EF%BC%89/" data-id="ckhp0x7r5002e932u1ynef8lz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h1><h2 id="php-连接mysql的三种方式"><a href="#php-连接mysql的三种方式" class="headerlink" title="php 连接mysql的三种方式"></a>php 连接mysql的三种方式</h2><h3 id="PHP的MySQL扩展"><a href="#PHP的MySQL扩展" class="headerlink" title="PHP的MySQL扩展"></a>PHP的MySQL扩展</h3><p>太古老 高版本不支持<br>本扩展自 PHP 5.5.0 起已废弃，并在将来会被移除），PHP原生的方式去连接数据库，是面向过程的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    );</span><br><span class="line">$mysql_conn &#x3D; @mysql_connect($mysql_conf[&#39;host&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);</span><br><span class="line">if (!$mysql_conn) &#123;</span><br><span class="line">    die(&quot;could not connect to the database:\n&quot; . mysql_error());&#x2F;&#x2F;诊断连接错误</span><br><span class="line">&#125;</span><br><span class="line">mysql_query(&quot;set names &#39;utf8&#39;&quot;);&#x2F;&#x2F;编码转化</span><br><span class="line">$select_db &#x3D; mysql_select_db($mysql_conf[&#39;db&#39;]);</span><br><span class="line">if (!$select_db) &#123;</span><br><span class="line">    die(&quot;could not connect to the db:\n&quot; .  mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">$sql &#x3D; &quot;select * from user;&quot;;</span><br><span class="line">$res &#x3D; mysql_query($sql);</span><br><span class="line">if (!$res) &#123;</span><br><span class="line">    die(&quot;could get the res:\n&quot; . mysql_error());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while ($row &#x3D; mysql_fetch_assoc($res)) &#123;</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mysql_close($mysql_conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP的mysqli扩展"><a href="#PHP的mysqli扩展" class="headerlink" title="PHP的mysqli扩展"></a>PHP的mysqli扩展</h3><p>优点：面向对象接口 、prepared语句支持、多语句执行支持、事务支持 、增强的调试能力、嵌入式服务支持 、预处理方式完全解决了sql注入的问题。<br>缺点：就是只支持mysql数据库。如果你要是不操作其他的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;joshua317&#39;, </span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">$mysqli &#x3D; @new mysqli($mysql_conf[&#39;host&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);</span><br><span class="line">if ($mysqli-&gt;connect_errno) &#123;</span><br><span class="line">    die(&quot;could not connect to the database:\n&quot; . $mysqli-&gt;connect_error);&#x2F;&#x2F;诊断连接错误</span><br><span class="line">&#125;</span><br><span class="line">$mysqli-&gt;query(&quot;set names &#39;utf8&#39;;&quot;);&#x2F;&#x2F;编码转化</span><br><span class="line">$select_db &#x3D; $mysqli-&gt;select_db($mysql_conf[&#39;db&#39;]);</span><br><span class="line">if (!$select_db) &#123;</span><br><span class="line">    die(&quot;could not connect to the db:\n&quot; .  $mysqli-&gt;error);</span><br><span class="line">&#125;$sql &#x3D; &quot;select uid from user where name &#x3D; &#39;joshua&#39;;&quot;;</span><br><span class="line">$res &#x3D; $mysqli-&gt;query($sql);</span><br><span class="line">if (!$res) &#123;</span><br><span class="line">    die(&quot;sql error:\n&quot; . $mysqli-&gt;error);</span><br><span class="line">&#125;</span><br><span class="line"> while ($row &#x3D; $res-&gt;fetch_assoc()) &#123;</span><br><span class="line">        var_dump($row);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">$res-&gt;free();</span><br><span class="line">$mysqli-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP数据对象-PDO-【功能类似于JDBC、ODBC、DBI】-解决了sql注入的问题"><a href="#PHP数据对象-PDO-【功能类似于JDBC、ODBC、DBI】-解决了sql注入的问题" class="headerlink" title="PHP数据对象(PDO) 【功能类似于JDBC、ODBC、DBI】 解决了sql注入的问题"></a>PHP数据对象(PDO) 【功能类似于JDBC、ODBC、DBI】 解决了sql注入的问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;joshua317&#39;, </span><br><span class="line">    );</span><br><span class="line">$pdo &#x3D; new PDO(&quot;mysql:host&#x3D;&quot; . $mysql_conf[&#39;host&#39;] . &quot;;dbname&#x3D;&quot; . $mysql_conf[&#39;db&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);&#x2F;&#x2F;创建一个pdo对象</span><br><span class="line">$pdo-&gt;exec(&quot;set names &#39;utf8&#39;&quot;);</span><br><span class="line">$sql &#x3D; &quot;select * from user where name &#x3D; ?&quot;;</span><br><span class="line">$stmt &#x3D; $pdo-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;bindValue(1, &#39;joshua&#39;, PDO::PARAM_STR);</span><br><span class="line">$rs &#x3D; $stmt-&gt;execute();</span><br><span class="line">if ($rs) &#123;</span><br><span class="line">    &#x2F;&#x2F; PDO::FETCH_ASSOC 关联数组形式</span><br><span class="line">    &#x2F;&#x2F; PDO::FETCH_NUM 数字索引数组形式</span><br><span class="line">    while ($row &#x3D; $stmt-&gt;fetch(PDO::FETCH_ASSOC)) &#123;</span><br><span class="line">        var_dump($row);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$pdo &#x3D; null;&#x2F;&#x2F;关闭连接</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库安全采取的手段"><a href="#数据库安全采取的手段" class="headerlink" title="数据库安全采取的手段"></a>数据库安全采取的手段</h2><h3 id="预防SQL-注入"><a href="#预防SQL-注入" class="headerlink" title="预防SQL 注入"></a>预防SQL 注入</h3><h4 id="在服务器端配置"><a href="#在服务器端配置" class="headerlink" title="在服务器端配置"></a>在服务器端配置</h4><p>(1) 打开php的安全模式<br>但是默认的php.ini是没有打开安全模式的，我们把它打开：</p>
+<p>safe_mode = on</p>
+<p>(2) 用户组安全</p>
+<p>当safe_mode打开时，safe_mode_gid被关闭，那么php脚本能够对文件进行访问，而且相同<br>safe_mode_gid = off</p>
+<p>(3) 安全模式下执行程序主目录</p>
+<p>(4) 安全模式下包含文件</p>
+<p>如果要在安全模式下包含某些公共文件，那么就修改一下选项：</p>
+<p>safe_mode_include_dir = D:/usr/www/include/</p>
+<p>(5) 控制php脚本能访问的目录</p>
+<p>使用open_basedir选项能够控制PHP脚本只能访问指定的目录，这样能够避免PHP脚本访问</p>
+<p>不应该访问的文件，一定程度上限制了phpshell的危害，我们一般可以设置为只能访问网站目录：</p>
+<p>open_basedir = D:/usr/www</p>
+<p>(6) 关闭危险函数</p>
+<p>如果你要禁止任何文件和目录的操作，那么可以关闭很多文件操作</p>
+<p>disable_functions = chdir,chroot,dir,getcwd,opendir,readdir,scandir,fopen,unlink,delete,copy,mkdir, rmdir,rename,file,file_get_contents,fputs,fwrite,chgrp,chmod,chown</p>
+<p>以上只是列了部分不叫常用的文件处理函数，你也可以把上面执行命令函数和这个函数结合，</p>
+<p>就能够抵制大部分的phpshell了。</p>
+<p>(7) 关闭PHP版本信息在http头中的泄漏</p>
+<p>我们为了防止黑客获取服务器中php版本的信息，可以关闭该信息斜路在http头中：</p>
+<p>expose_php = Off</p>
+<p>(8) 关闭注册全局变量</p>
+<p>在PHP中提交的变量，包括使用POST或者GET提交的变量，都将自动注册为全局变量，能够直接访问，</p>
+<p>这是对服务器非常不安全的，所以我们不能让它注册为全局变量，就把注册全局变量选项关闭：</p>
+<p>register_globals = Off</p>
+<p>(9) 打开magic_quotes_gpc来防止SQL注入</p>
+<p>SQL注入是非常危险的问题，小则网站后台被入侵，重则整个服务器沦陷，</p>
+<p>所以一定要小心。php.ini中有一个设置：</p>
+<p>magic_quotes_gpc = Off</p>
+<p>这个默认是关闭的，如果它打开后将自动把用户提交对sql的查询进行转换，</p>
+<p>比如把 ‘ 转为 &#39;等，这对防止sql注射有重大作用。所以我们推荐设置为：</p>
+<p>magic_quotes_gpc = On</p>
+<p>(10) 错误信息控制+错误日志</p>
+<h4 id="php代码层面-addslashes-和-str-replace-mysql-escape-string-magic-quotes-gpc-打开"><a href="#php代码层面-addslashes-和-str-replace-mysql-escape-string-magic-quotes-gpc-打开" class="headerlink" title="php代码层面   addslashes() 和 str_replace()  mysql_escape_string()  magic_quotes_gpc 打开"></a>php代码层面   addslashes() 和 str_replace()  mysql_escape_string()  magic_quotes_gpc 打开</h4><p>中文防止SQL注入的检查。addslashes的问题在于黑客可以用0xbf27来代替单引</p>
+<ul>
+<li>addslashes() 是强行加\；</li>
+<li>mysql_real_escape_string()  会判断字符集，但是对PHP版本有要求；</li>
+<li>mysql_escape_string不考虑连接的当前字符集<h3 id="magic-quotes-gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理"><a href="#magic-quotes-gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理" class="headerlink" title="magic_quotes_gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理"></a>magic_quotes_gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理</h3><h4 id="散列加密-addslashes-pg-escape-string-MD5"><a href="#散列加密-addslashes-pg-escape-string-MD5" class="headerlink" title="散列加密  addslashes() == pg_escape_string MD5"></a>散列加密  addslashes() == pg_escape_string MD5</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 存储密码散列  </span><br><span class="line">$query  &#x3D; sprintf(&quot;INSERT INTO users(name,pwd) VALUES(&#39;%s&#39;,&#39;%s&#39;);&quot;,</span><br><span class="line">            pg_escape_string($username), md5($password));</span><br><span class="line">$result &#x3D; pg_query($connection, $query);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 发送请求来验证用户密码</span><br><span class="line">$query &#x3D; sprintf(&quot;SELECT 1 FROM users WHERE name&#x3D;&#39;%s&#39; AND pwd&#x3D;&#39;%s&#39;;&quot;,</span><br><span class="line">            pg_escape_string($username), md5($password));</span><br><span class="line">$result &#x3D; pg_query($connection, $query);</span><br><span class="line"></span><br><span class="line">if (pg_num_rows($result) &gt; 0) &#123;</span><br><span class="line">    echo &#39;Welcome, $username!&#39;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &#39;Authentication failed for $username.&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="预防xxs-跨站脚本攻击-Cross-Site-Scripting"><a href="#预防xxs-跨站脚本攻击-Cross-Site-Scripting" class="headerlink" title="预防xxs(跨站脚本攻击(Cross Site Scripting))"></a>预防xxs(跨站脚本攻击(Cross Site Scripting))</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704220225331-622725464.png" alt="image"><br>XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本<br> HTML 注入，攻击者的输入没有经过后台的过滤直接进入到数据库，最终显示给来访的用户。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h5 id="反射型【非持久型】-如弹窗"><a href="#反射型【非持久型】-如弹窗" class="headerlink" title="反射型【非持久型】 如弹窗"></a>反射型【非持久型】 如弹窗</h5><p>　　反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览器解析之后XSS代码才能够攻击。</p>
+<h5 id="存储型【持久型】-如盗身份"><a href="#存储型【持久型】-如盗身份" class="headerlink" title="存储型【持久型】 如盗身份　"></a>存储型【持久型】 如盗身份　</h5><h4 id="第三方跳转"><a href="#第三方跳转" class="headerlink" title="第三方跳转"></a>第三方跳转</h4><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>php防止XSS跨站脚本攻击的方法:是针对非法的HTML代码包括单双引号等，使用htmlspecialchars()函数 。<br>　　1、入参字符过滤<br>　　2、出参进行编码<br>　　3、入参长度限制<br>　　4、设置cookie httponly为true</p>
+<h3 id="预防csrf-（Cross-site-request-forgery）跨站请求伪造"><a href="#预防csrf-（Cross-site-request-forgery）跨站请求伪造" class="headerlink" title="预防csrf(（Cross-site request forgery）跨站请求伪造)"></a>预防csrf(（Cross-site request forgery）跨站请求伪造)</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><img src="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704221329987-250861756.png" alt="image"><br>登录受信任网站A，并在本地生成Cookie。<br>在不登出A的情况下，访问危险网站B。<br>看到这里，你也许会说：“如果我不满足以上两个条件中的一个，我就不会受到CSRF的攻击”。是的，确实如此，但你不能保证以下情况不会发生：<br>1.你不能保证你登录了一个网站后，不再打开一个tab页面并访问另外的网站。<br>2.你不能保证你关闭浏览器了后，你本地的Cookie立刻过期，你上次的会话已经结束。（事实上，关闭浏览器不能结束一个会话，但大多数人都会错误的认为关闭浏览器就等于退出登录/结束会话了……）<br>3.上图中所谓的攻击网站，可能是一个存在其他漏洞的可信任的经常被人访问的网站。</p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>客户端页面增加伪随机数。<br>(1).Cookie Hashing(所有表单都包含同一个伪随机值)：<br>    这可能是最简单的解决方案了，因为攻击者不能获得第三方的Cookie</p>
+<p>(2).验证码<br>　　这个方案的思路是：每次的用户提交都需要用户在表单中填写一个图片上的随机字符串</p>
+<p>(3).One-Time Tokens(不同的表单包含一个不同的伪随机值)</p>
+<p>(4).在 HTTP 头中自定义属性并验证</p>
+<p>(5).在请求地址中添加 token 并验证</p>
+<p>(6).验证 HTTP Referer 字段</p>
+<h3 id="预防Ddos攻击"><a href="#预防Ddos攻击" class="headerlink" title="预防Ddos攻击"></a>预防Ddos攻击</h3><h1 id="以-CGI-模式安装-可能受到的攻击-解决办法"><a href="#以-CGI-模式安装-可能受到的攻击-解决办法" class="headerlink" title="以 CGI 模式安装 可能受到的攻击 解决办法"></a>以 CGI 模式安装 可能受到的攻击 解决办法</h1><h2 id="情形一：只运行公开的文件-–enable-force-cgi-redirect"><a href="#情形一：只运行公开的文件-–enable-force-cgi-redirect" class="headerlink" title="情形一：只运行公开的文件  –enable-force-cgi-redirect"></a>情形一：只运行公开的文件  –enable-force-cgi-redirect</h2><h2 id="情形二：使用-–enable-force-cgi-redirect-选项"><a href="#情形二：使用-–enable-force-cgi-redirect-选项" class="headerlink" title="情形二：使用 –enable-force-cgi-redirect 选项"></a>情形二：使用 –enable-force-cgi-redirect 选项</h2><h2 id="情形三：设置-doc-root-或-user-dir"><a href="#情形三：设置-doc-root-或-user-dir" class="headerlink" title="情形三：设置 doc_root 或 user_dir"></a>情形三：设置 doc_root 或 user_dir</h2><h2 id="情形四：PHP-解释器放在-web-目录以外"><a href="#情形四：PHP-解释器放在-web-目录以外" class="headerlink" title="情形四：PHP 解释器放在 web 目录以外"></a>情形四：PHP 解释器放在 web 目录以外</h2><h1 id="文件系统安全-Null-字符问题"><a href="#文件系统安全-Null-字符问题" class="headerlink" title="文件系统安全 Null 字符问题"></a>文件系统安全 Null 字符问题</h1><p>想要删除自己主目录中的一个文件。假设此情形是通过 web 界面来管理文件系统，因此 Apache 用户有权删除用户目录下的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 从用户目录中删除指定的文件</span><br><span class="line">$username &#x3D; $_POST[&#39;user_submitted_name&#39;];</span><br><span class="line">$userfile &#x3D; $_POST[&#39;user_submitted_filename&#39;];</span><br><span class="line">$homedir &#x3D; &quot;&#x2F;home&#x2F;$username&quot;;</span><br><span class="line">unlink (&quot;$homedir&#x2F;$userfile&quot;);</span><br><span class="line">echo &quot;The file has been deleted!&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误报告（利用log日志干坏事-php-ini）"><a href="#错误报告（利用log日志干坏事-php-ini）" class="headerlink" title="错误报告（利用log日志干坏事 php.ini）"></a>错误报告（利用log日志干坏事 php.ini）</h1><ol>
+<li>第一个是彻底地检查所有函数，并尝试弥补大多数错误。</li>
+<li>第二个是对在线系统彻底关闭错误报告。</li>
+<li>第三个是使用 PHP 自定义的错误处理函数创建自己的错误处理机制。根据不同的安全策略，三种方法可能都适用。</li>
+</ol>
+<p>一个能提前阻止这个问题发生的方法就是利用 error_reporting() 来帮助使代码更安全并发现变量使用的危险之处。在发布程序之前，先打开 E_ALL 测试代码，可以帮你很快找到变量使用不当的地方。一旦准备正式发布，就应该把 error_reporting() 的参数设为 0 来彻底关闭错误报告或者把 php.ini 中的 display_errors 设为 off 来关闭所有的错误显示以将代码隔绝于探测。当然，如果要迟一些再这样做，就不要忘记打开 ini 文件内的 log_errors 选项，并通过 error_log 指定用于记录错误信息的文件。</p>
+<h1 id="用户提交的数据-校验（防SQL注入和XSS攻击等）-addslashes"><a href="#用户提交的数据-校验（防SQL注入和XSS攻击等）-addslashes" class="headerlink" title="用户提交的数据 校验（防SQL注入和XSS攻击等） addslashes()"></a>用户提交的数据 校验（防SQL注入和XSS攻击等） addslashes()</h1><p>PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。</p>
+<h1 id="隐藏-PHP"><a href="#隐藏-PHP" class="headerlink" title="隐藏 PHP"></a>隐藏 PHP</h1><p>在 php.ini 文件里设置 expose_php = off ，可以减少他们能获得的有用信息。</p>
+<p>另一个策略就是让 web 服务器用 PHP 解析不同扩展名。无论是通过 .htaccess 文件还是 Apache 的配置文件，都可以设置能误导攻击者的文件扩展名：</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E8%8C%83%E7%95%B4%EF%BC%88sql%E6%B3%A8%E5%85%A5%20xxs%20crsf%E7%AD%89%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0+%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%89%E3%80%81%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4+%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86+%E7%94%9F%E6%88%90%E5%99%A8+%E5%BC%95%E7%94%A8/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

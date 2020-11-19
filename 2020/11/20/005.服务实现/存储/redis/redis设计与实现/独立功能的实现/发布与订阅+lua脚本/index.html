@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 基本概念发布订阅功能是由 PUBLISH SUBSCRIBE PSUBSCRIBE 等命令组成 基本数据结构每个 Redis 服务器进程都维持着一个表示服务器状态的 redis.h&#x2F;redisServer 结构， 结构的 pubsub_channels 属性是一个字典， 这个字典就用于保存订阅频道的信息： 12345struct redisServer &amp;#123;    &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85+lua%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[TOC] 基本概念发布订阅功能是由 PUBLISH SUBSCRIBE PSUBSCRIBE 等命令组成 基本数据结构每个 Redis 服务器进程都维持着一个表示服务器状态的 redis.h&#x2F;redisServer 结构， 结构的 pubsub_channels 属性是一个字典， 这个字典就用于保存订阅频道的信息： 12345struct redisServer &amp;#123;    &#x2F;">
+<meta property="og:locale">
+<meta property="og:image" content="https://redisbook.readthedocs.io/en/latest/_images/graphviz-cb250b1be4aaaedc9d5ddde113a80998d7f9c480.svg">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-f64be6f3116548c779e2357dae83bec87c04bd50.png">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-a81ae64799855f0aa549cece1fd738475dcc4313.png">
+<meta property="og:image" content="http://1e-gallery.redisbook.com/_images/graphviz-c3da1c52931024fdcc850654a4f4e061312b1b33.png">
+<meta property="article:published_time" content="2020-11-19T16:00:28.840Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.840Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://redisbook.readthedocs.io/en/latest/_images/graphviz-cb250b1be4aaaedc9d5ddde113a80998d7f9c480.svg">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/发布与订阅+lua脚本" class="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/发布与订阅+lua脚本 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85+lua%E8%84%9A%E6%9C%AC/" data-id="ckhp0x7ru003w932uffa337en" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>发布订阅功能是由 PUBLISH SUBSCRIBE PSUBSCRIBE 等命令组成</p>
+<h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><p>每个 Redis 服务器进程都维持着一个表示服务器状态的 redis.h/redisServer 结构， 结构的 pubsub_channels 属性是一个字典， 这个字典就用于保存订阅频道的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct redisServer &#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    dict *pubsub_channels;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p> 其中，字典的键为正在被订阅的频道， 而字典的值则是一个链表， 链表中保存了所有订阅这个频道的客户端。</p>
+<p> 当客户端调用 SUBSCRIBE 命令时， 程序就将客户端和要订阅的频道在 pubsub_channels 字典中关联起来。</p>
+<p> <img src="https://redisbook.readthedocs.io/en/latest/_images/graphviz-cb250b1be4aaaedc9d5ddde113a80998d7f9c480.svg" alt="image"><br>SUBSCRIBE 命令的行为可以用伪代码表示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def SUBSCRIBE(client, channels):</span><br><span class="line"></span><br><span class="line">    # 遍历所有输入频道</span><br><span class="line">    for channel in channels:</span><br><span class="line"></span><br><span class="line">        # 将客户端添加到链表的末尾</span><br><span class="line">        redisServer.pubsub_channels[channel].append(client)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="实现原理："><a href="#实现原理：" class="headerlink" title="实现原理："></a>实现原理：</h1><p>　　　　redisServer中有一个字段dict  *pubsub_channels保存了所有频道和订阅关系。键是频道，值是客户端构成的链表。</p>
+<p>　　　　有一个订阅者就会添加到这个字段中。</p>
+<p>　　　　退订频道时，从这里面删除。</p>
+<h1 id="不但频道订阅者会收到-匹配模式也会收到"><a href="#不但频道订阅者会收到-匹配模式也会收到" class="headerlink" title="不但频道订阅者会收到 匹配模式也会收到"></a>不但频道订阅者会收到 匹配模式也会收到</h1><p>客户端向频道发送消息， 消息被传递给正在订阅匹配模式的订阅者。<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-f64be6f3116548c779e2357dae83bec87c04bd50.png" alt="image"></p>
+<h1 id="pubsub-channels-字典示例。"><a href="#pubsub-channels-字典示例。" class="headerlink" title="pubsub_channels 字典示例。"></a>pubsub_channels 字典示例。</h1><p><img src="http://1e-gallery.redisbook.com/_images/graphviz-a81ae64799855f0aa549cece1fd738475dcc4313.png" alt="image"></p>
+<h1 id="pubsub-patterns-链表的示例。"><a href="#pubsub-patterns-链表的示例。" class="headerlink" title="pubsub_patterns 链表的示例。"></a>pubsub_patterns 链表的示例。</h1><p><img src="http://1e-gallery.redisbook.com/_images/graphviz-c3da1c52931024fdcc850654a4f4e061312b1b33.png" alt="image"></p>
+<h1 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h1><ol>
+<li>订阅信息由服务器进程维持的 redisServer.pubsub_channels 字典保存，字典的键为被订阅的频道，字典的值为订阅频道的所有客户端。</li>
+<li>当有新消息发送到频道时，程序遍历频道（键）所对应的（值）所有客户端，然后将消息发送到所有订阅频道的客户端上。</li>
+<li>订阅模式的信息由服务器进程维持的 redisServer.pubsub_patterns 链表保存，链表的每个节点都保存着一个 pubsubPattern 结构，结构中保存着被订阅的模式，以及订阅该模式的客户端。程序通过遍历链表来查找某个频道是否和某个模式匹配。</li>
+<li>当有新消息发送到频道时，除了订阅频道的客户端会收到消息之外，所有订阅了匹配频道的模式的客户端，也同样会收到消息。</li>
+<li>退订频道和退订模式分别是订阅频道和订阅模式的反操作。</li>
+</ol>
+<h1 id="lua-脚本"><a href="#lua-脚本" class="headerlink" title="lua 脚本"></a>lua 脚本</h1><p>初始化 Lua 脚本环境需要一系列步骤，其中最重要的包括：<br>创建 Lua 环境。<br>载入 Lua 库，比如字符串库、数学库、表格库，等等。<br>创建 redis 全局表格，包含各种对 Redis 进行操作的函数，比如 redis.call 和 redis.log ，等等。<br>创建一个无网络连接的伪客户端，专门用于执行 Lua 脚本中的 Redis 命令。<br>Reids 通过一系列措施保证被执行的 Lua 脚本无副作用，也没有有害的写随机性：对于同样的输入参数和数据集，总是产生相同的写入命令。<br>EVAL 命令为输入脚本定义一个 Lua 函数，然后通过执行这个函数来执行脚本。<br>EVALSHA 通过构建函数名，直接调用 Lua 中已定义的函数，从而执行相应的脚本。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85+lua%E8%84%9A%E6%9C%AC/">
+    <time datetime="2020-11-19T16:00:28.840Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E4%BA%8B%E5%8A%A1+%E6%8E%92%E5%BA%8F/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B9%9D%E7%AB%A0%EF%BC%9A%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E5%92%8C%E5%91%BD%E4%BB%A4%E5%A4%9A%E6%80%81/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 基本概念https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wangzhuxing&#x2F;p&#x2F;10051512.htmlKafka是最初由LinkedIn公司开发，是一个分布式、支持分区的（partition）、多副本的（replica），基于zookeeper协调的分布式消息系统。 架构 [push pull 类型]Broker：Kafka集群包含一个或多个服务器，这种服务器被称为broker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 基本概念https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wangzhuxing&#x2F;p&#x2F;10051512.htmlKafka是最初由LinkedIn公司开发，是一个分布式、支持分区的（partition）、多副本的（replica），基于zookeeper协调的分布式消息系统。 架构 [push pull 类型]Broker：Kafka集群包含一个或多个服务器，这种服务器被称为broker">
+<meta property="og:locale">
+<meta property="og:image" content="https://typora-images.oss-cn-shenzhen.aliyuncs.com/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Kafka/20190504173245.png">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/03F6956127824CCA9CA955D04136F3C0">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/2AD129C18215474DA647282C4F63A69C">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/D51465CE8F0C4E08A5015A8D983DEFFF">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/41BC24B2EDE741F4A447B403E882F0D5">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/8CD8394A366340AC824C508278FDFDC5">
+<meta property="og:image" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/6A4FA295BA9B4CE49E43B5B758D49D77">
+<meta property="article:published_time" content="2020-11-19T16:00:28.845Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.845Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typora-images.oss-cn-shenzhen.aliyuncs.com/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Kafka/20190504173245.png">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/消息队列/kafka" class="post-005.服务实现/消息队列/kafka post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/" data-id="ckhp0x7qu001r932u9hnl6x1v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangzhuxing/p/10051512.html">https://www.cnblogs.com/wangzhuxing/p/10051512.html</a><br>Kafka是最初由LinkedIn公司开发，是一个分布式、支持分区的（partition）、多副本的（replica），基于zookeeper协调的分布式消息系统。</p>
+<h1 id="架构-push-pull-类型"><a href="#架构-push-pull-类型" class="headerlink" title="架构 [push pull 类型]"></a>架构 [push pull 类型]</h1><p><img src="https://typora-images.oss-cn-shenzhen.aliyuncs.com/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Kafka/20190504173245.png" alt="image"><br><img src="03F6956127824CCA9CA955D04136F3C0" alt="image"><br>Broker：Kafka集群包含一个或多个服务器，这种服务器被称为broker。</p>
+<p>Topic：每条发布到kafka集群的消息都有一个类别，这个类别被称为topic，不同topic的消息分开存储。</p>
+<p>Partition：Partition是物理上的概念，每个topic包含一个或多个partition。</p>
+<p>Record：生产和消费一条消息，或者记录，每条记录包含：a key, a value, and a timestamp。</p>
+<p>Offset：每个record发布到broker后，会分配一个offset，offset在单一partition中是有序递增的。</p>
+<p>Producer：负责发布消息到kafka broker。</p>
+<p>Consumer：消息消费者，向kafka broker读取消息的客户端。</p>
+<p>Consumer Group：管理一组consumer实例，每个consumer属于一个特定的consumer group。</p>
+<p>一个典型的kafka集群中包含若干producer，若干broker，若干consumer group；<br>Kafka有四个核心API，最常用的两种为：<br>Producer API：发布消息到一个或者多个kafka的topic<br>Consumer API：订阅一个或者多个kafka topic，并对数据进行处理</p>
+<h2 id="Topic-amp-Partition-【分区策略】"><a href="#Topic-amp-Partition-【分区策略】" class="headerlink" title="Topic&amp;Partition 【分区策略】"></a>Topic&amp;Partition 【分区策略】</h2><p><img src="2AD129C18215474DA647282C4F63A69C" alt="image"><br>个topic可以认为一个一类消息，每个topic将被分成多个partition，每个partition在存储层面是append log文件。任何发布到此partition的消息都会被追加到log文件的尾部，每条消息在文件中的位置称为offset(偏移量)，offset为一个long型的数字，它唯一标记一条消息。每条消息都被append到partition中，是顺序写磁盘，因此效率非常高(经验证，顺序写磁盘效率比随机写内存还要高，这是Kafka高吞吐率的一个很重要的保证)。</p>
+<h2 id="文件存储-segment"><a href="#文件存储-segment" class="headerlink" title="文件存储 segment"></a>文件存储 segment</h2><p>一个topic 多个partition 一个partition多个segment<br>producer不断发送消息，必然会引起partition文件的无限扩张，这样对于消息文件的维护以及已经被消费的消息的清理带来严重的影响<br>每个partition(目录)相当于一个巨型文件被平均分配到多个大小相等的segment(段)数据文件中</p>
+<p>　segment文件由两部分组成，分别为“.index”文件和“.log”文件，分别表示为segment索引文件和数据文件。这两个文件的命令规则为：partition全局的第一个segment从0开始，后续每个segment文件名为上一个segment文件最后一条消息的offset值，<br>　<img src="D51465CE8F0C4E08A5015A8D983DEFFF" alt="image"></p>
+<h1 id="优势原因"><a href="#优势原因" class="headerlink" title="优势原因"></a>优势原因</h1><h2 id="可靠性保证原因【副本策略】"><a href="#可靠性保证原因【副本策略】" class="headerlink" title="可靠性保证原因【副本策略】"></a>可靠性保证原因【副本策略】</h2><p><img src="41BC24B2EDE741F4A447B403E882F0D5" alt="image"></p>
+<ol>
+<li>Replication: 避免单机故障  parition可以有多个Replication，分布在不同broker </li>
+<li>Leader选举：每个partition会在多个replication之间选择一个leader，client读写数据都通过leader partition，其他replication为follower，负责从leader同步数据</li>
+<li>数据同步：kafka数据同步介于强同步和弱同步之间，通过两个参数控制: min.insync.replica + 发送确认acks； 即borker要保持最少replica同步，并且保证写入0-1个或者所有同步replica才成功</li>
+</ol>
+<h2 id="batch-发送-amp-高吞吐"><a href="#batch-发送-amp-高吞吐" class="headerlink" title="batch 发送&amp;高吞吐"></a>batch 发送&amp;高吞吐</h2><p><img src="8CD8394A366340AC824C508278FDFDC5" alt="image"><br>SDK提供了cache，消息由业务方先写入cache，然后当消息达到batch.size或者linger_ms之后，消息会flush到broker<br>buffer.memroy指定了cache的最大大小，buffer写满会block住client的写入，等待超时异常<br>kafka高吞吐就是通过batch来实现的，在同样qps的情况下，batch越大，吞吐越高。【是producer以batch的形式push数据，这样会极大的提高broker的性能，但是这样会增加丢失数据的风险。如果需要确保消息的可靠性，必须要将producer.type设置为sync】</p>
+<h1 id="producer"><a href="#producer" class="headerlink" title="producer"></a>producer</h1><p><img src="6A4FA295BA9B4CE49E43B5B758D49D77" alt="image"></p>
+<h2 id="分区策略"><a href="#分区策略" class="headerlink" title="分区策略"></a>分区策略</h2><p>分区策略： 数据从producer写入partition的分配规则，Producer API提供了两种默认实现，random， roundrobin和key hash</p>
+<h2 id="同步-异步发送-模式"><a href="#同步-异步发送-模式" class="headerlink" title="同步|| 异步发送 模式"></a>同步|| 异步发送 模式</h2><ol>
+<li>发送并忘记：不care发送结果，调用send接口后，直接返回，kafka内部有重试机制</li>
+<li>同步发送：调用send方法，返回future对象，调用get()方法等待，为了减少cache等待时间，可以调整linger_ms为0，或者在调用get之前调用flush</li>
+<li>异步发送：send方法指定一个回调函数，在返回相应是回调该函数，回调函数工作在kafka发送线程里面，不要做太繁重的操作，避免影响发送</li>
+</ol>
+<h2 id="ack-发送-可靠性级别"><a href="#ack-发送-可靠性级别" class="headerlink" title="ack 发送 可靠性级别"></a>ack 发送 可靠性级别</h2><p>acks参数指定了必须要有多少分区副本收到消息，生产者才确定消息写入是成功的，这个参数是client配置的</p>
+<ol>
+<li><p>0-不需要等待服务器响应，也不保证服务器收到消息</p>
+</li>
+<li><p>1-只要leader收到消息，生产者就会收到服务器发送成功的消息</p>
+</li>
+<li><p>-1 -所有参与复制的节点（in-sync）全部收到消息时，才会发送成功</p>
+</li>
+</ol>
+<h2 id="send-失败处理"><a href="#send-失败处理" class="headerlink" title="send 失败处理"></a>send 失败处理</h2><ol>
+<li>发送失败：一般发生在滚动升级，机器故障替换或者连接断开，Kafka并不保证100%成功，发送失败根据业务情况，选择丢弃或者重试</li>
+<li>重试：消息在发送失败的情况下，kafka内部会重试（默认3次），内部重试失败后，错误返回给业务<br>重试多发生在集群滚动升级过程中，client内部重试 + 业务重试即可。</li>
+<li>消息重复：broker写入成功，response丢失，client重试，会导致写入数据重复</li>
+<li>消息乱序：在消息重复发送的情况下，会导致消息乱序，比如发送了1，2，3，重试1，broker最终数据会是1，2，3，1； 通过设置发送窗口为1，可以避免乱序</li>
+<li>幂等：通过producerId+seq_id, 保证同一个producer同一个partition内部支持消息去重。正在开发</li>
+<li>事务：待补充</li>
+</ol>
+<h1 id="consumer"><a href="#consumer" class="headerlink" title="consumer"></a>consumer</h1><p>Kafka提供了两种Consumer API: low level &amp; high level</p>
+<p>某个partition的数据只会被某一个特定的consumer实例所消</p>
+<p>每一个consumer或者broker的增加或者减少都会触发consumer rebalance。</p>
+<h2 id="offset-管理"><a href="#offset-管理" class="headerlink" title="offset 管理"></a>offset 管理</h2><p>Offset管理<br>当consumer升级滚动重启，或者挂掉再拉起的时候，我们希望能够从挂起之前的消费位置 ，继续消费数据，不重不丢，那么我们就需要offset管理<br>每条record有一个唯一的offset，那么只要记录下offset，那么重启后，我们就可以seek到对应的offset继续消费。<br>offset可以由用户保存，比如spark streaming使用hdfs保存； 也可以提交到kafka保存，这里我们只讨论kakfa保存offset的情况<br>commit offset并不会改变当前consumer的消费位置</p>
+<p>#自动提交 VS 手动提交<br>用户可以设置定期自动提交offset，用户使用方便，自动提交offset会有一定延迟，如果consumer挂了，已经消费没有及时提交的offset的数据，可能会被重复消费<br>手动提交：用户控制offset提交时机，可以消费一条提交一次，也可以消费一批提交一次。对于重复消费要求严格的用户</p>
+<p>#Offset重置<br>想跳过数据，从最新位置开始消费，或者想重复消费历史数据，或者想从某个时间点开始消费，Kafka支持重置offset<br>重试offset需要停止服务再拉起，避免服务和干扰重置操作。</p>
+<h2 id="consumer-顺序性"><a href="#consumer-顺序性" class="headerlink" title="consumer 顺序性"></a>consumer 顺序性</h2><p>从多个partition读到数据，不保证数据间的顺序性，kafka只保证在一个partition上数据是有序的，但多个partition，根据你读的顺序会有不同</p>
+<h2 id="low-level-API"><a href="#low-level-API" class="headerlink" title="low level API"></a>low level API</h2><p>提供了更为灵活的消费方式，由用户指定每个consumer消费哪几个partition，不同consumer可以消费相同的partition，同时避免了reblance的劣势。<br>low level API劣势：client维护分配方案，partition扩容是不能动态调整cosumer策略</p>
+<h3 id="重复消费"><a href="#重复消费" class="headerlink" title="重复消费"></a>重复消费</h3><p>目前消费不支持事务，数据消费了，但是没有提交offset，进程重启或者rebalance的时候，会导致重复消费<br>部分业务通过自定义uuid，结合redis去重，可以减低重复消费</p>
+<h1 id="高可靠分析"><a href="#高可靠分析" class="headerlink" title="高可靠分析"></a>高可靠分析</h1><h2 id="At-most-once-消息可能会丢，但绝不会重复传输"><a href="#At-most-once-消息可能会丢，但绝不会重复传输" class="headerlink" title="At most once: 消息可能会丢，但绝不会重复传输"></a>At most once: 消息可能会丢，但绝不会重复传输</h2><h2 id="At-least-once：消息绝不会丢，但可能会重复传输"><a href="#At-least-once：消息绝不会丢，但可能会重复传输" class="headerlink" title="At least once：消息绝不会丢，但可能会重复传输"></a>At least once：消息绝不会丢，但可能会重复传输</h2><h2 id="Exactly-once：每条消息肯定会被传输一次且仅传输一次"><a href="#Exactly-once：每条消息肯定会被传输一次且仅传输一次" class="headerlink" title="Exactly once：每条消息肯定会被传输一次且仅传输一次"></a>Exactly once：每条消息肯定会被传输一次且仅传输一次</h2><ol>
+<li> producer 给broker 发消息 失败重试 at least once</li>
+<li> consumer 先处理消息再commit crash 通信失败 offset记录失败 at least once</li>
+<li> consumer 先commit crash 再处理消息 通信失败 offset记录 at most once</li>
+</ol>
+<h2 id="引入消息幂等去重"><a href="#引入消息幂等去重" class="headerlink" title="引入消息幂等去重"></a>引入消息幂等去重</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/">
+    <time datetime="2020-11-19T16:00:28.845Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/NSQ/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

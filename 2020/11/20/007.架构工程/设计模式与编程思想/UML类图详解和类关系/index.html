@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC]https:&#x2F;&#x2F;www.awaimai.com&#x2F;patterns UML类图详解类结构在类的UML图中，使用长方形描述一个类的主要构成，长方形垂直地分为三层，以此放置类的名称、属性和方法。 类关系类与类之间的关系主要有六种：继承、实现、组合、聚合、关联和依赖，这六种关系的箭头表示 六种类关系六种类关系中，组合、聚合、关联这三种类关系的代码结构一样，都是用属性来保存另一个类的引用，所以要通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/UML%E7%B1%BB%E5%9B%BE%E8%AF%A6%E8%A7%A3%E5%92%8C%E7%B1%BB%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[TOC]https:&#x2F;&#x2F;www.awaimai.com&#x2F;patterns UML类图详解类结构在类的UML图中，使用长方形描述一个类的主要构成，长方形垂直地分为三层，以此放置类的名称、属性和方法。 类关系类与类之间的关系主要有六种：继承、实现、组合、聚合、关联和依赖，这六种关系的箭头表示 六种类关系六种类关系中，组合、聚合、关联这三种类关系的代码结构一样，都是用属性来保存另一个类的引用，所以要通">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/structure.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/arrow.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/realization.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/implement.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/composition.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/aggregation.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/association.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/dependence.png">
+<meta property="og:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/whole.png">
+<meta property="article:published_time" content="2020-11-19T16:00:28.786Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.786Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.awaimai.com/wp-content/uploads/2016/07/structure.png">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-007.架构工程/设计模式与编程思想/UML类图详解和类关系" class="post-007.架构工程/设计模式与编程思想/UML类图详解和类关系 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/UML%E7%B1%BB%E5%9B%BE%E8%AF%A6%E8%A7%A3%E5%92%8C%E7%B1%BB%E5%85%B3%E7%B3%BB/" data-id="ckhp0x7qx001x932ua7g0enxg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]<br><a target="_blank" rel="noopener" href="https://www.awaimai.com/patterns">https://www.awaimai.com/patterns</a></p>
+<h1 id="UML类图详解"><a href="#UML类图详解" class="headerlink" title="UML类图详解"></a>UML类图详解</h1><h2 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h2><p>在类的UML图中，使用长方形描述一个类的主要构成，长方形垂直地分为三层，以此放置类的名称、属性和方法。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/structure.png" alt="image"></p>
+<h2 id="类关系"><a href="#类关系" class="headerlink" title="类关系"></a>类关系</h2><p>类与类之间的关系主要有六种：继承、实现、组合、聚合、关联和依赖，这六种关系的箭头表示<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/arrow.png" alt="image"></p>
+<h2 id="六种类关系"><a href="#六种类关系" class="headerlink" title="六种类关系"></a>六种类关系</h2><p>六种类关系中，组合、聚合、关联这三种类关系的代码结构一样，都是用属性来保存另一个类的引用，所以要通过内容间的关系来区别。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承关系也称泛化关系（Generalization），用于描述父类与子类之间的关系。==父类又称作基类，子类又称作派生类。==</p>
+<p>==继承关系中，子类继承父类的所有功能，父类所具有的属性、方法，子类应该都有==。子类中除了与父类一致的信息以外，还包括额外的信息。</p>
+<p><img src="https://www.awaimai.com/wp-content/uploads/2016/07/realization.png" alt="image"></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>3.2 实现<br>实现关系（Implementation），主要用来==规定接口和实现类的关系==。</p>
+<p>接口（包括抽象类）是方法的集合，在实现关系中，类实现了接口，类中的方法实现了接口声明的所有方法。</p>
+<p>例如：汽车和轮船都是交通工具，而交通工具只是一个可移动工具的抽象概念，船和车实现了具体移动的功能。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/implement.png" alt="image"></p>
+<h3 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h3><p>组合关系（Composition）：==整体与部分的关系，但是整体与部分不可以分开。==</p>
+<p>组合关系表示类之间整体与部分的关系，整体和部分有一致的生存期。一旦整体对象不存在，部分对象也将不存在，是同生共死的关系。</p>
+<p>例如：人由头部和身体组成，两者不可分割，共同存在。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/composition.png" alt="image"></p>
+<h3 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h3><p>聚合关系（Aggregation）：整体和部分的关系，整体与部分可以分开。</p>
+<p>聚合关系也表示类之间整体与部分的关系，成员对象是整体对象的一部分，但是成员对象可以脱离整体对象独立存在。</p>
+<p>例如：公交车司机和工衣、工帽是整体与部分的关系，但是可以分开，工衣、工帽可以穿在别的司机身上，公交司机也可以穿别的工衣、工帽。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/aggregation.png" alt="image"></p>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>关联关系（Association）：表示一个类的属性保存了对另一个类的一个实例（或多个实例）的引用。</p>
+<p>关联关系是类与类之间最常用的一种关系，表示一类对象与另一类对象之间有联系。组合、聚合也属于关联关系，只是关联关系的类间关系比其他两种要弱。</p>
+<p>关联关系有四种：双向关联、单向关联、自关联、多重数关联。</p>
+<p>例如：汽车和司机，一辆汽车对应特定的司机，一个司机也可以开多辆车。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/association.png" alt="image"></p>
+<h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><p>依赖关系（Dependence）：假设A类的变化引起了B类的变化，则说名B类依赖于A类。</p>
+<p>大多数情况下，依赖关系体现在某个类的方法使用另一个类的对象作为参数。</p>
+<p>依赖关系是一种“使用”关系，特定事物的改变有可能会影响到使用该事物的其他事物，在需要表示一个事物使用另一个事物时使用依赖关系。</p>
+<p>例如：汽车依赖汽油，如果没有汽油，汽车将无法行驶。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/dependence.png" alt="image"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这六种类关系中，组合、聚合和关联的代码结构一样，可以从关系的强弱来理解，各类关系从强到弱依次是：继承→实现→组合→聚合→关联→依赖。如下是完整的一张UML关系图。<br><img src="https://www.awaimai.com/wp-content/uploads/2016/07/whole.png" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/UML%E7%B1%BB%E5%9B%BE%E8%AF%A6%E8%A7%A3%E5%92%8C%E7%B1%BB%E5%85%B3%E7%B3%BB/">
+    <time datetime="2020-11-19T16:00:28.786Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/007.%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

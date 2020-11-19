@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/6/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/发布与订阅+lua脚本" class="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/发布与订阅+lua脚本 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85+lua%E8%84%9A%E6%9C%AC/" data-id="ckhp0x7ru003w932uffa337en" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>发布订阅功能是由 PUBLISH SUBSCRIBE PSUBSCRIBE 等命令组成</p>
+<h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><p>每个 Redis 服务器进程都维持着一个表示服务器状态的 redis.h/redisServer 结构， 结构的 pubsub_channels 属性是一个字典， 这个字典就用于保存订阅频道的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct redisServer &#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    dict *pubsub_channels;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p> 其中，字典的键为正在被订阅的频道， 而字典的值则是一个链表， 链表中保存了所有订阅这个频道的客户端。</p>
+<p> 当客户端调用 SUBSCRIBE 命令时， 程序就将客户端和要订阅的频道在 pubsub_channels 字典中关联起来。</p>
+<p> <img src="https://redisbook.readthedocs.io/en/latest/_images/graphviz-cb250b1be4aaaedc9d5ddde113a80998d7f9c480.svg" alt="image"><br>SUBSCRIBE 命令的行为可以用伪代码表示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def SUBSCRIBE(client, channels):</span><br><span class="line"></span><br><span class="line">    # 遍历所有输入频道</span><br><span class="line">    for channel in channels:</span><br><span class="line"></span><br><span class="line">        # 将客户端添加到链表的末尾</span><br><span class="line">        redisServer.pubsub_channels[channel].append(client)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="实现原理："><a href="#实现原理：" class="headerlink" title="实现原理："></a>实现原理：</h1><p>　　　　redisServer中有一个字段dict  *pubsub_channels保存了所有频道和订阅关系。键是频道，值是客户端构成的链表。</p>
+<p>　　　　有一个订阅者就会添加到这个字段中。</p>
+<p>　　　　退订频道时，从这里面删除。</p>
+<h1 id="不但频道订阅者会收到-匹配模式也会收到"><a href="#不但频道订阅者会收到-匹配模式也会收到" class="headerlink" title="不但频道订阅者会收到 匹配模式也会收到"></a>不但频道订阅者会收到 匹配模式也会收到</h1><p>客户端向频道发送消息， 消息被传递给正在订阅匹配模式的订阅者。<br><img src="http://1e-gallery.redisbook.com/_images/graphviz-f64be6f3116548c779e2357dae83bec87c04bd50.png" alt="image"></p>
+<h1 id="pubsub-channels-字典示例。"><a href="#pubsub-channels-字典示例。" class="headerlink" title="pubsub_channels 字典示例。"></a>pubsub_channels 字典示例。</h1><p><img src="http://1e-gallery.redisbook.com/_images/graphviz-a81ae64799855f0aa549cece1fd738475dcc4313.png" alt="image"></p>
+<h1 id="pubsub-patterns-链表的示例。"><a href="#pubsub-patterns-链表的示例。" class="headerlink" title="pubsub_patterns 链表的示例。"></a>pubsub_patterns 链表的示例。</h1><p><img src="http://1e-gallery.redisbook.com/_images/graphviz-c3da1c52931024fdcc850654a4f4e061312b1b33.png" alt="image"></p>
+<h1 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h1><ol>
+<li>订阅信息由服务器进程维持的 redisServer.pubsub_channels 字典保存，字典的键为被订阅的频道，字典的值为订阅频道的所有客户端。</li>
+<li>当有新消息发送到频道时，程序遍历频道（键）所对应的（值）所有客户端，然后将消息发送到所有订阅频道的客户端上。</li>
+<li>订阅模式的信息由服务器进程维持的 redisServer.pubsub_patterns 链表保存，链表的每个节点都保存着一个 pubsubPattern 结构，结构中保存着被订阅的模式，以及订阅该模式的客户端。程序通过遍历链表来查找某个频道是否和某个模式匹配。</li>
+<li>当有新消息发送到频道时，除了订阅频道的客户端会收到消息之外，所有订阅了匹配频道的模式的客户端，也同样会收到消息。</li>
+<li>退订频道和退订模式分别是订阅频道和订阅模式的反操作。</li>
+</ol>
+<h1 id="lua-脚本"><a href="#lua-脚本" class="headerlink" title="lua 脚本"></a>lua 脚本</h1><p>初始化 Lua 脚本环境需要一系列步骤，其中最重要的包括：<br>创建 Lua 环境。<br>载入 Lua 库，比如字符串库、数学库、表格库，等等。<br>创建 redis 全局表格，包含各种对 Redis 进行操作的函数，比如 redis.call 和 redis.log ，等等。<br>创建一个无网络连接的伪客户端，专门用于执行 Lua 脚本中的 Redis 命令。<br>Reids 通过一系列措施保证被执行的 Lua 脚本无副作用，也没有有害的写随机性：对于同样的输入参数和数据集，总是产生相同的写入命令。<br>EVAL 命令为输入脚本定义一个 Lua 函数，然后通过执行这个函数来执行脚本。<br>EVALSHA 通过构建函数名，直接调用 Lua 中已定义的函数，从而执行相应的脚本。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E5%8F%91%E5%B8%83%E4%B8%8E%E8%AE%A2%E9%98%85+lua%E8%84%9A%E6%9C%AC/">
+    <time datetime="2020-11-19T16:00:28.840Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第九章：类型检查和命令多态" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第九章：类型检查和命令多态 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B9%9D%E7%AB%A0%EF%BC%9A%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E5%92%8C%E5%91%BD%E4%BB%A4%E5%A4%9A%E6%80%81/" data-id="ckhp0x7rp003o932u5n2cfxaq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h1><p>而另一种命令只能对特定类型的键执行，比如说：</p>
+<ul>
+<li>❑SET、GET、APPEND、STRLEN等命令只能对字符串键执行；</li>
+<li>❑HDEL、HSET、HGET、HLEN等命令只能对哈希键执行；</li>
+<li>❑RPUSH、LPOP、LINSERT、LLEN等命令只能对列表键执行；</li>
+<li>❑SADD、SPOP、SINTER、SCARD等命令只能对集合键执行；</li>
+<li>❑ZADD、ZCARD、ZRANK、ZSCORE等命令只能对有序集合键执行；</li>
+</ul>
+<h1 id="命令多态"><a href="#命令多态" class="headerlink" title="命令多态"></a>命令多态</h1><p>==类型特定命令所进行的类型检查是通过redisObject结构的type属性来实现的==<br><img src="https://img-blog.csdn.net/20170122220459596" alt="image"></p>
+<p>Redis除了会根据值对象的类型来判断键是否能够执行指定命令之外【基于类型的多态——一个命令可以同时用于处理多种不同类型的键】，</p>
+<p>还会根据值对象的编码方式，选择正确的命令实现代码来执行命令【基于编码的多态——一个命令可以同时用于处理多种不同编码。】。</p>
+<p><img src="https://img-blog.csdn.net/20170122220506036" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B9%9D%E7%AB%A0%EF%BC%9A%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E5%92%8C%E5%91%BD%E4%BB%A4%E5%A4%9A%E6%80%81/">
+    <time datetime="2020-11-19T16:00:28.839Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/二进制数组+慢查询日志" class="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/二进制数组+慢查询日志 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E7%BB%84+%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97/" data-id="ckhp0x7rt003v932ufgy82zaz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="M慢查询日志"><a href="#M慢查询日志" class="headerlink" title="M慢查询日志"></a>M慢查询日志</h1><p>慢查询日志是 Redis 提供的一个用于观察系统性能的功能， 这个功能的实现非常简单， 这里我们也简单地讲解一下。</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>每条慢查询日志都以一个 slowlog.h/slowlogEntry 结构定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">typedef struct slowlogEntry &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 命令参数</span><br><span class="line">    robj **argv;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 命令参数数量</span><br><span class="line">    int argc;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 唯一标识符</span><br><span class="line">    long long id;       &#x2F;* Unique entry identifier. *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 执行命令消耗的时间，以纳秒（1 &#x2F; 1,000,000,000 秒）为单位</span><br><span class="line">    long long duration; &#x2F;* Time spent by the query, in nanoseconds. *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 命令执行时的时间</span><br><span class="line">    time_t time;        &#x2F;* Unix time at which the query was executed. *&#x2F;</span><br><span class="line"></span><br><span class="line">&#125; slowlogEntry;</span><br></pre></td></tr></table></figure>
+
+
+<p>记录服务器状态的 redis.h/redisServer 结构里保存了几个和慢查询有关的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">struct redisServer &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ... other fields</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 保存慢查询日志的链表</span><br><span class="line">    list *slowlog;                  &#x2F;* SLOWLOG list of commands *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 慢查询日志的当前 id 值</span><br><span class="line">    long long slowlog_entry_id;     &#x2F;* SLOWLOG current entry ID *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 慢查询时间限制</span><br><span class="line">    long long slowlog_log_slower_than; &#x2F;* SLOWLOG time limit (to get logged) *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 慢查询日志的最大条目数量</span><br><span class="line">    unsigned long slowlog_max_len;     &#x2F;* SLOWLOG max number of items logged *&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ... other fields</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>slowlog 属性是一个链表， 链表里的每个节点保存了一个慢查询日志结构， 所有日志按添加时间从新到旧排序，新的日志在链表的左端，旧的日志在链表的右端。</p>
+<p>slowlog_entry_id 在创建每条新的慢查询日志时增一，用于产生慢查询日志的 ID （这个 ID 在执行 SLOWLOG RESET 之后会被重置）。</p>
+<p>slowlog_log_slower_than 是用户指定的命令执行时间上限，执行时间大于等于这个值的命令会被慢查询日志记录。</p>
+<p>slowlog_max_len 慢查询日志的最大数量，当日志数量等于这个值时，添加一条新日志会造成最旧的一条日志被删除。</p>
+<p>下图展示了一个 slowlog 属性的实例：</p>
+<p><img src="https://redisbook.readthedocs.io/en/latest/_images/graphviz-e28cd61cb3d560503a1c2bc0e5f1f1e2cd4fcf92.svg" alt="image"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Redis 用一个链表以 FIFO 的顺序保存着所有慢查询日志。<br>每条慢查询日志以一个慢查询节点表示，节点中记录着执行超时的命令、命令的参数、命令执行时的时间，以及执行命令所消耗的时间等信息。</p>
+<h1 id="二进制数组"><a href="#二进制数组" class="headerlink" title="二进制数组"></a>二进制数组</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>(1) 统计活跃用户</p>
+<p>1亿个用户，用户有频繁登陆的，也有不频繁登陆的<br>如何记录用户的登陆信息<br>如何查询活跃用户，如一周内登陆3次的<br>(2) 一段时间内，曾经登陆过某网站的会员人数</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E7%BB%84+%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97/">
+    <time datetime="2020-11-19T16:00:28.839Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/监视器" class="post-005.服务实现/存储/redis/redis设计与实现/独立功能的实现/监视器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E7%9B%91%E8%A7%86%E5%99%A8/" data-id="ckhp0x7rv003x932ucmlmf1dc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>客户端可以通过执行MONITOR命令，将客户端转换成监视器，接收并打印服务器处理的每个命令请求的相关信息。<br>当一个客户端从普通客户端变为监视器时，该客户端的REDIS_MONITOR标识会被打开。<br>服务器将所有监视器都记录在monitors链表中。<br>每次处理命令请求时，服务器都会遍历monitors链表，将相关信息发送给监视器。</p>
+<p>前客户端变身监视器,将服务器当前处理的命令都打印出来。<br>除了命令与参数外，还有精确到微妙的时间戳，选择的数据库，客户端的ip,port。</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>redisServer的slave链表,保存着各个监视器，新来的监视器，会加到链表尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct redisServer &#123;</span><br><span class="line">    ...</span><br><span class="line">    list *slaves, *monitors;    &#x2F;* List of slaves and MONITORs *&#x2F;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>服务器处理客户端发来的命令请求，还会把命令信息发给各个监视器。</p>
+<p><img src="https://img-blog.csdn.net/20160529104330798?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%8B%AC%E7%AB%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/%E7%9B%91%E8%A7%86%E5%99%A8/">
+    <time datetime="2020-11-19T16:00:28.839Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第二章：动态字符串" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第二章：动态字符串 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckhp0x7rq003p932u2t3bb606" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="SDS的定义"><a href="#SDS的定义" class="headerlink" title="SDS的定义"></a>SDS的定义</h1><p><img src="https://img-blog.csdn.net/20141108162312552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaV9icnVjZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">每个sds.h&#x2F;sdshdr结构表示一个SDS的值</span><br><span class="line">   struct sdshdr&#123;</span><br><span class="line">   		&#x2F;&#x2F;记录buf数组中已使用的字节的数量</span><br><span class="line">   		&#x2F;&#x2F;等于sds所保存字符串的长度</span><br><span class="line">   		int len;</span><br><span class="line"> </span><br><span class="line">   		&#x2F;&#x2F;记录buf中未使用的数据</span><br><span class="line">   		int free;</span><br><span class="line"> </span><br><span class="line">   		&#x2F;&#x2F;字符数组，用于保存字符串</span><br><span class="line">   		char buf[];</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<p>在 S D S 中，b u f 数组的长度不一定就是字符数量加一，数组里面可以包含 未使用的字节，而这些字节的数量就由S D S 的 free属性记录</p>
+<h2 id="SDS和C字符串的区别"><a href="#SDS和C字符串的区别" class="headerlink" title="SDS和C字符串的区别"></a>SDS和C字符串的区别</h2><p> C字符串                                                                      </p>
+<p>获取字符串长度的复杂度为O(N)                          </p>
+<p>API是不安全的，可能会造成缓冲区溢出            </p>
+<p>修改字符串N次必然需要执行N次内存重配</p>
+<p>只能保存文本数据                       </p>
+<p>可以使用&lt;string.h&gt;库中的函数     </p>
+<p>SDS</p>
+<p> 获取字符串长度的复杂度为O(1)  </p>
+<p> API是安全的，不会造成缓冲区溢出</p>
+<p>==1.空间预分配(有分配策略)  2.惰性空间释放 最多N次==</p>
+<p>可以保存二进制或文本数据，以len属性判断结束而不是\0</p>
+<p>可以使用&lt;string.h&gt;库中一部分的函数 </p>
+<h3 id="o-1-获得字符串长度"><a href="#o-1-获得字符串长度" class="headerlink" title="o(1)获得字符串长度"></a>o(1)获得字符串长度</h3><h3 id="杜绝缓存溢出【API自动扩展空间】"><a href="#杜绝缓存溢出【API自动扩展空间】" class="headerlink" title="杜绝缓存溢出【API自动扩展空间】"></a>杜绝缓存溢出【API自动扩展空间】</h3><h3 id="减少修改字符串时带来的内存重分配次数"><a href="#减少修改字符串时带来的内存重分配次数" class="headerlink" title="减少修改字符串时带来的内存重分配次数"></a>减少修改字符串时带来的内存重分配次数</h3><h4 id="空间预分配【减少内存分配次数】"><a href="#空间预分配【减少内存分配次数】" class="headerlink" title="空间预分配【减少内存分配次数】"></a>空间预分配【减少内存分配次数】</h4><h4 id="惰性空间释放"><a href="#惰性空间释放" class="headerlink" title="惰性空间释放"></a>惰性空间释放</h4><h3 id="二进制安全【C字符串不能含空】"><a href="#二进制安全【C字符串不能含空】" class="headerlink" title="二进制安全【C字符串不能含空】"></a>二进制安全【C字符串不能含空】</h3><p>SDSAPI都会以处理二进制的方式来处理SDS存放在buf数组里的数据， 程序不会对其中的数据做任何限制、过滤、或者假设，数据在写人时是什么样的，它被读取<br>时就是什么样</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+    <time datetime="2020-11-19T16:00:28.838Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第八章：对象【string hash set zset list】" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第八章：对象【string hash set zset list】 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%85%AB%E7%AB%A0%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%90string%20hash%20set%20zset%20list%E3%80%91/" data-id="ckhp0x7rr003r932u9rnrgi8x" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><p>Redis中的每个对象都由一个redisObject结构表示，该结构中和保存数据有关的三 个属性分别是type属性、encoding属性和ptr属性：<br><img src="https://images2017.cnblogs.com/blog/960295/201801/960295-20180105135112284-2020472360.png" alt="image"></p>
+<h1 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h1><p>对象的ptr指针指向对象的底层实现数据结构，而这些数据结构由对象的encoding 属性决定。<br>encoding属性记录了对象所使用的编码，也即是说这个对象使用了什么数据结构作为 对象的底层实现，这个属性的值可以是表8-3列出的常量的其中一个。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015114828893-896116069.png" alt="image"><br>每种类型的对象都至少使用了两种不同的编码，每种类型的对象可以使用的编码如下</p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015114841828-1523644461.png" alt="image"></p>
+<p> 通过encoding属性来设定对象所用的编码，而不是为特定类型的对象对象关联一种固定的编码，极大地提升了redis的灵活性和效率，因为redis可以根据不同的使用场景来为一个对象设置不同的编码，从而优化对象在某一场景下的效率。</p>
+<p>  因为压缩列表比双端链表更节约内存，并且在元素数量较少时，在内存中以连续块方式保存的压缩列表比起双端链表可以更快被赵茹到缓存中。</p>
+<p>2 随着列表对象包含的元素越来越多，使用压缩列表来保存元素的优势逐渐消失时，对象就会将底层实现从压缩列表转向功能更强、更适合保存大量元素的双端链表。</p>
+<h1 id="五种对象"><a href="#五种对象" class="headerlink" title="五种对象"></a>五种对象</h1><h2 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h2><h3 id="字符串对象的编码可以使int，raw或者embstr。"><a href="#字符串对象的编码可以使int，raw或者embstr。" class="headerlink" title="字符串对象的编码可以使int，raw或者embstr。"></a>字符串对象的编码可以使int，raw或者embstr。</h3><h3 id="编码转换"><a href="#编码转换" class="headerlink" title="编码转换"></a>编码转换</h3><p> ==如果一个字符串对象保存的是整数值==，并且这个整数值可以用long类型来表示，那么字符串对象会将整数值保存在字符串对象结构的ptr属性里面（将void *转换成long），==并将字符串对象的编码设置为int==</p>
+<p>   ==如果字符串对象保存的是一个字符串值，并且这个字符串值的长度大于32字节==，那么字符串对象将使用一个简单动态字符串（sds）来保存这个字符串值，==并将对象的编码设置为raw==。</p>
+<p>   如果字符串对象保存的是一个字符串值，并且这个字符串值的长度==小于等于32字节，那么字符串对象将使用embstr编码的方式来保存这个字符串值==。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015114914146-1160348561.png" alt="image"></p>
+<p> embstr编码的字符串对象在执行命令时，产生的效果和raw编码的字符串对象执行命令时产生的效果是相同的，但使用embstr编码的字符串对象来保存短字符串值有以下好处：</p>
+<p>1 embstr编码将创建字符串对象所需的内存分配次数从raw编码的两次降为一次。</p>
+<p>2 释放embstr编码的字符串对象只需要调用一次内存释放函数，而释放raw编码的字符串对象需要调用两次内存释放函数。</p>
+<p>3 因为embstr编码的字符串对象的所有数据都保存在一块连续的内存里面，所以这种编码的字符串对象比起raw编码的字符串对象能够更好地利用缓存带来的优势。</p>
+<h2 id="列表对象"><a href="#列表对象" class="headerlink" title="列表对象"></a>列表对象</h2><p>   列表对象的编码可以使ziplist或者linkedlist。</p>
+<h3 id="ziplist编码的列表对象使用压缩列表作为底层实现"><a href="#ziplist编码的列表对象使用压缩列表作为底层实现" class="headerlink" title="ziplist编码的列表对象使用压缩列表作为底层实现"></a>ziplist编码的列表对象使用压缩列表作为底层实现</h3><h3 id="linkedlist编码的列表对象使用双端链表作为底层实现"><a href="#linkedlist编码的列表对象使用双端链表作为底层实现" class="headerlink" title="linkedlist编码的列表对象使用双端链表作为底层实现,"></a>linkedlist编码的列表对象使用双端链表作为底层实现,</h3><p>   ziplist编码的列表对象使用压缩列表作为底层实现，每个压缩列表节点（entry）保存了一个列表元素。下图就是ziplist编码的列表对象，红框内为存储的数据。</p>
+<p>  <img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115031392-1641026435.png" alt="image"></p>
+<p>  linkedlist编码的列表对象使用双端链表作为底层实现，每个双端链表节点都保存了一个字符串对象，而每个字符串对象都保存了一个列表元素，如下图<br>  <img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115040574-801142087.png" alt="image"></p>
+<h3 id="编码转换-1"><a href="#编码转换-1" class="headerlink" title="编码转换"></a>编码转换</h3><p>当列表对象可以同时满足以下两个条件时，列表对象使用ziplist编码：</p>
+<p>1 列表对象保存的所有字符串元素的长度都小于64字节</p>
+<p>2 列表对象保存的元素数量小于512个；</p>
+<p>（以上两个条件的上限值可以修改）<br>当不满足的时候会自动转化为linkedlist</p>
+<p>  <img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115052238-1976167267.png" alt="image"></p>
+<h2 id="哈希对象"><a href="#哈希对象" class="headerlink" title="哈希对象"></a>哈希对象</h2><pre><code>   ==哈希对象的编码可以是ziplist或者hashtable==。</code></pre>
+<h3 id="ziplist编码的哈希对象使用压缩列表作为底部实现"><a href="#ziplist编码的哈希对象使用压缩列表作为底部实现" class="headerlink" title="ziplist编码的哈希对象使用压缩列表作为底部实现"></a>ziplist编码的哈希对象使用压缩列表作为底部实现</h3><p>每当有新的键值对要加入到哈希对象时，程序会先保存了键的压缩列表节点推入到压缩列表表尾，然后再将保存了值的压缩列表节点推入到压缩列表表尾，因此：</p>
+<p>1 保存了同一键值对的两个节点总是紧挨在一起，保存键的节点在前，保存值的节点在后</p>
+<p>2 先添加到哈希对象中的键值对会被放在压缩列表的表头方向，而后来添加到哈希对象中的键值对会被放在压缩列表的表尾方向。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115134113-515955592.png" alt="image"></p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115138517-1077764842.png" alt="image"></p>
+<h3 id="hashtable编码的哈希对象使用字典作为底层实现，"><a href="#hashtable编码的哈希对象使用字典作为底层实现，" class="headerlink" title="hashtable编码的哈希对象使用字典作为底层实现，"></a>hashtable编码的哈希对象使用字典作为底层实现，</h3><p>hashtable编码的哈希对象使用字典作为底层实现，哈希对象中的每个键值对都使用一个字典键值对来保存<br>上例中，对应的hashtable编码的哈希对象如下图</p>
+<p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115203274-1758974974.png" alt="image"></p>
+<h3 id="编码转化："><a href="#编码转化：" class="headerlink" title="编码转化："></a>编码转化：</h3><pre><code>  当哈希对象可以同时满足一下两个条件时，哈希对象使用ziplist编码</code></pre>
+<p>1 哈希对象保存的所有键值对的键和值字符串长度都小于64字节。</p>
+<p>2 哈希对象保存的键值对数量小于512个</p>
+<p>不能满足这两个条件的哈希对象需要使用hashtable编码（这两个条件的上限值可以在redis配置中修改。、</p>
+<h2 id="集合对象"><a href="#集合对象" class="headerlink" title="集合对象"></a>集合对象</h2><p>集合对象的编码可以是intset或者hashtable。</p>
+<h3 id="intset编码的集合对象使用证书集合作为底层实"><a href="#intset编码的集合对象使用证书集合作为底层实" class="headerlink" title="intset编码的集合对象使用证书集合作为底层实"></a>intset编码的集合对象使用证书集合作为底层实</h3><h3 id="hashtable编码的集合对象使用字典作为底层实现"><a href="#hashtable编码的集合对象使用字典作为底层实现" class="headerlink" title="hashtable编码的集合对象使用字典作为底层实现"></a>hashtable编码的集合对象使用字典作为底层实现</h3><p><img src="https://img2018.cnblogs.com/blog/1139419/201810/1139419-20181015115228553-872319556.png" alt="image"></p>
+<h3 id="编码转换-2"><a href="#编码转换-2" class="headerlink" title="编码转换"></a>编码转换</h3><pre><code>   当集合对象可以同时满足一下两个条件时，对象使用intset编码：</code></pre>
+<p>1 集合对象保存的所有元素都是整数值</p>
+<p>2 集合对象保存的元素数量不超过512个</p>
+<p>不能满足这两个条件的集合对象使用hashtable编码。</p>
+<h2 id="有序集合对象"><a href="#有序集合对象" class="headerlink" title="有序集合对象"></a>有序集合对象</h2><p>有序集合的编码可以是ziplist或者skiplist。</p>
+<p>==ziplist编码的压缩列表对象使用压缩列表作为底层实现==，每个集合元素使用两个金爱在一起的压缩列表节点保存，第一个节点保存元素的成员，而第二个元素则保存元素的分值。</p>
+<p>==压缩列表内的集合元素按分值从小到大金星排序==，分值较小的元素被防止在靠近表头的方向，而分值较大的元素责备防止在靠近表尾的方向，如下图。</p>
+<h3 id="编码的转换"><a href="#编码的转换" class="headerlink" title="编码的转换"></a>编码的转换</h3><pre><code>   党有序集合对象可以同时满足以下两个条件时，对象使用ziplist编码：</code></pre>
+<p>1 有序集合同时保持的元素数量小于128个</p>
+<p>2 有序集合保存的所有元素成员的长度都小于64字节</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%85%AB%E7%AB%A0%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%90string%20hash%20set%20zset%20list%E3%80%91/">
+    <time datetime="2020-11-19T16:00:28.838Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第十章：内存回收 对象共享 对象空转时长" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第十章：内存回收 对象共享 对象空转时长 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%8D%81%E7%AB%A0%EF%BC%9A%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%20%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB%20%E5%AF%B9%E8%B1%A1%E7%A9%BA%E8%BD%AC%E6%97%B6%E9%95%BF/" data-id="ckhp0x7rs003t932u2gwa31ke" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="内存回收策略"><a href="#内存回收策略" class="headerlink" title="内存回收策略"></a>内存回收策略</h1><p> 内存回收触发有两种情况，</p>
+<h2 id="内存使用达到maxmemory上限时候触发的溢出回收，"><a href="#内存使用达到maxmemory上限时候触发的溢出回收，" class="headerlink" title="内存使用达到maxmemory上限时候触发的溢出回收，"></a>内存使用达到maxmemory上限时候触发的溢出回收，</h2><h3 id="常用缓存淘汰算法（LFU、LRU、ARC、FIFO、MRU）"><a href="#常用缓存淘汰算法（LFU、LRU、ARC、FIFO、MRU）" class="headerlink" title="常用缓存淘汰算法（LFU、LRU、ARC、FIFO、MRU）"></a>常用缓存淘汰算法（LFU、LRU、ARC、FIFO、MRU）</h3><h4 id="最不经常使用算法（LFU）-Least-frequently-used-："><a href="#最不经常使用算法（LFU）-Least-frequently-used-：" class="headerlink" title="最不经常使用算法（LFU） Least frequently used ："></a>最不经常使用算法（LFU） Least frequently used ：</h4><p> 这个缓存算法使用一个计数器来记录条目被访问的频率。通过使用LFU缓存算法，最低访问数的条目首先被移除。这个方法并不经常使用，因为它无法对一个拥有最初高访问率之后长时间没有被访问的条目缓存负责。<br>  <img src="http://xiaorui.cc/wp-content/uploads/2015/04/20150420105345_48639.png" alt="image"></p>
+<h4 id="最近最少使用算法（LRU）-（Least-recently-used："><a href="#最近最少使用算法（LRU）-（Least-recently-used：" class="headerlink" title="最近最少使用算法（LRU） （Least recently used："></a>最近最少使用算法（LRU） （Least recently used：</h4><p>这个缓存算法将最近使用的条目存放到靠近缓存顶部的位置。当一个新条目被访问时，LRU将它放置到缓存的顶部。<br>   <img src="http://upload-images.jianshu.io/upload_images/1466264-5a472df5ec57137f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h4 id="先进先出算法（FIFO）："><a href="#先进先出算法（FIFO）：" class="headerlink" title="先进先出算法（FIFO）："></a>先进先出算法（FIFO）：</h4><p><img src="http://images.cnitblog.com/i/221914/201407/082202026607080.png" alt="image"></p>
+<h4 id="最近最常使用算法（MRU）："><a href="#最近最常使用算法（MRU）：" class="headerlink" title="最近最常使用算法（MRU）："></a>最近最常使用算法（MRU）：</h4><p>这个缓存算法最先移除最近最常使用的条目。一个MRU算法擅长处理一个条目越久，越容易被访问的情况。  </p>
+<h3 id="常用回收算法"><a href="#常用回收算法" class="headerlink" title="常用回收算法"></a>常用回收算法</h3><ul>
+<li>volatile-lru -&gt; 根据LRU算法删除设置了超时属性（expire）的键，直到腾出足够空间为止。如果没有可删除的键对象，回退到noeviction策略。</li>
+<li>allkeys-lru -&gt; 根据LRU算法删除键，不管数据有没有设置超时属性，直到腾出足够空间为止。</li>
+<li>volatile-lfu -&gt; 根据LFU算法删除设置了超时属性（expire）的键，直到腾出足够空间为止。如果没有可删除的键对象，回退到noeviction策略。</li>
+<li>allkeys-lfu -&gt; 根据LFU算法删除键，不管数据有没有设置超时属性，直到腾出足够空间为止。</li>
+<li>volatile-random -&gt; 随机删除过期键，直到腾出足够空间为止。</li>
+<li>allkeys-random -&gt; 随机删除所有键，直到腾出足够空间为止。</li>
+<li>volatile-ttl -&gt; 根据键值对象的ttl属性，删除最近将要过期数据。如果没有，回退到noeviction策略。</li>
+<li>noeviction -&gt; 不会删除任何数据，拒绝所有写入操作并返 回客户端错误信息，此 时Redis只响应读操作。</li>
+</ul>
+<h3 id="设置了过期的对象到期的时候触发的到期释放的内存回收【惰性删除-定时任务删除】"><a href="#设置了过期的对象到期的时候触发的到期释放的内存回收【惰性删除-定时任务删除】" class="headerlink" title="设置了过期的对象到期的时候触发的到期释放的内存回收【惰性删除 定时任务删除】"></a>设置了过期的对象到期的时候触发的到期释放的内存回收【惰性删除 定时任务删除】</h3><p>维护每个键精准的过期删除机制会导致消耗大量的 CPU，对于单线程的Redis来说成本过高，因此Redis采用惰性删除和定时任务删除机制实现过期键的内存回收。</p>
+<h4 id="惰性删除"><a href="#惰性删除" class="headerlink" title="惰性删除"></a>惰性删除</h4><p>的是不主动删除，当用户访问已经过期的对象的时候才删除，最大的优点是节省cpu的开销，不用另外的内存和TTL链表来维护删除信息，缺点就是如果数据到期了但是一直没有被访问的话就不会被删除，会占用内存空间。</p>
+<h4 id="定时任务删除"><a href="#定时任务删除" class="headerlink" title="定时任务删除"></a>定时任务删除</h4><p><img src="https://img-blog.csdn.net/2018072910094364?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyMTkxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br><img src="https://img-blog.csdn.net/2018072910094364?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyMTkxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%8D%81%E7%AB%A0%EF%BC%9A%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%20%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB%20%E5%AF%B9%E8%B1%A1%E7%A9%BA%E8%BD%AC%E6%97%B6%E9%95%BF/">
+    <time datetime="2020-11-19T16:00:28.838Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第七章：压缩列表" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第七章：压缩列表 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8/" data-id="ckhp0x7ro003m932uc6b043tr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="压缩列表作用"><a href="#压缩列表作用" class="headerlink" title="压缩列表作用"></a>压缩列表作用</h1><p>压 缩 列 表 （Z i p l i s t ) 是列表键和哈希键的底层实现之一。当一个列表键只包含少量 列表项，并且每个列表项要么就是小整数值，要么就是长度比较短的字符串，那么Redis就 会使用压缩列表来做列表键的底层实现。</p>
+<h1 id="压缩列表的构成"><a href="#压缩列表的构成" class="headerlink" title="压缩列表的构成"></a>压缩列表的构成</h1><p><img src="https://images2017.cnblogs.com/blog/960295/201801/960295-20180105111959721-165447256.png" alt="image"><br>压缩列表是Redis为了节约内存而开发的，是由一系列特殊编码的连续内存块组成的顺 序 型 （sequential) 数据结构。一个压缩列表可以包含任意多个节点（entry) , 每个节点可以 保存一个字节数组或者一个整数值。</p>
+<p><img src="https://img-blog.csdn.net/20180805102854728?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<ul>
+<li>列 表 zlbytes属 性 的 值 为 0x50 ( 十 进 制 80 )，表示压缩列表的总长为8 0 字节。 </li>
+<li></li>
+<li>□ 列 表 zltail属 性 的 值 为 0x3 c ( 十 进 制 60 )，这表示如果我们有一个指向压缩列 表 起 始 地 址 的 指 针 P , 那 么 只 要 用 指 针 p 加 上 偏 移 量 6 0 , 就可以计算出表尾节点 entry3 的地址〇 </li>
+<li></li>
+<li>□列表zllen属性的值为0x3 (十进制3 )，表示压缩列表包含三个节点。</li>
+<li><h2 id="压缩节点的结构"><a href="#压缩节点的结构" class="headerlink" title="压缩节点的结构"></a>压缩节点的结构</h2>每个压缩列表节点都由previous_entry_length、encoding、content三个部分组成</li>
+</ul>
+<p><img src="https://img-blog.csdn.net/2018080510330979?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h3 id="previous-entry-length"><a href="#previous-entry-length" class="headerlink" title="previous_entry_length"></a>previous_entry_length</h3><ul>
+<li>如果前一节点的长度小于254字节，那么previous_entry_length属性的长度为1字节；</li>
+<li>如果前一节点的长度大于等于254字节，那么previous_entry_length属性的长度为5字节：其中属性的第一字节会被设置为0xFE（十进制值254），之后的4个字节则用于保存前一节点的长度。<br><img src="https://img-blog.csdn.net/20180805103409725?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></li>
+</ul>
+<p>==因为节点的previous_entry_length属性记录了前一节点的长度，所以程序可以通过指针运算，根据当前节点的起始地址来计算出前一节点的起始地址。（压缩列表从表尾向表头遍历操作就是使用这一原理实现的==</p>
+<h3 id="encoding"><a href="#encoding" class="headerlink" title="encoding"></a>encoding</h3><p>       节点的encoding属性记录了节点的content属性所保存数据的类型以及长度：</p>
+<p>==一字节、两字节或者五字节长，值的最高位为00、01或者10的是字节数组编码==：这种编码表示节点的content属性保存着字节数组，数组的长度由编码去掉最高两位之后的其他位记录；</p>
+<p>==一字节长，值的最高位以11开头的是整数编码==：这种编码表示节点的content属性保存着整数值，整数值的类型和长度由编码除去最高两位之后的其他位记录；<br><img src="https://img-blog.csdn.net/20180805103559114?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><img src="https://img-blog.csdn.net/20180805103547834?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h3 id="content"><a href="#content" class="headerlink" title="content"></a>content</h3><p> 节点的content属性负责保存节点的值，节点值可以是一个字节数组或者整数，值的类型和长度由节点的encoding属性决定。</p>
+<p><img src="https://img-blog.csdn.net/20180805104859209?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>上图中，编码的最高两位00表示节点保存的是一个字节数组；编码的后6位001011记录了字节数组的长度11；</p>
+<h2 id="连锁更新"><a href="#连锁更新" class="headerlink" title="连锁更新"></a>连锁更新</h2><p>考虑这样一种情况：在一个压缩列表中，有多个连续的、长度介于250字节到253字节（皆小于254字节）之间的节点e1至eN。</p>
+<p>        因为e1至eN的所有节点的长度都小于254字节，所以记录这些节点的长度只需要1字节长的previous_entry_length属性。</p>
+<p>        这时，如果我们将一个长度大于等于254字节的新节点new设置为压缩列表的表头节点，那么new将成为e1的前置节点。</p>
+<p>        e1节点的previous_entry_length属性仅长1个字节，没办法保存新节点new的长度，所以程序将对压缩列表执行空间重分配操作，并将e1节点的previous_entry_length属性从原来的1字节扩展为5字节长。<br><img src="https://img-blog.csdn.net/20180805105344197?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><img src="https://img-blog.csdn.net/20180805105344197?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dqYjEyMDQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>  由于e1的长度增加，又会导致后续节点的previous_entry_length增加，如此一直扩展下去，程序需要不断地对压缩列表执行空间重分配操作，直到eN为止。</p>
+<p> Redis将这种在特殊情况下产生==的连续多次空间扩展操作称为“连锁更==新（cascade update）”。</p>
+<p>==除此之外，删除节点也有可能会引发连锁更新==</p>
+<p> 注：redis 3.2以后，quicklist作为列表键的实现底层实现之一，代替了压缩列表。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8/">
+    <time datetime="2020-11-19T16:00:28.837Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第三章：链表" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第三章：链表 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E9%93%BE%E8%A1%A8/" data-id="ckhp0x7rp003n932u2unr6sm4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="链表和链表节点的实现"><a href="#链表和链表节点的实现" class="headerlink" title="链表和链表节点的实现"></a>链表和链表节点的实现</h1><p>每个链表节点使用一个adlist.h/listNode结构来表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct listNode &#123;</span><br><span class="line">&#x2F; &#x2F; 前董节点</span><br><span class="line">struct listNode *prev; </span><br><span class="line">&#x2F; &#x2F; 后置节点</span><br><span class="line">struct listNode ♦next; </span><br><span class="line">&#x2F; &#x2F; 节点的值 </span><br><span class="line">void * value; </span><br><span class="line">    </span><br><span class="line">&#125;listNode;</span><br></pre></td></tr></table></figure>
+<p>虽然仅仅使用多个listNode结构就可以组成链表，但使用adlist.h/list来持有 链表的话，操作起来会更方便：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typedef struct list &#123;</span><br><span class="line">&#x2F; &#x2F; 表头节点 </span><br><span class="line">listNode *head; &#x2F; &#x2F; 表尾节点</span><br><span class="line">listNode tail; &#x2F; &#x2F; 链表所包含的节点数董 </span><br><span class="line">unsigned long len; &#x2F; &#x2F; 节点值复制函数</span><br><span class="line">void *(*dup) (void *ptr); &#x2F; &#x2F; 节点值释放函数</span><br><span class="line">void (♦free) (void *ptr); &#x2F; &#x2F; 节点值对比函数</span><br><span class="line">int (*match)(void *ptrfvoid *key); </span><br><span class="line">    </span><br><span class="line">&#125; list;</span><br></pre></td></tr></table></figure>
+<p>dup 函数用于复制链表节点所保存的值；<br>free 函数用于释放链表节点所保存的值；<br>match 函数则用于对比链表节点所保存的值和另一个输入值是否相等。</p>
+<p><img src="https://img-blog.csdn.net/20180831000256105?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpb25neGlhbnpl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>图 3-2 是由一个 list 结构和三个 listNode 结构组成的链表：<br><img src="https://img-blog.csdn.net/20180831000319331?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpb25neGlhbnpl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>Redis 的链表实现的特性可以总结如下：</p>
+<ol>
+<li>双端： 链表节点带有 prev 和 next 指针， 获取某个节点的前置节点和后置节点的复杂度都是 O(1) 。</li>
+<li>无环： 表头节点的 prev 指针和表尾节点的 next 指针都指向 NULL ， 对链表的访问以 NULL 为终点。</li>
+<li>带表头指针和表尾指针： 通过 list 结构的 head 指针和 tail 指针， 程序获取链表的表头节点和表尾节点的复杂度为 O(1) 。</li>
+<li>带链表长度计数器： 程序使用 list 结构的 len 属性来对 list 持有的链表节点进行计数， 程序获取链表中节点数量的复杂度为 O(1) 。</li>
+<li>多态： 链表节点使用 void* 指针来保存节点值， 并且可以通过 list 结构的 dup 、 free 、 match 三个属性为节点值设置类型特定函数， 所以链表可以用于保存各种不同类型的值。</li>
+</ol>
+<hr>
+<p>作者：xiongxianze<br>来源：CSDN<br>原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiongxianze/article/details/82229830">https://blog.csdn.net/xiongxianze/article/details/82229830</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>□链表被广泛用于实现Redis的各种功能，比如列表键、发布与订阅、慢査询、监视 器等。</li>
+<li>□每个链表节点由一个listNode结构来表示，每个节点都有一个指向前置节点和后 置节点的指针，所以Redis的链表实现是双端链表。 口 每 个 链 表 使 用 一 个 l i s t 结构来表示，这个结构带有表头节点指针、表尾节点指针, 以及链表长度等信息。</li>
+<li>□因为链表表头节点的前置节点和表尾节点的后置节点都指向NULL, 所 以 Redis的链 表实现是无环链表。</li>
+<li>C3 通过为链表设置不同的类型特定函数，Redis的链表可以用于保存各种不同类型的值。</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E9%93%BE%E8%A1%A8/">
+    <time datetime="2020-11-19T16:00:28.837Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第六章 整数集合" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第六章 整数集合 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/" data-id="ckhp0x7rs003s932u9txl1j8a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="整数集合"><a href="#整数集合" class="headerlink" title="整数集合"></a>整数集合</h1><p>整数集合(intset)是Redis用于保存整数值的集合抽象数据结构，它可以保存类型为int16_t、int32_t或者int64_t的整数值，并且保证集合中不会出现重复元素。 从小到大 不重复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct intset &#123;</span><br><span class="line">    uint32_t encoding;  &#x2F;&#x2F;编码方式</span><br><span class="line">    uint32_t length;    &#x2F;&#x2F;集合包含的元素数量</span><br><span class="line">    int8_t contents[];  &#x2F;&#x2F;保存元素的数组</span><br><span class="line">&#125; intset;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/">
+    <time datetime="2020-11-19T16:00:28.837Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/4/">4</a><a class="page-number" href="/huanghao.github.io/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/huanghao.github.io/page/7/">7</a><a class="page-number" href="/huanghao.github.io/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/7/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

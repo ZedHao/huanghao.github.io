@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 进程和线程和协程协程共享内存 协程 不用等待请求返回 进程和线程的区别进程和线程以及它们的区别  &#x3D;&#x3D;进程是对运行时程序的封装&#x3D;&#x3D;，是&#x3D;&#x3D;系统进行资源调度和分配的的基本单位&#x3D;&#x3D;，实现了操作系统的并发； &#x3D;&#x3D;线程是进程的子任务，是CPU调度和分派的基本单位&#x3D;&#x3D;，用于保证程序的 实时性，实现进程内部的并发； 一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在； &#x3D;&#x3D;进程在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 进程和线程和协程协程共享内存 协程 不用等待请求返回 进程和线程的区别进程和线程以及它们的区别  &#x3D;&#x3D;进程是对运行时程序的封装&#x3D;&#x3D;，是&#x3D;&#x3D;系统进行资源调度和分配的的基本单位&#x3D;&#x3D;，实现了操作系统的并发； &#x3D;&#x3D;线程是进程的子任务，是CPU调度和分派的基本单位&#x3D;&#x3D;，用于保证程序的 实时性，实现进程内部的并发； 一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在； &#x3D;&#x3D;进程在">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdn.net/20180513164327588?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180513165052722?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://static.zybuluo.com/Rico123/ot7o6218591iwj9py999hs1u/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.jpg">
+<meta property="article:published_time" content="2020-11-19T16:00:28.792Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.792Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180513164327588?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-003.操作系统+计算机原理（linux）/本科操作系统入门/二、进程线程" class="post-003.操作系统+计算机原理（linux）/本科操作系统入门/二、进程线程 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/" data-id="ckhp0x7qk0017932ug5wyg8lw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="进程和线程和协程"><a href="#进程和线程和协程" class="headerlink" title="进程和线程和协程"></a>进程和线程和协程</h1><h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>共享内存 协程 不用等待请求返回</p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>进程和线程以及它们的区别</p>
+<ol>
+<li>==进程是对运行时程序的封装==，是==系统进行资源调度和分配的的基本单位==，实现了操作系统的并发；</li>
+<li>==线程是进程的子任务，是CPU调度和分派的基本单位==，用于保证程序的 实时性，实现进程内部的并发；</li>
+<li>一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在；</li>
+<li>==进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存==</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25532384/answer/81152571">https://www.zhihu.com/question/25532384/answer/81152571</a></p>
+<p>线程作为进程的一部分，==扮演的角色就是怎么利用中央处理器去运行代码==。这其中牵扯到的最重要资源的是中央处理器和其中的寄存器，和线程的栈（stack）。这里想强调的是，线程关注的是中央处理器的运行，而不是内存等资源的管理。</p>
+<p>==进程更倾向于内存管理的概念==</p>
+<p>他在自己的区域掌控自己的资源 也不越界</p>
+<p>==线程更倾向于cpu的运行==</p>
+<p>当前的计算机的cpu总要跑在一个线程上 但是又无法做到同时跑在多个线程上</p>
+<p>看似多线程可以同时运行 其实他们之间是通过时间片的切换来做到的</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程定义："><a href="#进程定义：" class="headerlink" title="进程定义："></a>进程定义：</h3><ol>
+<li>进程是程序的一次执行；</li>
+<li>进程是一个程序及其数据在处理机上顺序执行时所发生的活动；</li>
+<li>进程是程序在一个数据集合上运行的过程，是系统进行资源分配和调度的一个独立单位</li>
+<li>进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位</li>
+</ol>
+<h3 id="进程的三种基本状态"><a href="#进程的三种基本状态" class="headerlink" title="进程的三种基本状态"></a>进程的三种基本状态</h3><p>==就绪、执行、阻塞==</p>
+<p>阻塞状态是缺少需要的资源从而由运行状态转换而来，但是该资源不包括 CPU，缺少 CPU 会让进程从==运行态转换为就绪态==。</p>
+<p>只有就绪态和运行态可以相互转换，其它的都是单向转换。就绪状态的进程通过调度算法从而获得 CPU 时间，转为运行状态；而运行状态的进程，在分配给它的 CPU 时间片用完之后就会转为就绪状态，等待下一次调度。</p>
+<h3 id="进程间的通信五种方式"><a href="#进程间的通信五种方式" class="headerlink" title="进程间的通信五种方式"></a>进程间的通信五种方式</h3><h4 id="1-共享内存"><a href="#1-共享内存" class="headerlink" title="1 共享内存"></a>1 共享内存</h4><p>==即多个进程共享某块内存，共享内存是通信方式中最快的一种。==</p>
+<p>操作系统建立一块共享内存，并将其映射到参与通信的每个进程的地址空间上，进程就可以直接对这块共享内存进行读写。</p>
+<h4 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2 消息队列:"></a>2 消息队列:</h4><p>类似于用链表的结构存储消息。<br><img src="https://img-blog.csdn.net/20180513164327588?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>它克服了上两种通信方式中信号量有限的缺点，具有写权限得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限得进程则可以从消息队列中读取信息；</p>
+<h4 id="3-管道pipe通信"><a href="#3-管道pipe通信" class="headerlink" title="3 管道pipe通信"></a>3 管道pipe通信</h4><p>==即管道为空时读进程会阻塞，管道为满时写进程会阻塞，以此实现进程之间的通信==。一个进程的输入作为另一个进程的输出<br>生产者消费者模式，内存不共享</p>
+<h5 id="普通管道："><a href="#普通管道：" class="headerlink" title="普通管道："></a>普通管道：</h5><p>  它是半双工的，即只能单向传输。<br>  它是有进程关系限制的，只能在父子进程之间使用。</p>
+<h5 id="流管道"><a href="#流管道" class="headerlink" title="流管道:"></a>流管道:</h5><p>   相对于普通管道而言，它不止是单向传输，可以双向传输。</p>
+<h5 id="命名管道-FIFO-："><a href="#命名管道-FIFO-：" class="headerlink" title="命名管道(FIFO)："></a>命名管道(FIFO)：</h5><p> 相对于普通管道而言，它没有进程关系限制，可以在无关进程之间进行数据交换。</p>
+<h4 id="4-套接字"><a href="#4-套接字" class="headerlink" title="4 套接字"></a>4 套接字</h4><pre><code>与其它通信机制不同是，套接字可用于不同机器间的进程通信，即可用于网络之间的进程通信。</code></pre>
+<p><img src="https://img-blog.csdn.net/20180513165052722?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h4 id="5-信号量"><a href="#5-信号量" class="headerlink" title="5 信号量"></a>5 信号量</h4><p>   信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信数据。它是一个计数器，用来控制多个进程对共享资源的访问，常作为一种锁机制，实现进程间的同步和互斥。(JUC的Semaphore的设计思想来源吧)</p>
+<h3 id="进程控制与同步"><a href="#进程控制与同步" class="headerlink" title="进程控制与同步"></a>进程控制与同步</h3><h4 id="1-信号量的应用"><a href="#1-信号量的应用" class="headerlink" title="1 信号量的应用"></a>1 信号量的应用</h4><p>实现进程互斥；<br>实现前驱关系</p>
+<h4 id="2-经典进程的同步问题"><a href="#2-经典进程的同步问题" class="headerlink" title="2 经典进程的同步问题"></a>2 经典进程的同步问题</h4><p>生产者-消费者问题？<br>哲学家进餐问题？<br>读者-写者问题</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="线程定义"><a href="#线程定义" class="headerlink" title="线程定义"></a>线程定义</h3><p>==线程是程序中一个单一的顺序控制流程，是系统独立调度和分派CPU的基本单位==。==同一个进程的多个线程共享相同的：代码段、数据段、操作系统的资源，可并发执行==</p>
+<h3 id="线程有几种状态？"><a href="#线程有几种状态？" class="headerlink" title="线程有几种状态？"></a>线程有几种状态？</h3><p>　　在 Java虚拟机 中，线程从最初的创建到最终的消亡，要经历若干个状态：创建(new)、就绪(runnable/start)、运行(running)、阻塞(blocked)、等待(waiting)、时间等待(time waiting) 和 消亡(dead/terminated)。在给定的时间点上，一个线程只能处于一种状态<br><img src="http://static.zybuluo.com/Rico123/ot7o6218591iwj9py999hs1u/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.jpg" alt="image"></p>
+<h3 id="线程间的同步和通信"><a href="#线程间的同步和通信" class="headerlink" title="线程间的同步和通信"></a>线程间的同步和通信</h3><h4 id="1-互斥锁（mutex）"><a href="#1-互斥锁（mutex）" class="headerlink" title="1.互斥锁（mutex）"></a>1.互斥锁（mutex）</h4><p>互斥锁比较简单，用于实现线程间对资源互斥访问的机制。有两种状态，开锁和关锁状态。</p>
+<p>当一个线程需要读/写一个共享数据时，线程首先应该为该数据段所设置的mutex执行关锁命令。首先判别mutex的状态，如果已经处于关锁状态，则访问该数据段的线程将被阻塞；如果mutex处于开锁状态，则将mutex关上之后进行读/写。</p>
+<p>完成读/写之后将mutex设置成开锁状态，并唤醒阻塞在该互斥锁上的线程。</p>
+<h4 id="2-条件变量"><a href="#2-条件变量" class="headerlink" title="2.条件变量"></a>2.条件变量</h4><p>只利用mutex来实现互斥访问可能会引起互斥锁。</p>
+<p>每个条件变量通常都与一个互斥锁一起使用，在创建一个互斥锁的同时便联系一个条件变量。单纯的互斥锁用于短期锁定，主要是保证对临界区的互斥进入，条件变量则用于线程的长期等待，直至等待的资源成为可用的资源。</p>
+<h4 id="3-信号量机制：分为私有信号量与公有信号量"><a href="#3-信号量机制：分为私有信号量与公有信号量" class="headerlink" title="3.信号量机制：分为私有信号量与公有信号量"></a>3.信号量机制：分为私有信号量与公有信号量</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/">
+    <time datetime="2020-11-19T16:00:28.792Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/%E4%B8%89%E3%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc]因为Redis 是内存数据库，它将自己的数据库状态储存在内存里面，所以如果不想办法将储存在内存中的数据库状态保存到磁盘里面，那么一旦服务器进程退出，服务器中的数据库状态也会消失不见 RDB【保存的是二进制文件】为了解决这个问题，Redis提供了RDB持久化功能，这个功能可以将Redis 在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8D%95%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/RDB-AOF%E6%8C%81%E4%B9%85%E5%8C%96/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc]因为Redis 是内存数据库，它将自己的数据库状态储存在内存里面，所以如果不想办法将储存在内存中的数据库状态保存到磁盘里面，那么一旦服务器进程退出，服务器中的数据库状态也会消失不见 RDB【保存的是二进制文件】为了解决这个问题，Redis提供了RDB持久化功能，这个功能可以将Redis 在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置">
+<meta property="og:locale">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1067264/201612/1067264-20161201171039865-192573692.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1067264/201612/1067264-20161201172319287-676349921.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20170718000028777?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGloYW8yMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170718000048891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGloYW8yMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2020-11-19T16:00:28.841Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.841Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1067264/201612/1067264-20161201171039865-192573692.png">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/存储/redis/redis设计与实现/单机数据库的实现/RDB-AOF持久化" class="post-005.服务实现/存储/redis/redis设计与实现/单机数据库的实现/RDB-AOF持久化 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8D%95%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/RDB-AOF%E6%8C%81%E4%B9%85%E5%8C%96/" data-id="ckhp0x7rm003f932ueqwj4oyv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]<br>因为Redis 是内存数据库，它将自己的数据库状态储存在内存里面，所以如果不想办法将储存在内存中的数据库状态保存到磁盘里面，那么一旦服务器进程退出，服务器中的数据库状态也会消失不见</p>
+<h1 id="RDB【保存的是二进制文件】"><a href="#RDB【保存的是二进制文件】" class="headerlink" title="RDB【保存的是二进制文件】"></a>RDB【保存的是二进制文件】</h1><p>为了解决这个问题，Redis提供了RDB持久化功能，这个功能可以将Redis 在内存中的数据库状态保存到磁盘里面，避免数据意外丢失</p>
+<p>RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中，如图10-2所示<br><img src="https://images2015.cnblogs.com/blog/1067264/201612/1067264-20161201171039865-192573692.png" alt="image"><br>RDB 持久化功能所生==成的RDB 文件是一个经过压缩的二进制文件==，通过该文件可以还原生成RDB 文件时的数据库状态，如图1 0-3所示</p>
+<p>==因为RDB文件是保存在硬盘里面的，所以即使Redis服务器进程退出，甚至运行Redis服务器的计算机停机，但只要RDB文件仍然存在，Redis服务器就可以用它来还原数据库状态==</p>
+<h2 id="RDB文件的创建与载入【save-BGSAVE】"><a href="#RDB文件的创建与载入【save-BGSAVE】" class="headerlink" title="RDB文件的创建与载入【save BGSAVE】"></a>RDB文件的创建与载入【save BGSAVE】</h2><p>有两个Redis命令可以用于生成RDB文件，一个是SAVE，另一个是BGSAVE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SAVE命令会阻塞Redis服务器进程，直到RDB文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和SAVE命令直接阻塞服务器进程的做法不同，BGSAVE命令会派生出一个子进程，然后由子进程负责创建RDB 文件，服务器进程(父进程)继续处理命令请求</span><br></pre></td></tr></table></figure>
+<h2 id="RDB-的自动载入"><a href="#RDB-的自动载入" class="headerlink" title="RDB 的自动载入"></a>RDB 的自动载入</h2><p>和使用SAVE命令或者BGSAVE命令创建RDB文件不同，==RDB 文件的载入工作是在服务启动时自动执行的==，所以Redis并没有专门用于载入RDB文件的命令，只要Redis服务器在启动时检测到RDB文件存在，它就会自动载入RDB文件</p>
+<p>==为AOF文件的更新频率通常比RDB 文件的更新频率高，所以如果服务器开启了AOF持久化功能，那么服务器会优先使用AOF文件来还原数据库状态==<br>只有在AOF持久化功能处于关闭状态时，服务器才会使用RDB 文件来还原数据库状态服务器判断该用哪个文件来还原数据库状态的流程如图10-4 所示</p>
+<p><img src="https://images2015.cnblogs.com/blog/1067264/201612/1067264-20161201172319287-676349921.png" alt="image"></p>
+<h3 id="服务器在载入RDB-文件期间，会一直处于阻塞状态，直到载入工作完成为止"><a href="#服务器在载入RDB-文件期间，会一直处于阻塞状态，直到载入工作完成为止" class="headerlink" title="服务器在载入RDB 文件期间，会一直处于阻塞状态，直到载入工作完成为止"></a>服务器在载入RDB 文件期间，会一直处于阻塞状态，直到载入工作完成为止</h3><h3 id="自动间隔性保存"><a href="#自动间隔性保存" class="headerlink" title="自动间隔性保存"></a>自动间隔性保存</h3><h3 id="dirty计数器和lastsave属性"><a href="#dirty计数器和lastsave属性" class="headerlink" title="dirty计数器和lastsave属性"></a>dirty计数器和lastsave属性</h3><p>除了saveparams数组之外，服务器状态还维持着一个dirty计数器，以及一个lastsave属性:</p>
+<p>dirty计数器记录距离上一次成功执行SAVE命令或者BGSAVE命令之后，服务器对数据库状态(服务器中的所有数据库)进行了多少次修改(包括写入、删除、更新等操作)。<br>lastsave属性是一个UNIX时间戳，记录了服务器上一次成功执行SAVE命令或者BGSAVE命令的时间。</p>
+<p>当服务器成功执行一个数据库修改命令之后，程序就会对dirty计数器进行更新:命令修改了多少次数据库.dirty计数器的值就增加多少。<br>例如，如果我们为一个字符串键设置值:</p>
+<h1 id="AOF【保存的是命令】"><a href="#AOF【保存的是命令】" class="headerlink" title="AOF【保存的是命令】"></a>AOF【保存的是命令】</h1><h2 id="AOF-配置"><a href="#AOF-配置" class="headerlink" title="AOF 配置"></a>AOF 配置</h2><p>为了打开 AOF 持久化的功能，我们只需要将 redis.conf 配置文件中的appendonly配置选项设置为yes即可。涉及 AOF 持久化的几个常用配置如下所示：</p>
+<p><img src="https://img-blog.csdn.net/20170718000028777?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGloYW8yMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><img src="https://img-blog.csdn.net/20170718000048891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGloYW8yMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h2 id="AOF-文件的生成过程具体包括命令追加，文件写入，文件同步三个步骤。"><a href="#AOF-文件的生成过程具体包括命令追加，文件写入，文件同步三个步骤。" class="headerlink" title="AOF 文件的生成过程具体包括命令追加，文件写入，文件同步三个步骤。"></a>AOF 文件的生成过程具体包括命令追加，文件写入，文件同步三个步骤。</h2><p>AOF 文件的生成过程具体包括命令追加，文件写入，文件同步三个步骤。<br>Redis 打开 AOF 持久化功能后，Redis 在执行完一个写命令后，都会将执行的写命令追回到 Redis 内部的缓冲区的末尾。这个过程是命令的追加过程。<br>接下来，缓冲区的写命令会被写入到 AOF 文件，这一过程是文件写入过程。对于操作系统来说，调用write函数并不会立刻将数据写入到硬盘，为了将数据真正写入硬盘，还需要调用fsync函数，调用fsync函数即是文件同步的过程。只有经过文件同步过程，AOF 文件才在硬盘中真正保存了 Redis 的写命令。appendfsync 配置选项正是用来配置将写命令同步到文件的频率的，各个选项的值的含义如表 1 所示。</p>
+<p>==appendonly.aof以 Redis 协议格式 RESP 来保存写命令==<br>appendonly.aof保存的命令会在 Redis 下次重启时使用来还原 Redis 数据库。</p>
+<h2 id="AOF-重写"><a href="#AOF-重写" class="headerlink" title="AOF 重写"></a>AOF 重写</h2><p>由于 Redis 会不断地将被执行的命令记录到 AOF 文件里面，所以随着 Redis 不断运行，AOF 文件的体积会越来越大。另外，如果 AOF 文件的体积很大，那么还原操作所需要的时间也会非常地长。<br>为了解决 AOF 文件越来越大的问题，用户可以向 Redis 发送 BGREWRITEAOF 命令，==这个命令会移除 AOF 文件中冗余的命令来重写 AOF 文件==，使 AOF 文件的体积变得尽可能地小。<br>BGREWRITEAOF 的工作原理和快照持久化命令 BGSAVE 的工作原理类似，Redis 会创建一个子进程来负责对 AOF 文件进行重写。 </p>
+<h1 id="RDB和AOF对比"><a href="#RDB和AOF对比" class="headerlink" title="RDB和AOF对比"></a>RDB和AOF对比</h1><h2 id="RDB存在哪些优势呢？"><a href="#RDB存在哪些优势呢？" class="headerlink" title="RDB存在哪些优势呢？"></a>RDB存在哪些优势呢？</h2><p>1). 一旦采用该方式【紧凑】，那么你的整个Redis数据库将只包含一个文件，这对于文件备份而言是非常完美的。</p>
+<p>2). 对于灾难恢复而言，RDB是非常不错的选择</p>
+<p>3). 性能最大化。对于Redis的服务进程而言，在开始持久化时，它唯一需要做的只是fork出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大的避免服务进程执行IO操作了。</p>
+<p>4). 相比于AOF机制，如果数据集很大，RDB的启动效率会更高。</p>
+<h2 id="RDB又存在哪些劣势呢？"><a href="#RDB又存在哪些劣势呢？" class="headerlink" title="RDB又存在哪些劣势呢？"></a>RDB又存在哪些劣势呢？</h2><p>1). 数据的高可用性低。因为系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失。</p>
+<p>2). 由于RDB是通过fork子进程，数据集较大时，可能会导致整个服务器停止服务几百毫秒，甚至是1秒钟。</p>
+<h2 id="AOF的优势有哪些呢？"><a href="#AOF的优势有哪些呢？" class="headerlink" title="AOF的优势有哪些呢？"></a>AOF的优势有哪些呢？</h2><p>1). 该机制可以带来更高的数据安全性，及时，迅速不怕宕机</p>
+<p>2). 由于该机制对日志文件的写入操作采用的是append模式，因此在写入过程中即使出现宕机现象，也不会破坏日志文件中已经存在的内容。然而如果我们本次操作只是写入了一半数据就出现了系统崩溃问题，不用担心，在Redis下一次启动之前，我们可以通过redis-check-aof工具来帮助我们解决数据一致性的问题。</p>
+<p>3). 如果日志过大，Redis可以自动启用rewrite机制。即Redis以append模式不断的将修改数据写入到老的磁盘文件中，同时Redis还会创建一个新的文件用于记录此期间有哪些修改命令被执行。因此在进行rewrite切换时可以更好的保证数据安全性。</p>
+<p>4). AOF格式易读</p>
+<h2 id="AOF的劣势有哪些呢？"><a href="#AOF的劣势有哪些呢？" class="headerlink" title="AOF的劣势有哪些呢？"></a>AOF的劣势有哪些呢？</h2><p>1). 对于相同数量的数据集而言，AOF文件通常要大于RDB文件。RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。</p>
+<p>2). 根据同步策略的不同，AOF在运行效率上往往会慢于RDB。总之，每秒同步策略的效率是比较高的，同步禁用策略的效率和RDB一样高效。</p>
+<p>二者选择的标准，就是看系统是愿意牺牲一些性能，换取更高的缓存一致性（aof），还是愿意写操作频繁的时候，不启用备份来换取更高的性能，</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8D%95%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/RDB-AOF%E6%8C%81%E4%B9%85%E5%8C%96/">
+    <time datetime="2020-11-19T16:00:28.841Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8D%95%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/RESP%E5%8D%8F%E8%AE%AE/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8D%95%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/redis%E4%BA%8B%E4%BB%B6/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

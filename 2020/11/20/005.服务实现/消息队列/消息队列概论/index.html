@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 主要考虑指标如何确保消息的精确传输如何确保消息的准确存储不丢 如何确保消息的正确消费不重复消费 解决了什么问题https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;58374824  链式调用是我们在写程序时候的一般流程，为了完成一个整体功能，会将其拆分成多个函数（或子模块），比如模块A调用模块B，模块B调用模块C，模块C调用模块D。但在大型分布式应用中，系统间的RPC交互繁杂，一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 主要考虑指标如何确保消息的精确传输如何确保消息的准确存储不丢 如何确保消息的正确消费不重复消费 解决了什么问题https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;58374824  链式调用是我们在写程序时候的一般流程，为了完成一个整体功能，会将其拆分成多个函数（或子模块），比如模块A调用模块B，模块B调用模块C，模块C调用模块D。但在大型分布式应用中，系统间的RPC交互繁杂，一">
+<meta property="og:locale">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-3630ae95eb61e02c69b4a4a8c4d3ae27_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-508d0ca6ee99ff842612dcc669a76947_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-ea04f53e44b191875b868c02c8623861_hd.jpg">
+<meta property="article:published_time" content="2020-11-19T16:00:28.845Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.846Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-3630ae95eb61e02c69b4a4a8c4d3ae27_hd.jpg">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/消息队列/消息队列概论" class="post-005.服务实现/消息队列/消息队列概论 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/" data-id="ckhp0x7qw001u932u07n74f5k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="主要考虑指标"><a href="#主要考虑指标" class="headerlink" title="主要考虑指标"></a>主要考虑指标</h1><h2 id="如何确保消息的精确传输"><a href="#如何确保消息的精确传输" class="headerlink" title="如何确保消息的精确传输"></a>如何确保消息的精确传输</h2><h2 id="如何确保消息的准确存储"><a href="#如何确保消息的准确存储" class="headerlink" title="如何确保消息的准确存储"></a>如何确保消息的准确存储</h2><pre><code>不丢</code></pre>
+<h2 id="如何确保消息的正确消费"><a href="#如何确保消息的正确消费" class="headerlink" title="如何确保消息的正确消费"></a>如何确保消息的正确消费</h2><pre><code>不重复消费</code></pre>
+<h1 id="解决了什么问题"><a href="#解决了什么问题" class="headerlink" title="解决了什么问题"></a>解决了什么问题</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58374824">https://zhuanlan.zhihu.com/p/58374824</a></p>
+<p> 链式调用是我们在写程序时候的一般流程，为了完成一个整体功能，会将其拆分成多个函数（或子模块），比如模块A调用模块B，模块B调用模块C，模块C调用模块D。但在大型分布式应用中，系统间的RPC交互繁杂，一个功能背后要调用上百个接口并非不可能，这种架构有如下几个劣势：</p>
+<ul>
+<li>  耦合严重，改A就要周知所有下游</li>
+<li>  每个接口吞吐有限 引起蝴蝶效应</li>
+<li>  有性能问题，木桶理论  RPC接口基本上是同步调用，整体的服务性能遵循“木桶理论”，即链路中最慢的那个接   比如A调用B/C/D都是50ms，但此时B又调用了B1，花费2000ms，那么直接就拖累了整个服务性能。</li>
+</ul>
+<h1 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h1><ul>
+<li>   系统解耦</li>
+<li> 流量削峰（秒杀常用）<pre><code> 设置流量缓冲池，流量削峰，可以让后端系统按照自身吞吐能力进行消费，不被冲垮；</code></pre>
+</li>
+<li> 异步处理<pre><code> 强弱依赖梳理，将++非关键调用链路的操作异步化++，提升整体系统的吞吐能力（比如下订单扣款发货，物流属于非关键，可以异步）</code></pre>
+</li>
+<li>   数据分发 一个上游发 多个下游消费</li>
+</ul>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>   <img src="https://pic4.zhimg.com/80/v2-3630ae95eb61e02c69b4a4a8c4d3ae27_hd.jpg" alt="image"></p>
+<pre><code>  A. Client上游如何将消息可靠投递到MQ
+
+    - 1.Client发送消息给MQ
+    - 2.MQ将消息持久化后，发送Ack消息给Client，此处有可能因为网络问题导致Ack消息无法发送到Client，那么Client在等待超时后，会重传消息；
+    - 3.Client收到Ack消息后，认为消息已经投递成功。
+
+  B. MQ如何将消息可靠投递到Client下游
+
+    - 1.MQ将消息push给Client（或Client来pull消息）
+    - 2.Client得到消息并做完业务逻辑
+    - 3.Client发送Ack消息给MQ，通知MQ删除该消息，此处有可能因为网络问题导致Ack失败，那么Client会重复消息，这里就引出消费幂（命令堵塞）等的问题；
+    - 4.MQ将已消费的消息删除</code></pre>
+<h1 id="MQ的特点"><a href="#MQ的特点" class="headerlink" title="MQ的特点"></a>MQ的特点</h1><pre><code>1.先进先出 且 数据是只有一条数据在使用中。 这也是MQ在诸多场景被使用的原因。
+2.发布订阅
+3.持久化mq
+4.分布式</code></pre>
+<h1 id="mq的两种消息模式-P2P（Point-toPoint）和Publish-Sub-Pub-Sub"><a href="#mq的两种消息模式-P2P（Point-toPoint）和Publish-Sub-Pub-Sub" class="headerlink" title="mq的两种消息模式     P2P（Point toPoint）和Publish/Sub(Pub/Sub)"></a>mq的两种消息模式     P2P（Point toPoint）和Publish/Sub(Pub/Sub)</h1><p><img src="https://pic4.zhimg.com/80/v2-508d0ca6ee99ff842612dcc669a76947_hd.jpg" alt="image"></p>
+<p>点对点，一个发，一个消费。涉及到的角色 发布者（Publisher）、消费者（Consumer）、消息队列（Queue）<br>特点</p>
+<p>一个消息只能被一个消费者消费，消费后会从队列里移除<br>发布者和消费者无关系，发布者发送消息的行为不会随消费者而改变<br>消费者消费完成消息，需要向队列Ack，消息队列发现消息消费成功即做消息移除</p>
+<p><img src="https://pic2.zhimg.com/80/v2-ea04f53e44b191875b868c02c8623861_hd.jpg" alt="image"></p>
+<p>发布订阅模式，一个发布，多方订阅。涉及到的角色有 发布者（Publisher）、主题（Topic）、订阅者（Subscriber）。</p>
+<p>特点</p>
+<p>每个消息可以有多个消费者<br>针对某个主题（Topic）的订阅者，必须创建一个订阅者之后，才能消费发布者的消息<br>为了消费消息，订阅者必须保持运行的状态</p>
+<h1 id="常见问题和解决方案"><a href="#常见问题和解决方案" class="headerlink" title="常见问题和解决方案"></a>常见问题和解决方案</h1><h2 id="消息阻塞"><a href="#消息阻塞" class="headerlink" title="消息阻塞"></a>消息阻塞</h2><p>1、消息阻塞一般都是流量激增，超过消费者消费能力（扩容）；</p>
+<p>2、或者消费者出现逻辑问题，导致不断的重试或长时间等待（紧急航线 跳过）。</p>
+<h2 id="重复消费"><a href="#重复消费" class="headerlink" title="重复消费"></a>重复消费</h2><p>   重复消费一般发生下消费端，比如消费者处理完毕，在准备进行ack的时候出现了问题，应用重启后，消息中间件以为该消息还未处理又推给了消费者，或者消费者拉取的时候重复。</p>
+<p>   一般的做法==是消费端做幂==等。</p>
+<h2 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h2><p>消息丢失一般分为生产者发送失败、消息中间件丢失、消费丢失。</p>
+<p>生产者丢失：可能以为网络问题或者消息中间处理失败导致，消息遗漏。</p>
+<p>消息中间的丢失：一般中间件可以设置丢弃策略，大部分MQ中间件产品可以保证数据不丢失，这种情况基本不用考虑。</p>
+<p>消费丢失：有的消息中间件支持自动ack，当消费者消费到消息，消息中间件也不管是否消费成功自动ack。这时候一般选择消费者主动ack比较合适。</p>
+<p>有activeMQ、rabbitMQ、rocketMQ、zeroMQ、Kafka</p>
+<h1 id="MQ的消息幂等"><a href="#MQ的消息幂等" class="headerlink" title="MQ的消息幂等"></a>MQ的消息幂等</h1><p>举个栗子：购买会员卡，上游支付系统负责给用户扣款，下游系统负责给用户发卡，通过MQ异步通知。不管是上半场的ACK丢失，导致MQ收到重复的消息，还是下半场ACK丢失，导致购卡系统收到重复的购卡通知，都可能出现，上游扣了一次钱，下游发了多张卡。消息总线的幂等性设计至关重要，是本文将要讨论的重点。</p>
+<h2 id="上游的幂等性设计"><a href="#上游的幂等性设计" class="headerlink" title="上游的幂等性设计"></a>上游的幂等性设计</h2><pre><code>![image](https://upload-images.jianshu.io/upload_images/6754857-a3979e5fde4136ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/302/format/webp)
+
+MQ系统内部必须生成一个inner-msg-id，作为去重和幂等的依据，这个内部消息ID的特性是：</code></pre>
+<p>（1）全局唯一</p>
+<p>（2）MQ生成，具备业务无关性，==对消息发送方和消息接收方==屏蔽</p>
+<h2 id="下游的幂等性设计"><a href="#下游的幂等性设计" class="headerlink" title="下游的幂等性设计"></a>下游的幂等性设计</h2><p>  业务消息体中，必须有一个biz-id，作为去重和幂等的依据，这个业务ID的特性是：</p>
+<p>（1）==对于同一个业务场景，全局唯一==</p>
+<p>（2）由业务消息发送方生成，业务相关，对MQ透明</p>
+<p>（3）由业务消息消费方负责判重，以保证幂等</p>
+<p>最常见的业务ID有：支付ID，订单ID，帖子ID等。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> MQ为了保证消息必达，消息上下半场均可能发送重复消息，如何保证消息的幂等性呢？<br>上半场<br>   MQ-client生成inner-msg-id，保证上半场幂等。这个ID全局唯一，业务无关，由MQ保证。<br>下半场<br>  业务发送方带入biz-id，业务接收方去重保证幂等。这个ID对单业务唯一，业务相关，对MQ透明。结论：幂等性，不仅对MQ有要求，对业务上下游也有要求</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/">
+    <time datetime="2020-11-19T16:00:28.845Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86%5Bnginx%5D/ngnix/ngnix.conf/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

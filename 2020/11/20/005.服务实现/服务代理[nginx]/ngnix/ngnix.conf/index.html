@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作业帮的ngnix.conf 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394user">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86[nginx]/ngnix/ngnix.conf/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="作业帮的ngnix.conf 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394user">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.844Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.844Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-005.服务实现/服务代理[nginx]/ngnix/ngnix.conf" class="post-005.服务实现/服务代理[nginx]/ngnix/ngnix.conf post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86[nginx]/ngnix/ngnix.conf/" data-id="ckhp0x7rd002x932udvocfel4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>作业帮的ngnix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">user  homework;</span><br><span class="line">worker_processes  2;</span><br><span class="line">worker_cpu_affinity 00000001 00000010;</span><br><span class="line">worker_rlimit_nofile 8192;</span><br><span class="line"></span><br><span class="line">error_log   &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&#x2F;error_log&quot;   notice;</span><br><span class="line">pid         &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;nginx.pid&quot;;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    use epoll;</span><br><span class="line">    worker_connections  8192; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types; </span><br><span class="line">    #include       upstream.conf;</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &quot;$http_cookie&quot; &quot;$http_user_agent&quot; &#39;</span><br><span class="line">                      &#39;$request_time $logid $remote_addr $server_addr $upstream_addr $host &#39;</span><br><span class="line">                      &#39;&quot;$http_x_forwarded_for&quot; $product $subsys $tracecode $msec&#39;;</span><br><span class="line"></span><br><span class="line">    access_log  &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&#x2F;access_log&quot;  main;</span><br><span class="line"></span><br><span class="line">    client_body_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;client_body;</span><br><span class="line">    fastcgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;fastcgi;</span><br><span class="line">    proxy_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;proxy;</span><br><span class="line">    uwsgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;uwsgi;</span><br><span class="line">    scgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;scgi;</span><br><span class="line"></span><br><span class="line">    server_names_hash_bucket_size 128;</span><br><span class="line">    client_header_buffer_size 16k;</span><br><span class="line">    large_client_header_buffers 4 128k;</span><br><span class="line">    client_max_body_size 50m;</span><br><span class="line">    client_body_buffer_size 1024k;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    tcp_nopush      on;</span><br><span class="line">    tcp_nodelay     on;</span><br><span class="line"></span><br><span class="line">    fastcgi_connect_timeout 5;</span><br><span class="line">    fastcgi_send_timeout 300;</span><br><span class="line">    fastcgi_read_timeout 300;</span><br><span class="line">    fastcgi_buffer_size 128k;</span><br><span class="line">    fastcgi_buffers 4 256k;</span><br><span class="line">    fastcgi_busy_buffers_size 512k;</span><br><span class="line">    fastcgi_temp_file_write_size 512k;</span><br><span class="line">    fastcgi_intercept_errors on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  0;</span><br><span class="line">    #keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 1k;</span><br><span class="line">    gzip_buffers 4 16k;</span><br><span class="line">    gzip_http_version 1.0;</span><br><span class="line">    gzip_comp_level 2;</span><br><span class="line">    gzip_types text&#x2F;plain application&#x2F;x-javascript text&#x2F;css application&#x2F;xml;</span><br><span class="line">    gzip_vary on;</span><br><span class="line"></span><br><span class="line">    policy_frame off; </span><br><span class="line">    policy_path &quot;&#x2F;home&#x2F;homework&#x2F;webserver&#x2F;conf&#x2F;&quot;;</span><br><span class="line">    policy_dtdname policy.dtd;</span><br><span class="line">    policy_docname policy.xml;</span><br><span class="line">    policy_logpath &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&quot;;</span><br><span class="line">    policy_logfile policy.;</span><br><span class="line">    policy_logsize 1600;</span><br><span class="line">    policy_loglevel 4; </span><br><span class="line"></span><br><span class="line">    uninitialized_variable_warn off;</span><br><span class="line">    proxy_connect_timeout 15s;</span><br><span class="line">    proxy_read_timeout 10s;</span><br><span class="line">    proxy_send_timeout 10s;</span><br><span class="line">    proxy_buffer_size 64k;</span><br><span class="line">    proxy_buffers 4 64k;</span><br><span class="line">    proxy_busy_buffers_size 128k;</span><br><span class="line">    proxy_temp_file_write_size 128k;</span><br><span class="line">    proxy_set_header X_BD_LOGID $logid;</span><br><span class="line">    proxy_set_header LOGID $logid;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">    proxy_set_header CLIENTIP $remote_addr;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line"></span><br><span class="line">    port_in_redirect off;</span><br><span class="line">    set_real_ip_from 192.168.0.0&#x2F;24;</span><br><span class="line">    real_ip_header CLIENTIP;</span><br><span class="line">    underscores_in_headers on;</span><br><span class="line">    include vhost&#x2F;php.conf;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<p>开发机的ngnix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#nginx进程数，建议设置为等于CPU总核心数</span><br><span class="line">worker_rlimit_nofile 204800;</span><br><span class="line">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span><br><span class="line">error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;</span><br><span class="line">#工作模式及连接数上限</span><br><span class="line">events &#123;</span><br><span class="line">        #参考事件模型，use [ kqueue | rtsig | epoll | &#x2F;dev&#x2F;poll | select | poll ];</span><br><span class="line">        #epoll模型是Linux 2.6以上版本内核中的高性能网络I&#x2F;O模型，如果跑在FreeBSD上面，就用kqueue模型</span><br><span class="line">        worker_connections  102400;</span><br><span class="line">&#125;</span><br><span class="line">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span><br><span class="line">http &#123;</span><br><span class="line">        #文件扩展名与文件类型映射表</span><br><span class="line">        #首先，我们要了解浏览器是如何处理内容的。在浏览器中显示的内容有 HTML、有 XML、有 GIF、还有 #Flash ……那么，浏览器是如何区分它们，决定什么内容用什么形式来显示呢？答案是   #MIMEType，也就是该资源的媒体类型。</span><br><span class="line">        include       mime.types;</span><br><span class="line">        #默认文件类型</span><br><span class="line">        default_type  application&#x2F;octet-stream;</span><br><span class="line">        #设定日志格式</span><br><span class="line">        #log_format  main  &#39;$idXXXX\t$remote_addr\t$remote_user\t$time_local\t$http_host\t$request\t&#39;</span><br><span class="line">        #             &#39;$status\t$body_bytes_sent\t$http_referer\t&#39;</span><br><span class="line">        #             &#39;$http_user_agent\t$http_x_forwarded_for\t$request_time\t$upstream_response_time\t$userid&#39;;</span><br><span class="line">                        &quot;$request_time\t$status\t$body_bytes_sent\t&#39;$http_referer&#39;\t&quot;</span><br><span class="line"></span><br><span class="line">    #不可见字符分隔日志格式</span><br><span class="line">    #include other_log_format.conf;</span><br><span class="line">    #实时日志收集json格式日志</span><br><span class="line">    #include json_log_format.conf;</span><br><span class="line"></span><br><span class="line">        #日志流格式</span><br><span class="line">                      &quot;$request_time\t$status\t$body_bytes_sent\t&#39;$http_referer&#39;\t&quot;</span><br><span class="line">                      &quot;&#39;$http_user_agent&#39;\t&#39;$http_x_forwarded_for&#39;\t$upstream_addr\t$upstream_response_time\t3&quot;;</span><br><span class="line"></span><br><span class="line">        #成功日志</span><br><span class="line">        access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log  main;</span><br><span class="line"> #access_log syslog:local6:notice:log1.op.XXXXdns.org:514:nginx-main-log main;</span><br><span class="line"></span><br><span class="line">        #指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span><br><span class="line">        sendfile        on;</span><br><span class="line">        #长连接超时时间，单位是秒</span><br><span class="line">        keepalive_timeout  60;</span><br><span class="line">        #服务器名称哈希表的最大值(默认512)[hash%size]</span><br><span class="line">        server_names_hash_max_size 1024;</span><br><span class="line">        #服务器名字的hash表大小</span><br><span class="line">        server_names_hash_bucket_size 256;</span><br><span class="line">        #客户请求头缓冲大小</span><br><span class="line">        client_header_buffer_size 4k;</span><br><span class="line">        #如果header过大，它会使用large_client_header_buffers来读取</span><br><span class="line">        large_client_header_buffers 4 256k;</span><br><span class="line">        client_header_timeout  1m;</span><br><span class="line">        client_body_timeout    1m;</span><br><span class="line">        send_timeout           1m;</span><br><span class="line">        #防止网络阻塞</span><br><span class="line">        tcp_nopush     on;</span><br><span class="line">        tcp_nodelay    on;</span><br><span class="line">        #允许客户端请求的最大单文件字节数</span><br><span class="line">        client_max_body_size 50m;</span><br><span class="line"></span><br><span class="line">        #缓冲区代理缓冲用户端请求的最大字节数</span><br><span class="line">        client_body_buffer_size 50m;</span><br><span class="line"></span><br><span class="line">        #nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">        proxy_connect_timeout 5;</span><br><span class="line"></span><br><span class="line">        #后端服务器数据回传时间(代理发送超时)</span><br><span class="line">        proxy_send_timeout 15;</span><br><span class="line"></span><br><span class="line">        #连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">        proxy_read_timeout 15;</span><br><span class="line"></span><br><span class="line">        #设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">        proxy_buffer_size 4k;</span><br><span class="line"></span><br><span class="line">        #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span><br><span class="line">        proxy_buffers 8 32k;</span><br><span class="line"></span><br><span class="line">        #高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">        proxy_busy_buffers_size 64k;</span><br><span class="line">        proxy_temp_file_write_size 64k;</span><br><span class="line">        proxy_intercept_errors  on;</span><br><span class="line">        #客户端放弃请求，nginx也放弃对后端的请求</span><br><span class="line">        #proxy_ignore_client_abort on;</span><br><span class="line"></span><br><span class="line">    #代理缓存头信息最大长度[设置头部哈希表的最大值，不能小于你后端服务器设置的头部总数]</span><br><span class="line">    proxy_headers_hash_max_size 512;</span><br><span class="line">    #设置头部哈希表大小(默认64)[这将限制头部字段名称的长度大小，如果你使用超过64个字符的头部名可以加大这个值。]</span><br><span class="line">    proxy_headers_hash_bucket_size 256;</span><br><span class="line"></span><br><span class="line">    #变量哈希表的最大值(默认值)</span><br><span class="line">    variables_hash_max_size 512;</span><br><span class="line">    #为变量哈希表制定关键字栏的大小(默认64)</span><br><span class="line">    variables_hash_bucket_size 128;</span><br><span class="line"></span><br><span class="line">        #开启gzip压缩输出</span><br><span class="line">        gzip on;</span><br><span class="line">        #最小压缩文件大小</span><br><span class="line">        gzip_min_length 1k;</span><br><span class="line">        #压缩缓冲区</span><br><span class="line">        gzip_buffers     4 16k;</span><br><span class="line">        #压缩等级</span><br><span class="line">        gzip_comp_level 9;</span><br><span class="line">        #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span><br><span class="line">        gzip_http_version 1.0;</span><br><span class="line">        #压缩类型，默认就已经包含textml</span><br><span class="line">        gzip_vary on;</span><br><span class="line"></span><br><span class="line">        #map模块使用</span><br><span class="line">        map_hash_max_size 102400;</span><br><span class="line">        map_hash_bucket_size  256;</span><br><span class="line"></span><br><span class="line">        #Tengine Config</span><br><span class="line">        #concat on;</span><br><span class="line">        #trim on;</span><br><span class="line">        #trim_css off;</span><br><span class="line">        #trim_js off;</span><br><span class="line">        server_tokens off;</span><br><span class="line">        #footer &quot;&lt;!-- $remote_addr $server_addr $upstream_addr --&gt;&quot;;</span><br><span class="line"></span><br><span class="line">        #rewrite_log on;</span><br><span class="line">        fastcgi_intercept_errors on;</span><br><span class="line">    #include other config file</span><br><span class="line">        include ..&#x2F;conf.d&#x2F;*.conf;</span><br><span class="line">    #包含一些特殊站点的配置文件,此目录下文件暂时不包含在git自动管理过程中</span><br><span class="line">    include ..&#x2F;special&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">    #屏蔽不加主机域名的默认请求</span><br><span class="line">    #server &#123;</span><br><span class="line">        #   listen *:80 default;</span><br><span class="line">        #   server_name _ &quot;&quot;;</span><br><span class="line">        #   return 444;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    #ceshi by dongange 2016-01-07</span><br><span class="line"></span><br><span class="line">    #Nginx状态监测模块配置</span><br><span class="line">#    req_status_zone server &quot;$server_name,$server_addr:$server_port&quot; 10M;</span><br><span class="line"> #   req_status server;</span><br><span class="line">    server &#123;</span><br><span class="line">          listen       80 default_server;</span><br><span class="line">        server_name  39.105.184.207;</span><br><span class="line">        #root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoChat&#x2F;Applications&#x2F;Chat&#x2F;Web&#x2F;;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoMall&#x2F;shopMall&#x2F;protected&#x2F;view&#x2F;backend&#x2F;;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoMall&#x2F;shopMall&#x2F;;</span><br><span class="line">        root &#x2F;root&#x2F;hao;</span><br><span class="line">             location &#x2F; &#123;</span><br><span class="line">        root &#x2F;root&#x2F;hao;</span><br><span class="line">           index index.php;</span><br><span class="line">          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        &#125;</span><br><span class="line">         location ~ \.php$ &#123;</span><br><span class="line">                root &#x2F;root&#x2F;hao;</span><br><span class="line">                fastcgi_connect_timeout  180;</span><br><span class="line">                fastcgi_read_timeout    600;</span><br><span class="line">                fastcgi_send_timeout    600;</span><br><span class="line">                fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">                #fastcgi_pass   unix:&#x2F;tmp&#x2F;php-cgi.sock;</span><br><span class="line">                fastcgi_index index.php;</span><br><span class="line">                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">                include fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 404 &#x2F;404.html;</span><br><span class="line">            location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">            location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86%5Bnginx%5D/ngnix/ngnix.conf/">
+    <time datetime="2020-11-19T16:00:28.844Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Hbase/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc]八大算法思想分别是：枚举、递推、递归、分治、贪心、试探法、动态迭代和模拟算法思想 枚举法（穷举） 最笨 没效率 递推法正向递推【条件推结果】给定一个数的序列H0,H1,…,Hn,…若存在整数n0，使当n&gt;n0时,可以用等号(或大于号、小于号)将Hn与其前面的某些项Hi(0&lt;i&lt;n)联系起来，这样的式子就叫做递推关系。 1234567891011121314151617&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E3%80%90%E6%9E%9A%E4%B8%BE%E3%80%81%E9%80%92%E6%8E%A8%E3%80%81%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%B4%AA%E5%BF%83%E3%80%81%E8%AF%95%E6%8E%A2%E6%B3%95%E3%80%81%E5%8A%A8%E6%80%81%E8%BF%AD%E4%BB%A3%E5%92%8C%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc]八大算法思想分别是：枚举、递推、递归、分治、贪心、试探法、动态迭代和模拟算法思想 枚举法（穷举） 最笨 没效率 递推法正向递推【条件推结果】给定一个数的序列H0,H1,…,Hn,…若存在整数n0，使当n&gt;n0时,可以用等号(或大于号、小于号)将Hn与其前面的某些项Hi(0&lt;i&lt;n)联系起来，这样的式子就叫做递推关系。 1234567891011121314151617&amp;">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdn.net/20161203164009671">
+<meta property="og:image" content="https://img-blog.csdn.net/20161203164009671">
+<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1009785/201611/1009785-20161116200146560-799082386.png">
+<meta property="article:published_time" content="2020-11-19T16:00:28.820Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.821Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161203164009671">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-002.算法+数据结构/算法/算法思想【枚举、递推、递归、分治、贪心、试探法、动态迭代和模拟算法" class="post-002.算法+数据结构/算法/算法思想【枚举、递推、递归、分治、贪心、试探法、动态迭代和模拟算法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E3%80%90%E6%9E%9A%E4%B8%BE%E3%80%81%E9%80%92%E6%8E%A8%E3%80%81%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%B4%AA%E5%BF%83%E3%80%81%E8%AF%95%E6%8E%A2%E6%B3%95%E3%80%81%E5%8A%A8%E6%80%81%E8%BF%AD%E4%BB%A3%E5%92%8C%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/" data-id="ckhp0x7qf000x932uglrh6sm8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]<br>八大算法思想分别是：枚举、递推、递归、分治、贪心、试探法、动态迭代和模拟算法思想</p>
+<h1 id="枚举法（穷举）"><a href="#枚举法（穷举）" class="headerlink" title="枚举法（穷举）"></a>枚举法（穷举）</h1><p> 最笨 没效率</p>
+<h1 id="递推法"><a href="#递推法" class="headerlink" title="递推法"></a>递推法</h1><h2 id="正向递推【条件推结果】"><a href="#正向递推【条件推结果】" class="headerlink" title="正向递推【条件推结果】"></a>正向递推【条件推结果】</h2><p>给定一个数的序列H0,H1,…,Hn,…若存在整数n0，使当n&gt;n0时,可以用等号(或大于号、小于号)将Hn与其前面的某些项Hi(0&lt;i&lt;n)联系起来，这样的式子就叫做递推关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;用顺推法解决“斐波那契数列”问题 阶乘</span><br><span class="line">public class shuntuirabbit &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        int a[]&#x3D;new int[24];&#x2F;&#x2F;定义一个存放24个月的数组</span><br><span class="line">        a[0]&#x3D;a[1]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;0;i&lt;24;i++)&#123;</span><br><span class="line">            if(i&#x3D;&#x3D;0||i&#x3D;&#x3D;1)</span><br><span class="line">            System.out.println(&quot;第&quot;+(i+1)+&quot;个月兔子的数量为&quot;+1+&quot;对&quot;);</span><br><span class="line">            else&#123;</span><br><span class="line">                a[i]&#x3D;a[i-1]+a[i-2];</span><br><span class="line">                System.out.println(&quot;第&quot;+(i+1)+&quot;个月兔子的数量为&quot;+a[i]+&quot;对&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用顺推法解决“斐波那契数列”问题</span><br></pre></td></tr></table></figure>
+
+<h2 id="逆向递推【结果推条件】"><a href="#逆向递推【结果推条件】" class="headerlink" title="逆向递推【结果推条件】"></a>逆向递推【结果推条件】</h2><p> 1.从原点出发，一步只能向右走、向上走或向左走。恰好走N步且不经过已走的点共有多少种走法？<br> 从结果分析，当前走的这一步的方向，是上，就有三种走法，是左右就只有两种，递归求解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>使用递归算法时，应注意以下几点：</p>
+<p>（1）递归时在过程或函数中调用自身的过程。</p>
+<p>（2）在使用递归策略时，必须有一个明确的递归结束条件，这称为递归出口。</p>
+<p>（3）递归算法通常显得很简洁，但是运行效率较低，所以一般不提倡使用递归算法设计程序。</p>
+<p>（4）在递归调用过程中，系统用栈来存储每一层的返回点和局部量。如果递归次数过多，则容易造成栈溢出，所以一般不提倡用递归算法设计程序。</p>
+<h2 id="【递推和递归的差异】"><a href="#【递推和递归的差异】" class="headerlink" title="【递推和递归的差异】"></a>【递推和递归的差异】</h2><p>递推多想是多米诺骨牌，根据前面几个得到后面的；</p>
+<p>递归是大事化小，比如汉诺塔（Hanoi）问题，就是典型的递归。</p>
+<h1 id="分治法（典型-希尔排序-二分法）"><a href="#分治法（典型-希尔排序-二分法）" class="headerlink" title="分治法（典型 希尔排序 二分法）"></a>分治法（典型 希尔排序 二分法）</h1><p>使用分治算法解题的一般步骤：</p>
+<p>（1）分解：将要解决的问题划分成若干个规模较小的同类问题；</p>
+<p>（2）求解：当子问题划分得足够小时，用较简单的方法解决；</p>
+<p>（3）合并：按原问题的要求，将子问题的解逐层合并构成原问题的解。<br>例子：求123456*456321的积<br><img src="https://img-blog.csdn.net/20161203164009671" alt="image"><br>（1）二分搜索</p>
+<h2 id="（2）大整数乘法"><a href="#（2）大整数乘法" class="headerlink" title="（2）大整数乘法"></a>（2）大整数乘法</h2><p>例子：求123456*456321的积<br><img src="https://img-blog.csdn.net/20161203164009671" alt="image"><br>（3）Strassen矩阵乘法</p>
+<p>##（4）棋盘覆盖</p>
+<p> 在一个2^k×2^k 个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，且称该棋盘为一特殊棋盘。在棋盘覆盖问题中，要用图示的4种不同形态的L型骨牌覆盖给定的特殊棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不得重叠覆盖。<br>　　<br>　　<br>　　<img src="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png" alt="image"><br>　　<br>（5）合并排序</p>
+<p>（6）快速排序</p>
+<p>（7）线性时间选择</p>
+<h2 id="（8）最接近点对问题"><a href="#（8）最接近点对问题" class="headerlink" title="（8）最接近点对问题"></a>（8）最接近点对问题</h2><p>给定平面上n个点，找其中的一对点，使得在n个点的所有点对中，该点对的距离最小。严格地说，最接近点对可能多于1对。为了简单起见，这里只限于找其中的一对。</p>
+<p>拆成两个子集和<br>（9）循环赛日程表</p>
+<p>（10）汉诺塔</p>
+<h1 id="贪心思想"><a href="#贪心思想" class="headerlink" title="贪心思想"></a>贪心思想</h1><p>弹性算法的基本过程：</p>
+<p>（1）从问题的某一个初始解出发；</p>
+<p>（2）While能向给定总目标前进一步；</p>
+<p>（3）求出可行解的一个解元素；</p>
+<p>（4）由所有解元素组成问题的一个可行解。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">从问题的某一初始解出发；</span><br><span class="line">  while （能朝给定总目标前进一步）</span><br><span class="line">  &#123; </span><br><span class="line">        利用可行的决策，求出可行解的一个解元素；</span><br><span class="line">  &#125;</span><br><span class="line">  由所有解元素组合成问题的一个可行解；</span><br></pre></td></tr></table></figure>
+<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><p>有一个背包，背包容量是M=150。有7个物品，物品可以分割成任意大小。</p>
+<p>要求尽可能让装入背包中的物品总价值最大，但不能超过总容量。</p>
+<p>物品 A  B  C  D  E  F  G</p>
+<p>重量 35 30 60 50 40 10 25</p>
+<p>价值 10 40 30 50 35 40 30</p>
+<p>记得当时学算法的时候，就是这个例子，可以说很经典。</p>
+<p>分析：</p>
+<p>目标函数： ∑pi最大</p>
+<p>约束条件是装入的物品总重量不超过背包容量，即∑wi&lt;=M( M=150)</p>
+<p>（1）根据贪心的策略，每次挑选价值最大的物品装入背包，得到的结果是否最优？</p>
+<p>（2）每次挑选所占重量最小的物品装入是否能得到最优解？</p>
+<p>（3）每次选取单位重量价值最大的物品，成为解本题的策略?</p>
+<h2 id="最大整数"><a href="#最大整数" class="headerlink" title="最大整数"></a>最大整数</h2><p>设有n个正整数，将它们连接成一排，组成一个最大的多位整数。</p>
+<p>例如：n=3时，3个整数13，312，343，连成的最大整数为34331213。</p>
+<p>又如：n=4时，4个整数7，13，4，246，连成的最大整数为7424613。</p>
+<p>输入：n</p>
+<p>N个数</p>
+<p>输出：连成的多位数</p>
+<p>算法分析：此题很容易想到使用贪心法，在考试时有很多同学把整数按从大到小的顺序连接起来，测试题目的例子也都符合，但最后测试的结果却不全对。按这种标准，我们很容易找到反例：12，121应该组成12121而非12112，那么是不是相互包含的时候就从小到大呢？也不一定，如12，123就是12312而非12123，这种情况就有很多种了。是不是此题不能用贪心法呢？</p>
+<p>其实此题可以用贪心法来求解，只是刚才的标准不对，正确的标准是：先把整数转换成字符串，然后在比较a+b和b+a，如果a+b&gt;=b+a，就把a排在b的前面，反之则把a排在b的后面。</p>
+<h1 id="试探法算法思想【回溯法】"><a href="#试探法算法思想【回溯法】" class="headerlink" title="试探法算法思想【回溯法】"></a>试探法算法思想【回溯法】</h1><p>为了求得问题的解，先选择某一种可能情况进行试探，在试探过程中，一旦发现原来的选择的假设情况是错误的，就退回一步重新选择，继续向前试探，如此反复进行，直至得到解或证明无解。</p>
+<p>试探法解题的基本步骤：</p>
+<p>（1）针对所给定问题，定义问题的解空间；</p>
+<p>（2）确定易于搜索的解空间结构；</p>
+<p>（3）以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索。</p>
+<h2 id="彩票问题"><a href="#彩票问题" class="headerlink" title="彩票问题"></a>彩票问题</h2><pre><code>假设有一种彩票，每注由7个1~29的数字组成，且这7个数字不能相同，编写程序生成所有的号码组合。</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;start from the very beginning,and to create greatness</span><br><span class="line">&#x2F;&#x2F;@author: Chuangwei Lin</span><br><span class="line">&#x2F;&#x2F;@E-mail：979951191@qq.com</span><br><span class="line">&#x2F;&#x2F;@brief： 29选7彩票组合</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define MAXN 7 &#x2F;&#x2F;设置每一注彩票的位数 </span><br><span class="line">#define NUM 29 &#x2F;&#x2F;设置组成彩票的数字 </span><br><span class="line">int num[NUM];</span><br><span class="line">int lottery[MAXN];</span><br><span class="line">&#x2F;******************************************************</span><br><span class="line">函数名：combine(int n, int m)</span><br><span class="line">参数：组成彩票的数字，每一注彩票的位数</span><br><span class="line">功能：29选7彩票组合</span><br><span class="line">*******************************************************&#x2F;</span><br><span class="line">void combine(int n, int m)</span><br><span class="line">&#123;</span><br><span class="line">     int i,j;&#x2F;&#x2F;n最开始为29，m为7</span><br><span class="line">     for(i&#x3D;n;i&gt;&#x3D;m;i--)</span><br><span class="line">     &#123;</span><br><span class="line">         lottery[m-1]&#x3D;num[i-1];&#x2F;&#x2F;保存一位数字,第一位是29</span><br><span class="line">         if (m&gt;1)</span><br><span class="line">             combine(i-1,m-1);</span><br><span class="line">         else &#x2F;&#x2F;若m&#x3D;1,输出一注号码 </span><br><span class="line">         &#123;</span><br><span class="line">             for(j&#x3D;MAXN-1;j&gt;&#x3D;0;j--)</span><br><span class="line">                 printf(&quot;%3d&quot;,lottery[j]);</span><br><span class="line">             printf(&quot;\n&quot;);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int i,j;</span><br><span class="line">    for(i&#x3D;0;i&lt;NUM;i++)  &#x2F;&#x2F;设置彩票各位数字 </span><br><span class="line">        num[i]&#x3D;i+1;&#x2F;&#x2F;num&#x3D;&#123;1,2,3...29&#125;</span><br><span class="line">    for(i&#x3D;0;i&lt;MAXN;i++)</span><br><span class="line">        lottery[i]&#x3D;0;</span><br><span class="line">    combine(NUM,MAXN);    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟退火算法思想"><a href="#模拟退火算法思想" class="headerlink" title="模拟退火算法思想"></a>模拟退火算法思想</h1><p>　　下面介绍退火算法（SA,Simulated Annealing）。</p>
+<p>　　首先拿爬山做例子：我们要找到山脉的最高峰，但是我（计算机）只能看到我的脚下哪边是上升的，哪边是下降的，看不到远处是否上升。每次移动，我们随机选择一个方向。如果这个方向是上升的的（更优），那么就决定往那个方向走；如果这个方向是下降的（更差），那么“随机地接受”这个方向，接受就走，不接受就再随机一次——这个随机是关键，要考虑很多因素。比如，一个陡的下坡的接受率要比一个缓的下坡要小（因为陡的下坡后是答案的概率小）；同样的下降坡度，接受的概率随时间降低（逐渐降低才能趋向稳定）。<br>　　<br>　　<img src="https://images2015.cnblogs.com/blog/1009785/201611/1009785-20161116200146560-799082386.png" alt="image"><br>　如果坚决不接受一个更差的解，那么就会卡在上面的“当前位置”上了。倘若接受多几次更差的解，让他移动到山谷那里，则可以突破局部最优解，得到全局最优解。</p>
+<p>既然这个随机这么重要，那么我们就将它写为一个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool accept(double delta, double temper)&#123;</span><br><span class="line">    if(delta &lt;&#x3D; 0) return true;</span><br><span class="line">    return rand() &lt;&#x3D; exp((-delta) &#x2F; temper) * RAND_MAX;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>其中delta是新答案的变化量，temper是当前的“温度”。温度是模拟退火算法的一个重要概念，它随时间的推移缓慢减小。我们来分析一下这个代码：</p>
+<p>if(delta &lt;= 0) return true;</p>
+<p>　　由于答案越小越优，因此当温度的变化量小于零（新答案减小）时，新解比旧解优，因此返回“接受”</p>
+<p>return rand() &lt;= exp((-delta) / temper) * RAND_MAX;</p>
+<p>　　RAND_MAX是rand()的最大值。为了保证跨平台、跨编译器甚至跨版本时的正常运作，我们不对其作出任何假定。</p>
+<p>　　我们把它移项：return (double)rand() / RAND_MAX &lt;= exp((-delta) / temper)。在右边，temper是正数，delta是正数（delta是负数的已经return出去了），因此exp()中间的参数是负数。我们知道，指数函数在参数是负数时返回(0, 1)——这就是接受的概率。我们在左边随机一个实数，如果它比概率小，就接受，否则就不接受。
+　　</p>
+<h1 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h1><p>遗传算法，核心是达尔文优胜劣汰适者生存的进化理论的思想。</p>
+<p>我们都知道一个种群，通过长时间的繁衍，种群的基因会向着更适应环境的趋势进化，牛B个体的基因被保留，后代越来越多，适应能力低个体的基因被淘汰，后代越来越少。经过几代的繁衍进化，留下来的少数个体，就是相对能力最强的个体了。</p>
+<p>那么在解决一些问题的时候，我们能不能学习这样的思想，比如先随机创造很多很多的解，然后找一个靠谱的评价体系，去筛选比较好的解，再用这些好的解像生小宝宝一样生一堆可能更好的解，然后再筛再生，反复弄个几代，得到的说不定就是近似最优解哟</p>
+<h1 id="蚁群算法"><a href="#蚁群算法" class="headerlink" title="蚁群算法"></a>蚁群算法</h1><p>蚂蚁在运动过程中，会留下一种称为信息素的东西，并且会随着移动的距离，播散的信息素越来越少，所以往往在家或者食物的周围，信息素的浓度是最强的，而蚂蚁自身会根据信息素去选择方向，当然信息素越浓，被选择的概率也就越大，并且信息素本身具有一定的挥发作用。 蚂蚁的运动过程可以简单归纳如下：</p>
+<p>当周围没有信息素指引时，蚂蚁的运动具有一定的惯性，并有一定的概率选择其他方向<br>当周围有信息素的指引时，按照信息素的浓度强度概率性的选择运动方向<br>找食物时，蚂蚁留下家相关的A信息素，找家时，蚂蚁留下食物相关的B信息素，并随着移动距离的增加，洒播的信息素越来越少<br>随着时间推移，信息素会自行挥发<br>一个简单的例子，如果现在有两条通往食物的路径，一条较长路径A,一条较短路径B,虽然刚开始A,B路径上都有蚂蚁，又因为B比A短，蚂蚁通过B花费的时间较短，随着时间的推移和信息素的挥发，逐渐的B上的信息素浓度会强于A，这时候因为B的浓度比A强，越来越多多蚂蚁会选择B，而这时候B上的浓度只会越来越强。如果蚂蚁一开始只在A上呢，注意蚂蚁的移动具有一定小概率的随机性，所以当一部分蚂蚁找到B时，随着时间的推移，蚂蚁会收敛到B上，从而可以跳出局部最</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E3%80%90%E6%9E%9A%E4%B8%BE%E3%80%81%E9%80%92%E6%8E%A8%E3%80%81%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%B4%AA%E5%BF%83%E3%80%81%E8%AF%95%E6%8E%A2%E6%B3%95%E3%80%81%E5%8A%A8%E6%80%81%E8%BF%AD%E4%BB%A3%E5%92%8C%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/">
+    <time datetime="2020-11-19T16:00:28.820Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%B2%89%E7%A7%AF/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%EF%BC%9A%E9%AB%98%E7%BA%A7%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%92%8C%E9%97%AE%E9%A2%98NP/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

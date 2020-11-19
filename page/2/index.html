@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/2/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-001.语言/php/php手册(1)/七、安全范畴（sql注入 xxs crsf等）" class="post-001.语言/php/php手册(1)/七、安全范畴（sql注入 xxs crsf等） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E8%8C%83%E7%95%B4%EF%BC%88sql%E6%B3%A8%E5%85%A5%20xxs%20crsf%E7%AD%89%EF%BC%89/" data-id="ckhp0x7r5002e932u1ynef8lz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h1><h2 id="php-连接mysql的三种方式"><a href="#php-连接mysql的三种方式" class="headerlink" title="php 连接mysql的三种方式"></a>php 连接mysql的三种方式</h2><h3 id="PHP的MySQL扩展"><a href="#PHP的MySQL扩展" class="headerlink" title="PHP的MySQL扩展"></a>PHP的MySQL扩展</h3><p>太古老 高版本不支持<br>本扩展自 PHP 5.5.0 起已废弃，并在将来会被移除），PHP原生的方式去连接数据库，是面向过程的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    );</span><br><span class="line">$mysql_conn &#x3D; @mysql_connect($mysql_conf[&#39;host&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);</span><br><span class="line">if (!$mysql_conn) &#123;</span><br><span class="line">    die(&quot;could not connect to the database:\n&quot; . mysql_error());&#x2F;&#x2F;诊断连接错误</span><br><span class="line">&#125;</span><br><span class="line">mysql_query(&quot;set names &#39;utf8&#39;&quot;);&#x2F;&#x2F;编码转化</span><br><span class="line">$select_db &#x3D; mysql_select_db($mysql_conf[&#39;db&#39;]);</span><br><span class="line">if (!$select_db) &#123;</span><br><span class="line">    die(&quot;could not connect to the db:\n&quot; .  mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">$sql &#x3D; &quot;select * from user;&quot;;</span><br><span class="line">$res &#x3D; mysql_query($sql);</span><br><span class="line">if (!$res) &#123;</span><br><span class="line">    die(&quot;could get the res:\n&quot; . mysql_error());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while ($row &#x3D; mysql_fetch_assoc($res)) &#123;</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mysql_close($mysql_conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP的mysqli扩展"><a href="#PHP的mysqli扩展" class="headerlink" title="PHP的mysqli扩展"></a>PHP的mysqli扩展</h3><p>优点：面向对象接口 、prepared语句支持、多语句执行支持、事务支持 、增强的调试能力、嵌入式服务支持 、预处理方式完全解决了sql注入的问题。<br>缺点：就是只支持mysql数据库。如果你要是不操作其他的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;joshua317&#39;, </span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">$mysqli &#x3D; @new mysqli($mysql_conf[&#39;host&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);</span><br><span class="line">if ($mysqli-&gt;connect_errno) &#123;</span><br><span class="line">    die(&quot;could not connect to the database:\n&quot; . $mysqli-&gt;connect_error);&#x2F;&#x2F;诊断连接错误</span><br><span class="line">&#125;</span><br><span class="line">$mysqli-&gt;query(&quot;set names &#39;utf8&#39;;&quot;);&#x2F;&#x2F;编码转化</span><br><span class="line">$select_db &#x3D; $mysqli-&gt;select_db($mysql_conf[&#39;db&#39;]);</span><br><span class="line">if (!$select_db) &#123;</span><br><span class="line">    die(&quot;could not connect to the db:\n&quot; .  $mysqli-&gt;error);</span><br><span class="line">&#125;$sql &#x3D; &quot;select uid from user where name &#x3D; &#39;joshua&#39;;&quot;;</span><br><span class="line">$res &#x3D; $mysqli-&gt;query($sql);</span><br><span class="line">if (!$res) &#123;</span><br><span class="line">    die(&quot;sql error:\n&quot; . $mysqli-&gt;error);</span><br><span class="line">&#125;</span><br><span class="line"> while ($row &#x3D; $res-&gt;fetch_assoc()) &#123;</span><br><span class="line">        var_dump($row);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">$res-&gt;free();</span><br><span class="line">$mysqli-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP数据对象-PDO-【功能类似于JDBC、ODBC、DBI】-解决了sql注入的问题"><a href="#PHP数据对象-PDO-【功能类似于JDBC、ODBC、DBI】-解决了sql注入的问题" class="headerlink" title="PHP数据对象(PDO) 【功能类似于JDBC、ODBC、DBI】 解决了sql注入的问题"></a>PHP数据对象(PDO) 【功能类似于JDBC、ODBC、DBI】 解决了sql注入的问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysql_conf &#x3D; array(</span><br><span class="line">    &#39;host&#39;    &#x3D;&gt; &#39;127.0.0.1:3306&#39;, </span><br><span class="line">    &#39;db&#39;      &#x3D;&gt; &#39;test&#39;, </span><br><span class="line">    &#39;db_user&#39; &#x3D;&gt; &#39;root&#39;, </span><br><span class="line">    &#39;db_pwd&#39;  &#x3D;&gt; &#39;joshua317&#39;, </span><br><span class="line">    );</span><br><span class="line">$pdo &#x3D; new PDO(&quot;mysql:host&#x3D;&quot; . $mysql_conf[&#39;host&#39;] . &quot;;dbname&#x3D;&quot; . $mysql_conf[&#39;db&#39;], $mysql_conf[&#39;db_user&#39;], $mysql_conf[&#39;db_pwd&#39;]);&#x2F;&#x2F;创建一个pdo对象</span><br><span class="line">$pdo-&gt;exec(&quot;set names &#39;utf8&#39;&quot;);</span><br><span class="line">$sql &#x3D; &quot;select * from user where name &#x3D; ?&quot;;</span><br><span class="line">$stmt &#x3D; $pdo-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;bindValue(1, &#39;joshua&#39;, PDO::PARAM_STR);</span><br><span class="line">$rs &#x3D; $stmt-&gt;execute();</span><br><span class="line">if ($rs) &#123;</span><br><span class="line">    &#x2F;&#x2F; PDO::FETCH_ASSOC 关联数组形式</span><br><span class="line">    &#x2F;&#x2F; PDO::FETCH_NUM 数字索引数组形式</span><br><span class="line">    while ($row &#x3D; $stmt-&gt;fetch(PDO::FETCH_ASSOC)) &#123;</span><br><span class="line">        var_dump($row);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$pdo &#x3D; null;&#x2F;&#x2F;关闭连接</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库安全采取的手段"><a href="#数据库安全采取的手段" class="headerlink" title="数据库安全采取的手段"></a>数据库安全采取的手段</h2><h3 id="预防SQL-注入"><a href="#预防SQL-注入" class="headerlink" title="预防SQL 注入"></a>预防SQL 注入</h3><h4 id="在服务器端配置"><a href="#在服务器端配置" class="headerlink" title="在服务器端配置"></a>在服务器端配置</h4><p>(1) 打开php的安全模式<br>但是默认的php.ini是没有打开安全模式的，我们把它打开：</p>
+<p>safe_mode = on</p>
+<p>(2) 用户组安全</p>
+<p>当safe_mode打开时，safe_mode_gid被关闭，那么php脚本能够对文件进行访问，而且相同<br>safe_mode_gid = off</p>
+<p>(3) 安全模式下执行程序主目录</p>
+<p>(4) 安全模式下包含文件</p>
+<p>如果要在安全模式下包含某些公共文件，那么就修改一下选项：</p>
+<p>safe_mode_include_dir = D:/usr/www/include/</p>
+<p>(5) 控制php脚本能访问的目录</p>
+<p>使用open_basedir选项能够控制PHP脚本只能访问指定的目录，这样能够避免PHP脚本访问</p>
+<p>不应该访问的文件，一定程度上限制了phpshell的危害，我们一般可以设置为只能访问网站目录：</p>
+<p>open_basedir = D:/usr/www</p>
+<p>(6) 关闭危险函数</p>
+<p>如果你要禁止任何文件和目录的操作，那么可以关闭很多文件操作</p>
+<p>disable_functions = chdir,chroot,dir,getcwd,opendir,readdir,scandir,fopen,unlink,delete,copy,mkdir, rmdir,rename,file,file_get_contents,fputs,fwrite,chgrp,chmod,chown</p>
+<p>以上只是列了部分不叫常用的文件处理函数，你也可以把上面执行命令函数和这个函数结合，</p>
+<p>就能够抵制大部分的phpshell了。</p>
+<p>(7) 关闭PHP版本信息在http头中的泄漏</p>
+<p>我们为了防止黑客获取服务器中php版本的信息，可以关闭该信息斜路在http头中：</p>
+<p>expose_php = Off</p>
+<p>(8) 关闭注册全局变量</p>
+<p>在PHP中提交的变量，包括使用POST或者GET提交的变量，都将自动注册为全局变量，能够直接访问，</p>
+<p>这是对服务器非常不安全的，所以我们不能让它注册为全局变量，就把注册全局变量选项关闭：</p>
+<p>register_globals = Off</p>
+<p>(9) 打开magic_quotes_gpc来防止SQL注入</p>
+<p>SQL注入是非常危险的问题，小则网站后台被入侵，重则整个服务器沦陷，</p>
+<p>所以一定要小心。php.ini中有一个设置：</p>
+<p>magic_quotes_gpc = Off</p>
+<p>这个默认是关闭的，如果它打开后将自动把用户提交对sql的查询进行转换，</p>
+<p>比如把 ‘ 转为 &#39;等，这对防止sql注射有重大作用。所以我们推荐设置为：</p>
+<p>magic_quotes_gpc = On</p>
+<p>(10) 错误信息控制+错误日志</p>
+<h4 id="php代码层面-addslashes-和-str-replace-mysql-escape-string-magic-quotes-gpc-打开"><a href="#php代码层面-addslashes-和-str-replace-mysql-escape-string-magic-quotes-gpc-打开" class="headerlink" title="php代码层面   addslashes() 和 str_replace()  mysql_escape_string()  magic_quotes_gpc 打开"></a>php代码层面   addslashes() 和 str_replace()  mysql_escape_string()  magic_quotes_gpc 打开</h4><p>中文防止SQL注入的检查。addslashes的问题在于黑客可以用0xbf27来代替单引</p>
+<ul>
+<li>addslashes() 是强行加\；</li>
+<li>mysql_real_escape_string()  会判断字符集，但是对PHP版本有要求；</li>
+<li>mysql_escape_string不考虑连接的当前字符集<h3 id="magic-quotes-gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理"><a href="#magic-quotes-gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理" class="headerlink" title="magic_quotes_gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理"></a>magic_quotes_gpc选项打开，在这种情况下所有的客户端GET和POST的数据都会自动进行addslashes处理</h3><h4 id="散列加密-addslashes-pg-escape-string-MD5"><a href="#散列加密-addslashes-pg-escape-string-MD5" class="headerlink" title="散列加密  addslashes() == pg_escape_string MD5"></a>散列加密  addslashes() == pg_escape_string MD5</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 存储密码散列  </span><br><span class="line">$query  &#x3D; sprintf(&quot;INSERT INTO users(name,pwd) VALUES(&#39;%s&#39;,&#39;%s&#39;);&quot;,</span><br><span class="line">            pg_escape_string($username), md5($password));</span><br><span class="line">$result &#x3D; pg_query($connection, $query);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 发送请求来验证用户密码</span><br><span class="line">$query &#x3D; sprintf(&quot;SELECT 1 FROM users WHERE name&#x3D;&#39;%s&#39; AND pwd&#x3D;&#39;%s&#39;;&quot;,</span><br><span class="line">            pg_escape_string($username), md5($password));</span><br><span class="line">$result &#x3D; pg_query($connection, $query);</span><br><span class="line"></span><br><span class="line">if (pg_num_rows($result) &gt; 0) &#123;</span><br><span class="line">    echo &#39;Welcome, $username!&#39;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &#39;Authentication failed for $username.&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="预防xxs-跨站脚本攻击-Cross-Site-Scripting"><a href="#预防xxs-跨站脚本攻击-Cross-Site-Scripting" class="headerlink" title="预防xxs(跨站脚本攻击(Cross Site Scripting))"></a>预防xxs(跨站脚本攻击(Cross Site Scripting))</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><img src="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704220225331-622725464.png" alt="image"><br>XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本<br> HTML 注入，攻击者的输入没有经过后台的过滤直接进入到数据库，最终显示给来访的用户。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h5 id="反射型【非持久型】-如弹窗"><a href="#反射型【非持久型】-如弹窗" class="headerlink" title="反射型【非持久型】 如弹窗"></a>反射型【非持久型】 如弹窗</h5><p>　　反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览器解析之后XSS代码才能够攻击。</p>
+<h5 id="存储型【持久型】-如盗身份"><a href="#存储型【持久型】-如盗身份" class="headerlink" title="存储型【持久型】 如盗身份　"></a>存储型【持久型】 如盗身份　</h5><h4 id="第三方跳转"><a href="#第三方跳转" class="headerlink" title="第三方跳转"></a>第三方跳转</h4><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>php防止XSS跨站脚本攻击的方法:是针对非法的HTML代码包括单双引号等，使用htmlspecialchars()函数 。<br>　　1、入参字符过滤<br>　　2、出参进行编码<br>　　3、入参长度限制<br>　　4、设置cookie httponly为true</p>
+<h3 id="预防csrf-（Cross-site-request-forgery）跨站请求伪造"><a href="#预防csrf-（Cross-site-request-forgery）跨站请求伪造" class="headerlink" title="预防csrf(（Cross-site request forgery）跨站请求伪造)"></a>预防csrf(（Cross-site request forgery）跨站请求伪造)</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><img src="https://images2015.cnblogs.com/blog/1114374/201707/1114374-20170704221329987-250861756.png" alt="image"><br>登录受信任网站A，并在本地生成Cookie。<br>在不登出A的情况下，访问危险网站B。<br>看到这里，你也许会说：“如果我不满足以上两个条件中的一个，我就不会受到CSRF的攻击”。是的，确实如此，但你不能保证以下情况不会发生：<br>1.你不能保证你登录了一个网站后，不再打开一个tab页面并访问另外的网站。<br>2.你不能保证你关闭浏览器了后，你本地的Cookie立刻过期，你上次的会话已经结束。（事实上，关闭浏览器不能结束一个会话，但大多数人都会错误的认为关闭浏览器就等于退出登录/结束会话了……）<br>3.上图中所谓的攻击网站，可能是一个存在其他漏洞的可信任的经常被人访问的网站。</p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>客户端页面增加伪随机数。<br>(1).Cookie Hashing(所有表单都包含同一个伪随机值)：<br>    这可能是最简单的解决方案了，因为攻击者不能获得第三方的Cookie</p>
+<p>(2).验证码<br>　　这个方案的思路是：每次的用户提交都需要用户在表单中填写一个图片上的随机字符串</p>
+<p>(3).One-Time Tokens(不同的表单包含一个不同的伪随机值)</p>
+<p>(4).在 HTTP 头中自定义属性并验证</p>
+<p>(5).在请求地址中添加 token 并验证</p>
+<p>(6).验证 HTTP Referer 字段</p>
+<h3 id="预防Ddos攻击"><a href="#预防Ddos攻击" class="headerlink" title="预防Ddos攻击"></a>预防Ddos攻击</h3><h1 id="以-CGI-模式安装-可能受到的攻击-解决办法"><a href="#以-CGI-模式安装-可能受到的攻击-解决办法" class="headerlink" title="以 CGI 模式安装 可能受到的攻击 解决办法"></a>以 CGI 模式安装 可能受到的攻击 解决办法</h1><h2 id="情形一：只运行公开的文件-–enable-force-cgi-redirect"><a href="#情形一：只运行公开的文件-–enable-force-cgi-redirect" class="headerlink" title="情形一：只运行公开的文件  –enable-force-cgi-redirect"></a>情形一：只运行公开的文件  –enable-force-cgi-redirect</h2><h2 id="情形二：使用-–enable-force-cgi-redirect-选项"><a href="#情形二：使用-–enable-force-cgi-redirect-选项" class="headerlink" title="情形二：使用 –enable-force-cgi-redirect 选项"></a>情形二：使用 –enable-force-cgi-redirect 选项</h2><h2 id="情形三：设置-doc-root-或-user-dir"><a href="#情形三：设置-doc-root-或-user-dir" class="headerlink" title="情形三：设置 doc_root 或 user_dir"></a>情形三：设置 doc_root 或 user_dir</h2><h2 id="情形四：PHP-解释器放在-web-目录以外"><a href="#情形四：PHP-解释器放在-web-目录以外" class="headerlink" title="情形四：PHP 解释器放在 web 目录以外"></a>情形四：PHP 解释器放在 web 目录以外</h2><h1 id="文件系统安全-Null-字符问题"><a href="#文件系统安全-Null-字符问题" class="headerlink" title="文件系统安全 Null 字符问题"></a>文件系统安全 Null 字符问题</h1><p>想要删除自己主目录中的一个文件。假设此情形是通过 web 界面来管理文件系统，因此 Apache 用户有权删除用户目录下的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 从用户目录中删除指定的文件</span><br><span class="line">$username &#x3D; $_POST[&#39;user_submitted_name&#39;];</span><br><span class="line">$userfile &#x3D; $_POST[&#39;user_submitted_filename&#39;];</span><br><span class="line">$homedir &#x3D; &quot;&#x2F;home&#x2F;$username&quot;;</span><br><span class="line">unlink (&quot;$homedir&#x2F;$userfile&quot;);</span><br><span class="line">echo &quot;The file has been deleted!&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误报告（利用log日志干坏事-php-ini）"><a href="#错误报告（利用log日志干坏事-php-ini）" class="headerlink" title="错误报告（利用log日志干坏事 php.ini）"></a>错误报告（利用log日志干坏事 php.ini）</h1><ol>
+<li>第一个是彻底地检查所有函数，并尝试弥补大多数错误。</li>
+<li>第二个是对在线系统彻底关闭错误报告。</li>
+<li>第三个是使用 PHP 自定义的错误处理函数创建自己的错误处理机制。根据不同的安全策略，三种方法可能都适用。</li>
+</ol>
+<p>一个能提前阻止这个问题发生的方法就是利用 error_reporting() 来帮助使代码更安全并发现变量使用的危险之处。在发布程序之前，先打开 E_ALL 测试代码，可以帮你很快找到变量使用不当的地方。一旦准备正式发布，就应该把 error_reporting() 的参数设为 0 来彻底关闭错误报告或者把 php.ini 中的 display_errors 设为 off 来关闭所有的错误显示以将代码隔绝于探测。当然，如果要迟一些再这样做，就不要忘记打开 ini 文件内的 log_errors 选项，并通过 error_log 指定用于记录错误信息的文件。</p>
+<h1 id="用户提交的数据-校验（防SQL注入和XSS攻击等）-addslashes"><a href="#用户提交的数据-校验（防SQL注入和XSS攻击等）-addslashes" class="headerlink" title="用户提交的数据 校验（防SQL注入和XSS攻击等） addslashes()"></a>用户提交的数据 校验（防SQL注入和XSS攻击等） addslashes()</h1><p>PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。</p>
+<h1 id="隐藏-PHP"><a href="#隐藏-PHP" class="headerlink" title="隐藏 PHP"></a>隐藏 PHP</h1><p>在 php.ini 文件里设置 expose_php = off ，可以减少他们能获得的有用信息。</p>
+<p>另一个策略就是让 web 服务器用 PHP 解析不同扩展名。无论是通过 .htaccess 文件还是 Apache 的配置文件，都可以设置能误导攻击者的文件扩展名：</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E8%8C%83%E7%95%B4%EF%BC%88sql%E6%B3%A8%E5%85%A5%20xxs%20crsf%E7%AD%89%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/三、命名空间+异常处理+生成器+引用" class="post-001.语言/php/php手册(1)/三、命名空间+异常处理+生成器+引用 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%89%E3%80%81%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4+%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86+%E7%94%9F%E6%88%90%E5%99%A8+%E5%BC%95%E7%94%A8/" data-id="ckhp0x7r5002f932ufip78f1j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h1><p>（类似操作系统的文件目录结构）</p>
+<h2 id="为什么使用命名空间"><a href="#为什么使用命名空间" class="headerlink" title="为什么使用命名空间"></a>为什么使用命名空间</h2><ol>
+<li>Symfony组件，管理HTTP请求和响应</li>
+<li>好处：使用命名空间，把代码放在唯一厂商的命名空间中，不同模块的代码，可以使用相同的名称命名类，接口，函数</li>
+<li>目的： ==便于大型项目协同开发，不冲突==</li>
+</ol>
+<h2 id="声明命名空间"><a href="#声明命名空间" class="headerlink" title="声明命名空间"></a>声明命名空间</h2><p> 命名空间在PHP文件的第一行声明  Zuoyebang 命名空间 WxMis子命名空间</p>
+<ol>
+<li><?php </li>
+<li>namespace Zuoyebang\Wxmis;</li>
+</ol>
+<p>厂商命名空间 最重要的命名空间（最顶层命名空间，必须具有全局唯一性）</p>
+<h2 id="导入和别名"><a href="#导入和别名" class="headerlink" title="导入和别名"></a>导入和别名</h2><p>命名空间之前   下划线变为文件系统的目录分隔符 （Zend式命名）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line"> $staff &#x3D; new \zuoyebang\wxmis (&#39;kpstaff&#39;,400);没别名</span><br><span class="line">use \zuoyebang\wxmis 使用别名</span><br><span class="line"> $staff &#x3D; new wxmis (&#39;kpstaff&#39;,400)</span><br><span class="line"> use  zuoyebang\wxmis as res 使用自定义别名</span><br><span class="line"> $staff &#x3D; new res (&#39;kpstaff&#39;,400)</span><br></pre></td></tr></table></figure>
+
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function inverse($x) &#123;</span><br><span class="line">    if (!$x) &#123;</span><br><span class="line">        throw new Exception(&#39;Division by zero.&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 1&#x2F;$x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">    echo inverse(5) . &quot;\n&quot;;</span><br><span class="line">    echo inverse(0) . &quot;\n&quot;;</span><br><span class="line">&#125; catch (Exception $e) &#123;</span><br><span class="line">    echo &#39;Caught exception: &#39;,  $e-&gt;getMessage(), &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Continue execution</span><br><span class="line">echo &quot;Hello World\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ERROR-几倍"><a href="#ERROR-几倍" class="headerlink" title="ERROR 几倍"></a>ERROR 几倍</h3><pre><code>Fatal Error:致命错误（脚本终止运行）
+    E_ERROR         // 致命的运行错误，错误无法恢复，暂停执行脚本
+    E_CORE_ERROR    // PHP启动时初始化过程中的致命错误
+    E_COMPILE_ERROR // 编译时致命性错，就像由Zend脚本引擎生成了一个E_ERROR
+    E_USER_ERROR    // 自定义错误消息。像用PHP函数trigger_error（错误类型设置为：E_USER_ERROR）
+
+Parse Error：编译时解析错误，语法错误（脚本终止运行）
+    E_PARSE  //编译时的语法解析错误
+
+Warning Error：警告错误（仅给出提示信息，脚本不终止运行）
+    E_WARNING         // 运行时警告 (非致命错误)。
+    E_CORE_WARNING    // PHP初始化启动过程中发生的警告 (非致命错误) 。
+    E_COMPILE_WARNING // 编译警告
+    E_USER_WARNING    // 用户产生的警告信息
+
+Notice Error：通知错误（仅给出通知信息，脚本不终止运行）
+    E_NOTICE      // 运行时通知。表示脚本遇到可能会表现为错误的情况.
+    E_USER_NOTICE // 用户产生的通知信息。</code></pre>
+<h3 id="怎么做到异常捕捉的-register-shutdown-function，set-error-handler，set-exception-handler"><a href="#怎么做到异常捕捉的-register-shutdown-function，set-error-handler，set-exception-handler" class="headerlink" title="怎么做到异常捕捉的  register_shutdown_function，set_error_handler，set_exception_handler"></a>怎么做到异常捕捉的  register_shutdown_function，set_error_handler，set_exception_handler</h3><h4 id="set-error-handler-当程序出现错误的时候自动调用此方法，"><a href="#set-error-handler-当程序出现错误的时候自动调用此方法，" class="headerlink" title="set_error_handler() 　当程序出现错误的时候自动调用此方法，"></a>set_error_handler() 　当程序出现错误的时候自动调用此方法，</h4><h4 id="register-shutdown-function"><a href="#register-shutdown-function" class="headerlink" title="register_shutdown_function()"></a>register_shutdown_function()</h4><p>　　捕获PHP的错误：Fatal Error、ParsError等，这个方法是PHP脚本执行结束前最后一个调用的函数，比如脚本错误、die()、exit、异常、正常结束都会调用，多么牛逼的一个函数啊！通过这个函数就可以在脚本结束前判断这次执行是否有错误产生，这时就要借助于一个函数：error_get_last()；这个函数可以拿到本次执行产生的所有错误。error_get_last();返回的信息。</p>
+<h4 id="set-exception-handler"><a href="#set-exception-handler" class="headerlink" title="set_exception_handler()"></a>set_exception_handler()</h4><p>　　<br>　　设置默认的异常处理程序，用在没有用try/catch块来捕获的异常，也就是说不管你抛出的异常有没有人捕获，如果没有人捕获就会进入到该方法中，并且在回调函数调用后异常会中止。看一下用法：
+　　</p>
+<h1 id="生成器-（yield）读取大文件"><a href="#生成器-（yield）读取大文件" class="headerlink" title="生成器 （yield）读取大文件"></a>生成器 （yield）读取大文件</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/johnson108178/p/8007585.html">link</a><br>例子<br>生成器提供了一种更容易的方法来实现简单的对象迭代，相比较定义类实现 Iterator 接口的方式，性能开销和复杂性大大降低。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function createRange($number)&#123;</span><br><span class="line">    for($i&#x3D;0;$i&lt;$number;$i++)&#123;</span><br><span class="line">        yield time();  &#x2F;&#x2F;循环一个就返回一个</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$result &#x3D; createRange(10); &#x2F;&#x2F; 这里调用上面我们创建的函数</span><br><span class="line">foreach($result as $value)&#123;</span><br><span class="line">    sleep(1);</span><br><span class="line">    echo $value.&#39;&lt;br &#x2F;&gt;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%89%E3%80%81%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4+%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86+%E7%94%9F%E6%88%90%E5%99%A8+%E5%BC%95%E7%94%A8/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/八、php特点（http认证+cookie+文件上传+数据+垃圾回收机制）" class="post-001.语言/php/php手册(1)/八、php特点（http认证+cookie+文件上传+数据+垃圾回收机制） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AB%E3%80%81php%E7%89%B9%E7%82%B9%EF%BC%88http%E8%AE%A4%E8%AF%81+cookie+%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0+%E6%95%B0%E6%8D%AE+%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%89/" data-id="ckhp0x7r6002h932u7tc619du" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="垃圾回收机制GC-Garbage-Collection"><a href="#垃圾回收机制GC-Garbage-Collection" class="headerlink" title="垃圾回收机制GC[Garbage Collection]"></a>垃圾回收机制GC[Garbage Collection]</h1><h2 id="变量结构"><a href="#变量结构" class="headerlink" title="变量结构"></a>变量结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">typedef union _zvalue_value &#123;  </span><br><span class="line">    long lval;                  &#x2F;* long value *&#x2F; </span><br><span class="line">    double dval;                &#x2F;* double value *&#x2F; </span><br><span class="line">    struct &#123;  </span><br><span class="line">        char *val;  </span><br><span class="line">        int len;  </span><br><span class="line">    &#125; str;  </span><br><span class="line">    HashTable *ht;              &#x2F;* hash table value *&#x2F; </span><br><span class="line">    zend_object_value obj;  </span><br><span class="line">&#125; zvalue_value;  </span><br><span class="line"> </span><br><span class="line">struct _zval_struct &#123;  </span><br><span class="line">    &#x2F;* Variable information 值 *&#x2F; </span><br><span class="line">    zvalue_value value;       </span><br><span class="line">&#x2F;* value *&#x2F; </span><br><span class="line">    zend_uint refcount__gc;  &#x2F;&#x2F;计数器，表示指向这个zval变量容器的变量个数。 </span><br><span class="line">    zend_uchar type;    &#x2F;* active type 类型 *&#x2F; </span><br><span class="line">    zend_uchar is_ref__gc;&#x2F;&#x2F;是个bool值，用来区分变量是否属于引用集合。</span><br><span class="line">&#125;; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="非数组存储例子"><a href="#非数组存储例子" class="headerlink" title="非数组存储例子"></a>非数组存储例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a &#x3D; 1;</span><br><span class="line">xdebug_debug_zval(&#39;a&#39;);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line">$b &#x3D; $a;</span><br><span class="line">xdebug_debug_zval(&#39;a&#39;);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line"> </span><br><span class="line">$c &#x3D; &amp;$a;</span><br><span class="line">xdebug_debug_zval(&#39;a&#39;);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line"> </span><br><span class="line">xdebug_debug_zval(&#39;b&#39;);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>　　运行结果如下：</p>
+<p>a:(refcount=1, is_ref=0),int 1</p>
+<p>a:(refcount=2, is_ref=0),int 1</p>
+<p>a:(refcount=2, is_ref=1),int 1</p>
+<p>b:(refcount=1, is_ref=0),int 1</p>
+<h2 id="数组存储例子"><a href="#数组存储例子" class="headerlink" title="数组存储例子"></a>数组存储例子</h2><p><img src="http://php.net/manual/zh/images/12f37b1c6963c1c5c18f30495416a197-simple-array.png" alt="image"><br>数组分配了三个zval容器：a   meaning  number</p>
+<h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><h3 id="Reference-Counting-算法-5-2版本-环状引用内存泄漏"><a href="#Reference-Counting-算法-5-2版本-环状引用内存泄漏" class="headerlink" title="Reference Counting 算法 5.2版本 环状引用内存泄漏"></a>Reference Counting 算法 5.2版本 环状引用内存泄漏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a &#x3D; array( &#39;one&#39; );</span><br><span class="line">$a[] &#x3D;&amp; $a;</span><br><span class="line">xdebug_debug_zval( &#39;a&#39; );</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>a 和 1 的zval容器 是一样的。如下：<br><img src="http://php.net/manual/zh/images/12f37b1c6963c1c5c18f30495416a197-loop-array.png" alt="image"></p>
+<p>在5.2及更早版本的PHP中，没有专门的垃圾回收器GC（Garbage Collection），引擎在判断一个变量空间是否能够被释放的时候是依据这个变量的zval的refcount的值，如果refcount为0，那么变量的空间可以被释放，否则就不释放，这是一种非常简单的GC实现。</p>
+<p>现在unset ($a),那么array的refcount减1变为1.现在无任何变量指向这个zval，而且这个zval的计数器为1，不会回收。 成千上万的这种就会内存泄漏</p>
+<p><img src="http://php.net/manual/zh/images/12f37b1c6963c1c5c18f30495416a197-leak-array.png" alt="image"></p>
+<h3 id="Concurrent-Cycle-Collection-in-Reference-Counted-Systems-算法-5-3版本-解决了环状引用-控制内存泄漏的阙值"><a href="#Concurrent-Cycle-Collection-in-Reference-Counted-Systems-算法-5-3版本-解决了环状引用-控制内存泄漏的阙值" class="headerlink" title="Concurrent Cycle Collection in Reference Counted Systems 算法 5.3版本 解决了环状引用,控制内存泄漏的阙值"></a>Concurrent Cycle Collection in Reference Counted Systems 算法 5.3版本 解决了环状引用,控制内存泄漏的阙值</h3><p>在php5.3的GC中，针对的垃圾做了如下说明：</p>
+<p>1：如果一个zval的refcount增加，那么此zval还在使用，肯定不是垃圾，不会进入缓冲区</p>
+<p>2：如果一个zval的refcount减少到0， 那么zval会被立即释放掉，不属于GC要处理的垃圾对象，不会进入缓冲区。</p>
+<p> 3：如果一个zval的refcount减少之后大于0，那么此zval还不能被释放，此zval可能成为一个垃圾，将其放入缓冲区。PHP5.3中的GC针对的就是这种zval进行的处理。</p>
+<p>开启/关闭垃圾回收机制可以通过修改php配置实现，也可以在程序中使用gc_enable() 和 gc_disable()开启和关闭。</p>
+<h1 id="用-PHP-进行-HTTP-认证"><a href="#用-PHP-进行-HTTP-认证" class="headerlink" title="用 PHP 进行 HTTP 认证"></a>用 PHP 进行 HTTP 认证</h1><p>以用 header() 函数来向客户端浏览器发送“Authentication Required”信息，使其弹出一个用户名／密码输入窗口。当用户输入用户名和密码后，包含有 URL 的 PHP 脚本将会加上预定义变量 PHP_AUTH_USER，PHP_AUTH_PW 和 AUTH_TYPE 被再次调用，这三个变量分别被设定为用户名，密码和认证类型。预定义变量保存在 $_SERVER 数组中。支持“Basic”和“Digest”（自 PHP 5.1.0 起）认证方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[&#39;PHP_AUTH_USER&#39;] &#x3D; &quot;test&quot;;</span><br><span class="line">$_SERVER[&#39;PHP_AUTH_PW&#39;] &#x3D; &quot;123456&quot;;</span><br><span class="line">&#x2F;&#x2F;*********************************</span><br><span class="line">&#x2F;&#x2F;用户账号</span><br><span class="line">$login &#x3D; &#39;test&#39;; </span><br><span class="line">$pass &#x3D; &#39;1234567&#39;; </span><br><span class="line">&#x2F;&#x2F;*********************************</span><br><span class="line"></span><br><span class="line">if(($_SERVER[&#39;PHP_AUTH_PW&#39;]!&#x3D; $pass || $_SERVER[&#39;PHP_AUTH_USER&#39;] !&#x3D; $login)|| !$_SERVER[&#39;PHP_AUTH_USER&#39;])</span><br><span class="line"> &#123; </span><br><span class="line">    header(&#39;WWW-Authenticate: Basic realm&#x3D;&quot;Test auth&quot;&#39;); </span><br><span class="line">    header(&#39;HTTP&#x2F;1.0 401 Unauthorized&#39;); </span><br><span class="line">    echo &#39;Auth failed&#39;; </span><br><span class="line">    exit; </span><br><span class="line">&#125; else&#123;</span><br><span class="line">    echo &quot;Auth success&quot;;</span><br><span class="line">&#125;</span><br><span class="line">具体业务具体对待.....</span><br></pre></td></tr></table></figure>
+<h1 id="cookie和session"><a href="#cookie和session" class="headerlink" title="cookie和session"></a>cookie和session</h1><p> setcookie() 和 setrawcookie() 函数</p>
+<h1 id="处理-XForms-表单"><a href="#处理-XForms-表单" class="headerlink" title="处理 XForms 表单"></a>处理 XForms 表单</h1><h1 id="文件上传处理-post-put"><a href="#文件上传处理-post-put" class="headerlink" title="文件上传处理 post +put"></a>文件上传处理 post +put</h1><h1 id="使用远程文件"><a href="#使用远程文件" class="headerlink" title="使用远程文件"></a>使用远程文件</h1><p>只要在 php.ini 文件中激活了 allow_url_fopen 选项，就可以在大多数需要用文件名作为参数的函数中使用 HTTP 和 FTP 的 URL 来代替文件名。</p>
+<h1 id="数据库持久连接"><a href="#数据库持久连接" class="headerlink" title="数据库持久连接"></a>数据库持久连接</h1><h1 id="安全模式-强级别校验"><a href="#安全模式-强级别校验" class="headerlink" title="安全模式 强级别校验"></a>安全模式 强级别校验</h1><h1 id="PHP-的命令行模式-php-a"><a href="#PHP-的命令行模式-php-a" class="headerlink" title="PHP 的命令行模式 php -a"></a>PHP 的命令行模式 php -a</h1><h1 id="DTrace-动态跟踪-性能调试"><a href="#DTrace-动态跟踪-性能调试" class="headerlink" title="DTrace 动态跟踪 性能调试"></a>DTrace 动态跟踪 性能调试</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AB%E3%80%81php%E7%89%B9%E7%82%B9%EF%BC%88http%E8%AE%A4%E8%AF%81+cookie+%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0+%E6%95%B0%E6%8D%AE+%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/六、context的选项和参数+支持协议" class="post-001.语言/php/php手册(1)/六、context的选项和参数+支持协议 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AD%E3%80%81context%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0+%E6%94%AF%E6%8C%81%E5%8D%8F%E8%AE%AE/" data-id="ckhp0x7r6002i932ucn3tcrvd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="context的选项和参数"><a href="#context的选项和参数" class="headerlink" title="context的选项和参数"></a>context的选项和参数</h1><h2 id="套接字上下文选项-—-套接字上下文选项列表-工作在套接字上的封装协议，像-tcp-http-和-ftp"><a href="#套接字上下文选项-—-套接字上下文选项列表-工作在套接字上的封装协议，像-tcp-http-和-ftp" class="headerlink" title="套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp."></a>套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100&#39; IP</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;192.168.0.100:0&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100&#39; IP and port &#39;7000&#39;</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;192.168.0.100:7000&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; connect to the internet using port &#39;7000&#39;</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;0:7000&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; create the context...</span><br><span class="line">$context &#x3D; stream_context_create($opts);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...and use it to fetch the data</span><br><span class="line">echo file_get_contents(&#39;http:&#x2F;&#x2F;www.example.com&#39;, false, $context);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="HTTP-context-选项-—-HTTP-context-的选项列表-file-get-contents-stream-context-create"><a href="#HTTP-context-选项-—-HTTP-context-的选项列表-file-get-contents-stream-context-create" class="headerlink" title="HTTP context 选项 — HTTP context 的选项列表 file_get_contents  stream_context_create"></a>HTTP context 选项 — HTTP context 的选项列表 file_get_contents  stream_context_create</h2><h2 id="FTP-context-options-—-FTP-context-option-listing"><a href="#FTP-context-options-—-FTP-context-option-listing" class="headerlink" title="FTP context options — FTP context option listing"></a>FTP context options — FTP context option listing</h2><h2 id="SSL-上下文选项-—-SSL-上下文选项清单"><a href="#SSL-上下文选项-—-SSL-上下文选项清单" class="headerlink" title="SSL 上下文选项 — SSL 上下文选项清单"></a>SSL 上下文选项 — SSL 上下文选项清单</h2><h2 id="CURL-context-options-—-CURL-上下文选项列表"><a href="#CURL-context-options-—-CURL-上下文选项列表" class="headerlink" title="CURL context options — CURL 上下文选项列表"></a>CURL context options — CURL 上下文选项列表</h2><h2 id="Phar-上下文（context）选项-—-Phar-上下文（context）选项-类似jar-打包文件"><a href="#Phar-上下文（context）选项-—-Phar-上下文（context）选项-类似jar-打包文件" class="headerlink" title="Phar 上下文（context）选项 — Phar 上下文（context）选项 类似jar 打包文件"></a>Phar 上下文（context）选项 — Phar 上下文（context）选项 类似jar 打包文件</h2><h2 id="MongoDB-context-options-—-MongoDB-context-option-listing"><a href="#MongoDB-context-options-—-MongoDB-context-option-listing" class="headerlink" title="MongoDB context options — MongoDB context option listing"></a>MongoDB context options — MongoDB context option listing</h2><h2 id="Context-参数-—-Context-参数列表"><a href="#Context-参数-—-Context-参数列表" class="headerlink" title="Context 参数 — Context 参数列表"></a>Context 参数 — Context 参数列表</h2><h1 id="支持的协议"><a href="#支持的协议" class="headerlink" title="支持的协议"></a>支持的协议</h1><ol>
+<li>file:// — 访问本地文件系统</li>
+<li>http:// — 访问 HTTP(s) 网址</li>
+<li>ftp:// — 访问 FTP(s) URLs</li>
+<li>php:// — 访问各个输入/输出流（I/O streams）</li>
+<li>zlib:// — 压缩流</li>
+<li>data:// — 数据（RFC 2397）</li>
+<li>glob:// — 查找匹配的文件路径模式</li>
+<li>phar:// — PHP 归档</li>
+<li>ssh2:// — Secure Shell 2</li>
+<li>rar:// — RAR</li>
+<li>ogg:// — 音频流</li>
+<li>expect:// — 处理交互式的流</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AD%E3%80%81context%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0+%E6%94%AF%E6%8C%81%E5%8D%8F%E8%AE%AE/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/五、预定义变量+预定义接口" class="post-001.语言/php/php手册(1)/五、预定义变量+预定义接口 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%94%E3%80%81%E9%A2%84%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F+%E9%A2%84%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3/" data-id="ckhp0x7r5002g932u45ejchoa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h1><ol>
+<li>超全局变量 — 超全局变量是在全部作用域中始终可用的内置变量</li>
+<li>$GLOBALS — 引用全局作用域中可用的全部变量</li>
+<li>$_SERVER — 服务器和执行环境信息</li>
+<li>$_GET — HTTP GET 变量</li>
+<li>$_POST — HTTP POST 变量</li>
+<li>$_FILES — HTTP 文件上传变量</li>
+<li>$_REQUEST — HTTP Request 变量</li>
+<li>$_SESSION — Session 变量</li>
+<li>$_ENV — 环境变量</li>
+<li>$_COOKIE — HTTP Cookies</li>
+<li>$php_errormsg — 前一个错误信息</li>
+<li>$HTTP_RAW_POST_DATA — 原生POST数据</li>
+<li>$http_response_header — HTTP 响应头</li>
+<li>$argc — 传递给脚本的参数数目</li>
+<li>$argv — 传递给脚本的参数数组、</li>
+</ol>
+<h1 id="预定义接口"><a href="#预定义接口" class="headerlink" title="预定义接口"></a>预定义接口</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liqihang_dev/article/details/85114374">https://blog.csdn.net/liqihang_dev/article/details/85114374</a></p>
+<h2 id="遍历-Traversable-接口-检测一个类是否可以使用-foreach-进行遍历的接口。"><a href="#遍历-Traversable-接口-检测一个类是否可以使用-foreach-进行遍历的接口。" class="headerlink" title="遍历 Traversable 接口  检测一个类是否可以使用 foreach 进行遍历的接口。"></a>遍历 Traversable 接口  检测一个类是否可以使用 foreach 进行遍历的接口。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#检测一个类的对象是否可以用foreach进行遍历，实现Iterator就可遍历了</span><br><span class="line">class man&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$p &#x3D; new man();</span><br><span class="line">var_dump($p instanceof  man); #false</span><br></pre></td></tr></table></figure>
+
+<h2 id="迭代器-Iterator（迭代器）接口"><a href="#迭代器-Iterator（迭代器）接口" class="headerlink" title="迭代器 Iterator（迭代器）接口"></a>迭代器 Iterator（迭代器）接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Iterator extends Traversable  </span><br><span class="line">&#123;  </span><br><span class="line">    &#x2F;&#x2F;返回当前索引游标指向的元素  </span><br><span class="line">    abstract public mixed current(void)  </span><br><span class="line">    &#x2F;&#x2F;返回当前索引游标指向的元素的键名  </span><br><span class="line">    abstract public scalar key(void)  </span><br><span class="line">    &#x2F;&#x2F;移动当前索引游标指向下一元素  </span><br><span class="line">    abstract public void next(void)  </span><br><span class="line">    &#x2F;&#x2F;重置索引游标的指向第一个元素  </span><br><span class="line">    abstract public void rewind(void)  </span><br><span class="line">    &#x2F;&#x2F;判断当前索引游标指向的是否是一个元素，常常在调用 rewind()或 next()使用  </span><br><span class="line">    abstract public boolean valid(void)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="聚合式迭代器-IteratorAggregate（聚合式迭代器）接口"><a href="#聚合式迭代器-IteratorAggregate（聚合式迭代器）接口" class="headerlink" title="聚合式迭代器 IteratorAggregate（聚合式迭代器）接口"></a>聚合式迭代器 IteratorAggregate（聚合式迭代器）接口</h2><h2 id="数组式访问-ArrayAccess（数组式访问）接口"><a href="#数组式访问-ArrayAccess（数组式访问）接口" class="headerlink" title="数组式访问 ArrayAccess（数组式访问）接口"></a>数组式访问 ArrayAccess（数组式访问）接口</h2><p>通常情况下，我们会看到this[‘name’]这样的用法，但是我们知道，$this是一个对象，是如何使用数组方式访问的？答案就是实现了数据组访问接口ArrayAccess，具体代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    class Test implements ArrayAccess</span><br><span class="line">    &#123;</span><br><span class="line">        public $container;</span><br><span class="line"> </span><br><span class="line">        public function __construct()</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;container &#x3D; [</span><br><span class="line">                &#39;one&#39; &#x3D;&gt; 1,</span><br><span class="line">                &#39;two&#39; &#x3D;&gt; 2,</span><br><span class="line">                &#39;three&#39;  &#x3D;&gt; 3,</span><br><span class="line">            ];</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetExists($offset) </span><br><span class="line">        &#123;</span><br><span class="line">            return isset($this-&gt;container[$offset]);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetGet($offset)</span><br><span class="line">        &#123;</span><br><span class="line">            return isset($this-&gt;container[$offset]) ? $this-&gt;container[$offset] : ;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetSet($offset, $value)</span><br><span class="line">        &#123;</span><br><span class="line">            if (is_null($offset)) &#123;</span><br><span class="line">                $this-&gt;container[] &#x3D; $value;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                $this-&gt;container[$offset] &#x3D; $value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetUnset($offset)</span><br><span class="line">        &#123;</span><br><span class="line">            unset($this-&gt;container[$offset]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   $test &#x3D; new Test;</span><br><span class="line">   var_dump(isset($test[&#39;one&#39;]));</span><br><span class="line">   var_dump($test[&#39;two&#39;]);</span><br><span class="line">   unset($test[&#39;two&#39;]);</span><br><span class="line">   var_dump(isset($test[&#39;two&#39;]));</span><br><span class="line">   $test[&#39;two&#39;] &#x3D; 22;</span><br><span class="line">   var_dump($test[&#39;two&#39;]);</span><br><span class="line">   $test[] &#x3D; 4;</span><br><span class="line">   var_dump($test);</span><br><span class="line">   var_dump($test[0]);</span><br><span class="line"> </span><br><span class="line">   当然我们也有经典的一个做法就是把对象的属性当做数组来访问</span><br><span class="line"> </span><br><span class="line">   class Test implements ArrayAccess</span><br><span class="line">   &#123;</span><br><span class="line">        public $name;</span><br><span class="line"> </span><br><span class="line">        public function __construct()</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;name &#x3D; &#39;gabe&#39;;  </span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetExists($offset)</span><br><span class="line">        &#123;</span><br><span class="line">            return isset($this-&gt;$offset);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetGet($offset)</span><br><span class="line">        &#123;</span><br><span class="line">            return isset($this-&gt;$offset) ? $this-&gt;$offset : ;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetSet($offset, $value)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;$offset &#x3D; $value;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public function offsetUnset($offset)</span><br><span class="line">        &#123;</span><br><span class="line">            unset($this-&gt;$offset);</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">  $test &#x3D; new Test;</span><br><span class="line">  var_dump(isset($test[&#39;name&#39;]));</span><br><span class="line">  var_dump($test[&#39;name&#39;]);</span><br><span class="line">  var_dump($test[&#39;age&#39;]);</span><br><span class="line">  $test[1] &#x3D; &#39;22&#39;;</span><br><span class="line">  var_dump($test);</span><br><span class="line">  unset($test[&#39;name&#39;]);</span><br><span class="line">  var_dump(isset($test[&#39;name&#39;]));</span><br><span class="line">  var_dump($test);</span><br><span class="line">  $test[] &#x3D; &#39;hello world&#39;;</span><br><span class="line">  var_dump($test);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><h2 id="Closure-用于代表-匿名函数-的类"><a href="#Closure-用于代表-匿名函数-的类" class="headerlink" title="Closure 用于代表 匿名函数 的类."></a>Closure 用于代表 匿名函数 的类.</h2><h2 id="生成器-Generator"><a href="#生成器-Generator" class="headerlink" title="生成器 Generator"></a>生成器 Generator</h2><p>Generator实现了Iterator，但是他无法被继承，同时也生成实例。既然实现了Iterator，所以正如上文所介绍，他也就有了和Iterator相同的功能:rewind-&gt;valid-&gt;current-&gt;key-&gt;next…，Generator的语法主要来自于关键字yield。yield就好比一次循环的中转站，记录本次的活动轨迹，返回一个Generator的实例。Generator的优点在于，当我们要使用到大数据的遍历，或者说大文件的读写，而我们的内存不够的情况下，能够极大的减少我们对于内存的消耗，因为传统的遍历会返回所有的数据，这个数据存在内存上，而yield只会返回当前的值，不过当我们在使用yield时，其实其中会有一个处理记忆体的过程，所以实际上这是一个用时间换空间的办法。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%94%E3%80%81%E9%A2%84%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F+%E9%A2%84%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3/">
+    <time datetime="2020-11-19T16:00:28.857Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/四、组件" class="post-001.语言/php/php手册(1)/四、组件 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%9B%9B%E3%80%81%E7%BB%84%E4%BB%B6/" data-id="ckhp0x7r7002j932u84zqe0g3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="为什么使用组件"><a href="#为什么使用组件" class="headerlink" title="为什么使用组件"></a>为什么使用组件</h1><p>脱离大框架的束缚  不用重复造轮子</p>
+<h1 id="组件是什么"><a href="#组件是什么" class="headerlink" title="组件是什么"></a>组件是什么</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">组件是打包的代码，用于帮你解决PHP应用中某个具体的问题。组件中的类、接口和性状通常放在同一个命名空间中。</span><br></pre></td></tr></table></figure>
+<h1 id="好的组件的特点"><a href="#好的组件的特点" class="headerlink" title="好的组件的特点"></a>好的组件的特点</h1><ol>
+<li>作用单一</li>
+<li>小型 </li>
+<li>合作（和其他组件合作）</li>
+<li>测试良好</li>
+<li>文档完善</li>
+</ol>
+<h1 id="组件和框架对比"><a href="#组件和框架对比" class="headerlink" title="组件和框架对比"></a>组件和框架对比</h1><p>框架的好处：Symfony 和Drupal  Laravel<br>四大框架的对比： <a target="_blank" rel="noopener" href="http://www.php.cn/php-weizijiaocheng-386709.html">link</a></p>
+<h1 id="PHP架构、构件、组件、框架、中间件的区别"><a href="#PHP架构、构件、组件、框架、中间件的区别" class="headerlink" title="PHP架构、构件、组件、框架、中间件的区别"></a>PHP架构、构件、组件、框架、中间件的区别</h1><p><a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/541649759/">link</a></p>
+<h1 id="如何使用PHP组件"><a href="#如何使用PHP组件" class="headerlink" title="如何使用PHP组件"></a>如何使用PHP组件</h1><p>Packagist 查找PHP组件<br>composer  安装PHP组件工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;使用composer自动加载器</span><br><span class="line">require &#39;vendor&#x2F;autoload.php&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;实例Guzzle Http客户端</span><br><span class="line">$client &#x3D; new GuzzleHttp\Client();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;打开并迭代处理CSV</span><br><span class="line">$csv &#x3D; League\Csv\Reader::createFromPath($argv[1]);</span><br><span class="line">foreach ($csv as $csvRow) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        &#x2F;&#x2F;发送HTTP GET请求</span><br><span class="line">        $httpResponse &#x3D; $client-&gt;get($csvRow[0]);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;检查HTTP响应的状态码</span><br><span class="line">        if($httpResponse-&gt;getStatusCode() &gt;&#x3D; 400) &#123;</span><br><span class="line">            throw new Exception();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception $e) &#123;</span><br><span class="line">            &#x2F;&#x2F;把死链发给标准输出</span><br><span class="line">            echo $csvRow[0] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="怎么创建PHP组件"><a href="#怎么创建PHP组件" class="headerlink" title="怎么创建PHP组件"></a>怎么创建PHP组件</h2><ol>
+<li>选择厂商名和包名</li>
+<li>命名空间</li>
+<li>文件系统的组织方式</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%9B%9B%E3%80%81%E7%BB%84%E4%BB%B6/">
+    <time datetime="2020-11-19T16:00:28.857Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/python/python基础语法" class="post-001.语言/python/python基础语法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckhp0x7qe000w932uc4ch1cuh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="python的标识符"><a href="#python的标识符" class="headerlink" title="python的标识符"></a>python的标识符</h1><p>在 Python 里，标识符由==字母、数字、下划线==组成。</p>
+<p>在 Python 中，所有标识符可以包括英文、数字以及下划线(_)，但不能以数字开头。</p>
+<p>Python 中的标识符==是区分大小写==的。</p>
+<p>以下划线开头的标识符是有特殊意义的。以==单下划线==开头 _foo 的代表不能直接访问的类属性，需通过类提供的接口进行访问，不能用 from xxx import * 而导入。</p>
+<p>以==双下划线==开头的 <strong>foo 代表类的私有成员，以双下划线开头和结尾的 __foo</strong> 代表 Python 里特殊方法专用的标识，如 <strong>init</strong>() 代表类的构造函数。</p>
+<h1 id="python的保留字符【都是小写】"><a href="#python的保留字符【都是小写】" class="headerlink" title="python的保留字符【都是小写】"></a>python的保留字符【都是小写】</h1><h1 id="行和缩进"><a href="#行和缩进" class="headerlink" title="行和缩进"></a>行和缩进</h1><p>行和缩进<br>学习 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。</p>
+<h1 id="多行语句-显示"><a href="#多行语句-显示" class="headerlink" title="多行语句 \ 显示"></a>多行语句 \ 显示</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">total &#x3D; item_one + \</span><br><span class="line">        item_two + \</span><br><span class="line">        item_three</span><br></pre></td></tr></table></figure>
+<p>[]{}() 不用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">days &#x3D; [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;,</span><br><span class="line">        &#39;Thursday&#39;, &#39;Friday&#39;]</span><br></pre></td></tr></table></figure>
+<h1 id="python的引号-‘’-“”-“””"><a href="#python的引号-‘’-“”-“””" class="headerlink" title="python的引号 ‘’ “” “””"></a>python的引号 ‘’ “” “””</h1><h1 id="同一行显示多条语句"><a href="#同一行显示多条语句" class="headerlink" title="同一行显示多条语句"></a>同一行显示多条语句</h1><p>Python可以在同一行中使用多条语句，语句之间使用分号(;)分割，以下是一个简单的实例：</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+    <time datetime="2020-11-19T16:00:28.853Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/python/python 的time datetime date" class="post-001.语言/python/python 的time datetime date post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%20%E7%9A%84time%20datetime%20date/" data-id="ckhp0x7qb000t932uehmh5lti" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><img src="https://blog.csdn.net/p9bl5bxp/article/details/54945920" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%20%E7%9A%84time%20datetime%20date/">
+    <time datetime="2020-11-19T16:00:28.852Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/python/python2 python3 区别" class="post-001.语言/python/python2 python3 区别 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python2%20python3%20%E5%8C%BA%E5%88%AB/" data-id="ckhp0x7qb000u932ud8yk9jyu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p> 1.print不再是语句，而是函数，比如原来是 print ‘abc’ 现在是 print(‘abc’)但是 python2.6+ 可以使用 from <strong>future</strong> import print_function 来实现相同功能&gt;  </p>
+<ol start="2">
+<li><p>在Python 3中，没有旧式类，只有新式类，也就是说不用再像这样 class Foobar(object): pass 显式地子类化object但是最好还是加上. 主要区别在于 old-style 是 classtype 类型而 new-style 是 type类型&gt;</p>
+</li>
+<li><p>原来1/2（两个整数相除）结果是0，现在是0.5了python 2+ 以上都可以使用 from <strong>future</strong> import division 实现改特性, 同时注意 // 取代了之前的 / 运算&gt;  </p>
+</li>
+<li><p>新的字符串格式化方法format取代%错误, 从 python2.6+ 开始已经在str和unicode中有该方法, 同时 python3依然支持 % 算符&gt; </p>
+</li>
+<li><p>xrange重命名为range同时更改的还有一系列内置函数及方法, 都返回迭代器对象, 而不是列表或者 元组, 比如 filter, map, dict.items 等&gt;  </p>
+</li>
+<li><p>!=取代  &lt;   &gt;  python2 也很少有人用  &lt;  &gt;  所以不算什么修改&gt;  </p>
+</li>
+<li><p>long重命名为int不完全对, python3 彻底废弃了 long+int 双整数实现的方法, 统一为 int , 支持高精度整数运算.&gt; </p>
+</li>
+<li><p>except Exception, e变成except (Exception) as e只有 python2.5 及以下版本不支持该语法. python2.6 是支持的. 不算新东西&gt;  10. exec变成函数类似 print() 的变化, 之前是语句</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1></li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python2%20python3%20%E5%8C%BA%E5%88%AB/">
+    <time datetime="2020-11-19T16:00:28.852Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/python/python变量类型" class="post-001.语言/python/python变量类型 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" data-id="ckhp0x7qe000v932u4d9tbzy5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="Numbers（数字）"><a href="#Numbers（数字）" class="headerlink" title="Numbers（数字）"></a>Numbers（数字）</h1><h1 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h1><h1 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h1><h1 id="Tuple（元组）"><a href="#Tuple（元组）" class="headerlink" title="Tuple（元组）"></a>Tuple（元组）</h1><h1 id="Dictionary（字典）"><a href="#Dictionary（字典）" class="headerlink" title="Dictionary（字典）"></a>Dictionary（字典）</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/python/python%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/">
+    <time datetime="2020-11-19T16:00:28.852Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/huanghao.github.io/page/3/">3</a><a class="page-number" href="/huanghao.github.io/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/3/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/7/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第五章：跳跃表" class="post-005.服务实现/存储/redis/redis设计与实现/数据结构对象+内存回收/第五章：跳跃表 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E8%B7%B3%E8%B7%83%E8%A1%A8/" data-id="ckhp0x7rr003q932ud2haarna" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="跳跃表"><a href="#跳跃表" class="headerlink" title="跳跃表"></a>跳跃表</h1><p>  跳跃表(skiplist)是一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的。<br>  <br>Redis只在两个地方用到了跳跃表，一个是实现有序集合键，另一个是在集群节点中用作内部数据结构，除此之外，跳跃表在Redis里面没有其他用途。</p>
+<h1 id="跳表的结构"><a href="#跳表的结构" class="headerlink" title="跳表的结构"></a>跳表的结构</h1><p>Redis的跳跃表由redis.h/zskiplistNode和redis.h/zskiplist两个结构定义，其中zskiplistNode结构用于表示跳跃表节点，而zskiplist结构则用于保存跳跃表节点的相关信息，比如节点的数量，以及指向表头节点和表尾节点的指针等等。<br><a target="_blank" rel="noopener" href="https://img-blog.csdn.net/20160412161658898">https://img-blog.csdn.net/20160412161658898</a></p>
+<p> 上图展示了一个跳跃表示例，位于图片最左边的是zskiplist结构，该结构包含以下属性：</p>
+<ul>
+<li>header：指向跳跃表的表头节点</li>
+<li>tail：指向跳跃表的表尾节点</li>
+<li>level：记录目前跳跃表内，层数最大的那个节点的层数(表头节点的层数不计算在内)</li>
+<li>length：记录跳跃表的长度，也即是，跳跃表目前包含节点的数量(表头节点不计算在内)</li>
+<li>  位于zskiplist结构右方的是四个zskiplistNode结构，该结构包含以下属性：</li>
+</ul>
+<p>层(level)：节点中用L1、L2、L3等字样标记节点的各个层，L1代表第一层，L2代表第二层，依次类推。每个层都带有两个属性：前进指针和跨度。前进指针用于访问位于表尾方向的其他节点，而跨度则记录了前进指针所指向节点和当前节点的距离。在上面的图片中，连线上带有数字的箭头就代表前进指针，而那个数字就是跨度。当程序从表头向表尾进行遍历时，访问会沿着层的前进指针进行。</p>
+<p>后退(backward)指针：节点中用BW字样标记节点的后退指针，它指向位于当前节点的前一个节点。后退指针在程序从表尾向表头遍历时使用。</p>
+<p>分值(score)：各个节点中的1.0、2.0和3.0是节点所保存的分值。在跳跃表中，节点按各自所保存的分值从小到大排列。</p>
+<p>成员对象(obj)：各个节点中的o1、o2和o3是节点所保存的成员对象。<br>  注意表头节点和其他节点的构造是一样的：表头节点也有后退指针、分值和成员对象，不过表头节点的这些属性都不会被用到，所以图中省略了这些部分，只显示了表头节点的各个层。</p>
+<h1 id="跳表各结构的作用"><a href="#跳表各结构的作用" class="headerlink" title="跳表各结构的作用"></a>跳表各结构的作用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* ZSETs use a specialized version of Skiplists *&#x2F;</span><br><span class="line">typedef struct zskiplistNode &#123;</span><br><span class="line">    robj *obj;  &#x2F;*成员对象*&#x2F;</span><br><span class="line">    double score;   &#x2F;*分值*&#x2F;</span><br><span class="line">    struct zskiplistNode *backward; &#x2F;*后退指针*&#x2F;</span><br><span class="line">    struct zskiplistLevel &#123; &#x2F;*层*&#x2F;</span><br><span class="line">        struct zskiplistNode *forward;  &#x2F;*前进指针*&#x2F;</span><br><span class="line">        unsigned int span;  &#x2F;*跨度*&#x2F;</span><br><span class="line">    &#125; level[];</span><br><span class="line">&#125; zskiplistNode;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1、分值和成员</p>
+<p>  节点的分值(score属性)是一个double类型的浮点数，跳跃表中的所有节点都按分值从小到大来排序。</p>
+<p>  节点的成员对象(obj属性)是一个指针，它指向一个字符串对象，而字符串对象则保存着一个SDS值。</p>
+<p>  在同一个跳跃表中，各个节点保存的成员对象必须是唯一的，但是多个节点保存的分值却可以是相同的：分至相同的节点将按照成员对象在字典中的大小来进行排序，成员对象较小的节点会排在前面(靠近表头的方向)，而成员对象较大的节点则会排在后面(靠近表尾的方向)。</p>
+<p>  2、后退指针</p>
+<p>  节点的后退指针(backward属性)用于从表尾向表头方向访问节点：跟可以一次跳过多个节点的前进指针不同，因为每个节点只有一个后退指针，所以每次只能后退至前一个节点。</p>
+<p>  3、层</p>
+<p>  跳跃表节点的level数组可以包含多个元素，每个元素都包含一个指向其他节点的指针，程序可以通过这些层来加快访问其他节点的速度，一般来说，层的数量越多，访问其他节点的速度就越快。</p>
+<p>  每次创建一个新跳跃表节点的时候，程序根据幂次定律(power law，越大的数出现的概率越小)随机生成一个介于1和32之间的值作为level数组的大小，这个大小就是层的“高度”。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1+%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E8%B7%B3%E8%B7%83%E8%A1%A8/">
+    <time datetime="2020-11-19T16:00:28.836Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis知识点自测" class="post-005.服务实现/存储/redis/redis知识点自测 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E7%9F%A5%E8%AF%86%E7%82%B9%E8%87%AA%E6%B5%8B/" data-id="ckhp0x7rc002u932u8mwj3tws" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="什么是Redis持久化？Redis有哪几种持久化方式？优缺点是什么？"><a href="#什么是Redis持久化？Redis有哪几种持久化方式？优缺点是什么？" class="headerlink" title="什么是Redis持久化？Redis有哪几种持久化方式？优缺点是什么？"></a>什么是Redis持久化？Redis有哪几种持久化方式？优缺点是什么？</h1><p>持久化就是把内存的数据写到磁盘中去，防止服务宕机了内存数据丢失。<br>Redis 提供了两种持久化方式:RDB（默认） 和AOF<br>RDB：<br>rdb是Redis DataBase缩写<br>功能核心函数rdbSave(生成RDB文件)和rdbLoad（从文件加载内存）两个函数</p>
+<p><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925141429889-1694430603.png" alt="image"><br>AOF:<br>Aof是Append-only file缩写</p>
+<p><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925141527592-2105439510.png" alt="image"></p>
+<p>每当执行服务器(定时)任务或者函数时flushAppendOnlyFile 函数都会被调用， 这个函数执行以下两个工作<br>aof写入保存：<br>WRITE：根据条件，将 aof_buf 中的缓存写入到 AOF 文件<br>SAVE：根据条件，调用 fsync 或 fdatasync 函数，将 AOF 文件保存到磁盘中。<br>存储结构:<br>  内容是redis通讯协议(RESP )格式的命令文本存储。<br>比较：<br>1、aof文件比rdb更新频率高，优先使用aof还原数据。<br>2、aof比rdb更安全也更大<br>3、rdb性能比aof好<br>4、如果两个都配了优先加载AOF</p>
+<h1 id="是RESP？有什么特点？"><a href="#是RESP？有什么特点？" class="headerlink" title="是RESP？有什么特点？"></a>是RESP？有什么特点？</h1><p>RESP 是redis客户端和服务端之前使用的一种通讯协议；<br>RESP 的特点：实现简单、快速解析、可读性好<br>For Simple Strings the first byte of the reply is “+” 回复<br>For Errors the first byte of the reply is “-“ 错误<br>For Integers the first byte of the reply is “:” 整数<br>For Bulk Strings the first byte of the reply is “$” 字符串<br>For Arrays the first byte of the reply is “*” 数组</p>
+<h1 id="Redis-有哪些架构模式？讲讲各自的特点"><a href="#Redis-有哪些架构模式？讲讲各自的特点" class="headerlink" title="Redis 有哪些架构模式？讲讲各自的特点"></a>Redis 有哪些架构模式？讲讲各自的特点</h1><h2 id="单机版"><a href="#单机版" class="headerlink" title="单机版"></a>单机版</h2><p>特点：简单<br>问题：<br>1、内存容量有限 2、处理能力有限 3、无法高可用。<br><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925142100480-1152515615.png" alt="image"></p>
+<h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><p><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925142118041-1727225479.png" alt="image"></p>
+<p>Redis 的复制（replication）功能允许用户根据一个 Redis 服务器来创建任意多个该服务器的复制品，其中被复制的服务器为主服务器（master），而通过复制创建出来的服务器复制品则为从服务器（slave）。 只要主从服务器之间的网络连接正常，主从服务器两者会具有相同的数据，主服务器就会一直将发生在自己身上的数据更新同步 给从服务器，从而一直保证主从服务器的数据相同。</p>
+<p>特点：<br>1、master/slave 角色<br>2、master/slave 数据相同<br>3、降低 master 读压力在转交从库</p>
+<p>问题：<br>无法保证高可用<br>没有解决 master 写的压力</p>
+<h2 id="哨兵"><a href="#哨兵" class="headerlink" title="哨兵"></a>哨兵</h2><p><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925142143478-1454265814.png" alt="image"></p>
+<p>Redis sentinel 是一个分布式系统中监控 redis 主从服务器，并在主服务器下线时自动进行故障转移。其中三个特性：<br>监控（Monitoring）：    Sentinel  会不断地检查你的主服务器和从服务器是否运作正常。<br>提醒（Notification）： 当被监控的某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。<br>自动故障迁移（Automatic failover）： 当一个主服务器不能正常工作时， Sentinel 会开始一次自动故障迁移操作。<br>特点：</p>
+<p>1、保证高可用<br>2、监控各个节点<br>3、自动故障迁移</p>
+<p>缺点：主从模式，切换需要时间丢数据<br>没有解决 master 写的压力</p>
+<h2 id="集群（proxy-型）："><a href="#集群（proxy-型）：" class="headerlink" title="集群（proxy 型）："></a>集群（proxy 型）：</h2><p><img src="https://img2018.cnblogs.com/blog/1481291/201809/1481291-20180925142206124-913246424.png" alt="image"></p>
+<p>Twemproxy 是一个 Twitter 开源的一个 redis 和 memcache 快速/轻量级代理服务器； Twemproxy 是一个快速的单线程代理程序，支持 Memcached ASCII 协议和 redis 协议。<br>特点：<br>1、多种 hash 算法：MD5、CRC16、CRC32、CRC32a、hsieh、murmur、Jenkins<br>2、支持失败节点自动删除<br>3、后端 Sharding 分片逻辑对业务透明，业务方的读写方式和操作单个 Redis 一致<br>缺点：增加了新的 proxy，需要维护其高可用。</p>
+<p>failover 逻辑需要自己实现，其本身不能支持故障的自动转移可扩展性差，进行扩缩容都需要手动干预<br>集群（直连型）：</p>
+<p>从redis 3.0之后版本支持redis-cluster集群，Redis-Cluster采用无中心结构，每个节点保存数据和整个集群状态,每个节点都和其他所有节点连接。</p>
+<p>特点：</p>
+<ul>
+<li>1、无中心架构（不存在哪个节点影响性能瓶颈），少了 proxy 层。</li>
+<li>2、数据按照 slot 存储分布在多个节点，节点间数据共享，可动态调整数据分布。</li>
+<li>3、可扩展性，可线性扩展到 1000 个节点，节点可动态添加或删除。</li>
+<li>4、高可用性，部分节点不可用时，集群仍可用。通过增加 Slave 做备份数据副本</li>
+<li>5、实现故障自动 failover，节点之间通过 gossip 协议交换状态信息，用投票机制完成 Slave到 Master 的角色提升。</li>
+</ul>
+<p>缺点：<br>1、资源隔离性较差，容易出现相互影响的情况。<br>2、数据通过异步复制,不保证数据的强一致性</p>
+<p>什么是一致性哈希算法？什么是哈希槽？<br>这两个问题篇幅过长 网上找了两个解锁的不错的文章<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lpfuture/p/5796398.html">https://www.cnblogs.com/lpfuture/p/5796398.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/z15732621582/article/details/79121213">https://blog.csdn.net/z15732621582/article/details/79121213</a></p>
+<h1 id="使用过Redis分布式锁么，它是怎么实现的？"><a href="#使用过Redis分布式锁么，它是怎么实现的？" class="headerlink" title="使用过Redis分布式锁么，它是怎么实现的？"></a>使用过Redis分布式锁么，它是怎么实现的？</h1><p>先拿setnx来争抢锁，抢到之后，再用expire给锁加一个过期时间防止锁忘记了释放。<br>如果在setnx之后执行expire之前进程意外crash或者要重启维护了，那会怎么样？<br>set指令有非常复杂的参数，这个应该是可以同时把setnx和expire合成一条指令来用的！</p>
+<h1 id="使用过Redis做异步队列么，你是怎么用的？有什么缺点？"><a href="#使用过Redis做异步队列么，你是怎么用的？有什么缺点？" class="headerlink" title="使用过Redis做异步队列么，你是怎么用的？有什么缺点？"></a>使用过Redis做异步队列么，你是怎么用的？有什么缺点？</h1><p>一般使用list结构作为队列，rpush生产消息，lpop消费消息。当lpop没有消息的时候，要适当sleep一会再重试。<br>缺点：<br>在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如rabbitmq等。<br>能不能生产一次消费多次呢？<br>使用pub/sub主题订阅者模式，可以实现1:N的消息队列。</p>
+<h1 id="什么是缓存穿透？如何避免？什么是缓存雪崩？何如避免？"><a href="#什么是缓存穿透？如何避免？什么是缓存雪崩？何如避免？" class="headerlink" title="什么是缓存穿透？如何避免？什么是缓存雪崩？何如避免？"></a>什么是缓存穿透？如何避免？什么是缓存雪崩？何如避免？</h1><p>缓存穿透<br>一般的缓存系统，都是按照key去缓存查询，如果不存在对应的value，就应该去后端系统查找（比如DB）。一些恶意的请求会故意查询不存在的key,请求量很大，就会对后端系统造成很大的压力。这就叫做缓存穿透。</p>
+<p>如何避免？</p>
+<p>1：对查询结果为空的情况也进行缓存，缓存时间设置短一点，或者该key对应的数据insert了之后清理缓存。<br>2：对一定不存在的key进行过滤。可以把所有的可能存在的key放到一个大的Bitmap中，查询时通过该bitmap过滤。<br>缓存雪崩</p>
+<p>当缓存服务器重启或者大量缓存集中在某一个时间段失效，这样在失效的时候，会给后端系统带来很大压力。导致系统崩溃。</p>
+<p>如何避免？</p>
+<p>1：在缓存失效后，通过加锁或者队列来控制读数据库写缓存的线程数量。比如对某个key只允许一个线程查询数据和写缓存，其他线程等待。</p>
+<p>2：做二级缓存，A1为原始缓存，A2为拷贝缓存，A1失效时，可以访问A2，A1缓存失效时间设置为短期，A2设置为长期</p>
+<p>3：不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。</p>
+<h1 id="11-分布式的环境下，-MySQL和Redis如何保持数据的一致性？"><a href="#11-分布式的环境下，-MySQL和Redis如何保持数据的一致性？" class="headerlink" title="11.分布式的环境下， MySQL和Redis如何保持数据的一致性？"></a>11.分布式的环境下， MySQL和Redis如何保持数据的一致性？</h1><p>，增删改都是操作mysql，对于读是保存到redis，这样就涉及到数据同步操作，同步操作分为两大块，我们的叫法是，一个是全量(将全部数据一次写入到redis，时间几小时不等)，一个是增量（实时更新）。这里说的是增量，主要问题是即时性，因为增删改都是直接操作mysql变更都在MySQL（这里高并发的问题是用分库分表加外层的负载均衡） 所以我们的方向是读取binlog然后分析 ，利用消息推送到某服务器A，再进行分析，然后更新各台redis，消息推送工具用的是rabbitMQ，可设定某表的变更推送(分三类update insert delate 包含变更前后的数据)，这里有个问题是：mysql数据操作太频繁产生的推送可能会很多，所以分析处理脚本处理速度一定要跟得上（我用Python写，前期多线程（坑），后来改成多进程）</p>
+<p>MySQL binlog增量订阅消费+消息队列+处理并把数据更新到redis</p>
+<h1 id="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"><a href="#MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）" class="headerlink" title="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"></a>MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）</h1><p>　<br>　　　相关知识：redis 内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略（回收策略）。redis 提供 6种数据淘汰策略：</p>
+<p>volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰<br>volatile-ttl：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰<br>volatile-random：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰<br>allkeys-lru：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰<br>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰<br>no-enviction（驱逐）：禁止驱逐数据</p>
+<h1 id="Redis的并发竞争问题如何解决"><a href="#Redis的并发竞争问题如何解决" class="headerlink" title="Redis的并发竞争问题如何解决?"></a>Redis的并发竞争问题如何解决?</h1><p>Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问。Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，但是在Jedis客户端对Redis进行并发访问时会发生连接超时、数据转换错误、阻塞、客户端关闭连接等问题，这些问题均是由于客户端连接混乱造成。对此有2种解决方法：</p>
+<p>　1.客户端角度，为保证每个客户端间正常有序与Redis进行通信，对连接进行池化，同时对客户端读写Redis操作采用内部锁synchronized。<br>　<br>2.服务器角度，利用setnx实现锁。</p>
+<h1 id="如果有大量的key需要设置同一时间过期，一般需要注意什么？"><a href="#如果有大量的key需要设置同一时间过期，一般需要注意什么？" class="headerlink" title="如果有大量的key需要设置同一时间过期，一般需要注意什么？"></a>如果有大量的key需要设置同一时间过期，一般需要注意什么？</h1><p>如果大量的key过期时间设置的过于集中，到过期的那个时间点，redis可能会出现短暂的卡顿现象。一般需要在时间上加一个随机值，使得过期时间分散一些。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E7%9F%A5%E8%AF%86%E7%82%B9%E8%87%AA%E6%B5%8B/">
+    <time datetime="2020-11-19T16:00:28.834Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/redis/redis优缺点和实际场景" class="post-005.服务实现/存储/redis/redis优缺点和实际场景 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E4%BC%98%E7%BC%BA%E7%82%B9%E5%92%8C%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF/" data-id="ckhp0x7rx0040932uc54j7w3r" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxi/p/6517544.html">https://www.cnblogs.com/xiaoxi/p/6517544.html</a></p>
+<ul>
+<li><p>String: 字符串</p>
+</li>
+<li><p>Hash: 散列</p>
+</li>
+<li><p>List: 列表</p>
+</li>
+<li><p>Set: 集合</p>
+</li>
+<li><p>Sorted Set: 有序集合</p>
+<h1 id="五大类型"><a href="#五大类型" class="headerlink" title="五大类型"></a>五大类型</h1><h2 id="string-类型"><a href="#string-类型" class="headerlink" title="string 类型"></a>string 类型</h2><h2 id="list-类型"><a href="#list-类型" class="headerlink" title="list 类型"></a>list 类型</h2><h2 id="hash类型"><a href="#hash类型" class="headerlink" title="hash类型"></a>hash类型</h2><p>我们可以将Redis中的Hash类型看成具有String Key和String Value的map容器。所以该类型非常适合于存储值对象的信息。如Username、Password和Age等。如果Hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。每一个Hash可以存储4294967295个键值对。</p>
+<h2 id="set数据类型"><a href="#set数据类型" class="headerlink" title="set数据类型"></a>set数据类型</h2><p>一、概述</p>
+<p>在Redis中，我们可以将Set类型看作为没有排序的字符集合，和List类型一样，我们也可以在该类型的数据值上执行添加、删除或判断某一元素是否存在等操作。需要说明的是，这些操作的时间复杂度为O(1)，即常量时间内完成次操作。Set可包含的最大元素数量是4294967295。<br>和List类型不同的是，++==Set集合中不允许出现重复的元素==++，这一点和C++标准库中的set容器是完全相同的。换句话说，如果多次添加相同元素，Set中将仅保留该元素的一份拷贝。和List类型相比，Set类型在功能上还存在着一个非常重要的特性，即在服务器端完成多个Sets之间的聚合计算操作，如unions、intersections和differences。由于这些操作均在服务端完成，因此效率极高，而且也节省了大量的网络IO开销</p>
+</li>
+</ul>
+<h2 id="sort-set"><a href="#sort-set" class="headerlink" title="sort set"></a>sort set</h2><p>一、概述：</p>
+<pre><code>Sorted Set（有序集合）和Set类型极为相似，它们都是字符串的集合，都不允许重复的成员出现在一个Set中。它们之间的主要差别是Sorted Set中的每一个成员都会有一个分数(score)与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。然而需要额外指出的是，尽管Sorted Set中的成员必须是唯一的，但是分数(score)却是可以重复的。
+在Sorted Set中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为集合中成员数量的对数。由于Sorted Set中的成员在集合中的位置是有序的，因此，即便是访问位于集合中部的成员也仍然是非常高效的。事实上，Redis所具有的这一特征在很多其它类型的数据库中是很难实现的，换句话说，在该点上要想达到和Redis同样的高效，在其它数据库中进行建模是非常困难的。</code></pre>
+<h1 id="redis使用场景"><a href="#redis使用场景" class="headerlink" title="redis使用场景"></a>redis使用场景</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxi/p/7007695.html">https://www.cnblogs.com/xiaoxi/p/7007695.html</a></p>
+<h2 id="一、Redis常用数据类型"><a href="#一、Redis常用数据类型" class="headerlink" title="一、Redis常用数据类型"></a>一、Redis常用数据类型</h2><p>Redis最为常用的数据类型主要有以下五种：</p>
+<p>String<br>Hash<br>List<br>Set<br>Sorted set<br>在具体描述这几种数据类型之前，我们先通过一张图了解下Redis内部内存管理中是如何描述这些不同数据类型的：<br><img src="https://images2015.cnblogs.com/blog/249993/201706/249993-20170614100608978-1918854040.jpg" alt="image"></p>
+<p>首先Redis内部使用一个redisObject对象来表示所有的key和value，redisObject最主要的信息如上图所示：type代表一个value对象具体是何种数据类型，encoding是不同数据类型在redis内部的存储方式，比如：type=string代表value存储的是一个普通字符串，那么对应的encoding可以是raw或者是int，如果是int则代表实际redis内部是按数值型类存储和表示这个字符串的，当然前提是这个字符串本身可以用数值表示，比如:”123” “456”这样的字符串。</p>
+<p>这里需要特殊说明一下vm字段，只有打开了Redis的虚拟内存功能，此字段才会真正的分配内存，该功能默认是关闭状态的。通过上图我们可以发现Redis使用redisObject来表示所有的key/value数据是比较浪费内存的，当然这些内存管理成本的付出主要也是为了给Redis不同数据类型提供一个统一的管理接口，实际作者也提供了多种方法帮助我们尽量节省内存使用，我们随后会具体讨论。</p>
+<h2 id="二、各种数据类型应用和实现方式"><a href="#二、各种数据类型应用和实现方式" class="headerlink" title="二、各种数据类型应用和实现方式"></a>二、各种数据类型应用和实现方式</h2><p>下面我们先来逐一的分析下这五种数据类型的使用和内部实现方式：</p>
+<h3 id="1、String"><a href="#1、String" class="headerlink" title="1、String"></a>1、String</h3><p>String 数据结构是简单的key-value类型，value其实不仅是String，也可以是数字。</p>
+<p>常用命令：get、set、incr、decr、mget等。</p>
+<p>应用场景：String是最常用的一种数据类型，普通的key/ value 存储都可以归为此类，即可以完全实现目前 Memcached 的功能，并且效率更高。还可以享受Redis的定时持久化，操作日志及 Replication等功能。除了提供与 Memcached 一样的get、set、incr、decr 等操作外，Redis还提供了下面一些操作： </p>
+<p>获取字符串长度<br>往字符串append内容<br>设置和获取字符串的某一段内容<br>设置及获取字符串的某一位（bit）<br>批量设置一系列字符串的内容<br>==使用场景：常规key-value缓存应用。常规计数: 微博数, 粉丝数。==</p>
+<p>实现方式：String在redis内部存储默认就是一个字符串，被redisObject所引用，当遇到incr,decr等操作时会转成数值型进行计算，此时redisObject的encoding字段为int。</p>
+<h3 id="2-hashMap"><a href="#2-hashMap" class="headerlink" title="2.hashMap"></a>2.hashMap</h3><p>这里同时需要注意，Redis提供了接口(hgetall)可以直接取到全部的属性数据，但是如果内部Map的成员很多，那么涉及到遍历整个内部Map的操作，由于Redis单线程模型的缘故，这个遍历操作可能会比较耗时，而另其它客户端的请求完全不响应，这点需要格外注意。</p>
+<p>使用场景：==存储部分变更数据，如用户信息等。==</p>
+<p>实现方式：</p>
+<p>   上面已经说到Redis Hash对应Value内部实际就是一个HashMap，实际这里会有2种不同实现，这个Hash的成员比较少时Redis为了节省内存会采用类似一维数组的方式来紧凑存储，而不会采用真正的HashMap结构，对应的value redisObject的encoding为zipmap，当成员数量增大时会自动转成真正的HashMap，此时encoding为ht。</p>
+<h3 id="3、List"><a href="#3、List" class="headerlink" title="3、List"></a>3、List</h3><p>常用命令：lpush,rpush,lpop,rpop,lrange等。</p>
+<p>应用场景：</p>
+<p>Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如twitter的关注列表，粉丝列表等都可以用Redis的list结构来实现。</p>
+<p>List 就是链表，相信略有数据结构知识的人都应该能理解其结构。使用List结构，我们可以轻松地实现最新消息排行等功能。List的另一个应用就是消息队列，<br>可以利用List的PUSH操作，将任务存在List中，然后工作线程再用POP操作将任务取出进行执行。Redis还提供了操作List中某一段的api，你可以直接查询，删除List中某一段的元素。</p>
+<p>实现方式：</p>
+<p>Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销，Redis内部的很多实现，包括发送缓冲队列等也都是用的这个数据结构。</p>
+<p>Redis的list是每个子元素都是String类型的双向链表，可以通过push和pop操作从列表的头部或者尾部添加或者删除元素，这样List即可以作为栈，也可以作为队列。 </p>
+<p>使用场景：<br>消息队列系统<br>使用list可以构建队列系统，使用sorted set甚至可以构建有优先级的队列系统。</p>
+<p>比如：将Redis用作日志收集器</p>
+<p>实际上还是一个队列，多个端点将日志信息写入Redis，然后一个worker统一将所有日志写到磁盘。</p>
+<p>取最新N个数据的操作<br>记录前N个最新登陆的用户Id列表，超出的范围可以从数据库中获得。</p>
+<p>复制代码<br>//把当前登录人添加到链表里<br>ret = r.lpush(“login:last_login_times”, uid)</p>
+<p>//保持链表只有N位<br>ret = redis.ltrim(“login:last_login_times”, 0, N-1)</p>
+<p>//获得前N个最新登陆的用户Id列表<br>last_login_list = r.lrange(“login:last_login_times”, 0, N-1)<br>复制代码<br>比如sina微博：</p>
+<p> 在Redis中我们的最新微博ID使用了常驻缓存，这是一直更新的。但是我们做了限制不能超过5000个ID，因此我们的获取ID函数会一直询问Redis。只有在start/count参数超出了这个范围的时候，才需要去访问数据库。</p>
+<p>我们的系统不会像传统方式那样“刷新”缓存，Redis实例中的信息永远是一致的。SQL数据库（或是硬盘上的其他类型数据库）只是在用户需要获取“很远”的数据时才会被触发，而主页或第一个评论页是不会麻烦到硬盘上的数据库了</p>
+<h2 id="4、Set"><a href="#4、Set" class="headerlink" title="4、Set"></a>4、Set</h2><p>常用命令：</p>
+<p>sadd,spop,smembers,sunion 等。</p>
+<p>应用场景：</p>
+<p> Redis set对外提供的功能与list类似是一个列表的功能，==特殊之处在于set是可以自动排重的，当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供==。</p>
+<p>Set 就是一个集合，集合的概念就是一堆不重复值的组合。利用Redis提供的Set数据结构，可以存储一些集合性的数据。</p>
+<p>案例：</p>
+<p>在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis还为集合提供了求交集、并集、差集等操作，可以非常方便的实现如共同关注、共同喜好、二度好友等功能，对上面的所有集合操作，你还可以使用不同的命令选择将结果返回给客户端还是存集到一个新的集合中。</p>
+<p>==Set是集合，是String类型的无序集合，set是通过hashtable实现的，概念和数学中个的集合基本类似，可以交集，并集，差集等等，set中的元素是没有顺序的。==</p>
+<p>实现方式： </p>
+<p>==set 的内部实现是一个 value永远为null的HashMap，实际就是通过计算hash的方式来快速排重的，这也是set能提供判断一个成员是否在集合内的原因。==</p>
+<p>使用场景：<br>获取某段时间所有数据去重值<br>这个使用Redis的set数据结构最合适了，只需要不断地将数据往set中扔就行了，set意为集合，所以会自动排重。</p>
+<h2 id="5、Sorted-Set"><a href="#5、Sorted-Set" class="headerlink" title="5、Sorted Set"></a>5、Sorted Set</h2><p>常用命令：</p>
+<p>zadd,zrange,zrem,zcard等</p>
+<p>使用场景：</p>
+<p>Redis sorted set的使用场景与set类似，区别是set不是自动有序的，而sorted set可以通过用户额外提供一个优先级(score)的参数来为成员排序，并且是插入有序的，即自动排序。当你需要==一个有序的并且不重复的集合列表==，那么可以选择sorted set数据结构，比如twitter 的public timeline可以以发表时间作为score来存储，这样获取时就是自动按时间排好序的。</p>
+<p>==和Set相比，Sorted Set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列，比如一个存储全班同学成绩的Sorted== Set，其集合value可以是同学的学号，而score就可以是其考试得分，这样在数据插入集合的时候，就已经进行了天然的排序。另外还可以用Sorted Set来做带权重的队列，比如普通消息的score为1，重要消息的score为2，然后工作线程可以选择按score的倒序来获取工作任务。让重要的任务优先执行。</p>
+<p>实现方式：</p>
+<p>Redis sorted set的内部使用HashMap和跳跃表(SkipList)来保证数据的存储和有序，HashMap里放的是成员到score的映射，而跳跃表里存放的是所有的成员，排序依据是HashMap里存的score,使用跳跃表的结构可以获得比较高的查找效率，并且在实现上比较简单。</p>
+<h1 id="redis的使用优缺点"><a href="#redis的使用优缺点" class="headerlink" title="redis的使用优缺点"></a>redis的使用优缺点</h1><h2 id="redis为什么快"><a href="#redis为什么快" class="headerlink" title="redis为什么快"></a>redis为什么快</h2><h3 id="速度快，完全基于内存；"><a href="#速度快，完全基于内存；" class="headerlink" title="速度快，完全基于内存；"></a>速度快，完全基于内存；</h3><p>理解这个内存和磁盘的区别 服务器 断电丢失</p>
+<h3 id="单线程模型避免了不必要的上下文切换及竞争条件；"><a href="#单线程模型避免了不必要的上下文切换及竞争条件；" class="headerlink" title="单线程模型避免了不必要的上下文切换及竞争条件；"></a>单线程模型避免了不必要的上下文切换及竞争条件；</h3><p>什么是上下文切换</p>
+<p>即使是单核CPU也支持多线程执行代码，CPU通过给每个线程分配CPU时间片来实现这个机制。时间片是CPU分配给各个线程的时间，因为时间片非常短，所以CPU通过不停地切换线程执行，让我们感觉多个线程时同时执行的，时间片一般是几十毫秒（ms）。</p>
+<p>CPU通过时间片分配算法来循环执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会保存上一个任务的状态，以便下次切换回这个任务时，可以再次加载这个任务的状态，从任务保存到再加载的过程就是一次上下文切换</p>
+<p>这就像我们同时读两本书，当我们在读一本英文的技术书籍时，发现某个单词不认识， 于是便打开中英文词典，但是在放下英文书籍之前，大脑必须先记住这本书读到了多少页的第多少行，等查完单词之后，能够继续读这本书。这样的切换是会影响读 书效率的，同样上下文切换也会影响多线程的执行速度。</p>
+<h3 id="使用C语言实现，网络层使用epoll解决高并发问题-采用了非阻塞-I-O-多路复用机制"><a href="#使用C语言实现，网络层使用epoll解决高并发问题-采用了非阻塞-I-O-多路复用机制" class="headerlink" title="使用C语言实现，网络层使用epoll解决高并发问题 采用了非阻塞 I/O 多路复用机制"></a>使用C语言实现，网络层使用epoll解决高并发问题 采用了非阻塞 I/O 多路复用机制</h3><p><img src="https://img-blog.csdn.net/20180623151715786?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5nd2Vpd2VpMjAyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>简单来说，就是我们的 redis-client 在操作的时候，会产生具有不同事件类型的 Socket。</p>
+<p>在服务端，有一段 I/O 多路复用程序，将其置入队列之中。然后，文件事件分派器，依次去队列中取，转发到不同的事件处理器中。</p>
+<p>需要说明的是，这个 I/O 多路复用机制，Redis 还提供了 select、epoll、evport、kqueue 等多路复用函数库，大家可以自行去了解。</p>
+<p>经营方式一</p>
+<p>客户每送来一份快递，小曲就让一个快递员盯着，然后快递员开车去送快递。</p>
+<p>慢慢的小曲就发现了这种经营方式存在下述问题：</p>
+<p>几十个快递员基本上时间都花在了抢车上了，大部分快递员都处在闲置状态，谁抢到了车，谁就能去送快递。</p>
+<p>随着快递的增多，快递员也越来越多，小曲发现快递店里越来越挤，没办法雇佣新的快递员了。</p>
+<p>快递员之间的协调很花时间。</p>
+<p>综合上述缺点，小曲痛定思痛，提出了下面的经营方式。</p>
+<p>经营方式二</p>
+<p>小曲只雇佣一个快递员。然后呢，客户送来的快递，小曲按送达地点标注好，然后依次放在一个地方。</p>
+<p>最后，那个快递员依次的去取快递，一次拿一个，然后开着车去送快递，送好了就回来拿下一个快递。</p>
+<p>上述两种经营方式对比，是不是明显觉得第二种，效率更高，更好呢？</p>
+<p>在上述比喻中：</p>
+<p>每个快递员→每个线程</p>
+<p>每个快递→每个 Socket(I/O 流)</p>
+<p>快递的送达地点→Socket 的不同状态</p>
+<p>客户送快递请求→来自客户端的请求</p>
+<p>小曲的经营方式→服务端运行的代码</p>
+<p>一辆车→CPU 的核数</p>
+<p>于是我们有如下结论：</p>
+<p>经营方式一就是传统的并发模型，每个 I/O 流(快递)都有一个新的线程(快递员)管理。</p>
+<p>经营方式二就是 I/O 多路复用。只有单个线程(一个快递员)，通过跟踪每个 I/O 流的状态(每个快递的送达地点)，来管理多个 I/O 流。</p>
+<h2 id="redis能做什么"><a href="#redis能做什么" class="headerlink" title="redis能做什么"></a>redis能做什么</h2><ol>
+<li><p>缓存，毫无疑问这是Redis当今最为人熟知的使用场景。再提升服务器性能方面非常有效；</p>
+</li>
+<li><p>排行榜，如果使用传统的关系型数据库来做这个事儿，非常的麻烦，而利用Redis的SortSet数据结构能够非常方便搞定；</p>
+</li>
+<li><p>计算器/限速器，利用Redis中原子性的自增操作，我们可以统计类似用户点赞数、用户访问数等，这类操作如果用MySQL，频繁的读写会带来相当大的压力；限速器比较典型的使用场景是限制某个用户访问某个API的频率，常用的有抢购时，防止用户疯狂点击带来不必要的压力；<br>注：限速器也是对请求限流的一种实现方式。</p>
+</li>
+<li><p>好友关系，利用集合的一些命令，比如求交集、并集、差集等。可以方便搞定一些共同好友、共同爱好之类的功能；</p>
+</li>
+<li><p>简单消息队列，除了Redis自身的发布/订阅模式，我们也可以利用List来实现一个队列机制，比如：到货通知、邮件发送之类的需求，不需要高可靠，但是会带来非常大的DB压力，完全可以用List来完成异步解耦；</p>
+</li>
+<li><p>Session共享，默认Session是保存在服务器的文件中，即当前服务器，如果是集群服务，同一个用户过来可能落在不同机器上，这就会导致用户频繁登陆；采用Redis保存Session后，无论用户落在那台机器上都能够获取到对应的Session信息。</p>
+</li>
+<li><p>注：对于基于Redis实现分布式session 笔者会在以后文章接入说明</p>
+</li>
+</ol>
+<h2 id="redis存在什么问题"><a href="#redis存在什么问题" class="headerlink" title="redis存在什么问题"></a>redis存在什么问题</h2><p>Redis不能做什么<br>Redis感觉能干的事情特别多，但它不是万能的，合适的地方用它事半功倍。如果滥用可能导致系统的不稳定、成本增高等问题。</p>
+<p>比如，用Redis去保存用户的基本信息，虽然它能够支持持久化，但是它的持久化方案并不能保证数据绝对的落地，并且还可能带来Redis性能下降，因为持久化太过频繁会增大Redis服务的压力。</p>
+<p>简单总结就是数据量太大、数据访问频率非常低的业务都不适合使用Redis。</p>
+<p>数据太大会增加成本，访问频率太低，保存在内存中纯属浪费资源。如果不担心浪费资源，那请忽略。</p>
+<h2 id="redis-大key-热key-问题"><a href="#redis-大key-热key-问题" class="headerlink" title="redis 大key 热key 问题"></a>redis 大key 热key 问题</h2><h3 id="Redis-和数据库双写一致性问题"><a href="#Redis-和数据库双写一致性问题" class="headerlink" title="Redis 和数据库双写一致性问题"></a>Redis 和数据库双写一致性问题</h3><p>分布式常见问题，还可以再分为最终一致性和强一致性；<br>另外，我们所做的方案从根本上来说，只能说降低不一致发生的概率，无法完全避免。因此，有强一致性要求的数据，不能放缓存。</p>
+<p>回答：首先，采取正确更新策略，先更新数据库，再删缓存。其次，因为可能存在删除缓存失败的问题，提供一个补偿措施即可，例如利用消息队列。</p>
+<h3 id="如何应对缓存穿透和缓存雪崩问题"><a href="#如何应对缓存穿透和缓存雪崩问题" class="headerlink" title="如何应对缓存穿透和缓存雪崩问题"></a>如何应对缓存穿透和缓存雪崩问题</h3><h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>即黑客故意去请求缓存中不存在的数据，导致所有的请求都怼到数据库上，从而数据库连接异常。</p>
+<ol>
+<li>利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试。</li>
+<li>采用异步更新策略，无论 Key 是否取到值，都直接返回。Value 值中维护一个缓存失效时间，缓存如果过期，异步起一个线程去读数据库，更新缓存。需要做缓存预热(项目启动前，先加载缓存)操作。</li>
+<li>提供一个能迅速判断请求是否有效的拦截机制，比如，利用布隆过滤器，内部维护一系列合法有效的 Key。迅速判断出，请求所携带的 Key 是否合法有效。如果不合法，则直接返回。<br>缓存雪崩，即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常。</li>
+</ol>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常。</p>
+<p>缓存雪崩解决方案：</p>
+<ol>
+<li>给缓存的失效时间，加上一个随机值，避免集体失效。</li>
+<li></li>
+<li>使用互斥锁，但是该方案吞吐量明显下降了。</li>
+<li></li>
+<li>双缓存。我们有两个缓存，缓存 A 和缓存 B。缓存 A 的失效时间为 20 分钟，缓存 B 不设失效时间。自己做缓存预热操作。</li>
+</ol>
+<p>然后细分以下几个小点：从缓存 A 读数据库，有则直接返回；A 没有数据，直接从 B 读数据，直接返回，并且异步启动一个更新线程，更新线程同时更新缓存 A 和缓存 B。</p>
+<h3 id="如何解决-Redis-的并发竞争-Key-问题"><a href="#如何解决-Redis-的并发竞争-Key-问题" class="headerlink" title="如何解决 Redis 的并发竞争 Key 问题"></a>如何解决 Redis 的并发竞争 Key 问题</h3><h2 id="总结Redis特性"><a href="#总结Redis特性" class="headerlink" title="总结Redis特性"></a>总结Redis特性</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><p>数据存放在内存中；单线程模式，避免了线程上下文切换及多线程竞争访问</p>
+<p>；c语言实现，更容易接近系统api；<br>采用epoll非阻塞IO，不在网络上浪费时间；</p>
+<h3 id="支持多种数据类型"><a href="#支持多种数据类型" class="headerlink" title="支持多种数据类型"></a>支持多种数据类型</h3><p>支持8种数据类型：String、Hash、List、Set、 SortSet、Bitmaps、HyperLogLog、GEO；</p>
+<h3 id="功能丰富"><a href="#功能丰富" class="headerlink" title="功能丰富"></a>功能丰富</h3><p>丰富的API，如可设置键过期，存在即设置（这可以用来解决分布式锁问题），基于发布订阅可实现简单的消息队列，通过Lua创建新命令，具有原子性，管道（pipeline）功能，解决网络开销；</p>
+<h3 id="服务器简单"><a href="#服务器简单" class="headerlink" title="服务器简单"></a>服务器简单</h3><p>开源代码优雅，容易阅读源码，采用单线程模型，避免并发问题，redis自己实现了多路复用；</p>
+<h3 id="客户端语言版本多"><a href="#客户端语言版本多" class="headerlink" title="客户端语言版本多"></a>客户端语言版本多</h3><p>如Java、Php、Go</p>
+<h3 id="支持多种持久化方式"><a href="#支持多种持久化方式" class="headerlink" title="支持多种持久化方式"></a>支持多种持久化方式</h3><p>RDB和AOP，这两种持久化深入分析请看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u014229282/article/details/81121214">https://blog.csdn.net/u014229282/article/details/81121214</a></p>
+<h3 id="支持集群部署"><a href="#支持集群部署" class="headerlink" title="支持集群部署"></a>支持集群部署</h3><h3 id="支持主从复制，高可用集群，内部集群方式与Memcache做集群实现不一样的机制。"><a href="#支持主从复制，高可用集群，内部集群方式与Memcache做集群实现不一样的机制。" class="headerlink" title="支持主从复制，高可用集群，内部集群方式与Memcache做集群实现不一样的机制。"></a>支持主从复制，高可用集群，内部集群方式与Memcache做集群实现不一样的机制。</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/redis/redis%E4%BC%98%E7%BC%BA%E7%82%B9%E5%92%8C%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF/">
+    <time datetime="2020-11-19T16:00:28.834Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/锁和事务+MVCC（多版本并发控制）/mysql锁+mvcc" class="post-005.服务实现/存储/Mysql+数据库原理/锁和事务+MVCC（多版本并发控制）/mysql锁+mvcc post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E9%94%81%E5%92%8C%E4%BA%8B%E5%8A%A1+MVCC%EF%BC%88%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%EF%BC%89/mysql%E9%94%81+mvcc/" data-id="ckhp0x7ry0041932uaxla4bpv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="锁产生的背景"><a href="#锁产生的背景" class="headerlink" title="锁产生的背景"></a>锁产生的背景</h1><p> 开发多用户、数据库驱动的应用时，最大的一个问题是：==一方面要最大程度地利用数据库的并发访问，另外一方面还要确保每个用户能以一致的方式读取和修改数据== </p>
+<p> 因此就有了锁机制。这也是数据库系统区别与文件系统的一个关键特性。</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>死锁是指两个或多个事务在同一资源上互相占用，并请求加锁时，而导致的恶性循环现象。当多个事务以不同顺序试围加锁同一资源时，就会产生死锁。任何时间，多个事务同时加锁-一个资源，-定产生死锁。</p>
+<p>例如，设想下列两个事务同时处理stockPrice表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">事务1</span><br><span class="line"></span><br><span class="line">START TRANSACTION;</span><br><span class="line"></span><br><span class="line">UPDATE StockPrice SET close&#x3D;45.50 WHERE stock id&#x3D; 4 and date &#x3D; ‘2002- 05-01’;</span><br><span class="line"></span><br><span class="line">UPDATE StockPrice SET close&#x3D;19.80 WHERE stock id&#x3D; 3 and date &#x3D; ‘2002 -05-02’;</span><br><span class="line"></span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">事务2</span><br><span class="line"></span><br><span class="line">START TRANSACTION;</span><br><span class="line"></span><br><span class="line">UPDATE StockPrice SET high&#x3D;20.12 WHERE stock id&#x3D; 3 and date &#x3D; ‘2002 -05-02’;</span><br><span class="line"></span><br><span class="line">UPDATE StockPrice SET high &#x3D; 47.20 WHERE stock id&#x3D; 4 and date &#x3D; ‘2002-05-01’;</span><br><span class="line"></span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+
+<p>如果很不幸凑巧，每个事务在处理过程中，都执行了第一个查询，更新了数据行，也加锁了该数据行。接着，每个事务都去试图更新第二个数据行，却发现该行已被(对方)加锁，然后两个事务都开始互相等待对方完成，陷入无限等待中，除非有外部因素介人，才能解除死锁。</p>
+<h1 id="查看锁"><a href="#查看锁" class="headerlink" title="查看锁"></a>查看锁</h1><p>INNODN_LOCKS 表</p>
+<p>ＩＮＮＯＤＢ＿ＴＲＸ　表</p>
+<p>ＩＮＮＯＤＢ＿ＬＯＣＫ＿ＷＡＩＴ　表</p>
+<p>ＳＨＯＷ　ＥＮＧＩＮＥ　ＩＮＮＮＯＤＢ　ＳＴＡＴＵＳ　查看当前请求锁信息</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35240226/article/details/82960507">https://blog.csdn.net/qq_35240226/article/details/82960507</a></p>
+<h1 id="锁的类别"><a href="#锁的类别" class="headerlink" title="锁的类别"></a>锁的类别</h1><h2 id="行级锁"><a href="#行级锁" class="headerlink" title="行级锁"></a>行级锁</h2><p>==InnoDB行锁是通过给索引上的索引项加锁来实现==的，这一点MySQL与Oracle不同，后者是通过在数据块中对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有==通过索引条件检索数据，InnoDB才使用行级锁==，否则，InnoDB将使用表锁！</p>
+<p>InnoDB存储引擎实现了如下两种标准的行级锁：</p>
+<h3 id="共享锁【S锁】-想安安静静的读-确保读一致性怕被写影响"><a href="#共享锁【S锁】-想安安静静的读-确保读一致性怕被写影响" class="headerlink" title="共享锁【S锁】 想安安静静的读 确保读一致性怕被写影响"></a>共享锁【S锁】 想安安静静的读 确保读一致性怕被写影响</h3><p>若sessionA获得某数据表的共享锁权限，那么任何session（包括sessionA）只能对该表进行读取，不能修改该表，sessionA可以继续对该数据表加X锁，其他session可以对该数据表继续加S锁但不能加X锁，直到sessionA释放共享锁权限。加锁方式：set tables tablename read；操作如下： </p>
+<p>这保证了其他事务可以读A，但在T释放A上的S锁之前不能对A做任何修改。<br>sessionA： </p>
+<p><img src="https://img-blog.csdn.net/20160802165533814" alt="image"></p>
+<p>sessionB：</p>
+<p><img src="https://img-blog.csdn.net/20160802165720487" alt="image"></p>
+<p>从上图操作可以看出，sessionA获得ha表共享锁权限以后，sessionA和sessionB都可以访问ha表，但是当sessionA想更改ha表时直接报错（ERROR 1099 (HY000): Table ‘ha’ was locked with a READ lock and can’t be updated ha表有一个共享锁不能被修改），sessionB更改ha表时并没有显示修改成功，而是在等待sessionA释放共享锁权限。</p>
+<h3 id="排它锁（写锁-或-X-LOCK）-想安安静静的写-怕其他读错了"><a href="#排它锁（写锁-或-X-LOCK）-想安安静静的写-怕其他读错了" class="headerlink" title="排它锁（写锁 或 X LOCK） 想安安静静的写 怕其他读错了"></a>排它锁（写锁 或 X LOCK） 想安安静静的写 怕其他读错了</h3><p>，允许事务删除或者更新一行数据<br>又称写锁。若事务T对数据对象A加上X锁，事务T可以读A也可以修改A，其他事务既不能读改 也不能再对A加任何锁，直到T释放A上的锁。</p>
+<p>事务T</p>
+<p><img src="https://img-blog.csdn.net/20160802163900355" alt="image"></p>
+<p>事务T1</p>
+<p><img src="https://img-blog.csdn.net/20160802164053699" alt="image"></p>
+<p>从上图操作可以看出sessionA获得ha表排它锁权限以后sessionB执行访问ha表操作以后并没用显示ha数据而是在等待sessionA释放锁权限</p>
+<h3 id="锁兼容"><a href="#锁兼容" class="headerlink" title="锁兼容"></a>锁兼容</h3><p>　　当一个事务已经获得了行r的共享锁，那么另外的事务可以立即获得行r的共享锁，因为读取并没有改变行r的数据，我们称这种情况为锁兼容。</p>
+<p>　　但如果有事务想获得行r的排它锁，则它必须等待事务释放行r上的共享锁——这种情况我们成为锁不兼容。</p>
+<h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h2><h3 id="表共享锁（Table-Read-Lock）"><a href="#表共享锁（Table-Read-Lock）" class="headerlink" title="表共享锁（Table Read Lock）"></a>表共享锁（Table Read Lock）</h3><p>==对MyISAM的读操作，不会阻塞其他用户对同一表的读请求，但会阻塞对同一表的写请求；==</p>
+<h3 id="表独占写锁（Table-Write-Lock）。"><a href="#表独占写锁（Table-Write-Lock）。" class="headerlink" title="表独占写锁（Table Write Lock）。"></a>表独占写锁（Table Write Lock）。</h3><p>==对MyISAM的写操作，则会阻塞其他用户对同一表的读和写操作；==<br>MyISAM表的读操作和写操作之间，以及写操作之间是串行的。</p>
+<p>==当一个线程获得对一个表的写锁后，只有持有锁线程可以对表进行更新操作。其他线程的读、写操作都会等待，直到锁被释放为止。==</p>
+<p>==MyISAM【select自动加锁】==</p>
+<p>在执行查询语句（SELECT）前，会自动给涉及的所有表加读锁，在执行更新操作（UPDATE、DELETE、INSERT等）前，会自动给涉及的表加写锁，这个过程并不需要用户干预，因此用户一般不需要直接用LOCK TABLE命令给MyISAM表显式加锁、</p>
+<p>MyISAM存储引擎的读和写锁是互斥，读操作是串行的。那么，一个进程请求某个MyISAM表的读锁，同时另一个进程也请求同一表的写锁，MySQL如何处理呢？答案是==写进程先获得锁==。不仅如此，即使读进程先请求先到锁等待队列，写请求后到，写锁也会插到读请求之前！==这是因为MySQL认为写请求一般比读请求重要。这也正是MyISAM表不太适合于有大量更新操作和查询操作应用的原因==<br>，因为，大量的更新操作会造成查询操作很难获得读锁，从而可能永远阻塞。这种情况有时可能会变得非常糟糕！幸好我们可以通过一些设置来调节MyISAM的调度行为。</p>
+<p>），　
+　　</p>
+<h3 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h3><p>为什么没有意向锁的话，表锁和行锁不能共存？<br>举个粟子（此时假设行锁和表锁能共存）： 事务A锁住表中的一行（写锁）。事务B锁住整个表（写锁）。</p>
+<p>但你就会发现一个很明显的问题，事务A既然锁住了某一行，其他事务就不可能修改这一行。这与”事务B锁住整个表就能修改表中的任意一行“形成了冲突。所以，没有意向锁的时候，行锁与表锁共存就会存在问题！</p>
+<p>有了意向锁之后，前面例子中的事务A在申请行锁（写锁）之前，数据库会自动先给事务A申请表的意向排他锁。当事务B去申请表的写锁时就会失败，因为表上有意向排他锁之后事务B申请表的写锁时会被阻塞。不需要我们程序员使用代码来申请。</p>
+<p>申请意向锁的动作是数据库完成的，就是说，事务A申请一行的行锁的时候，数据库会自动先开始申请表的意向锁，</p>
+<p>==因为InnoDB支持的是行级别的锁，所以意向锁其实不会阻塞除全表扫以外的任何请求。==<br>　==　InnoDB存储引擎支持多粒度锁定，这种锁定允许在行级上的锁和表级上的锁同时存在。==为了支持在不同粒度上进行加锁操作，InnoDB存储引擎支持一种额外的锁方式，我们称之为意向锁。</p>
+<h4 id="意向共享锁-IS-Lock），事务想要获得一个表中某几行的共享锁。"><a href="#意向共享锁-IS-Lock），事务想要获得一个表中某几行的共享锁。" class="headerlink" title="意向共享锁(IS Lock），事务想要获得一个表中某几行的共享锁。"></a>意向共享锁(IS Lock），事务想要获得一个表中某几行的共享锁。</h4><p>事务打算给数据行加行共享锁，事务在给一个数据行加共享锁前必须先取得该表的IS锁。</p>
+<h4 id="意向排它锁（IX-Lock），事务想要获得一个表中某几行的排它锁。"><a href="#意向排它锁（IX-Lock），事务想要获得一个表中某几行的排它锁。" class="headerlink" title="意向排它锁（IX Lock），事务想要获得一个表中某几行的排它锁。"></a>意向排它锁（IX Lock），事务想要获得一个表中某几行的排它锁。</h4><p>事务打算给数据行加行排他锁，事务在给一个数据行加排他锁前必须先取得该表的IX锁。</p>
+<h2 id="页锁"><a href="#页锁" class="headerlink" title="页锁"></a>页锁</h2><h2 id="乐观锁-amp-悲观锁"><a href="#乐观锁-amp-悲观锁" class="headerlink" title="乐观锁&amp;悲观锁"></a>乐观锁&amp;悲观锁</h2><h3 id="悲观锁（Pessimistic-Concurrency-Control，PCC）："><a href="#悲观锁（Pessimistic-Concurrency-Control，PCC）：" class="headerlink" title="　悲观锁（Pessimistic Concurrency Control，PCC）："></a>　悲观锁（Pessimistic Concurrency Control，PCC）：</h3><p>假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。至于怎么加锁，加锁的范围也没讲。</p>
+<p>悲观锁的特点是先获取锁，再进行业务操作，即“悲观”的认为获取锁是非常有可能失败的，因此要先确保获取锁成功再进行业务操作。</p>
+<p>==通常所说的“一锁二查三更新”即指的是使用悲观锁==。通常来讲在数据库上的悲观锁需要数据库本身提供支持，即通过常用的select … for update操作来实现悲观锁。</p>
+<h3 id="乐观锁（Optimistic-Concurrency-Control，OCC）-典型先后读取版本号"><a href="#乐观锁（Optimistic-Concurrency-Control，OCC）-典型先后读取版本号" class="headerlink" title="乐观锁（Optimistic Concurrency Control，OCC） 典型先后读取版本号"></a>乐观锁（Optimistic Concurrency Control，OCC） 典型先后读取版本号</h3><p>假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。</p>
+<p>乐观锁的特点先进行业务操作，不到万不得已不去拿锁。即“乐观”的认为拿锁多半是会成功的，因此在进行完业务操作需要实际更新数据的最后一步再去拿一下锁就好。</p>
+<h4 id="乐观锁常见的两种使用方式"><a href="#乐观锁常见的两种使用方式" class="headerlink" title="乐观锁常见的两种使用方式"></a>乐观锁常见的两种使用方式</h4><p>==乐观锁一般会使用版本号机制或CAS算法实现。==</p>
+<h4 id="1-版本号机制"><a href="#1-版本号机制" class="headerlink" title="1. 版本号机制"></a>1. 版本号机制</h4><p>一般是在数据表中加上一个数据版本号version字段，表示数据被修改的次数，当数据被修改时，version值会加一。当线程A要更新数据值时，在读取数据的同时也会读取version值，在提交更新时，若刚才读取到的version值为当前数据库中的version值相等时才更新，否则重试更新操作，直到更新成功。</p>
+<h4 id="2-CAS算法-即compare-and-swap（比较与交换）"><a href="#2-CAS算法-即compare-and-swap（比较与交换）" class="headerlink" title="2. CAS算法 即compare and swap（比较与交换）"></a>2. CAS算法 即compare and swap（比较与交换）</h4><p> 是一种有名的无锁算法。无锁编程，即不使用锁的情况下实现多线程之间的变量同步，也就是在没有线程被阻塞的情况下实现变量的同步，所以也叫非阻塞同步（Non-blocking Synchronization）</p>
+<p>。这样处理的逻辑是，首先检查某块内存的值是否跟之前我读取时的一样，如不一样则表示期间此内存值已经被别的线程更改过，舍弃本次操作，否则说明期间没有其他线程对此内存值操作，可以把新值设置给此块内存。<br>反向例子 ABA 问题</p>
+<h1 id="三级封锁协议"><a href="#三级封锁协议" class="headerlink" title="三级封锁协议"></a>三级封锁协议</h1><ol>
+<li>一级封锁协议：事务T中如果对数据R有写操作，必须在这个事务中对R的第一次读操作前对它加X锁，直到事务结束才释放。事务结束包括正常结束（COMMIT）和非正常结束（ROLLBACK）。</li>
+<li>二级封锁协议：一级封锁协议加上事务T在读取数据R之前必须先对其加S锁，读完后方可释放S锁。  </li>
+<li> 三级封锁协议 ：一级封锁协议加上事务T在读取数据R之前必须先对其加S锁，直到事务结束才释放。<br>　　<br>　　可见，三级锁操作一个比一个厉害（满足高级锁则一定满足低级锁）。但有个非常致命的地方，一级锁协议就要在第一次读加x锁，直到事务结束。几乎就要在整个事务加写锁了，效率非常低。三级封锁协议只是一个理论上的东西，实际数据库常用另一套方法来解决事务并发问题。</li>
+</ol>
+<h1 id="INNODB的锁相关底层和特性"><a href="#INNODB的锁相关底层和特性" class="headerlink" title="INNODB的锁相关底层和特性"></a>INNODB的锁相关底层和特性</h1><p>Mutex 数据结构实现锁</p>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p> 开始接触多版本的时候，我的疑问是innodb对每个行要存储多个版本是多么浪费存储空间呀？</p>
+<p>然而进一步了解，原来所谓的多版本只是innodb聪明地撒了个谎，多个版本是通过undo日志实现的，这里可以理解为既然==undo日志包括了所有用来恢复历史版本数据的信息==，那么我们只要将“不同版本”指针指向不同时间节点的undo日志即可，这样读取的时候通过对不同时间节点的undo日志进行恢复从而得到不同的版本数据。同时对于undo日志的读取是不需要加锁的，因此这极大地提高了数据库的并发性</p>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><p>innodb MVCC主要是为Repeatable-Read事务隔离级别做的。在此隔离级别下，A、B客户端所示的数据相互隔离，互相更新不可见</p>
+<p>了解innodb的行结构、Read-View的结构对于理解innodb mvcc的实现由重要意义</p>
+<p>innodb存储的最基本row中包含一些额外的存储信息 DATA_TRX_ID，DATA_ROLL_PTR，DB_ROW_ID，DELETE BIT</p>
+<ol>
+<li>6字节的DATA_TRX_ID 标记了最新更新这条行记录的transaction id，每处理一个事务，其值自动+1</li>
+<li>7字节的DATA_ROLL_PTR 指向当前记录项的rollback segment的undo log记录，找之前版本的数据就是通过这个指针</li>
+<li>6字节的DB_ROW_ID，当由innodb自动产生聚集索引时，聚集索引包括这个DB_ROW_ID的值，否则聚集索引中不包括这个值.，这个用于索引当中</li>
+<li>DELETE BIT位用于标识该记录是否被删除，这里的不是真正的删除数据，而是标志出来的删除。真正意义的删除是在commit的时候</li>
+</ol>
+<p><img src="https://images2015.cnblogs.com/blog/268981/201512/268981-20151221230743968-739828690.png" alt="image"></p>
+<p>具体的执行过程</p>
+<p>==begin-&gt;用排他锁锁定该行-&gt;记录redo log-&gt;记录undo log-&gt;修改当前行的值，写事务编号，回滚指针指向undo log中的修改前的行==</p>
+<p>上述过程确切地说是描述了UPDATE的事务过程，其实undo log分insert和update undo log，因为insert时，原始的数据并不存在，所以回滚时把insert undo log丢弃即可，而update undo log则必须遵守上述过程</p>
+<p>MVCC的实现，通过保存数据在某个时间点的快照来实现的。这意味着一个事务无论运行多长时间，在同一个事务里能够看到数据一致的视图。根据事务开始的时间不同，同时也意味着在同一个时刻不同事务看到的相同表里的数据可能是不同的。</p>
+<h2 id="一致性的非锁定读操作："><a href="#一致性的非锁定读操作：" class="headerlink" title="一致性的非锁定读操作："></a>一致性的非锁定读操作：</h2><p>　　是指InnoDB存储引擎通过行多版本并发控制（MVCC）的方式来读取当前执行时间数据库中行的数据。</p>
+<p>　　如果读取的行正在执行DELETE、UPDATE操作，这时读取操作不会因此等待行上的锁释放，相反，存储引擎会去读取一个快照数据。</p>
+<p>快照数据是指该行之前版本的数据，该实现是通过Undo段来实现。而Undo用来在事务中回滚数据，因而快照数据本身是没有额外的开销。此外，读取快照数据是不必要上锁的，因为没有必要对历史的数据进行修改。<br>　　所以，对于Read Commited的事务隔离级别而言，其实违反了事务的隔离性。<br>　　<br><img src="EBBC8CB9FF064AFCB842DC9B1704ED34" alt="image"></p>
+<blockquote>
+<p>　　在Read Comitted事务隔离级别下，对于快照数据，总是读取被锁定行的最新一份快照数据。</p>
+<p>　　在Repeatable Read事务隔离级别下，对于快照数据，总是读取事务开始时的行数据版本。</p>
+</blockquote>
+<p>问题一：上面Mark A处显然t1已经给记录加了X锁，并且在事务内修改了数据，此时t2看到的数据是什么？<br>t2此时看到的应该是历史版本的数据，也就是t1修改之前的数据 t3=bb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from mytest where t2&#x3D;&#39;bb&#39;;</span><br><span class="line">+------+------+------+------+</span><br><span class="line">| t1   | t2   | t3   | t4   |</span><br><span class="line">+------+------+------+------+</span><br><span class="line">| a    | bb   | bb   | ccc  |</span><br><span class="line">+------+------+------+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+<p>问题二：上面Mark B处事务t1已经提交此时t2看到的数据是什么？</p>
+<p>   此时t2看到的是什么跟此时数据库的隔离级别有关系<br>   1.隔离级别是 RR【可重复读】 即事务t2在事务前后应该一致，还是老数据 基于mvcc【违反了RC】<br>   2.隔离级别是 RC【读可提交】READ COMMITTED，则t2在Mark B处看到的应该是新数据。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>再总结一下，一致性非锁定读讲的是一条记录被加了X锁其他事务仍然可以读而不被阻塞，是通过innodb的行多版本实现的，行多版本并不是实际存储多个版本记录而是通过undo实现。一致性锁定读讲的是我可以通过SELECT语句显式地给一条记录加X锁从而保证特定应用场景下的数据一致性。。</p>
+<h2 id="自增长锁-【auto-increment】"><a href="#自增长锁-【auto-increment】" class="headerlink" title="自增长锁 【auto_increment】"></a>自增长锁 【auto_increment】</h2><p>   为了插入性能，锁不是事务完成才释放，而是自增长sql擦汗如即释放</p>
+<h1 id="InnoDB存储引擎-锁的算法"><a href="#InnoDB存储引擎-锁的算法" class="headerlink" title="InnoDB存储引擎 锁的算法"></a>InnoDB存储引擎 锁的算法</h1><ul>
+<li>1.Record Lock：单个行记录上的锁，锁定的对象是索引，而不是数据。<br> Record Lock总是会锁住索引记录，如果InnoDB存储引擎建立的时候没有设置任何一个索引，这时InnoDB存储引擎会使用隐式的主键来进行锁定。</li>
+<li>2.Gap Lock：间隙锁，锁定一个范围的索引，但不包含记录本身</li>
+<li>3.Next-Key Lock： Gap Lock + Record Lock，锁定一个范围的索引，并且锁定记录本身。</li>
+</ul>
+<p>　==　InnoDB的默认事务隔离级别是READ REPEATABLE，采用Next-Key Lock算法，解决了不可重复读（幻读）问题。==</p>
+<p>　　在Next-Key Lock 算法下，不仅仅是锁住扫描到的索引，而且还锁住这些索引覆盖的范围（gap）。因此对于这个范围内的插入都是不允许的。</p>
+<h2 id="详解-Gap-锁和-Next-key-Lock"><a href="#详解-Gap-锁和-Next-key-Lock" class="headerlink" title="详解　 Gap 锁和 Next-key Lock"></a>详解　 Gap 锁和 Next-key Lock</h2><p><img src="A04867E8ECE84E138F49AFAA91371375" alt="image"></p>
+<p>间隙锁（Gap Lock）一般是针对非唯一索引而言的，test表中的v1（非唯一索引）字段值可以划分的区间为：</p>
+<p>（-∞,1）</p>
+<p>（1,3）</p>
+<p>（3,4）</p>
+<p>（4,5）</p>
+<p>（5,7）</p>
+<p>（7,9）</p>
+<p>（9, +∞）</p>
+<p>假如要更新v1=7的数据行，那么此时会在索引idx_v1对应的值，也就是v1的值上加间隙锁，锁定的区间是（5,7）和（7,9）。==同时找到v1=7的数据行的主键索引和非唯一索引，对key加上锁。==</p>
+<h1 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h1><p>　　指将当前锁的粒度降低，比如1000个行锁升级为一个页锁，或者将页锁升级为表锁。</p>
+<p>　　InnoDB不存在锁升级的问题。</p>
+<p>　　其根据每个事务访问的每个页对锁进行管理，采用的是位图的方式。</p>
+<p>　　不管事务锁住页中的一个记录还是多个记录，其开销是一样的。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E9%94%81%E5%92%8C%E4%BA%8B%E5%8A%A1+MVCC%EF%BC%88%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%EF%BC%89/mysql%E9%94%81+mvcc/">
+    <time datetime="2020-11-19T16:00:28.833Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/数据库基本原理 几种键和范式：" class="post-005.服务实现/存储/Mysql+数据库原理/数据库基本原理 几种键和范式： post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%20%E5%87%A0%E7%A7%8D%E9%94%AE%E5%92%8C%E8%8C%83%E5%BC%8F%EF%BC%9A/" data-id="ckhp0x7rd002w932uci9mdt9t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>　# 外键<br>　学生表(学号，姓名，性别，班级)   　　学号是一个主键</p>
+<p>　课程表(课程号，课程名，学分)　　　　课程号是一个主键</p>
+<p>　成绩表(学号，课程号，成绩)　　　　　学号和课程号的属性组构成一个主键</p>
+<p>　成绩表中的学号不是成绩表的主键，不过是学生表的主键，成绩表的外键，同理课程号也是成绩表的外键</p>
+<p>　定义：如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键</p>
+<p>　以一个关系的外键作主关键字的表被称为主表，具有此外键的表被称为主表的从表<br>　<br>　<br>　<br>　<br>　约束 主键约束（primary）和外键约束（foregin） 非空约束（not null） 唯一性约束（Unique，允许为空，只能一个空） 默认约束（default）<br>约束 主键约束（primary）和外键约束（foregin） 非空约束（not null） 唯一性约束（Unique，允许为空，只能一个空） 默认约束（default）</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%20%E5%87%A0%E7%A7%8D%E9%94%AE%E5%92%8C%E8%8C%83%E5%BC%8F%EF%BC%9A/">
+    <time datetime="2020-11-19T16:00:28.832Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/mysql体系结构和存储引擎" class="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/mysql体系结构和存储引擎 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" data-id="ckhp0x7ri0035932uglgm95bk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="一、mysql体系结构和存储引擎"><a href="#一、mysql体系结构和存储引擎" class="headerlink" title="一、mysql体系结构和存储引擎"></a>一、mysql体系结构和存储引擎</h1><p>[TOC]</p>
+<h2 id="1-1-定义数据库和实例"><a href="#1-1-定义数据库和实例" class="headerlink" title="1.1 定义数据库和实例"></a>1.1 定义数据库和实例</h2><p>数据库 和数据库实例（==数据库是文件的集合==，数据库实例==是数据管理软件，用户的增删改查，操作数据==。应用程序通过数据库实例操作数据库）</p>
+<h2 id="1-2-MYSQL体系结构"><a href="#1-2-MYSQL体系结构" class="headerlink" title="1.2 MYSQL体系结构"></a>1.2 MYSQL体系结构</h2><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529939280026&di=640194ea19d2b235db300c73b15bf39e&imgtype=jpg&src=http://img4.imgtn.bdimg.com/it/u=4044845634,3630039161&fm=214&gp=0.jpg" alt="image"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhoubaojian/articles/7866292.html">https://www.cnblogs.com/zhoubaojian/articles/7866292.html</a><br>MySQL的查询优化器会自动调整where子句的条件顺序以使用适合的索引<br>Mysql是由SQL接口，解析器，优化器，缓存，存储引擎组成的（SQL Interface、Parser、Optimizer、Caches&amp;Buffers、Pluggable Storage Engines）</p>
+<p>（1） Connectors【接口】指的是不同语言中与SQL的交互</p>
+<p>（2）Management Serveices &amp; Utilities：系统管理和控制工具，例如备份恢复、Mysql复制、集群等 </p>
+<p>（3）Connection Pool:连接池：管理缓冲用户连接、用户名、密码、权限校验、线程处理等需要缓存的需求</p>
+<p>（4）SQL Interface: SQL接口：接受用户的SQL命令，并且返回用户需要查询的结果。比如select from就是调用SQL Interface </p>
+<p>（5）Parser: 解析器，SQL命令传递到解析器的时候会被解析器验证和解析。解析器是由Lex和YACC实现的，是一个很长的脚本</p>
+<p>（6）Optimizer: 查询优化器，SQL语句在查询之前会使用查询优化器对查询进行优化。他使用的是“选取-投影-联接”策略进行查询。</p>
+<p>（7） Cache和Buffer（高速缓存区）： 查询缓存，如果查询缓存有命中的查询结果，查询语句就可以直接去查询缓存中取数据。<br>通过LRU算法将数据的冷端溢出，未来得及时刷新到磁盘的数据页，叫脏页。<br>这个缓存机制是由一系列小缓存组成的。比如表缓存，记录缓存，key缓存，权限缓存等 </p>
+<p>（8）Engine ：存储引擎。存储引擎是MySql中具体的与文件打交道的子系统。也是Mysql最具有特色的一个地方。<br>Mysql的存储引擎是插件式的。它根据MySql AB公司提供的文件访问层的一个抽象接口来定制一种文件访问机制（这种访问机制就叫存储引擎）<br>现在有很多种存储引擎，各个存储引擎的优势各不一样，最常用的MyISAM,InnoDB,BDB<br>默认下MySql是使用MyISAM引擎，它查询速度快，有较好的索引优化和数据压缩技术。但是它不支持事务。<br><img src="6D5881C5E20F4E4085DF4B8F51C2F054" alt="image"></p>
+<h1 id="mysql-var路径下的-ibd-frm"><a href="#mysql-var路径下的-ibd-frm" class="headerlink" title="mysql var路径下的.ibd .frm"></a>mysql var路径下的.ibd .frm</h1><p>.frm: 存储表结构<br>.myd: 存储数据，MYData的缩写<br>.myi: 存储索引，MYIndex的缩写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ibd是MySQL数据文件、索引文件，无法直接读取。</span><br><span class="line">frm是表结构文件，可以直接打开</span><br></pre></td></tr></table></figure>
+
+<h1 id="mysql引擎的分类-MyISAM-InnoDB-Memory-BDB-Merge-Federated-BlackHole-CSV"><a href="#mysql引擎的分类-MyISAM-InnoDB-Memory-BDB-Merge-Federated-BlackHole-CSV" class="headerlink" title="mysql引擎的分类(MyISAM,InnoDB,Memory,BDB,Merge,Federated,BlackHole,CSV)"></a>mysql引擎的分类(MyISAM,InnoDB,Memory,BDB,Merge,Federated,BlackHole,CSV)</h1><p>(1)==MyISAM==： 其特点是不支持事务、表锁和全文 索 引 </p>
+<p>(2)==InnoDB==：事务型数据库的首选引擎，支持ACID事务，支持行级锁定<br>使用多版本并发控制（MVCC)来获得髙并发性，并且实现了SQL标准的 4种隔离级別，默认为REPEATABLE级别。同时使用一种被称为next-key locking的策略来 避免幻读（phantom)现象的产生.除此之外，InnoDB储存引擎还提供了插入缓冲（insert b u ffer)、二 次 写 （double write)、 自 适 应 哈 希 索 引 （adaptive hash index) 、预 读 </p>
+<p>InnoDB存储引擎支持事务，主要面向在线事务处理（OLTP) 方面的应用。其特点是 行锁设计、支持外键，并支持类似于Oracle的非锁定读，</p>
+<p>(3)BDB：源自Berkeley DB，事务型数据库的另一种选择，支持COMMIT和ROLLBACK等其他事务特性</p>
+<p>(4)Memory ：<br>Memory存储引擎（之前称为HEAP存储引擎）将表中的数据存放在内存中，如果数据 库重启或发生崩溃，表中的数据都将消失。它非常适合用于存储临时数据的临时表，以及<br>数据仓库中的纬度表。它默认使用哈希索引，而不是我们熟悉的B+树索引。<br>(5)Merge：将一定数量的MyISAM表联合而成一个整体，在超大规模数据存储时很有用</p>
+<p>(6)Archive ：非常适合存储大量的独立的，作为历史记录的数据。因为它们不经常被读取。Archive拥有高效的插入速度，但其对查询的支持相对较差</p>
+<p>(7)Federated：将不同的Mysql服务器联合起来，逻辑上组成一个完整的数据库。非常适合分布式应用 Cluster/NDB ：高冗余的存储引擎，用多台数据机器联合提供服务以提高整体性能和安全性。适合数据量大，安全和性能要求高的应用</p>
+<p>(8)CSV：逻辑上由逗号分割数据的存储引擎。它会在数据库子目录里为每个数据表创建一个.CSV文件。这是一种普通文本文件，每个数据行占用一个文本行。CSV存储引擎不支持索引。</p>
+<p>(9)BlackHole：黑洞引擎，写入的任何数据都会消失，一般用于记录binlog做复制的中继</p>
+<h2 id="1-3-Mysql表存储引擎"><a href="#1-3-Mysql表存储引擎" class="headerlink" title="1.3 Mysql表存储引擎"></a>1.3 Mysql表存储引擎</h2><h3 id="1-3-1-InnoDB存储引擎"><a href="#1-3-1-InnoDB存储引擎" class="headerlink" title="1.3.1 InnoDB存储引擎"></a>1.3.1 InnoDB存储引擎</h3><h3 id="1-3-2-MyISAM存储引擎"><a href="#1-3-2-MyISAM存储引擎" class="headerlink" title="1.3.2 MyISAM存储引擎"></a>1.3.2 MyISAM存储引擎</h3><h3 id="1-3-3-NDB存储引擎"><a href="#1-3-3-NDB存储引擎" class="headerlink" title="1.3.3 NDB存储引擎"></a>1.3.3 NDB存储引擎</h3><h3 id="1-3-4-Memeroy存储引擎"><a href="#1-3-4-Memeroy存储引擎" class="headerlink" title="1.3.4 Memeroy存储引擎"></a>1.3.4 Memeroy存储引擎</h3><h3 id="1-3-5-Archive存储引擎"><a href="#1-3-5-Archive存储引擎" class="headerlink" title="1.3.5 Archive存储引擎"></a>1.3.5 Archive存储引擎</h3><h3 id="1-3-6-Federated存储引擎"><a href="#1-3-6-Federated存储引擎" class="headerlink" title="1.3.6 Federated存储引擎"></a>1.3.6 Federated存储引擎</h3><h3 id="1-3-7-Maria存储引擎"><a href="#1-3-7-Maria存储引擎" class="headerlink" title="1.3.7 Maria存储引擎"></a>1.3.7 Maria存储引擎</h3><h3 id="1-3-8-其他存储引擎"><a href="#1-3-8-其他存储引擎" class="headerlink" title="1.3.8 其他存储引擎"></a>1.3.8 其他存储引擎</h3><h2 id="1-4各种存储引擎之间比较"><a href="#1-4各种存储引擎之间比较" class="headerlink" title="1.4各种存储引擎之间比较"></a>1.4各种存储引擎之间比较</h2><h2 id="1-5链接MYSQL"><a href="#1-5链接MYSQL" class="headerlink" title="1.5链接MYSQL"></a>1.5链接MYSQL</h2><h3 id="1-5-1-TCP-IP"><a href="#1-5-1-TCP-IP" class="headerlink" title="1.5.1 TCP/IP"></a>1.5.1 TCP/IP</h3><h3 id="1-5-2-命名管道和共享内存"><a href="#1-5-2-命名管道和共享内存" class="headerlink" title="1.5.2 命名管道和共享内存"></a>1.5.2 命名管道和共享内存</h3><h3 id="1-5-3-Unix域套接字"><a href="#1-5-3-Unix域套接字" class="headerlink" title="1.5.3 Unix域套接字"></a>1.5.3 Unix域套接字</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/mysql%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">
+    <time datetime="2020-11-19T16:00:28.832Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/文件" class="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/文件 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/%E6%96%87%E4%BB%B6/" data-id="ckhp0x7ri0036932ud14shsua" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="参数文件"><a href="#参数文件" class="headerlink" title="参数文件"></a>参数文件</h1><h1 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h1><h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><h2 id="二进制日志"><a href="#二进制日志" class="headerlink" title="二进制日志"></a>二进制日志</h2><h2 id="慢查询日志【配置一个阙值】"><a href="#慢查询日志【配置一个阙值】" class="headerlink" title="慢查询日志【配置一个阙值】"></a>慢查询日志【配置一个阙值】</h2><h2 id="查询日志"><a href="#查询日志" class="headerlink" title="查询日志"></a>查询日志</h2><h1 id="套接字文件"><a href="#套接字文件" class="headerlink" title="套接字文件"></a>套接字文件</h1><h1 id="pid文件"><a href="#pid文件" class="headerlink" title="pid文件"></a>pid文件</h1><h1 id="表结构定义文件"><a href="#表结构定义文件" class="headerlink" title="表结构定义文件"></a>表结构定义文件</h1><h1 id="innodb存储引擎文件"><a href="#innodb存储引擎文件" class="headerlink" title="innodb存储引擎文件"></a>innodb存储引擎文件</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/%E6%96%87%E4%BB%B6/">
+    <time datetime="2020-11-19T16:00:28.832Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/Innodb存储引擎内部和特性" class="post-005.服务实现/存储/Mysql+数据库原理/mysql内部结构+引擎/Innodb存储引擎内部和特性 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/Innodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E5%92%8C%E7%89%B9%E6%80%A7/" data-id="ckhp0x7rh0034932udarzgm8r" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="InnoDB体系架构"><a href="#InnoDB体系架构" class="headerlink" title="InnoDB体系架构"></a>InnoDB体系架构</h1><p>Innodb有多个内存块，<br><img src="https://img-blog.csdn.net/20180612011119133" alt="image"><br><img src="07266E65D3C044DF8119F138A2485B18" alt="image"></p>
+<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><p>（1）内存根据分工以及存储文件的不同分为==缓冲池、重做日志缓冲、额外内存池：==</p>
+<p>缓冲池：InnoDB引擎是基于磁盘存储的，磁盘io慢，若在缓冲池中，称该页被命中，直接读取缓冲池中的页。否则，读取磁盘上的页，由此提高了读取的速度。</p>
+<p>数据库修改数据操作时，首先修改在缓冲池的页，然后再异步刷新到磁盘上，从而提高改数据的速度。缓冲池中缓存的数据页类型有：索引页、数据页、undo页、插入缓冲、自适应哈希索引、InnoDB存储的锁信息、数据字典信息等。</p>
+<p>重做日志缓冲：InnoDB首先将重做日志信息放到这个缓冲区，然后按照一定频率将其刷新到重做日志文件。默认1秒钟刷新一次，因此重做日志缓冲一般不需要很大，默认8M。</p>
+<p>日志在下列3种情况下会刷新重做日志缓冲：</p>
+<ul>
+<li>（1）每秒将重做日志缓冲刷新到重做日志文件</li>
+<li></li>
+<li>（2）每个事务提交时会将重做日志缓冲刷新到重做日志文件</li>
+<li></li>
+<li>（3）当重做日志缓冲池剩余空间小于1/2时，重做日志缓冲刷新到重做日志文件。</li>
+</ul>
+<p>额外的内存池：在InnoDB存储引擎中，对内存的管理是通过一种称为内存堆的方式进行的。在对一些数据结构本身的内存进行分配时，需要从额外的内存池中进行申请。</p>
+<h2 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h2><p>（2）后台线程根据功能不同分==为master Thread、IO Thread、Purge Thread、Page Cleaner== Thread:</p>
+<p>Master Thread【每秒和每十秒】:==负责将缓冲池中的数据异步刷新到磁盘==，保证数据的一致性，包括脏页的刷新、合并插入缓冲、UNDO夜的回收等。</p>
+<p>IO Thread:在InnoDB存储引擎中大量使用异步 IO处理IO请求以提高数据库的性能，IO Thread负责这些IO请求的回调处理。IO Thread 有4类，分别为write、read、insert buffer、log IO thread。</p>
+<p>Purge Thread：由于回收不再需要的undo页。</p>
+<p>Page Cleaner Thread:将缓冲池中脏页（即被修改过于磁盘中数据不一致的页）刷新到磁盘中。</p>
+<h1 id="InnoDB的三大特性"><a href="#InnoDB的三大特性" class="headerlink" title="InnoDB的三大特性"></a>InnoDB的三大特性</h1><h2 id="插入缓冲【针对非聚集索引】"><a href="#插入缓冲【针对非聚集索引】" class="headerlink" title="插入缓冲【针对非聚集索引】"></a>插入缓冲【针对非聚集索引】</h2><p>对于==非聚集索引的插入和更新操作==，Innodb存储引擎并不是直接插入到索引页中，而是的Insert Buffer。==然后再以一定的频率进行insertbuffer和辅助索引叶子节点的merge。着通常将多个随机插入合并到一个操作中。大大提高了非聚集索引插入的性能。==</p>
+<p>条件：索引不是非聚集索引且不是unique</p>
+<h2 id="一致性非锁定读"><a href="#一致性非锁定读" class="headerlink" title="一致性非锁定读"></a>一致性非锁定读</h2><h2 id="两次写"><a href="#两次写" class="headerlink" title="两次写"></a>两次写</h2><p>当数据库正在从内存向磁盘写一个数据页时，数据库宕机，从而导致这个页只写了部分数据，这就是部分写失效，它会导致数据丢失。这时是无法通过重做日志恢复的，因为重做日志记录的是对页的物理修改，如果页本身已经损坏，重做日志也无能为力。</p>
+<p><img src="https://img-blog.csdn.net/20130612080041468" alt="image"><br>两次写需要额外添加两个部分：</p>
+<ul>
+<li>1）内存中的两次写缓冲（doublewrite buffer），大小为2MB</li>
+<li>2）磁盘上共享表空间中连续的128页，大小也为2MB</li>
+</ul>
+<p>其原理是这样的：</p>
+<ul>
+<li>1）当刷新缓冲池脏页时，并不直接写到数据文件中，而是先拷贝至内存中的两次写缓冲区。</li>
+<li>2）接着从两次写缓冲区分两次写入磁盘共享表空间中，每次写入1MB</li>
+<li>3）待第2步完成后，再将两次写缓冲区写入数据文件</li>
+</ul>
+<p>这样就可以解决上文提到的部分写失效的问题，因为在磁盘共享表空间中已有数据页副本拷贝，如果数据库在页写入数据文件的过程中宕机，在实例恢复时，可以从共享表空间中找到该页副本，将其拷贝覆盖原有的数据页，再应用重做日志即可。</p>
+<h2 id="自适应哈希索引"><a href="#自适应哈希索引" class="headerlink" title="自适应哈希索引"></a>自适应哈希索引</h2><p>nnodb 存储引擎会监控对表上各索引页的查询，如果观察到建立hash索引可以带来速度的提升。则建立hash索引，称之为自适应hash索引（AHI).</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84+%E5%BC%95%E6%93%8E/Innodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E5%92%8C%E7%89%B9%E6%80%A7/">
+    <time datetime="2020-11-19T16:00:28.831Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/索引/mysql 的索引+慢查询" class="post-005.服务实现/存储/Mysql+数据库原理/索引/mysql 的索引+慢查询 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E7%B4%A2%E5%BC%95/mysql%20%E7%9A%84%E7%B4%A2%E5%BC%95+%E6%85%A2%E6%9F%A5%E8%AF%A2/" data-id="ckhp0x7rl003d932u5hv079bz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="什么是B树和B-树"><a href="#什么是B树和B-树" class="headerlink" title="什么是B树和B+树"></a>什么是B树和B+树</h1><p>B树：有序数组+平衡多叉树；<br>B+树：有序数组链表+平衡多叉树；</p>
+<h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><p>B树，概括来说是一个节点可以拥有多于2个子节点的二叉查找树。与自平衡二叉查找树不同，B-树为系统最优化大块数据的读和写操作。B-tree算法减少定位记录时所经历的中间过程，从而加快存取速度。普遍运用在数据库和文件系统</p>
+<p>B 树可以看作是对2-3查找树的一种扩展，即他允许每个节点有M-1个子节点。</p>
+<ol>
+<li>根节点至少有两个子节点</li>
+<li>每个节点有M-1个key，并且以升序排列</li>
+<li>位于M-1和M key的子节点的值位于M-1 和M key对应的Value之间</li>
+<li>其它节点至少有M/2个子节点</li>
+</ol>
+<p><img src="https://images0.cnblogs.com/blog/94031/201403/290047064066682.png" alt="image"><br>B树的插入和平衡化操作<br><img src="https://files.cnblogs.com/yangecnu/btreebuild.gif" alt="image"></p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>B+树是对B树的一种变形树，它与B树的差异在于：</p>
+<ol>
+<li>有k个子结点的结点必然有k个关键码；</li>
+<li>非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。</li>
+<li>树的所有叶结点构成一个有序链表，可以按照关键码排序的次序遍历全部记录。</li>
+</ol>
+<p><img src="https://images0.cnblogs.com/blog/94031/201403/290050048129679.png" alt="image"></p>
+<p>B+树的插入和平衡化操作<br><img src="https://files.cnblogs.com/yangecnu/Bplustreebuild.gif" alt="image"></p>
+<h2 id="B树和B-树的区别和分析-和应用"><a href="#B树和B-树的区别和分析-和应用" class="headerlink" title="B树和B+树的区别和分析 和应用"></a>B树和B+树的区别和分析 和应用</h2><p>B+ 树的优点在于：</p>
+<ol>
+<li>由于B+树在内部节点上不包含数据信息，因此在内存页中能够存放更多的key。 数据存放的更加紧密，具有更好的空间局部性。因此访问叶子节点上关联的数据也具有更好的缓存命中率。</li>
+<li>B+树的叶子结点都是相链的，因此对整棵树的便利只需要一次线性遍历叶子结点即可。而且由于数据顺序排列并且相连，所以便于区间查找和搜索。而B树则需要进行每一层的递归遍历。相邻的元素可能在内存中不相邻，所以缓存命中性没有B+树好。<br><img src="https://images0.cnblogs.com/blog/94031/201403/290050088914733.png" alt="image"><br>这种效率是很高的，对于N=62*1000000000个节点，如果度为1024，则logM/2N &lt;=4，即在620亿个元素中，如果这棵树的度为1024，则只需要小于4次即可定位到该节点，然后再采用二分查找即可找到要找的值。<h1 id="B-树为啥适合被用做数据库索引"><a href="#B-树为啥适合被用做数据库索引" class="headerlink" title="B+树为啥适合被用做数据库索引"></a>B+树为啥适合被用做数据库索引</h1></li>
+</ol>
+<h2 id="一步步分析为什么B-树适合作为数据库索引的结构"><a href="#一步步分析为什么B-树适合作为数据库索引的结构" class="headerlink" title="一步步分析为什么B+树适合作为数据库索引的结构"></a>一步步分析为什么B+树适合作为数据库索引的结构</h2><p><a target="_blank" rel="noopener" href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">http://blog.codinglabs.org/articles/theory-of-mysql-index.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aspirant/p/9214485.html">https://www.cnblogs.com/aspirant/p/9214485.html</a></p>
+<p>==为什么链表不适合做索引（O(n)）==<br>==为什么平衡二叉树不适合作为索引==</p>
+<p>  索引文件很大，无法一次加载到内存，一次只能加载一个内存页，故需要减少磁盘的I/O操作，==没能充分利用磁盘预读功能==</p>
+<p>==为什么红黑树也不适合==</p>
+<p>  红黑树这种结构，h明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的I/O渐进复杂度也为O(h)，效率明显比B-Tree差很多。</p>
+<p>==为什么选择了B树==<br>  B树就是为了作为索引才被发明出来的的。<br>  归纳起来：<br>  1.B树充分利用了磁盘的预读功能，因为深度小，所以磁盘的I/O读写次数少<br>  2.虽然B树宽，复杂度确实比BST高，但是因为是在内存中，所以避重就轻</p>
+<h2 id="为什么B-树比B树更适合"><a href="#为什么B-树比B树更适合" class="headerlink" title="为什么B+树比B树更适合"></a>为什么B+树比B树更适合</h2><p>做这个优化的目的是为了提高区间访问的性能<br>B树在提高了磁盘IO性能的同时并没有解决元素遍历的效率低下的问题。正是为了解决这个问题，B+树应运而生。B+树只要遍历叶子节点就可以实现整棵树的遍历。而且在数据库中基于范围的查询是非常频繁的，而B树不支持这样的操作（或者说效率太低）。</p>
+<h1 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/timer_gao/article/details/78013826">https://blog.csdn.net/timer_gao/article/details/78013826</a></p>
+<h2 id="索引表现形式命中规则"><a href="#索引表现形式命中规则" class="headerlink" title="索引表现形式命中规则"></a>索引表现形式命中规则</h2><p> 键(Key)</p>
+<p>  首先，我们发现在多数情况下，定位操作并不需要匹配整行数据。而是很规律的只匹配某一个<br>  或几个列的值。 例如，图中第1列就可以用来确定一条记录。这些用来确定一条数据的列，统<br>  称为键(Key).</p>
+<p><img src="https://img-my.csdn.net/uploads/201210/25/1351131021_9989.jpg" alt="image"><br>  根据减少无效数据访问的原则，我们将键的值拿过来存放到独立的块中。并且为每一个键值添<br>  加一个指针， 指向原来的数据块。如图所示,</p>
+<p><img src="https://img-my.csdn.net/uploads/201210/25/1351131047_7882.jpg" alt="image"><br><img src="https://img-my.csdn.net/uploads/201210/25/1351131308_7570.jpg" alt="image"></p>
+<p>   辅助索引<br><img src="https://img-my.csdn.net/uploads/201210/25/1351131431_5894.jpg" alt="image"></p>
+<p>   为了降低难度和增加更新(分裂和合并B+Tree节点)的性能，InnoDB 将 Secondary B+Tree中的指针替换成了主键的键值。如图Fig.11所示：</p>
+<p><img src="https://img-my.csdn.net/uploads/201210/25/1351131464_1022.jpg" alt="image"></p>
+<h3 id="联合索引的最左前缀匹配原理"><a href="#联合索引的最左前缀匹配原理" class="headerlink" title="联合索引的最左前缀匹配原理"></a>联合索引的最左前缀匹配原理</h3><h2 id="聚集索引和非聚集索引"><a href="#聚集索引和非聚集索引" class="headerlink" title="聚集索引和非聚集索引"></a>聚集索引和非聚集索引</h2><h3 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h3><p>   该索引中键值的逻辑顺序决定了表中相应行的物理顺序。<br>   <img src="https://images.cnblogs.com/cnblogs_com/aspnethot/Pic11.JPG" alt="image"></p>
+<h3 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h3><p>   该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同。</p>
+<p>   <img src="https://images.cnblogs.com/cnblogs_com/aspnethot/Pic10.JPG" alt="image"></p>
+<h2 id="mysql支持的索引"><a href="#mysql支持的索引" class="headerlink" title="mysql支持的索引"></a>mysql支持的索引</h2><p>MySQL中，主要有四种类型的索引，分别为：B-Tree索引（B树索引），Hash索引，Fulltext（全文）索引和R-Tree索引<br>的表总结了何时使用聚集索引或非聚集索引（很重要）：</p>
+<p>动作描述    使用聚集索引    使用非聚集索引<br>列经常被分组排序    应    应<br>返回某范围内的数据    应    不应<br>一个或极少不同值    不应    不应<br>小数目的不同值    应    不应<br>大数目的不同值    不应    应<br>频繁更新的列    不应    应<br>外键列    应    应<br>主键列    应    应<br>频繁修改索引列    不应    应</p>
+<h3 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h3><h4 id="Myisam-非聚集索引"><a href="#Myisam-非聚集索引" class="headerlink" title="Myisam 非聚集索引"></a>Myisam 非聚集索引</h4><p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址。下图是MyISAM索引的原理图： 典型的B+树</p>
+<p>==MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址==</p>
+<p><img src="http://images.cnitblog.com/blog2015/740638/201504/192216401045034.png" alt="image"></p>
+<p>在MyISAM中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是主索引要求key是唯一的，而辅助索引的key可以重复。如果我们在Col2上建立一个辅助索引，则此索引的结构如下图所示：<br><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png" alt="image"></p>
+<h4 id="innoDb-聚集索引"><a href="#innoDb-聚集索引" class="headerlink" title="innoDb 聚集索引"></a>innoDb 聚集索引</h4><p> ==表数据文件本身就是按B+Tree组织的一个索引结构==这棵树的叶节点data域保存了完整的数据记录</p>
+<p>==支持 B+树索引  哈希索引==</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png" alt="image"></p>
+<p>因为索引和数据不分离，所以InnoDB要求表必须有主键（MyISAM可以没有），如果没有显式指定，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键</p>
+<p>第二个与MyISAM索引的不同是InnoDB的辅助索引data域存储相应记录主键的值而不是地址。换句话说，InnoDB的所有辅助索引都引用主键作为data域。例</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png" alt="image"></p>
+<p>==是辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录==<br>所以 innnoDb索引 不建议过长字段做主键（辅助索引会变大）<br>也不建议非单调索引（即自增索引），非单调会频繁插入调整，低效</p>
+<h4 id="myisam-和innodb-基于索引上的区别"><a href="#myisam-和innodb-基于索引上的区别" class="headerlink" title="myisam 和innodb 基于索引上的区别"></a>myisam 和innodb 基于索引上的区别</h4><p>自我总结：就索引上来讲，虽然两个都是用的B+树索引 但是还是有区别<br>   1.Mysisam的索引用的是 索引文件+数据文件分离的，叶结点存的是地址，因而查找其实是查地址，所以新增辅助索引时，且主索引和辅助索引结构无差别（只是主key 要求唯一），<br>   2.innodb索引和数据在一起，主索引就是主key 叶结点存的是数据，而且辅助索引 叶结点存的是主key，如果通过辅助索引找，是先找到主key 然后根据主key在主索引上找数据。</p>
+<h3 id="Hash索引-Memory-heap-支持-但Innodb自适应"><a href="#Hash索引-Memory-heap-支持-但Innodb自适应" class="headerlink" title="Hash索引(Memory/heap 支持 但Innodb自适应)"></a>Hash索引(Memory/heap 支持 但Innodb自适应)</h3><p>  简单地说，哈希索引就是采用一定的哈希算法，把键值换算成新的哈希值，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可立刻定位到相应的位置，速度非常快。==innoDB存储引擎会根据表的使用情况自动为表生成hash索引，不能人为干预是否在一张表中生成hash索引。==</p>
+<p> <img src="https://images2015.cnblogs.com/blog/99941/201607/99941-20160706162359874-1132773212.jpg" alt="image"></p>
+<p> ==innoDB存储引擎会根据表的使用情况自动为表生成hash索引，不能人为干预是否在一张表中生成hash索引。==<br> 自适应hash原理</p>
+<p> <img src="https://images2017.cnblogs.com/blog/1113510/201708/1113510-20170830183917780-959160821.png" alt="image"></p>
+<p> Innodb存储引擎会监控对表上二级索引的查找，如果发现某二级索引被频繁访问，二级索引成为热数据，建立哈希索引可以带来速度的提升</p>
+<h4 id="B-树索引和哈希索引的明显区别"><a href="#B-树索引和哈希索引的明显区别" class="headerlink" title="B+树索引和哈希索引的明显区别"></a>B+树索引和哈希索引的明显区别</h4><pre><code>1.等值查询 哈希索引有优势。select * from tblStaff where  id= ;
+2.范围查询，哈希不行，有序的键值哈希之后无需
+3.重复值较多时，也不合适</code></pre>
+<p>MySQL中，只有HEAP/MEMORY引擎表才能显式支持哈希索引（NDB也支持，但这个不常用），InnoDB引擎的自适应哈希索引（adaptive hash index）不在此列</p>
+<h3 id="Fulltext（全文）索引-MyIsam-支持-MYSQL5-6的InnoDB支持全文索引-大数据文本搜索"><a href="#Fulltext（全文）索引-MyIsam-支持-MYSQL5-6的InnoDB支持全文索引-大数据文本搜索" class="headerlink" title="Fulltext（全文）索引  MyIsam 支持   MYSQL5.6的InnoDB支持全文索引 大数据文本搜索"></a>Fulltext（全文）索引  MyIsam 支持   MYSQL5.6的InnoDB支持全文索引 大数据文本搜索</h3><p>  <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/645402711dac">https://www.jianshu.com/p/645402711dac</a><br>  底层实现原理<br>  <img src="https://upload-images.jianshu.io/upload_images/9358011-671151d02160a998.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/675/format/webp" alt="image"><br>  倒排索引被称为反向索引更为合适<br>当表上存在全文索引时，就会隐式的建立一个名为FTS_DOC_ID的列，并在其上创建一个唯一索引，用于标识分词出现的记录行。你也可以显式的创建一个名为FTS_DOC_ID的列，<br>   常规的索引是文档到关键词的映射：文档——&gt;关键词<br>倒排索引是关键词到文档的映射：关键词——&gt;文档</p>
+<p>Number    Text    Documents<br>1    code    (1:6),(4:8)<br>2    days    (3:2),(6:2)<br>3    hot    (1:3),(4:4)</p>
+<p>是word + ilist的存储结构<br>Text对应于word，是一个分词。Document存储的是键值对，键为FTS_DOC_ID，值为在文档中的位置，对应于ilist。其中word保存在<br>Auxiliary Table中，总共有六张，每张表根据word的Latin编码进行分区，下面有介绍</p>
+<h3 id="R-Tree索引-空间数据索引"><a href="#R-Tree索引-空间数据索引" class="headerlink" title="R-Tree索引 空间数据索引"></a>R-Tree索引 空间数据索引</h3><p>  OpenGIS  </p>
+<h3 id="前缀索引-不重复的索引值（也称为基数"><a href="#前缀索引-不重复的索引值（也称为基数" class="headerlink" title="前缀索引   不重复的索引值（也称为基数"></a>前缀索引   不重复的索引值（也称为基数</h3><p>  select count(distinct left(city,3))/count(<em>) as sel3,count(distinct left(city,4))/count(</em>) as sel4,count(distinct left(city,5))/count(<em>) as sel5, count(distinct left(city,6))/count(</em>) as sel6 from city_demo;  </p>
+<h1 id="索引使用策略-慢查询"><a href="#索引使用策略-慢查询" class="headerlink" title="索引使用策略+慢查询"></a>索引使用策略+慢查询</h1><p>分析什么样的查询会命中<br>情况一：全列匹配。</p>
+<p>  1.MySQL的查询优化器会自动调整where子句的条件顺序以使用适合的索引 例如 ab是索引<br>    select* from tblStaff where a= 1 and b= 1;<br>    select* from tblStaff where b= 1 and 1= 1;</p>
+<p>情况二：最左前缀匹配。<br>情况三：查询条件用到了索引中列的精确匹配，但是中间某个条件未提供<br>。<br>  2.可以考虑用“IN”来填补这个“坑”从而形成最左前缀：  例如abc是索引 </p>
+<ul>
+<li>  select* from tblStaff where a= 1 and b= 1; 命中 </li>
+<li>  select* from tblStaff where a= 1 and c= 1; 不命中</li>
+<li>  select* from tblStaff where a= 1 and c= 1 and b in(1,3,4);命中</li>
+</ul>
+<p>情况四：查询条件没有指定索引第一列。<br>      select* from tblStaff where  c= 1; 不命中、</p>
+<p>情况六：范围查询</p>
+<p>  围列可以用到索引（必须是最左前缀），但是范围列后面的列无法用到索引。同时，索<br>  最多用于一个范围列，因此如果查询条件中有两个范围列则无法全用到索引。</p>
+<p>情况七：查询条件中含有函数或表达式。<br>  无法命中</p>
+<h2 id="联合索引的最左匹配原理"><a href="#联合索引的最左匹配原理" class="headerlink" title="联合索引的最左匹配原理"></a>联合索引的最左匹配原理</h2><p>。<br>  abc是联合索引 </p>
+<ul>
+<li>  select* from tblStaff where a= 1 and b= 1; 命中 </li>
+<li>  select* from tblStaff where a= 1 and c= 1; 不命中</li>
+<li>select* from tblStaff where a= 1 and c= 1 and b in(1,3,4);命中<br>联合索引的结构<br><img src="https://i.imgur.com/vUQ8KOi.png" alt="image"><br><img src="https://i.imgur.com/4jHKiv7.png" alt="image"></li>
+</ul>
+<h2 id="该不该使用索引-（上限值）"><a href="#该不该使用索引-（上限值）" class="headerlink" title="该不该使用索引 （上限值）"></a>该不该使用索引 （上限值）</h2><p>1.第一种情况是表记录比较少，例如一两千条甚至只有几百条记录的表，没必要建索引，让查询做全表扫描就好了。至于多少条记录才算多，这个个人有个人的看法，我个人的经验是以2000作为分界线，记录数不超过 2000可以考虑不建索引</p>
+<p>2.不建议建索引的情况是索引的选择性较低。所谓索引的选择性（Selectivity），是指不重复的索引值（也叫基数，Cardinality）与表记录数（#T）的比值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Index Selectivity &#x3D; Cardinality &#x2F; #T</span><br><span class="line">select (distinct(a))&#x2F;count(*) as value from tblStaff;</span><br></pre></td></tr></table></figure>
+
+
+<p>==显然选择性的取值范围为(0, 1]，选择性越高的索引价值越大，这是由B+Tree的性质决定的。==</p>
+<p>3.前缀索引、<br>  ADD INDEX <code>first_name_last_name4</code> (first_name, last_name(4));<br>  就是把first_name 和last_name 前4位 加上索引<br>  于ORDER BY和GROUP BY操作，也不能用于Covering index（即当索引本身包含查询所需全部数据时，不再访问数据文件本身）。<br>  first_name, left(last_name, 3) </p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E7%B4%A2%E5%BC%95/mysql%20%E7%9A%84%E7%B4%A2%E5%BC%95+%E6%85%A2%E6%9F%A5%E8%AF%A2/">
+    <time datetime="2020-11-19T16:00:28.831Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql基础语法/mysql基础语法" class="post-005.服务实现/存储/Mysql+数据库原理/mysql基础语法/mysql基础语法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckhp0x7ri0037932u3qbe0sp0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>查询分类<br>[TOC]</p>
+<h1 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h1><h1 id="联合查询（UNION）"><a href="#联合查询（UNION）" class="headerlink" title="联合查询（UNION）"></a>联合查询（UNION）</h1><h2 id="一、UNION（消除重复行）和UNION-ALL（不消除重复行）"><a href="#一、UNION（消除重复行）和UNION-ALL（不消除重复行）" class="headerlink" title="一、UNION（消除重复行）和UNION ALL（不消除重复行）"></a>一、UNION（消除重复行）和UNION ALL（不消除重复行）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNION 用于合并两个或多个 SELECT 语句的结果集，并消去表中任何重复行。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select staff_uid,role from tblStaff  union select staff_uid,role from tblStaffInitInfo;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>+————+——+</li>
+<li>| staff_uid  | role |</li>
+<li>+————+——+</li>
+<li>| 2135343000 |    1 |</li>
+<li>|    1234567 |    1 |</li>
+<li>|    1850040 |    4 |</li>
+<li>|    8879041 |    0 |</li>
+<li>| 2290116733 |    1 |</li>
+<li>|    8879041 |    4 |</li>
+<li>| 2290116733 |    4 |</li>
+<li>+————+——+</li>
+</ol>
+<h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><h2 id="内连接-只连接匹配的行"><a href="#内连接-只连接匹配的行" class="headerlink" title="内连接 (只连接匹配的行)"></a>内连接 (只连接匹配的行)</h2><h3 id="等值连接"><a href="#等值连接" class="headerlink" title="等值连接"></a>等值连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select tblStaff.*,tblStaffBaseInfo.* from tblStaff inner join tblStaffBaseInfo on tblStaff.staff_uid &#x3D; tblStaffBaseInfo.staff_uid\G;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自然连接（select-确定值）"><a href="#自然连接（select-确定值）" class="headerlink" title="自然连接（select 确定值）"></a>自然连接（select 确定值）</h3><p>自然连接：基于两个表的同名的一个或多个列。</p>
+<p>【注意】自然连接是根据两个表中同名的列而进行连接的，当列不同名时，自然连接将失去意义。且语法中没有on。</p>
+<h3 id="不等连接（-gt-）"><a href="#不等连接（-gt-）" class="headerlink" title="不等连接（&gt;）"></a>不等连接（&gt;）</h3><h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>使用关键字outer join。用于检索一个表的所有记录和另一个表中的匹配行。</p>
+<h3 id="左外连接-left-outer-join-无限满足左表"><a href="#左外连接-left-outer-join-无限满足左表" class="headerlink" title="左外连接 (left outer join 无限满足左表)"></a>左外连接 (left outer join 无限满足左表)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select  tblStaff.staff_uid,tblStaffBaseInfo.staff_uid,staff_name,class  from tblStaff  left outer  join tblStaffBaseInfo   on tblStaff.staff_uid &#x3D; tblStaffBaseInfo.staff_uid;</span><br></pre></td></tr></table></figure>
+
+<h3 id="右外连接-right-outer-join-无限满足右表"><a href="#右外连接-right-outer-join-无限满足右表" class="headerlink" title="右外连接 (right outer join 无限满足右表)"></a>右外连接 (right outer join 无限满足右表)</h3><h3 id="全外连接-FULL-OUTER-JOIN"><a href="#全外连接-FULL-OUTER-JOIN" class="headerlink" title="全外连接 FULL OUTER JOIN"></a>全外连接 FULL OUTER JOIN</h3><h2 id="交叉连接"><a href="#交叉连接" class="headerlink" title="交叉连接"></a>交叉连接</h2><p>念:没有where条件的交叉连接将产生连接表所涉及的笛卡尔积。即TableA的行数*TableB的行数的结果集。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+    <time datetime="2020-11-19T16:00:28.829Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/5/">5</a><a class="page-number" href="/huanghao.github.io/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/huanghao.github.io/page/8/">8</a><a class="page-number" href="/huanghao.github.io/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/8/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

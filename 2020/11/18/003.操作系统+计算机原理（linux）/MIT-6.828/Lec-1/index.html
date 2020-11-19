@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="课堂笔记讲义6.S081 2020 Lecture 1: O&#x2F;S overview Overview  6.S081 goals  Understand operating system (O&#x2F;S) design and implementation Hands-on experience extending a small O&#x2F;S Hands-on experience writing syst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/18/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/MIT-6.828/Lec-1/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="课堂笔记讲义6.S081 2020 Lecture 1: O&#x2F;S overview Overview  6.S081 goals  Understand operating system (O&#x2F;S) design and implementation Hands-on experience extending a small O&#x2F;S Hands-on experience writing syst">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-18T13:39:50.120Z">
+<meta property="article:modified_time" content="2020-11-18T13:39:50.120Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-003.操作系统+计算机原理（linux）/MIT-6.828/Lec-1" class="post-003.操作系统+计算机原理（linux）/MIT-6.828/Lec-1 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/18/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/MIT-6.828/Lec-1/" data-id="ckhp0x7qg0010932ues2pbluz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="课堂笔记"><a href="#课堂笔记" class="headerlink" title="课堂笔记"></a>课堂笔记</h1><h1 id="讲义"><a href="#讲义" class="headerlink" title="讲义"></a>讲义</h1><p>6.S081 2020 Lecture 1: O/S overview</p>
+<p>Overview</p>
+<ul>
+<li><p>6.S081 goals</p>
+<ul>
+<li>Understand operating system (O/S) design and implementation</li>
+<li>Hands-on experience extending a small O/S</li>
+<li>Hands-on experience writing systems software</li>
+</ul>
+</li>
+<li><p>What is the purpose of an O/S?</p>
+<ul>
+<li>Abstract the hardware for convenience and portability</li>
+<li>Multiplex the hardware among many applications</li>
+<li>Isolate applications in order to contain bugs</li>
+<li>Allow sharing among cooperating applications</li>
+<li>Control sharing for security</li>
+<li>Don’t get in the way of high performance</li>
+<li>Support a wide range of applications</li>
+</ul>
+</li>
+<li><p>Organization: layered picture<br>[user/kernel diagram]</p>
+<ul>
+<li>user applications: vi, gcc, DB, &amp;c</li>
+<li>kernel services</li>
+<li>h/w: CPU, RAM, disk, net, &amp;c</li>
+</ul>
+<ul>
+<li>we care a lot about the interfaces and internal kernel structure</li>
+</ul>
+</li>
+<li><p>What services does an O/S kernel typically provide?</p>
+<ul>
+<li>process (a running program)</li>
+<li>memory allocation</li>
+<li>file contents</li>
+<li>file names, directories</li>
+<li>access control (security)</li>
+<li>many others: users, IPC, network, time, terminals</li>
+</ul>
+</li>
+<li><p>What’s the application / kernel interface?</p>
+<ul>
+<li><p>“System calls”</p>
+</li>
+<li><p>Examples, in C, from UNIX (e.g. Linux, macOS, FreeBSD):</p>
+<pre><code>    fd = open(&quot;out&quot;, 1);
+    write(fd, &quot;hello\n&quot;, 6);
+    pid = fork();</code></pre>
+</li>
+<li><p>These look like function calls but they aren’t </p>
+</li>
+</ul>
+</li>
+<li><p>Why is O/S design+implementation hard and interesting?</p>
+<ul>
+<li>unforgiving environment: quirky h/w, hard to debug</li>
+<li>many design tensions:<ul>
+<li>efficient vs abstract/portable/general-purpose</li>
+<li>powerful vs simple interfaces</li>
+<li>flexible vs secure</li>
+</ul>
+</li>
+<li>features interact: <code>fd = open(); fork()</code></li>
+<li>uses are varied: laptops, smart-phones, cloud, virtual machines, embedded</li>
+<li>evolving hardware: NVRAM, multi-core, fast networks</li>
+</ul>
+</li>
+<li><p>You’ll be glad you took this course if you…</p>
+<ul>
+<li>care about what goes on under the hood</li>
+<li>like infrastructure</li>
+<li>need to track down bugs or security problems</li>
+<li>care about high performance</li>
+</ul>
+</li>
+</ul>
+<p>Class structure</p>
+<ul>
+<li><p>Online course information:<br><a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.S081/">https://pdos.csail.mit.edu/6.S081/</a> – schedule, assignments, labs<br>Piazza – announcements, discussion, lab help</p>
+</li>
+<li><p>Lectures</p>
+<ul>
+<li>O/S ideas</li>
+<li>case study of xv6, a small O/S, via code and xv6 book</li>
+<li>lab background</li>
+<li>O/S papers</li>
+<li>submit a question about each reading, before lecture.</li>
+</ul>
+</li>
+<li><p>Labs:<br>The point: hands-on experience<br>Mostly one week each.<br>Three kinds:<br>  Systems programming (due next week…)<br>  O/S primitives, e.g. thread switching.<br>  O/S kernel extensions to xv6, e.g. network.<br>Use piazza to ask/answer lab questions.<br>Discussion is great, but please do not look at others’ solutions!</p>
+</li>
+<li><p>Grading:<br>70% labs, based on tests (the same tests you run).<br>20% lab check-off meetings: we’ll ask you about randomly-selected labs.<br>10% home-work and class/piazza discussion.<br>No exams, no quizzes.<br>Note that most of the grade is from labs. Start them early!</p>
+</li>
+</ul>
+<p>Introduction to UNIX system calls</p>
+<ul>
+<li><p>Applications see the O/S via system calls; that interface will be a big focus.<br>let’s start by looking at how programs use system calls.<br>you’ll use these system calls in the first lab.<br>and extend and improve them in subsequent labs.</p>
+</li>
+<li><p>I’ll show some examples, and run them on xv6.<br>xv6 has similar structure to UNIX systems such as Linux.<br>but much simpler – you’ll be able to digest all of xv6<br>  accompanying book explains how xv6 works, and why<br>why UNIX?<br>  open source, well documented, clean design, widely used<br>  studying xv6 will help if you ever need to look inside Linux<br>xv6 has two roles in 6.S081:<br>  example of core functions: virtual memory, multi-core, interrupts, &amp;c<br>  starting point for most of the labs<br>xv6 runs on RISC-V, as in current 6.004<br>you’ll run xv6 under the qemu machine emulator</p>
+</li>
+<li><p>example: copy.c, copy input to output<br>read bytes from input, write them to the output<br>$ copy<br>copy.c is written in C<br>  Kernighan and Ritchie (K&amp;R) book is good for learning C<br>you can find these example programs via the schedule on the web site<br>read() and write() are system calls<br>first read()/write() argument is a “file descriptor” (fd)<br>  passed to kernel to tell it which “open file” to read/write<br>  must previously have been opened<br>  an FD connects to a file/device/socket/&amp;c<br>  a process can open many files, have many FDs<br>  UNIX convention: fd 0 is “standard input”, 1 is “standard output”<br>second read() argument is a pointer to some memory into which to read<br>third argument is the maximum number of bytes to read<br>  read() may read less, but not more<br>return value: number of bytes actually read, or -1 for error<br>note: copy.c does not care about the format of the data<br>  UNIX I/O is 8-bit bytes<br>  interpretation is application-specific, e.g. database records, C source, &amp;c<br>where do file descriptors come from?</p>
+</li>
+<li><p>example: open.c, create a file<br>$ open<br>$ cat output.txt<br>open() creates a file, returns a file descriptor (or -1 for error)<br>FD is a small integer<br>FD indexes into a per-process table maintained by kernel<br>[user/kernel diagram]<br>different processes have different FD name-spaces<br>  i.e. FD 1 often means different things to different processes<br>these examples ignore errors – don’t be this sloppy!<br>Figure 1.2 in the xv6 book lists system call arguments/return<br>  or look at UNIX man pages, e.g. “man 2 open”</p>
+</li>
+<li><p>what happens when a program calls a system call like open()?<br>looks like a function call, but it’s actually a special instruction<br>hardware saves some user registers<br>hardware increases privilege level<br>hardware jumps to a known “entry point” in the kernel<br>now running C code in the kernel<br>kernel calls system call implementation<br>  open() looks up name in file system<br>  it might wait for the disk<br>  it updates kernel data structures (cache, FD table)<br>restore user registers<br>reduce privilege level<br>jump back to calling point in the program, which resumes<br>we’ll see more detail later in the course</p>
+</li>
+<li><p>I’ve been typing to UNIX’s command-line interface, the shell.<br>the shell prints the “$” prompts.<br>the shell lets you run UNIX command-line utilities<br>  useful for system management, messing with files, development, scripting<br>  $ ls<br>  $ ls &gt; out<br>  $ grep x &lt; out<br>UNIX supports other styles of interaction too<br>  window systems, GUIs, servers, routers, &amp;c.<br>but time-sharing via the shell was the original focus of UNIX.<br>we can exercise many system calls via the shell.</p>
+</li>
+<li><p>example: fork.c, create a new process<br>the shell creates a new process for each command you type, e.g. for<br>  $ echo hello<br>the fork() system call creates a new process<br>  $ fork<br>the kernel makes a copy of the calling process<br>  instructions, data, registers, file descriptors, current directory<br>  “parent” and “child” processes<br>only difference: fork() returns a pid in parent, 0 in child<br>a pid (process ID) is an integer, kernel gives each process a different pid<br>thus:<br>  fork.c’s “fork() returned” executes in <em>both</em> processes<br>  the “if(pid == 0)” allows code to distinguish<br>ok, fork lets us create a new process<br>  how can we run a program in that process?</p>
+</li>
+<li><p>example: exec.c, replace calling process with an executable file<br>how does the shell run a program, e.g.<br>  $ echo a b c<br>a program is stored in a file: instructions and initial memory<br>  created by the compiler and linker<br>so there’s a file called echo, containing instructions<br>$ exec<br>exec() replaces current process with an executable file<br>  discards instruction and data memory<br>  loads instructions and memory from the file<br>  preserves file descriptors<br>exec(filename, argument-array)<br>  argument-array holds command-line arguments; exec passes to main()<br>  cat user/echo.c<br>  echo.c shows how a program looks at its command-line arguments</p>
+</li>
+<li><p>example: forkexec.c, fork() a new process, exec() a program<br>$ forkexec<br>forkexec.c contains a common UNIX idiom:<br>  fork() a child process<br>  exec() a command in the child<br>  parent wait()s for child to finish<br>the shell does fork/exec/wait for every command you type<br>  after wait(), the shell prints the next prompt<br>  to run in the background – &amp; – the shell skips the wait()<br>exit(status) -&gt; wait(&amp;status)<br>  status convention: 0 = success, 1 = command encountered an error<br>note: the fork() copies, but exec() discards the copied memory<br>  this may seem wasteful<br>  you’ll transparently eliminate the copy in the “copy-on-write” lab</p>
+</li>
+<li><p>example: redirect.c, redirect the output of a command<br>what does the shell do for this?<br>  $ echo hello &gt; out<br>answer: fork, change FD 1 in child, exec echo<br>$ redirect<br>$ cat output.txt<br>note: open() always chooses lowest unused FD; 1 due to close(1).<br>fork, FDs, and exec interact nicely to implement I/O redirection<br>  separate fork-then-exec give child a chance to change FDs before exec<br>  FDs provide indirection</p>
+<pre><code>commands just use FDs 0 and 1, don&#39;t have to know where they go</code></pre>
+<p>  exec preserves the FDs that sh set up<br>thus: only sh has to know about I/O redirection, not each program</p>
+</li>
+<li><p>It’s worth asking “why” about design decisions:<br>Why these I/O and process abstractions? Why not something else?<br>Why provide a file system? Why not let programs use the disk their own way?<br>Why FDs? Why not pass a filename to write()?<br>Why are files streams of bytes, not disk blocks or formatted records?<br>Why not combine fork() and exec()?<br>The UNIX design works well, but we will see other designs!</p>
+</li>
+<li><p>example: pipe1.c, communicate through a pipe<br>how does the shell implement<br>  $ ls | grep x<br>$ pipe1<br>an FD can refer to a “pipe”, as well as a file<br>the pipe() system call creates two FDs<br>  read from the first FD<br>  write to the second FD<br>the kernel maintains a buffer for each pipe<br>  [u/k diagram]<br>  write() appends to the buffer<br>  read() waits until there is data</p>
+</li>
+<li><p>example: pipe2.c, communicate between processes<br>pipes combine well with fork() to implement ls | grep x<br>  shell creates a pipe,<br>  then forks (twice),<br>  then connects ls’s FD 1 to pipe’s write FD,<br>  and grep’s FD 0 to the pipe<br>  [diagram]<br>$ pipe2 – a simplified version<br>pipes are a separate abstraction, but combine well w/ fork()</p>
+</li>
+<li><p>example: list.c, list files in a directory<br>how does ls get a list of the files in a directory?<br>you can open a directory and read it -&gt; file names<br>“.” is a pseudo-name for a process’s current directory<br>see ls.c for more details</p>
+</li>
+<li><p>Summary</p>
+<ul>
+<li>We’ve looked at UNIX’s I/O, file system, and process abstractions.</li>
+<li>The interfaces are simple – just integers and I/O buffers.</li>
+<li>The abstractions combine well, e.g. for I/O redirection.</li>
+</ul>
+</li>
+</ul>
+<p>You’ll use these system calls in the first lab, due next week.</p>
+<h1 id="作业实现"><a href="#作业实现" class="headerlink" title="作业实现"></a>作业实现</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/18/003.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86%EF%BC%88linux%EF%BC%89/MIT-6.828/Lec-1/">
+    <time datetime="2020-11-18T13:39:50.120Z" class="entry-date">
+        2020-11-18
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/19/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AF%BC%E8%AE%BA%E6%80%A7%E8%B4%A8-Crash%20Course%20Computer%20Science/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/18/%E5%85%B6%E4%BB%96/MIT-index/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

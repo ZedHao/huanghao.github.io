@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] context的选项和参数套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp.1234567891011121314151617181920212223242526272829303132&lt;?php&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AD%E3%80%81context%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0+%E6%94%AF%E6%8C%81%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] context的选项和参数套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp.1234567891011121314151617181920212223242526272829303132&lt;?php&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.858Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.858Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-001.语言/php/php手册(1)/六、context的选项和参数+支持协议" class="post-001.语言/php/php手册(1)/六、context的选项和参数+支持协议 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AD%E3%80%81context%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0+%E6%94%AF%E6%8C%81%E5%8D%8F%E8%AE%AE/" data-id="ckhp0x7r6002i932ucn3tcrvd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="context的选项和参数"><a href="#context的选项和参数" class="headerlink" title="context的选项和参数"></a>context的选项和参数</h1><h2 id="套接字上下文选项-—-套接字上下文选项列表-工作在套接字上的封装协议，像-tcp-http-和-ftp"><a href="#套接字上下文选项-—-套接字上下文选项列表-工作在套接字上的封装协议，像-tcp-http-和-ftp" class="headerlink" title="套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp."></a>套接字上下文选项 — 套接字上下文选项列表 工作在套接字上的封装协议，像 tcp, http 和 ftp.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100&#39; IP</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;192.168.0.100:0&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; connect to the internet using the &#39;192.168.0.100&#39; IP and port &#39;7000&#39;</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;192.168.0.100:7000&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; connect to the internet using port &#39;7000&#39;</span><br><span class="line">$opts &#x3D; array(</span><br><span class="line">    &#39;socket&#39; &#x3D;&gt; array(</span><br><span class="line">        &#39;bindto&#39; &#x3D;&gt; &#39;0:7000&#39;,</span><br><span class="line">    ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; create the context...</span><br><span class="line">$context &#x3D; stream_context_create($opts);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...and use it to fetch the data</span><br><span class="line">echo file_get_contents(&#39;http:&#x2F;&#x2F;www.example.com&#39;, false, $context);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="HTTP-context-选项-—-HTTP-context-的选项列表-file-get-contents-stream-context-create"><a href="#HTTP-context-选项-—-HTTP-context-的选项列表-file-get-contents-stream-context-create" class="headerlink" title="HTTP context 选项 — HTTP context 的选项列表 file_get_contents  stream_context_create"></a>HTTP context 选项 — HTTP context 的选项列表 file_get_contents  stream_context_create</h2><h2 id="FTP-context-options-—-FTP-context-option-listing"><a href="#FTP-context-options-—-FTP-context-option-listing" class="headerlink" title="FTP context options — FTP context option listing"></a>FTP context options — FTP context option listing</h2><h2 id="SSL-上下文选项-—-SSL-上下文选项清单"><a href="#SSL-上下文选项-—-SSL-上下文选项清单" class="headerlink" title="SSL 上下文选项 — SSL 上下文选项清单"></a>SSL 上下文选项 — SSL 上下文选项清单</h2><h2 id="CURL-context-options-—-CURL-上下文选项列表"><a href="#CURL-context-options-—-CURL-上下文选项列表" class="headerlink" title="CURL context options — CURL 上下文选项列表"></a>CURL context options — CURL 上下文选项列表</h2><h2 id="Phar-上下文（context）选项-—-Phar-上下文（context）选项-类似jar-打包文件"><a href="#Phar-上下文（context）选项-—-Phar-上下文（context）选项-类似jar-打包文件" class="headerlink" title="Phar 上下文（context）选项 — Phar 上下文（context）选项 类似jar 打包文件"></a>Phar 上下文（context）选项 — Phar 上下文（context）选项 类似jar 打包文件</h2><h2 id="MongoDB-context-options-—-MongoDB-context-option-listing"><a href="#MongoDB-context-options-—-MongoDB-context-option-listing" class="headerlink" title="MongoDB context options — MongoDB context option listing"></a>MongoDB context options — MongoDB context option listing</h2><h2 id="Context-参数-—-Context-参数列表"><a href="#Context-参数-—-Context-参数列表" class="headerlink" title="Context 参数 — Context 参数列表"></a>Context 参数 — Context 参数列表</h2><h1 id="支持的协议"><a href="#支持的协议" class="headerlink" title="支持的协议"></a>支持的协议</h1><ol>
+<li>file:// — 访问本地文件系统</li>
+<li>http:// — 访问 HTTP(s) 网址</li>
+<li>ftp:// — 访问 FTP(s) URLs</li>
+<li>php:// — 访问各个输入/输出流（I/O streams）</li>
+<li>zlib:// — 压缩流</li>
+<li>data:// — 数据（RFC 2397）</li>
+<li>glob:// — 查找匹配的文件路径模式</li>
+<li>phar:// — PHP 归档</li>
+<li>ssh2:// — Secure Shell 2</li>
+<li>rar:// — RAR</li>
+<li>ogg:// — 音频流</li>
+<li>expect:// — 处理交互式的流</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AD%E3%80%81context%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0+%E6%94%AF%E6%8C%81%E5%8D%8F%E8%AE%AE/">
+    <time datetime="2020-11-19T16:00:28.858Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E5%85%AB%E3%80%81php%E7%89%B9%E7%82%B9%EF%BC%88http%E8%AE%A4%E8%AF%81+cookie+%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0+%E6%95%B0%E6%8D%AE+%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%89/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%94%E3%80%81%E9%A2%84%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F+%E9%A2%84%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

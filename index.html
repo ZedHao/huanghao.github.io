@@ -46,7 +46,7 @@
         <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
       </h1>
       
-        <h2> <title>谦谦君子 温润如玉</title></h2>
+        <h2 <title>谦谦君子 温润如玉</title></h2>
       
     </hgroup>
 
@@ -70,27 +70,33 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-googlef90e527fb0c7f230" class="post-googlef90e527fb0c7f230 post type-post status-publish format-standard hentry">
+    <article id="post-001.语言/所谓的编码格式" class="post-001.语言/所谓的编码格式 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/18/googlef90e527fb0c7f230/" data-id="ckhnamob60001xn2u8r0ibli4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-id="ckhp0x7px0006932u2wwjammf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        google-site-verification: googlef90e527fb0c7f230.html
+        <h1 id="ASCII-码"><a href="#ASCII-码" class="headerlink" title="ASCII 码"></a>ASCII 码</h1><p>学过计算机的人都知道 ASCII 码，总共有 128 个，用一个字节的低 7 位表示，0<del>31 是控制字符如换行回车删除等；32</del>126 是打印字符，可以通过键盘输入并且能够显示出来。 </p>
+<h1 id="ISO-8859-1"><a href="#ISO-8859-1" class="headerlink" title="ISO-8859-1"></a>ISO-8859-1</h1><p>128 个字符显然是不够用的，于是 ISO 组织在 ASCII 码基础上又制定了一些列标准用来扩展 ASCII 编码，它们是 ISO-8859-1~ISO-8859-15，其中 ISO-8859-1 涵盖了大多数西欧语言字符，所有应用的最广泛。ISO-8859-1 仍然是单字节编码，它总共能表示 256 个字符。 GB2312<br>它的全称是《信息交换用汉字编码字符集 基本集》，它是双字节编码，总的编码范围是 A1-F7，其中从 A1-A9 是符号区，总共包含 682 个符号，从 B0-F7 是汉字区，包含 6763 个汉字。</p>
+<h1 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h1><p>全称叫《汉字内码扩展规范》，是国家技术监督局为 windows95 所制定的新的汉字内码规范，它的出现是为了扩展 GB2312，加入更多的汉字，它的编码范围是 8140~FEFE（去掉 XX7F）总共有 23940 个码位，它能表示 21003 个汉字，它的编码是和 GB2312 兼容的，也就是说用 GB2312 编码的汉字可以用 GBK 来解码，并且不会有乱码。 </p>
+<h1 id="GB18030"><a href="#GB18030" class="headerlink" title="GB18030"></a>GB18030</h1><p>全称是《信息交换用汉字编码字符集》，是我国的强制标准，它可能是单字节、双字节或者四字节编码，它的编码与 GB2312 编码兼容，这个虽然是国家标准，但是实际应用系统中使用的并不广泛。 </p>
+<h1 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h1><p>说到 UTF 必须要提到 Unicode（Universal Code 统一码），ISO 试图想创建一个全新的超语言字典，世界上所有的语言都可以通过这本字典来相互翻译。可想而知这个字典是多么的复杂，关于 Unicode 的详细规范可以参考相应文档。Unicode 是 Java 和 XML 的基础，下面详细介绍 Unicode 在计算机中的存储形式。<br>UTF-16 具体定义了 Unicode 字符在计算机中存取方法。UTF-16 用两个字节来表示 Unicode 转化格式，这个是定长的表示方法，不论什么字符都可以用两个字节表示，两个字节是 16 个 bit，所以叫 UTF-16。UTF-16 表示字符非常方便，每两个字节表示一个字符，这个在字符串操作时就大大简化了操作，这也是 Java 以 UTF-16 作为内存的字符存储格式的一个很重要的原因。 </p>
+<h1 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h1><p>UTF-16 统一采用两个字节表示一个字符，虽然在表示上非常简单方便，但是也有其缺点，有很大一部分字符用一个字节就可以表示的现在要两个字节表示，存储空间放大了一倍，在现在的网络带宽还非常有限的今天，这样会增大网络传输的流量，而且也没必要。而 UTF-8 采用了一种变长技术，每个编码区域有不同的字码长度。不同类型的字符可以是由 1~6 个字节组成。<br>UTF-8 有以下编码规则：<br>如果一个字节，最高位（第 8 位）为 0，表示这是一个 ASCII 字符（00 - 7F）。可见，所有 ASCII 编码已经是 UTF-8 了。<br>如果一个字节，以 11 开头，连续的 1 的个数暗示这个字符的字节数，例如：110xxxxx 代表它是双字节 UTF-8 字符的首字节。<br>如果一个字节，以 10 开始，表示它不是首字节，需要向前查找才能得到当前字符的首字节<br>Java 中需要编码的场景<br>前面描述了常见的几种编码格式，下面将介绍 Java 中如何处理对编码的支持，什么场合中需要编码。<br>I/O 操作中存在的编码<br>我们知道涉及到编码的地方一般都在字符到字节或者字节到字符的转换上，而需要这种转换的场景主要是在 I/O 的时候，这个 I/O 包括磁盘 I/O 和网络 I/O，关于网络 I/O 部分在后面将主要以 Web 应用为例介绍。下图是 Java 中处理 I/O 问题的接口： </p>
+
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/huanghao.github.io/2020/11/18/googlef90e527fb0c7f230/">
-    <time datetime="2020-11-18T10:53:37.375Z" class="entry-date">
-        2020-11-18
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">
+    <time datetime="2020-11-19T16:00:28.862Z" class="entry-date">
+        2020-11-20
     </time>
 </a>
     
@@ -104,93 +110,33 @@
 
 
   
-    <article id="post-操作系统/本科操作系统/title" class="post-操作系统/本科操作系统/title post type-post status-publish format-standard hentry">
+    <article id="post-001.语言/作用域" class="post-001.语言/作用域 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
         
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/">入门导论</a>
-    </h1>
-  
-
-        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/" data-id="ckhnamobc0005xn2u4edv2a6i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/" data-id="ckhp0x7pv0003932u6py41huf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        
+        <h1 id="全部变量"><a href="#全部变量" class="headerlink" title="全部变量"></a>全部变量</h1><p>如果一个变量在函数体外声明，则被认为是全局变量，可以在整个包甚至外部包（被导出后）使用，不管你声明在哪个源文件里或在哪个源文件里调用该变量。</p>
+<h1 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h1><p>局部变量的作用域可以通过代码块（用大括号括起来的部分）判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">下面的例子同样有三个不同的 x 变量，每个声明在不同的词法域，一个在函数体词法域，一个在 for 隐式的初始化词法域，一个在 for 循环体词法域；只有两个块是显式创建的：</span><br><span class="line">纯文本复制</span><br><span class="line">func main() &#123;</span><br><span class="line">    x :&#x3D; &quot;hello&quot;</span><br><span class="line">    for _, x :&#x3D; range x &#123;</span><br><span class="line">        x :&#x3D; x + &#39;A&#39; - &#39;a&#39;</span><br><span class="line">        fmt.Printf(&quot;%c&quot;, x) &#x2F;&#x2F; &quot;HELLO&quot; (每次迭代一个字母)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/">
-    <time datetime="2020-11-18T09:32:04.000Z" class="entry-date">
-        2020-11-18
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+    <time datetime="2020-11-19T16:00:28.861Z" class="entry-date">
+        2020-11-20
     </time>
 </a>
     
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>, <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">本科操作系统</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/huanghao.github.io/tags/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/" rel="tag">本科操作系统入门</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-操作系统/本科操作系统/My-First-Post" class="post-操作系统/本科操作系统/My-First-Post post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/">入门导论2</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/" data-id="ckhnamoba0003xn2ueviy16bj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/">
-    <time datetime="2020-11-17T11:06:56.000Z" class="entry-date">
-        2020-11-17
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>, <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">本科操作系统</a>
-  </div>
-
     
     </footer>
 </article>
@@ -201,65 +147,34 @@
 
 
   
-    <article id="post-操作系统/本科操作系统/一、操作系统基本介绍" class="post-操作系统/本科操作系统/一、操作系统基本介绍 post type-post status-publish format-standard hentry">
+    <article id="post-001.语言/语言类概论" class="post-001.语言/语言类概论 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
         
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">一、操作系统基本介绍</a>
-    </h1>
-  
-
-        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" data-id="ckhnamobe0007xn2ufgxqcuce" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/" data-id="ckhp0x7pz0008932uh7a00lgz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="基础概念和作用"><a href="#基础概念和作用" class="headerlink" title="基础概念和作用"></a>基础概念和作用</h1><h2 id="操作系统的作用"><a href="#操作系统的作用" class="headerlink" title="操作系统的作用"></a>操作系统的作用</h2><p>操作系统为用户与计算机硬件系统之间的接口；<br>操作系统是计算机资源的管理者/分配者，服务的提供者；<br>操作系统可以扩展机器</p>
-<h2 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h2><h3 id="1-处理机管理功能"><a href="#1-处理机管理功能" class="headerlink" title="1 处理机管理功能"></a>1 处理机管理功能</h3><p>进程控制；进程同步；进程通信；调度</p>
-<h3 id="2-储存器管理功能"><a href="#2-储存器管理功能" class="headerlink" title="2 储存器管理功能"></a>2 储存器管理功能</h3><p>内存分配；内存保护；地址映射；内存扩充虚拟储存</p>
-<h3 id="3-设备管理功能"><a href="#3-设备管理功能" class="headerlink" title="3 设备管理功能"></a>3 设备管理功能</h3><p>缓冲管理；设备分配；设备处理</p>
-<h3 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4 文件管理"></a>4 文件管理</h3><p>文件储存空间的管理；目录管理；文件的读写管理和保护</p>
-<h3 id="5-用户接口"><a href="#5-用户接口" class="headerlink" title="5 用户接口"></a>5 用户接口</h3><p>命令接口：终端或控制台；程序接口：系统调用；图形接口</p>
-<h2 id="操作系统基本特征"><a href="#操作系统基本特征" class="headerlink" title="操作系统基本特征"></a>操作系统基本特征</h2><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>并发性是指宏观上在一段时间内能同时运行多个程序，而并行性则指同一时刻能运行多个指令。</p>
-<p>并行需要硬件支持，如多流水线或者多处理器。</p>
-<p>操作系统通过引入进程和线程，使得程序能够并发运行。</p>
-<h3 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h3><p>共享是指系统中的资源可以供多个并发的进程共同使用。</p>
-<p>有两种共享方式：互斥共享和同时共享。</p>
-<p>==互斥共享的资源称为临界资源，例如打印机等==，在同一时间只允许一个进程访问，否则会出现错误，需要用同步机制来实现对临界资源的访问。</p>
-<h3 id="虚拟"><a href="#虚拟" class="headerlink" title="虚拟"></a>虚拟</h3><p>虚拟技术把一个物理实体转换为多个逻辑实体。主要有两种虚拟技术==：时分复用技术和空分复用技术==，例如多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换，这样就好像有多个处理器进行处理。</p>
-<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>异步是指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进。</p>
-<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>如果一个进程在用户态需要用到操作系统的一些功能，就需要使用系统调用从而陷入内核，由操作系统代为完成。</p>
-<p>可以由系统调用请求的功能有设备管理、文件管理、进程管理、进程通信、存储器管理等。</p>
-<h2 id="中断分类"><a href="#中断分类" class="headerlink" title="中断分类"></a>中断分类</h2><h3 id="外中断"><a href="#外中断" class="headerlink" title="外中断"></a>外中断</h3><p>由 CPU 执行指令以外的事件引起，如 I/O 结束中断，表示设备输入/输出处理已经完成，处理器能够发送下一个输入/输出请求。此外还有时钟中断、控制台中断等。</p>
-<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>由 CPU 执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等。</p>
-<h3 id="陷入"><a href="#陷入" class="headerlink" title="陷入"></a>陷入</h3><p>在用户程序中使用系统调用。</p>
-<p>大内核和微内核</p>
-<h3 id="大内核"><a href="#大内核" class="headerlink" title="大内核"></a>大内核</h3><p>大内核是将操作系统功能作为一个紧密结合的整体放到内核，由于各模块共享信息，因此有很高的性能。</p>
-<h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><p>由于操作系统不断复杂，因此将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立。但是需要频繁地在用户态和核心态之间进行切换，会有一定的性能损失。</p>
+        <p>函数简单的说就是从A(定义域)到B(值域)的一个映射过程</p>
+<h1 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h1><h1 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h1><h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><pre><code>任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
 
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</code></pre>
+<h1 id="面向消息编程等"><a href="#面向消息编程等" class="headerlink" title="面向消息编程等"></a>面向消息编程等</h1>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">
-    <time datetime="2020-11-17T11:06:56.000Z" class="entry-date">
-        2020-11-17
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">
+    <time datetime="2020-11-19T16:00:28.861Z" class="entry-date">
+        2020-11-20
     </time>
 </a>
     
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>, <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">本科操作系统</a>
-  </div>
-
     
     </footer>
 </article>
@@ -270,87 +185,49 @@
 
 
   
-    <article id="post-操作系统/本科操作系统/二、进程线程" class="post-操作系统/本科操作系统/二、进程线程 post type-post status-publish format-standard hentry">
+    <article id="post-001.语言/php/结构体和联合体" class="post-001.语言/php/结构体和联合体 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
         
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/">二、进程线程</a>
-    </h1>
-  
-
-        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/" data-id="ckhnamobg0009xn2ugf1p8d3y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/" data-id="ckhp0x7qa000s932u4s5edrbg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
         <p>[toc]</p>
-<h1 id="进程和线程和协程"><a href="#进程和线程和协程" class="headerlink" title="进程和线程和协程"></a>进程和线程和协程</h1><h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>共享内存 协程 不用等待请求返回</p>
-<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>进程和线程以及它们的区别</p>
+<h1 id="联合体"><a href="#联合体" class="headerlink" title="联合体"></a>联合体</h1><p>用途：使几个不同类型的变量共占一段内存(相互覆盖)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">union abc&#123;  </span><br><span class="line">          int i;  </span><br><span class="line">          char m;  </span><br><span class="line">         &#125;;  </span><br></pre></td></tr></table></figure>
 <ol>
-<li>==进程是对运行时程序的封装==，是==系统进行资源调度和分配的的基本单位==，实现了操作系统的并发；</li>
-<li>==线程是进程的子任务，是CPU调度和分派的基本单位==，用于保证程序的 实时性，实现进程内部的并发；</li>
-<li>一个程序至少有一个进程，一个进程至少有一个线程，线程依赖于进程而存在；</li>
-<li>==进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存==</li>
+<li>在联合体abc中，整型量i和字符m公用同一内存位置。</li>
+<li>当一个联合被说明时，编译程序自动地产生一个变量，其长度为联合中最大的变量长度。</li>
+<li></li>
 </ol>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25532384/answer/81152571">https://www.zhihu.com/question/25532384/answer/81152571</a></p>
-<p>线程作为进程的一部分，==扮演的角色就是怎么利用中央处理器去运行代码==。这其中牵扯到的最重要资源的是中央处理器和其中的寄存器，和线程的栈（stack）。这里想强调的是，线程关注的是中央处理器的运行，而不是内存等资源的管理。</p>
-<p>==进程更倾向于内存管理的概念==</p>
-<p>他在自己的区域掌控自己的资源 也不越界</p>
-<p>==线程更倾向于cpu的运行==</p>
-<p>当前的计算机的cpu总要跑在一个线程上 但是又无法做到同时跑在多个线程上</p>
-<p>看似多线程可以同时运行 其实他们之间是通过时间片的切换来做到的</p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程定义："><a href="#进程定义：" class="headerlink" title="进程定义："></a>进程定义：</h3><ol>
-<li>进程是程序的一次执行；</li>
-<li>进程是一个程序及其数据在处理机上顺序执行时所发生的活动；</li>
-<li>进程是程序在一个数据集合上运行的过程，是系统进行资源分配和调度的一个独立单位</li>
-<li>进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位</li>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><p>  是一种构造数据类型<br>用途：把不同类型的数据组合成一个整体——-自定义数据类型</p>
+<p>结构体变量所占内存长度是各成员占的内存长度的总和。</p>
+<p>共同体变量所占内存长度是各最长的成员占的内存长度。</p>
+<p>共同体每次只能存放哪个的一种！！</p>
+<p>共同体变量中起作用的成员是最后一次存放的成员，在存入新的成员后原有的成员失去了作用！</p>
+<h1 id="Struct与Union主要有以下区别"><a href="#Struct与Union主要有以下区别" class="headerlink" title="Struct与Union主要有以下区别:"></a>Struct与Union主要有以下区别:</h1><ol>
+<li><p>struct和union都是由多个不同的数据类型成员组成, 但在任何同一时刻, union中只存放了一个被选中的成员, 而struct的所有成员都存在。在struct中，各成员都占有自己的内存空间，它们是同时存在的。一个struct变量的总长度等于所有成员长度之和。在Union中，所有成员不能同时占用它的内存空间，它们不能同时存在。Union变量的长度等于最长的成员的长度。</p>
+</li>
+<li><p>对于union的不同成员赋值, 将会对其它成员重写, 原来成员的值就不存在了, 而对于struct的不同成员赋值是互不影响的。</p>
+</li>
 </ol>
-<h3 id="进程的三种基本状态"><a href="#进程的三种基本状态" class="headerlink" title="进程的三种基本状态"></a>进程的三种基本状态</h3><p>==就绪、执行、阻塞==</p>
-<p>阻塞状态是缺少需要的资源从而由运行状态转换而来，但是该资源不包括 CPU，缺少 CPU 会让进程从==运行态转换为就绪态==。</p>
-<p>只有就绪态和运行态可以相互转换，其它的都是单向转换。就绪状态的进程通过调度算法从而获得 CPU 时间，转为运行状态；而运行状态的进程，在分配给它的 CPU 时间片用完之后就会转为就绪状态，等待下一次调度。</p>
-<h3 id="进程间的通信五种方式"><a href="#进程间的通信五种方式" class="headerlink" title="进程间的通信五种方式"></a>进程间的通信五种方式</h3><h4 id="1-共享内存"><a href="#1-共享内存" class="headerlink" title="1 共享内存"></a>1 共享内存</h4><p>==即多个进程共享某块内存，共享内存是通信方式中最快的一种。==</p>
-<p>操作系统建立一块共享内存，并将其映射到参与通信的每个进程的地址空间上，进程就可以直接对这块共享内存进行读写。</p>
-<h4 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2 消息队列:"></a>2 消息队列:</h4><p>类似于用链表的结构存储消息。<br><img src="https://img-blog.csdn.net/20180513164327588?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>它克服了上两种通信方式中信号量有限的缺点，具有写权限得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限得进程则可以从消息队列中读取信息；</p>
-<h4 id="3-管道pipe通信"><a href="#3-管道pipe通信" class="headerlink" title="3 管道pipe通信"></a>3 管道pipe通信</h4><p>==即管道为空时读进程会阻塞，管道为满时写进程会阻塞，以此实现进程之间的通信==。一个进程的输入作为另一个进程的输出<br>生产者消费者模式，内存不共享</p>
-<h5 id="普通管道："><a href="#普通管道：" class="headerlink" title="普通管道："></a>普通管道：</h5><p>  它是半双工的，即只能单向传输。<br>  它是有进程关系限制的，只能在父子进程之间使用。</p>
-<h5 id="流管道"><a href="#流管道" class="headerlink" title="流管道:"></a>流管道:</h5><p>   相对于普通管道而言，它不止是单向传输，可以双向传输。</p>
-<h5 id="命名管道-FIFO-："><a href="#命名管道-FIFO-：" class="headerlink" title="命名管道(FIFO)："></a>命名管道(FIFO)：</h5><p> 相对于普通管道而言，它没有进程关系限制，可以在无关进程之间进行数据交换。</p>
-<h4 id="4-套接字"><a href="#4-套接字" class="headerlink" title="4 套接字"></a>4 套接字</h4><pre><code>与其它通信机制不同是，套接字可用于不同机器间的进程通信，即可用于网络之间的进程通信。</code></pre>
-<p><img src="https://img-blog.csdn.net/20180513165052722?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2I5eF9f/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
-<h4 id="5-信号量"><a href="#5-信号量" class="headerlink" title="5 信号量"></a>5 信号量</h4><p>   信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信数据。它是一个计数器，用来控制多个进程对共享资源的访问，常作为一种锁机制，实现进程间的同步和互斥。(JUC的Semaphore的设计思想来源吧)</p>
-<h3 id="进程控制与同步"><a href="#进程控制与同步" class="headerlink" title="进程控制与同步"></a>进程控制与同步</h3><h4 id="1-信号量的应用"><a href="#1-信号量的应用" class="headerlink" title="1 信号量的应用"></a>1 信号量的应用</h4><p>实现进程互斥；<br>实现前驱关系</p>
-<h4 id="2-经典进程的同步问题"><a href="#2-经典进程的同步问题" class="headerlink" title="2 经典进程的同步问题"></a>2 经典进程的同步问题</h4><p>生产者-消费者问题？<br>哲学家进餐问题？<br>读者-写者问题</p>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="线程定义"><a href="#线程定义" class="headerlink" title="线程定义"></a>线程定义</h3><p>==线程是程序中一个单一的顺序控制流程，是系统独立调度和分派CPU的基本单位==。==同一个进程的多个线程共享相同的：代码段、数据段、操作系统的资源，可并发执行==</p>
-<h3 id="线程有几种状态？"><a href="#线程有几种状态？" class="headerlink" title="线程有几种状态？"></a>线程有几种状态？</h3><p>　　在 Java虚拟机 中，线程从最初的创建到最终的消亡，要经历若干个状态：创建(new)、就绪(runnable/start)、运行(running)、阻塞(blocked)、等待(waiting)、时间等待(time waiting) 和 消亡(dead/terminated)。在给定的时间点上，一个线程只能处于一种状态<br><img src="http://static.zybuluo.com/Rico123/ot7o6218591iwj9py999hs1u/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.jpg" alt="image"></p>
-<h3 id="线程间的同步和通信"><a href="#线程间的同步和通信" class="headerlink" title="线程间的同步和通信"></a>线程间的同步和通信</h3><h4 id="1-互斥锁（mutex）"><a href="#1-互斥锁（mutex）" class="headerlink" title="1.互斥锁（mutex）"></a>1.互斥锁（mutex）</h4><p>互斥锁比较简单，用于实现线程间对资源互斥访问的机制。有两种状态，开锁和关锁状态。</p>
-<p>当一个线程需要读/写一个共享数据时，线程首先应该为该数据段所设置的mutex执行关锁命令。首先判别mutex的状态，如果已经处于关锁状态，则访问该数据段的线程将被阻塞；如果mutex处于开锁状态，则将mutex关上之后进行读/写。</p>
-<p>完成读/写之后将mutex设置成开锁状态，并唤醒阻塞在该互斥锁上的线程。</p>
-<h4 id="2-条件变量"><a href="#2-条件变量" class="headerlink" title="2.条件变量"></a>2.条件变量</h4><p>只利用mutex来实现互斥访问可能会引起互斥锁。</p>
-<p>每个条件变量通常都与一个互斥锁一起使用，在创建一个互斥锁的同时便联系一个条件变量。单纯的互斥锁用于短期锁定，主要是保证对临界区的互斥进入，条件变量则用于线程的长期等待，直至等待的资源成为可用的资源。</p>
-<h4 id="3-信号量机制：分为私有信号量与公有信号量"><a href="#3-信号量机制：分为私有信号量与公有信号量" class="headerlink" title="3.信号量机制：分为私有信号量与公有信号量"></a>3.信号量机制：分为私有信号量与公有信号量</h4>
+
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/">
-    <time datetime="2020-11-17T11:06:56.000Z" class="entry-date">
-        2020-11-17
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">
+    <time datetime="2020-11-19T16:00:28.861Z" class="entry-date">
+        2020-11-20
     </time>
 </a>
     
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>, <a class="article-category-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">本科操作系统</a>
-  </div>
-
     
     </footer>
 </article>
@@ -361,6 +238,500 @@
 
 
   
+    <article id="post-001.语言/php/php性能调树+部署+测试" class="post-001.语言/php/php性能调树+部署+测试 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/" data-id="ckhp0x7q8000o932u42s7h0fk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="php-ini文件"><a href="#php-ini文件" class="headerlink" title="php.ini文件"></a>php.ini文件</h1><h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>php.ini文件中的memory_limit设置单个php进程可以使用的系统内存最大值<br>分配原则<br>1.一共能分给php多少内存？（ngnix，MYSQL，memcache也要耗内存）<br>2.单个php进程平均耗多少？<br>3.能负担多少PHP-FPM内存？</p>
+<h1 id="zend-OPcache（操作码缓存）"><a href="#zend-OPcache（操作码缓存）" class="headerlink" title="zend OPcache（操作码缓存）"></a>zend OPcache（操作码缓存）</h1><h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h1 id="最长执行时间-max-execution-time"><a href="#最长执行时间-max-execution-time" class="headerlink" title="最长执行时间(max_execution_time)"></a>最长执行时间(max_execution_time)</h1><h1 id="处理会话（缓存存会话-可扩展）"><a href="#处理会话（缓存存会话-可扩展）" class="headerlink" title="处理会话（缓存存会话 可扩展）"></a>处理会话（缓存存会话 可扩展）</h1><h1 id="缓存输出"><a href="#缓存输出" class="headerlink" title="缓存输出"></a>缓存输出</h1><h1 id="测试百科"><a href="#测试百科" class="headerlink" title="测试百科"></a>测试百科</h1><p>分类：</p>
+<h2 id="单元测试（PHPUnit）搭配Xdebug（代码覆盖率）"><a href="#单元测试（PHPUnit）搭配Xdebug（代码覆盖率）" class="headerlink" title="单元测试（PHPUnit）搭配Xdebug（代码覆盖率）"></a>单元测试（PHPUnit）搭配Xdebug（代码覆盖率）</h2><h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><h1 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h1><h2 id="测试驱动开发（TDD）（小步向前）"><a href="#测试驱动开发（TDD）（小步向前）" class="headerlink" title="测试驱动开发（TDD）（小步向前）"></a>测试驱动开发（TDD）（小步向前）</h2><h2 id="行为驱动开发（BDD）"><a href="#行为驱动开发（BDD）" class="headerlink" title="行为驱动开发（BDD）"></a>行为驱动开发（BDD）</h2><h1 id="使用Travis-CI持续测试（自动化非常赞）"><a href="#使用Travis-CI持续测试（自动化非常赞）" class="headerlink" title="使用Travis CI持续测试（自动化非常赞）"></a>使用Travis CI持续测试（自动化非常赞）</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">
+    <time datetime="2020-11-19T16:00:28.860Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php文件上传" class="post-001.语言/php/php文件上传 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" data-id="ckhp0x7q9000p932u1q162o17" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="一般文件上传的原理"><a href="#一般文件上传的原理" class="headerlink" title="一般文件上传的原理"></a>一般文件上传的原理</h1><h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一.概述"></a>一.概述</h2><p> Struts/Spring MVC 文件上传实现都是基于Commons-fileupload，但背后的原理，大多数估计没有关注，最近阅读Commons-fileupload源码也发现，只有基础才是最重要的，万变不离其宗，在it领域不然会被漫天的新技术，冲昏了头，不知所措，下面开始。</p>
+<h2 id="二-HTTP报文"><a href="#二-HTTP报文" class="headerlink" title="二.HTTP报文"></a>二.HTTP报文</h2><p>1.要想理解文件上传，先要对HTTP报文有一个基本的了解<br>2.HTTP报文是简单的格式化数据块，每条报文都包含来自客户端（如浏览器）的请求，或者来自服务器的响应<br>3.HTTP报文由3部分组成<br>起始行                  - 对报文的描述，所有的HTTP报文都以一个起始行作为开始，即报文的第一行就是起始行<br>首部                     - 可以有0或多个首部字段，每个首部 字段都包含一个名字和一个值，首部字段后是\r\n，首部以一个空行\r\n结束<br>实体的主体部分   - 首部恐婚之后就是可选的报文实体，实体的主体是HTTP报文的负荷，传输的内容就在实体的主体中</p>
+<p><img src="https://img-blog.csdn.net/20170904123625516?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlwaW5nYW5x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p><img src="https://img-blog.csdn.net/20170905214936101?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlwaW5nYW5x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p><img src="https://img-blog.csdn.net/20170905215154085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlwaW5nYW5x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>1.TCP为HTTP提供了一条可靠的比特传输管道。从TCP一端填入的字节会从另一端以原有的顺序、正确的传送出来，TCP提供了：</p>
+<p>无差错的数据传输<br>按序传输 - 数据总是按照发送的顺序到达<br>未分段的数据流 - 可以在任何时刻以任意尺寸将数据发送出去<br>2.HTTP要传送一条报文时，会以流的形式将报文数据的内容通过一条打开的TCP连接按序传输，TCP收到数据流后，会将数据流砍成被称作段的小数据块，并将段封装在IP分组中，通过因特网传输。所有这些工作都是由TCP/IP软件完成的，HTTP程序员什么也看不见</p>
+<p>3.只要建立了TCP连接，客户端与服务器之间的报文交换就不会丢失，不会被破坏，也不会在接收时出现错序了。</p>
+<h1 id="php的文件上传"><a href="#php的文件上传" class="headerlink" title="php的文件上传"></a>php的文件上传</h1><p>　　将客户端的文件上传到服务器，再将服务器的临时文件上传到指定目录</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+    <time datetime="2020-11-19T16:00:28.860Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php的多进程" class="post-001.语言/php/php的多进程 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8B/" data-id="ckhp0x7q9000q932ue2sb57xz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>PHP 默认并不支持多线程，要使用多线程需要安装 pthread 扩展  </p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
+    <time datetime="2020-11-19T16:00:28.860Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php的底层+OpCache" class="post-001.语言/php/php的底层+OpCache post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E7%9A%84%E5%BA%95%E5%B1%82+OpCache/" data-id="ckhp0x7qa000r932ubuz82b39" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="php的理解"><a href="#php的理解" class="headerlink" title="php的理解"></a>php的理解</h1><p>PHP是一种适用于web开发的动态语言。具体点说，就是一个用C语言实现包含大量组件的软件框架。更狭义点看，可以把它认为是一个强大的UI框架。</p>
+<h2 id="PHP代码的执行过程"><a href="#PHP代码的执行过程" class="headerlink" title="PHP代码的执行过程:"></a>PHP代码的执行过程:</h2><p><img src="https://images2018.cnblogs.com/blog/592892/201804/592892-20180414110927385-1112518846.png" alt="image"></p>
+<ul>
+<li>Parse。语法分析阶段。</li>
+<li>Compile。编译产出opcode中间码。</li>
+<li>Execute。运行，动态运行进行输出。<br>  由于PHP是个解释型语言执行的时候先得把程序读进来，然后由Zend引擎编译成opcode。最后Zend虚拟机顺次执行这些opcode（指令）完成操作。因此我们可 以把这个Opcode缓存起来，下次就能避免重新编译了。<h3 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言:"></a>编译型语言:</h3>对于C语言,C++, 编译成机器码(二进制)来运行.<br>java语言, 把.java编译成 .class,称为bytecode, 由jvm来运行. <h3 id="解释语言"><a href="#解释语言" class="headerlink" title="解释语言:"></a>解释语言:</h3>解释器解释执行. 典型的如 linux shell.<br>解释器逐行来执行命令.</li>
+</ul>
+<p>PHP稍有特殊之处,虽然是一个脚本语言,但不是靠解释器解释.<br>==而是 zend 虚拟机,屏蔽了操作系统的区别. ==<br>php代码编译成opcode, 由zend虚拟机来执行opcode.</p>
+<p><img src="https://img-blog.csdn.net/20161203142152200" alt="image"></p>
+<p>PHP变量的底层实现:<br>我们解压PHP的源码包, 看到如下的目录 </p>
+<p> <img src="https://img-blog.csdn.net/20161203142245233" alt="image"><br>其中,<br>最核心的—Zend目录, 这是zend虚拟的实现. 包括栈,数据类型,编译器等,都在这实现.<br>最主要的main –PHP的一些内建函数,最主要函数都在这里放着.<br>最大的一个目录 ext – PHP的扩展.</p>
+<p>PHP的大部分功能,都是以extenstion形式来完成的.<br>如果你开发了一个扩展,也放在ext目录下.</p>
+<h1 id="PHP中有8种数据类型-为什么zval-gt-value-联合体中-只有5种"><a href="#PHP中有8种数据类型-为什么zval-gt-value-联合体中-只有5种" class="headerlink" title="PHP中有8种数据类型,为什么zval-&gt;value 联合体中,只有5种?"></a>PHP中有8种数据类型,为什么zval-&gt;value 联合体中,只有5种?</h1><p>答:<br>1: NULL,直接 zval-&gt;type = IS_NULL,就可以表示,不必设置 value的值.<br>2: BOOL型 , zval-&gt;type = IS_BOOL, 再设置 zval.value.lval = 1/0;<br>3: Resourc型 ,资源型 往往是服务器上打开的一个接口,如果 文件读取接口.<br>zval-&gt;type = IS_RESOURCE, zval-&gt;tyoe.lval = 服务器上打开的接口的编号</p>
+<h1 id="PHP的设计理念及特点"><a href="#PHP的设计理念及特点" class="headerlink" title="PHP的设计理念及特点"></a>PHP的设计理念及特点</h1><ol>
+<li>多进程模型：由于PHP是多进程模型，不同请求间互不干涉，这样保证了一个请求挂掉不会对全盘服务造成影响，当然，随着时代发展，PHP也早已支持多线程模型。</li>
+<li>弱类型语言：和C/C++、Java、C#等语言不同，PHP是一门弱类型语言。一个变量的类型并不是一开始就确定不变，运行中才会确定并可能发生隐式或显式的类型转换，这种机制的灵活性在web开发中非常方便、高效，具体会在后面PHP变量中详述。</li>
+<li>引擎(Zend)+组件(ext)的模式降低内部耦合。</li>
+<li>中间层(sapi)隔绝web server和PHP。</li>
+<li>语法简单灵活，没有太多规范。缺点导致风格混杂，但再差的程序员也不会写出太离谱危害全局的程序。<h1 id="php-四层体系"><a href="#php-四层体系" class="headerlink" title="php 四层体系"></a>php 四层体系</h1><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg" alt="image"><h2 id="Zend引擎【编译为可执行的opcode】："><a href="#Zend引擎【编译为可执行的opcode】：" class="headerlink" title="Zend引擎【编译为可执行的opcode】："></a>Zend引擎【编译为可执行的opcode】：</h2></li>
+<li>Zend整体用纯C实现，是PHP的内核部分，它将PHP代码翻译（词法、语法解析等一系列编译过程）为可执行opcode的处理并实现相应的处理方法、实现了基本的数据结构（如hashtable、oo）、内存分配及管理、提供了相应的api方法供外部调用，是一切的核心，所有的外围功能均围绕Zend实现。<h2 id="Extensions【内置函数等基础组建扩展】："><a href="#Extensions【内置函数等基础组建扩展】：" class="headerlink" title="Extensions【内置函数等基础组建扩展】："></a>Extensions【内置函数等基础组建扩展】：</h2>围绕着Zend引擎，extensions通过组件式的方式提供各种基础服务，我们常见的各种内置函数（如array系列）、标准库等都是通过extension来实现，用户也可以根据需要实现自己的extension以达到功能扩展、性能优化等目的（如贴吧正在使用的PHP中间层、富文本解析就是extension的典型应用）。<h2 id="Sapi：Server-Application-Programming-Interface"><a href="#Sapi：Server-Application-Programming-Interface" class="headerlink" title="Sapi：Server Application Programming Interface"></a>Sapi：Server Application Programming Interface</h2>也就是服务端应用编程接口，Sapi通过一系列钩子函数，使得PHP可以和外围交互数据，这是PHP非常优雅和成功的一个设计，通过sapi成功的将PHP本身和上层应用解耦隔离，PHP可以不再考虑如何针对不同应用进行兼容，而应用本身也可以针对自己的特点实现不同的处理方式。<br>如前所述，Sapi通过通过一系列的接口，使得外部应用可以和PHP交换数据并可以根据不同应用特点实现特定的处理方法，我们常见的一些sapi有：</li>
+</ol>
+<h3 id="apache2handler【apache】："><a href="#apache2handler【apache】：" class="headerlink" title="apache2handler【apache】："></a>apache2handler【apache】：</h3><p>这是以apache作为webserver，采用mod_PHP模式运行时候的处理方式，也是现在应用最广泛的一种。</p>
+<h3 id="cgi【ngnix】："><a href="#cgi【ngnix】：" class="headerlink" title="cgi【ngnix】："></a>cgi【ngnix】：</h3><p>这是webserver和PHP直接的另一种交互方式，也就是大名鼎鼎的fastcgi协议，在最近今年fastcgi+PHP得到越来越多的应用，也是异步webserver所唯一支持的方式。<br>cli：命令行调用的应用模式</p>
+<h3 id="cli：命令行调用的应用模式-php-a"><a href="#cli：命令行调用的应用模式-php-a" class="headerlink" title="cli：命令行调用的应用模式 php -a"></a>cli：命令行调用的应用模式 php -a</h3><h2 id="上层应用："><a href="#上层应用：" class="headerlink" title="上层应用："></a>上层应用：</h2><p>这就是我们平时编写的PHP程序，通过不同的sapi方式得到各种各样的应用模式，如通过webserver实现web应用、在命令行下以脚本方式运行等等</p>
+<h1 id="PHP的opcache"><a href="#PHP的opcache" class="headerlink" title="PHP的opcache"></a>PHP的opcache</h1><h2 id="什么是opcode缓存？"><a href="#什么是opcode缓存？" class="headerlink" title="什么是opcode缓存？"></a>什么是opcode缓存？</h2><p>当解释器完成对脚本代码的分析后，便将它们生成可以直接运行的中间代码，也称为操作码</p>
+<p>（Operate Code，opcode）。Opcode cache的目地是避免重复编译，减少CPU和内存开销。</p>
+<h2 id="为什么要使用Opcode缓存？"><a href="#为什么要使用Opcode缓存？" class="headerlink" title="为什么要使用Opcode缓存？"></a>为什么要使用Opcode缓存？</h2><p>本来的php生命周期<br><img src="https://img-blog.csdn.net/20140120175042625" alt="image"><br>加了OpCode缓存后<br><img src="https://img-blog.csdn.net/20140120175158765" alt="image"></p>
+<h2 id="常用插件Optimizer-eAccelerator、xcache、APC"><a href="#常用插件Optimizer-eAccelerator、xcache、APC" class="headerlink" title="常用插件Optimizer+ eAccelerator、xcache、APC"></a>常用插件Optimizer+ eAccelerator、xcache、APC</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E7%9A%84%E5%BA%95%E5%B1%82+OpCache/">
+    <time datetime="2020-11-19T16:00:28.859Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/一、基础知识（数据类型[底层实现]+运算符+流程控制）" class="post-001.语言/php/php手册(1)/一、基础知识（数据类型[底层实现]+运算符+流程控制） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B[%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0]+%E8%BF%90%E7%AE%97%E7%AC%A6+%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%89/" data-id="ckhp0x7r4002d932ue0tmcwzr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>PHP是弱语言类型，主要分为三类：</p>
+<h3 id="1、标量类型：integer、string、float、boolean"><a href="#1、标量类型：integer、string、float、boolean" class="headerlink" title="1、标量类型：integer、string、float、boolean"></a>1、标量类型：integer、string、float、boolean</h3><h3 id="2、复合类型：array、object"><a href="#2、复合类型：array、object" class="headerlink" title="2、复合类型：array、object"></a>2、复合类型：array、object</h3><h3 id="3、特殊类型：resource、null"><a href="#3、特殊类型：resource、null" class="headerlink" title="3、特殊类型：resource、null"></a>3、特殊类型：resource、null</h3><h2 id="Resource-资源类型"><a href="#Resource-资源类型" class="headerlink" title="Resource 资源类型"></a>Resource 资源类型</h2><p>资源数据类型是PHP4引进的。资源是一种特殊的变量类型，保存了到外部资源的一个引用：如打开文件、数据库连接、图形画布区域等。<br>$fp = fopen(“test.txt”, “rw”);<br>var_dump($fp);<br>fclose($fp);<br>打印结果：resource(5) of type (stream)</p>
+<p>资源ID</p>
+<p>内核中将注册的资源变量存储在一个HashTable中，并把资源所在HashTable中的key作为资源ID。</p>
+<p>所以，实际上PHP中的资源变量实际存储的是一个整型，通过这个ID找到HashTable中对应的资源。</p>
+<p>由于 PHP4 Zend 引擎引进了资源计数系统，可以自动检测到一个资源不再被引用了（和 Java 一样）。这种情况下此资源使用的所有外部资源都会被垃圾回收系统释放。因此，很少需要用某些 free-result 函数来手工释放内存。</p>
+<p>注意: 持久数据库连接比较特殊，它们不会被垃圾回收系统破坏。</p>
+<h2 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h2><p>被赋值为 NULL。</p>
+<p>尚未被赋值。</p>
+<p>被 unset()。</p>
+<p>因而 无法区分 $a; $b=NULL;<br>也就是说 变量未初始化 就是NULL</p>
+<h2 id="Callback-Callable-类型"><a href="#Callback-Callable-类型" class="headerlink" title="Callback / Callable 类型"></a>Callback / Callable 类型</h2><p>一些函数如 call_user_func() 或 usort() 可以接受用户自定义的回调函数作为参数。回调函数不止可以是简单函数，还可以是对象的方法，包括静态类方法。</p>
+<p>传递</p>
+<p>一个 PHP 的函数以 string 类型传递其名称。可以使用任何内置或用户自定义函数，但除了语言结构例如： array() ， echo ， empty() ， eval() ， exit() ， isset() ， list() ， print 或 unset() 。</p>
+<p>==一个已实例化的对象的方法被作为数组传递，下标 0 包含该对象，下标 1 包含方法名。==</p>
+<p>==静态类方法也可不经实例化该类的对象而传递，只要在下标 0 中包含类名而不是对象。自 PHP 5.2.3 起，也可以传递 ‘ClassName::methodName’。==</p>
+<p>除了普通的用户自定义函数外， create_function() 可以用来创建一个匿名回调函数。自 PHP 5.3.0 起也可传递 closure 给回调参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">&#x2F;&#x2F; An example callback function</span><br><span class="line">function  my_callback_function () &#123;</span><br><span class="line">    echo  &#39;hello world!&#39; ;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; An example callback method</span><br><span class="line">class  MyClass  &#123;</span><br><span class="line">    static function  myCallbackMethod () &#123;</span><br><span class="line">        echo  &#39;Hello World!&#39; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; Type 1: Simple callback</span><br><span class="line">call_user_func ( &#39;my_callback_function&#39; ); </span><br><span class="line">&#x2F;&#x2F; Type 2: Static class method call</span><br><span class="line">call_user_func (array( &#39;MyClass&#39; ,  &#39;myCallbackMethod&#39; )); </span><br><span class="line">&#x2F;&#x2F; Type 3: Object method call</span><br><span class="line">$obj  &#x3D; new  MyClass ();</span><br><span class="line">call_user_func (array( $obj ,  &#39;myCallbackMethod&#39; ));</span><br><span class="line">&#x2F;&#x2F; Type 4: Static class method call (As of PHP 5.2.3)</span><br><span class="line">call_user_func ( &#39;MyClass::myCallbackMethod&#39; );</span><br><span class="line">&#x2F;&#x2F; Type 5: Relative static class method call (As of PHP 5.3.0)</span><br><span class="line">class  A  &#123;</span><br><span class="line">    public static function  who () &#123;</span><br><span class="line">        echo  &quot;A\n&quot; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class  B  extends  A  &#123;</span><br><span class="line">    public static function  who () &#123;</span><br><span class="line">        echo  &quot;B\n&quot; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">call_user_func (array( &#39;B&#39; ,  &#39;parent::who&#39; ));  &#x2F;&#x2F; A</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="本文档中使用的伪类型与变量"><a href="#本文档中使用的伪类型与变量" class="headerlink" title="本文档中使用的伪类型与变量"></a>本文档中使用的伪类型与变量</h2><p>本文档中使用的伪类型与变量</p>
+<p>伪类型（pseudo -types）是PHP文档里用于指示参数可以使用的类型和值，<br>请注意，它们不是PHP语言里原生类型，<br>所以不能把伪类型用于自定义函数里面的类型约束（typehint）。</p>
+<p>==mixed==</p>
+<p>mixed说明一个参数可以接受多种不同的（但不一定是所有的）类型。</p>
+<p>例如：gettype()可以接受所有的PHP类型，str_replace()可以接受字符串和数组，</p>
+<p>==number==</p>
+<p>number说明一个参数可以是integer或者float。</p>
+<p>==callback==</p>
+<p>本文档中在PHP5.4引入callable类型之前使用了callback伪类型，二者涵义完全相同，</p>
+<p>==array|object==</p>
+<p>array|object意思是参数既可以是array也可以是object，</p>
+<p>==void==<br>void作为返回类型意味着函数的返回值是无用的，<br>void作为参数列表意味着函数不接受任何参数，</p>
+<h2 id="类型转换的判别"><a href="#类型转换的判别" class="headerlink" title="类型转换的判别"></a>类型转换的判别</h2><h1 id="php中弱语言类型的底层实现"><a href="#php中弱语言类型的底层实现" class="headerlink" title="php中弱语言类型的底层实现"></a>php中弱语言类型的底层实现</h1><h2 id="变量存储结构"><a href="#变量存储结构" class="headerlink" title="变量存储结构"></a>变量存储结构</h2><p>变量的值存储到以下所示zval结构体中。 zval结构体定义在Zend/zend.h文件，其结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _zval_struct zval;</span><br><span class="line">...</span><br><span class="line">struct _zval_struct &#123;</span><br><span class="line">    &#x2F;* Variable information *&#x2F;</span><br><span class="line">    zvalue_value value;     &#x2F;* value *&#x2F;</span><br><span class="line">    zend_uint refcount__gc;</span><br><span class="line">    zend_uchar type;    &#x2F;* active type *&#x2F;</span><br><span class="line">    zend_uchar is_ref__gc;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>PHP使用这个结构来存储变量的所有数据。和其他编译性静态语言不同， PHP在存储变量时将PHP用户空间的变量类型也保存在同一个结构体中。这样我们就能通过这些信息获取到变量的类型。</p>
+<p>zval结构体中有四个字段，其含义分别为：</p>
+<p>属性名    含义    默认值<br>refcount__gc    表示引用计数    1<br>is_ref__gc    表示是否为引用    0<br>value    存储变量的值<br>type    变量具体的类型     </p>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型:"></a>变量类型:</h2><p>zval结构体的type字段就是实现弱类型最关键的字段了，type的值可以为： IS_NULL、IS_BOOL、IS_LONG、IS_DOUBLE、IS_STRING、IS_ARRAY、IS_OBJECT和IS_RESOURCE 之一。 从字面上就很好理解，他们只是类型的唯一标示，根据类型的不同将不同的值存储到value字段。 除此之外，和他们定义在一起的类型还有IS_CONSTANT和IS_CONSTANT_ARRAY。</p>
+<p>这和我们设计数据库时的做法类似，为了避免重复设计类似的表，使用一个标示字段来记录不同类型的数据。</p>
+<h2 id="变量的值存储"><a href="#变量的值存储" class="headerlink" title="变量的值存储"></a>变量的值存储</h2><p>前面提到变量的值存储在zvalue_value联合体中，结构体定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typedef union _zvalue_value &#123;</span><br><span class="line">    long lval;                  &#x2F;* long value *&#x2F;</span><br><span class="line">    double dval;                &#x2F;* double value *&#x2F;</span><br><span class="line">    struct &#123;</span><br><span class="line">        char *val;</span><br><span class="line">        int len;</span><br><span class="line">    &#125; str;</span><br><span class="line">    HashTable *ht;              &#x2F;* hash table value *&#x2F;</span><br><span class="line">    zend_object_value obj;</span><br><span class="line">&#125; zvalue_value;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串的类型"><a href="#字符串的类型" class="headerlink" title="字符串的类型"></a>字符串的类型</h3><p>标示和其他数据类型一样，不过在存储字符串时多了一个字符串长度的字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;</span><br><span class="line">    char *val;</span><br><span class="line">    int len;</span><br><span class="line">&#125; str;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组Array"><a href="#数组Array" class="headerlink" title="数组Array"></a>数组Array</h3><p>数组是PHP中最常用，也是最强大变量类型，它可以存储其他类型的数据，而且提供各种内置操作函数。数组的存储相对于其他变量要复杂一些， 数组的值存储在zvalue_value.ht字段中，它是一个HashTable类型的数据。 PHP的数组使用哈希表来存储关联数据。哈希表是一种高效的键值对存储结构。PHP的哈希表实现中使用了两个数据结构HashTable和Bucket。 PHP所有的工作都由哈希表实现，在下节HashTable中将进行哈希表基本概念的介绍以及PHP的哈希表实现。</p>
+<h3 id="对象Object"><a href="#对象Object" class="headerlink" title="对象Object"></a>对象Object</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _zend_object_value &#123;</span><br><span class="line">    zend_object_handle handle;  &#x2F;&#x2F;  unsigned int类型，EG(objects_store).object_buckets的索引</span><br><span class="line">    zend_object_handlers *handlers;</span><br><span class="line">&#125; zend_object_value;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5B%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%5D+%E8%BF%90%E7%AE%97%E7%AC%A6+%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.859Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/php/php手册(1)/二、函数+类与对象" class="post-001.语言/php/php手册(1)/二、函数+类与对象 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0+%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" data-id="ckhp0x7rx003z932u924aa83a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="用户自定义函数"><a href="#用户自定义函数" class="headerlink" title="用户自定义函数"></a>用户自定义函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$makefoo &#x3D; true;</span><br><span class="line"></span><br><span class="line">&#x2F;* 不能在此处调用foo()函数，</span><br><span class="line">   因为它还不存在，但可以调用bar()函数。*&#x2F;</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line"></span><br><span class="line">if ($makefoo) &#123;</span><br><span class="line">  function foo()</span><br><span class="line">  &#123;</span><br><span class="line">    echo &quot;I don&#39;t exist until program execution reaches me.\n&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* 现在可以安全调用函数 foo()了，</span><br><span class="line">   因为 $makefoo 值为真 *&#x2F;</span><br><span class="line"></span><br><span class="line">if ($makefoo) foo();</span><br><span class="line"></span><br><span class="line">function bar()</span><br><span class="line">&#123;</span><br><span class="line">  echo &quot;I exist immediately upon program start.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数参数-【三种类型传参-传递数组，引用传参，默认参数的值】"><a href="#函数参数-【三种类型传参-传递数组，引用传参，默认参数的值】" class="headerlink" title="函数参数 【三种类型传参 传递数组，引用传参，默认参数的值】"></a>函数参数 【三种类型传参 传递数组，引用传参，默认参数的值】</h2><h2 id="可变函数"><a href="#可变函数" class="headerlink" title="可变函数"></a>可变函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function foo() &#123;</span><br><span class="line">    echo &quot;In foo()&lt;br &#x2F;&gt;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function bar($arg &#x3D; &#39;&#39;) &#123;</span><br><span class="line">    echo &quot;In bar(); argument was &#39;$arg&#39;.&lt;br &#x2F;&gt;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用 echo 的包装函数</span><br><span class="line">function echoit($string)</span><br><span class="line">&#123;</span><br><span class="line">    echo $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$func &#x3D; &#39;foo&#39;;</span><br><span class="line">$func();        &#x2F;&#x2F; This calls foo()</span><br><span class="line"></span><br><span class="line">$func &#x3D; &#39;bar&#39;;</span><br><span class="line">$func(&#39;test&#39;);  &#x2F;&#x2F; This calls bar()</span><br><span class="line"></span><br><span class="line">$func &#x3D; &#39;echoit&#39;;</span><br><span class="line">$func(&#39;test&#39;);  &#x2F;&#x2F; This calls echoit()</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="匿名函数-closures-闭包函数"><a href="#匿名函数-closures-闭包函数" class="headerlink" title="匿名函数[closures] 闭包函数"></a>匿名函数[closures] 闭包函数</h2><h3 id="匿名函数-变量赋值-从父作用域继承变量"><a href="#匿名函数-变量赋值-从父作用域继承变量" class="headerlink" title="匿名函数  变量赋值+ 从父作用域继承变量"></a>匿名函数  变量赋值+ 从父作用域继承变量</h3><p><a target="_blank" rel="noopener" href="http://www.php.cn/php-weizijiaocheng-400799.html">http://www.php.cn/php-weizijiaocheng-400799.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo preg_replace_callback(&#39;~-([a-z])~&#39;, function ($match) &#123;</span><br><span class="line">&#x2F;&#x2F;例一</span><br><span class="line">&#x2F;&#x2F;在函数里定义一个匿名函数，并且调用它</span><br><span class="line">function printStr() &#123;</span><br><span class="line">  $func &#x3D; function( $str ) &#123;</span><br><span class="line">    echo $str;</span><br><span class="line">  &#125;;</span><br><span class="line">  $func( &#39;some string&#39; );</span><br><span class="line">&#125;</span><br><span class="line">printStr();</span><br><span class="line">&#x2F;&#x2F;例二</span><br><span class="line">&#x2F;&#x2F;在函数中把匿名函数返回，并且调用它</span><br><span class="line">function getPrintStrFunc() &#123;</span><br><span class="line">  $func &#x3D; function( $str ) &#123;</span><br><span class="line">    echo $str;</span><br><span class="line">  &#125;;</span><br><span class="line">  return $func;</span><br><span class="line">&#125;</span><br><span class="line">$printStrFunc &#x3D; getPrintStrFunc();</span><br><span class="line">$printStrFunc( &#39;some string&#39; );</span><br><span class="line">&#x2F;&#x2F;例三</span><br><span class="line">&#x2F;&#x2F;把匿名函数当做参数传递，并且调用它</span><br><span class="line">function callFunc( $func ) &#123;</span><br><span class="line">  $func( &#39;some string&#39; );</span><br><span class="line">&#125;</span><br><span class="line">$printStrFunc &#x3D; function( $str ) &#123;</span><br><span class="line">  echo $str;</span><br><span class="line">&#125;;</span><br><span class="line">callFunc( $printStrFunc );</span><br><span class="line">&#x2F;&#x2F;也可以直接将匿名函数进行传递。如果你了解js，这种写法可能会很熟悉</span><br><span class="line">callFunc( function( $str ) &#123;</span><br><span class="line">  echo $str;</span><br><span class="line">&#125; );</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="可以看做匿名函数"><a href="#可以看做匿名函数" class="headerlink" title="可以看做匿名函数"></a>可以看做匿名函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$numberPlusOne &#x3D; array_map(function ($number) &#123;</span><br><span class="line">    return $number +&#x3D; 1;</span><br><span class="line">&#125;, [1, 2, 3]);</span><br><span class="line"></span><br><span class="line">print_r($numberPlusOne);</span><br></pre></td></tr></table></figure>
+<p>==附加状态==</p>
+<p>PHP闭包不会像真正的javascrypt闭包那样自动封装应用的状态，我们必须手动调用闭包对象的 ==bindTo()== 方法或者==使用 use== 关键字，==把状态附加到PHP闭包上==。<br>==使用 use 关键字==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Car ($name)&#123;</span><br><span class="line">  return function($statu)use($name)&#123;</span><br><span class="line">    return sprintf(&quot;Car %s is %s&quot;, $name, $statu); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 将车名封装在闭包中</span><br><span class="line">$car &#x3D; Car(&quot;bmw&quot;);</span><br><span class="line">&#x2F;&#x2F; 调用车的动作</span><br><span class="line">&#x2F;&#x2F; 输出--&gt; &quot;bmw is running&quot;</span><br><span class="line">echo $car(&quot;running&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="闭包的好处"><a href="#闭包的好处" class="headerlink" title="闭包的好处"></a>闭包的好处</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjf512/archive/2012/10/29/2744702.html">link</a></p>
+<h4 id="1-减少foreach的循环的代码"><a href="#1-减少foreach的循环的代码" class="headerlink" title="1 减少foreach的循环的代码"></a>1 减少foreach的循环的代码</h4><p>比如手册<a target="_blank" rel="noopener" href="http://php.net/manual/en/functions.anonymous.php">http://php.net/manual/en/functions.anonymous.php</a> 中的例子Cart</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 一个基本的购物车，包括一些已经添加的商品和每种商品的数量。</span><br><span class="line">&#x2F;&#x2F; 其中有一个方法用来计算购物车中所有商品的总价格。该方法使用了一个closure作为回调函数。</span><br><span class="line">class Cart</span><br><span class="line">&#123;</span><br><span class="line">    const PRICE_BUTTER  &#x3D; 1.00;</span><br><span class="line">    const PRICE_MILK    &#x3D; 3.00;</span><br><span class="line">    const PRICE_EGGS    &#x3D; 6.95;</span><br><span class="line"> </span><br><span class="line">    protected   $products &#x3D; array();</span><br><span class="line">     </span><br><span class="line">    public function add($product, $quantity)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;products[$product] &#x3D; $quantity;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function getQuantity($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return isset($this-&gt;products[$product]) ? $this-&gt;products[$product] :</span><br><span class="line">               FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function getTotal($tax)</span><br><span class="line">    &#123;</span><br><span class="line">        $total &#x3D; 0.00;</span><br><span class="line">         </span><br><span class="line">        $callback &#x3D;</span><br><span class="line">            function ($quantity, $product) use ($tax, &amp;$total)</span><br><span class="line">            &#123;</span><br><span class="line">                $pricePerItem &#x3D; constant(__CLASS__ . &quot;::PRICE_&quot; .</span><br><span class="line">                    strtoupper($product));</span><br><span class="line">                $total +&#x3D; ($pricePerItem * $quantity) * ($tax + 1.0);</span><br><span class="line">            &#125;;</span><br><span class="line">         </span><br><span class="line">        array_walk($this-&gt;products, $callback); &#x2F;&#x2F;数组中的每个元素应用用户自定义函数：</span><br><span class="line">        return round($total, 2);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$my_cart &#x3D; new Cart;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 往购物车里添加条目</span><br><span class="line">$my_cart-&gt;add(&#39;butter&#39;, 1);</span><br><span class="line">$my_cart-&gt;add(&#39;milk&#39;, 3);</span><br><span class="line">$my_cart-&gt;add(&#39;eggs&#39;, 6);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 打出出总价格，其中有 5% 的销售税.</span><br><span class="line">print $my_cart-&gt;getTotal(0.05) . &quot;\n&quot;;</span><br><span class="line">&#x2F;&#x2F; The result is 54.29</span><br></pre></td></tr></table></figure>
+<h4 id="2-减少函数的参数"><a href="#2-减少函数的参数" class="headerlink" title="2 减少函数的参数"></a>2 减少函数的参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function html ($code , $id&#x3D;&quot;&quot;, $class&#x3D;&quot;&quot;)&#123;</span><br><span class="line"> </span><br><span class="line">if ($id !&#x3D;&#x3D; &quot;&quot;) $id &#x3D; &quot; id &#x3D; \&quot;$id\&quot;&quot; ;</span><br><span class="line"> </span><br><span class="line">$class &#x3D; ($class !&#x3D;&#x3D; &quot;&quot;)? &quot; class &#x3D;\&quot;$class\&quot;&quot;:&quot;&gt;&quot;;</span><br><span class="line"> </span><br><span class="line">$open &#x3D; &quot;&lt;$code$id$class&quot;;</span><br><span class="line"> </span><br><span class="line">$close &#x3D; &quot;&lt;&#x2F;$code&gt;&quot;;</span><br><span class="line"> </span><br><span class="line">return function ($inner &#x3D; &quot;&quot;) use ($open, $close)&#123;</span><br><span class="line"> </span><br><span class="line">return &quot;$open$inner$close&quot;;&#125;;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是使用平时的方法，我们会把inner放到html函数参数中，这样不管是代码阅读还是使用都不如使用闭包</p>
+<h4 id="3-解除递归函数"><a href="#3-解除递归函数" class="headerlink" title="3 解除递归函数"></a>3 解除递归函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $fib &#x3D; function($n) use(&amp;$fib) &#123;</span><br><span class="line">        if($n &#x3D;&#x3D; 0 || $n &#x3D;&#x3D; 1) return 1;</span><br><span class="line">        return $fib($n - 1) + $fib($n - 2);</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">   echo $fib(2) . &quot;\n&quot;; &#x2F;&#x2F; 2</span><br><span class="line">   $lie &#x3D; $fib;</span><br><span class="line">   $fib &#x3D; function()&#123;die(&#39;error&#39;);&#125;;&#x2F;&#x2F;rewrite $fib variable </span><br><span class="line">   echo $lie(5); &#x2F;&#x2F; error   because $fib is referenced by closure</span><br></pre></td></tr></table></figure>
+
+<p>注意上题中的use使用了&amp;，这里不使用&amp;会出现错误fib(fib(n-1)是找不到function的（前面没有定义fib的类型）</p>
+<p>所以想使用闭包解除循环函数的时候就需要使用</p>
+<h4 id="延迟绑定"><a href="#延迟绑定" class="headerlink" title="延迟绑定"></a>延迟绑定</h4><p>如果你需要延迟绑定use里面的变量，你就需要使用引用(&amp;)，否则在定义的时候就会做一份拷贝放到use中 //理解use(&amp;$var)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$result &#x3D; 0; </span><br><span class="line"></span><br><span class="line">$one &#x3D;function() </span><br><span class="line">&#123; var_dump($result); &#125;; </span><br><span class="line"></span><br><span class="line">$two &#x3D;function()use ($result) </span><br><span class="line">&#123; var_dump($result); &#125;; </span><br><span class="line"></span><br><span class="line">$three &#x3D;function()use (&amp;$result) </span><br><span class="line">&#123; var_dump($result); &#125;; </span><br><span class="line"></span><br><span class="line">$result++; </span><br><span class="line"></span><br><span class="line">$one(); &#x2F;&#x2F; outputs NULL: $result is not in scope </span><br><span class="line">$two(); &#x2F;&#x2F; outputs int(0): $result was copied </span><br><span class="line">$three(); &#x2F;&#x2F; outputs int(1)</span><br></pre></td></tr></table></figure>
+<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="伪变量"><a href="#伪变量" class="headerlink" title="伪变量"></a>伪变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">  </span><br><span class="line">class human&#123;  </span><br><span class="line">      </span><br><span class="line">    public $name&#x3D;&quot;李四&quot;;  </span><br><span class="line">      </span><br><span class="line">    public function eat()&#123;  </span><br><span class="line">      </span><br><span class="line">      echo $this-&gt;name,&#39;在吃饭&#39;;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    public function test()&#123;  </span><br><span class="line">      </span><br><span class="line">      echo $name,&#39;在吃饭&#39;;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">$li&#x3D;new human();  </span><br><span class="line">echo $li-&gt;name;&#x2F;&#x2F;李四  </span><br><span class="line">$li-&gt;eat();&#x2F;&#x2F;李四在吃饭</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="类的自动加载"><a href="#类的自动加载" class="headerlink" title="类的自动加载"></a>类的自动加载</h2><h3 id="自动加载怎么出现的"><a href="#自动加载怎么出现的" class="headerlink" title="自动加载怎么出现的"></a>自动加载怎么出现的</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37356656/article/details/78642520">https://blog.csdn.net/weixin_37356656/article/details/78642520</a><br>     少量的类的引用 有 require 即可<br>     __autoload()函数PHP在找不到类的时候会自动执行 但是PHP内部并没有定义这个函数，这个函数需要开发着自己定义，并且编写内部逻辑，</p>
+<pre><code>如果项目比较大，加载每个文件都使用同样的规则显然是不现实的，那么我们可能就需要在__autoload()中编写复杂的规则逻辑来满足加载不同文件的需求。这同样会使得__autoload()函数变得复杂臃肿，难以维护管理。
+
+于是，SPL(Standard PHP Library 标准PHP类库)的自动加载机制就应时而生了。</code></pre>
+<h3 id="自动加载的分类"><a href="#自动加载的分类" class="headerlink" title="自动加载的分类"></a>自动加载的分类</h3><h4 id="PHP自带的类的自动加载方式-autoload-到-spl-autoload-register"><a href="#PHP自带的类的自动加载方式-autoload-到-spl-autoload-register" class="headerlink" title="PHP自带的类的自动加载方式  __autoload()到 spl_autoload_register"></a>PHP自带的类的自动加载方式  __autoload()到 spl_autoload_register</h4><h5 id="autoload机制（惰性加载）的主要执行过程为："><a href="#autoload机制（惰性加载）的主要执行过程为：" class="headerlink" title="autoload机制（惰性加载）的主要执行过程为："></a>autoload机制（惰性加载）的主要执行过程为：</h5><p>检查执行器全局变量函数指针autoload_func是否是NULL；<br>如果 autoload_func==NULL ,则查找系统是否定义 __autoload() 函数，如果定义了，则执行并返回加载结果。如果没有定义，则报错并退出；<br>如果 autoload_func 不等于NULL，则直接执行 autoload_func 指向的函数加载类，此时并不检查 __autoload() 函数是否定义。</p>
+<h5 id="spl-autoload-register（）"><a href="#spl-autoload-register（）" class="headerlink" title="spl_autoload_register（）"></a>spl_autoload_register（）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class A&#123;</span><br><span class="line">    public function test()&#123;</span><br><span class="line">        $b_object &#x3D; new B();</span><br><span class="line">        $b_object-&gt;echo_info();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function __autoload($classname)&#123;</span><br><span class="line">    require $classname.&#39;.php&#39;;&#x2F;&#x2F;include &#39;b.php&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function my_autoload($classname)&#123;</span><br><span class="line">    require $classname.&#39;.php&#39;;&#x2F;&#x2F;include &#39;b.php&#39;;</span><br><span class="line">    echo &#39;my_autoload   &#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">spl_autoload_register(&#39;my_autoload&#39;);</span><br><span class="line">$a_object &#x3D; new A();</span><br><span class="line">$a_object-&gt;test();</span><br><span class="line"></span><br><span class="line">结果：my_autoload  我是class B中的方法执行结果</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>可以看到，通过 spl_autoload_register（’my_autoload’），实现了 当程序执行找不到类B时，会执行 自定义的 my_autoload()函数，加载B类。实际上 spl_autoload_register（’my_autoload’） 的作用就是 把autoload_func 指针指向 my_autoload()。现在，整个PHP 自动加载过程就明白了。<br>因为SPL扩展内部自己定义了一个自动加载函数 spl_autoload(),实现了自动加载的功能，如果我们不定义自己的自动加载函数，并且程序里写了 spl_autoload_register（）（如果不传参数，必须是第一次执行才会有效）或者 spl_autoload_register（’spl_autoload’），那么autoload_func 指针就会指向内部函数 spl_autoload()。程序执行的时候如果找不到相应类就会执行该自动加载函数。</p>
+<p>那么，SPL 是怎么实现autoload_func 指针指向不同的函数呢？<br> spl_autoload_functions() //打印autoload_functions列表<br>  spl_autoload_unregister() //注销自动加载函数<br>原来，在SPL内部定义了 一个函数 spl_autoload_call() 和 一个全局变量autoload_functions。autoload_functions本质上是一个HashTable，不过我们可以将其简单的看作一个链表，链表中的每一个元素都是一个函数指针,指向一个具有自动加载类功能的函数。</p>
+<p>spl_autoload_call()的作用就是按顺序遍历 autoload_functions，使得autoload_func指向每个自动加载函数，如果加载成功就停止，如果不成功就继续遍历下个自动加载函数，直到加载成功或者遍历完所有的函数。</p>
+<p>那么，autoload_functions 这个列表是谁来维护的呢？就是 spl_autoload_register() 这个函数。我们说的自动加载函数的注册，其实就是通过spl_autoload_register()把自动加载函数加入到 autoload_functions 列表。<br>相关SPL自动加载函数：<br>  spl_autoload_functions() //打印autoload_functions列表<br>  spl_autoload_unregister() //注销自动加载函数</p>
+<h4 id="composer-自动加载"><a href="#composer-自动加载" class="headerlink" title="composer 自动加载"></a>composer 自动加载</h4><p>你有一个项目依赖于若干个库。<br>其中一些库依赖于其他库。<br>你声明你所依赖的东西。<br>Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。</p>
+<h4 id="PHP的Yaf框架下的自动加载方式"><a href="#PHP的Yaf框架下的自动加载方式" class="headerlink" title="PHP的Yaf框架下的自动加载方式"></a>PHP的Yaf框架下的自动加载方式</h4><h2 id="访问可见性"><a href="#访问可见性" class="headerlink" title="访问可见性"></a>访问可见性</h2><h3 id="public-protect-private"><a href="#public-protect-private" class="headerlink" title="public protect private"></a>public protect private</h3><p>public的权限最大，既可以让子类使用，也可以支持实例化之后的调用，<br>protected表示的是受保护的，访问的权限是只有在子类和本类中才可以被访问到<br>private 表示的是私有，只能够是在当前的类中可以被访问到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;**</span><br><span class="line">* Define MyClass</span><br><span class="line">*&#x2F;</span><br><span class="line">class MyClass</span><br><span class="line">&#123;</span><br><span class="line"> public $public &#x3D; &#39;Public&#39;;</span><br><span class="line"> protected $protected &#x3D; &#39;Protected&#39;;</span><br><span class="line"> private $private &#x3D; &#39;Private&#39;;</span><br><span class="line"> public function printHello()</span><br><span class="line"> &#123;</span><br><span class="line"> echo $this-&gt;public;</span><br><span class="line"> echo $this-&gt;protected;</span><br><span class="line"> echo $this-&gt;private;</span><br><span class="line"> &#125;</span><br><span class="line"> protected function pro_test()&#123;</span><br><span class="line"> var_dump(1);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">$obj &#x3D; new MyClass();</span><br><span class="line">echo $obj-&gt;public; &#x2F;&#x2F; 这行能被正常执行</span><br><span class="line">&#x2F;&#x2F;echo $obj-&gt;protected; &#x2F;&#x2F; 这行会产生一个致命错误</span><br><span class="line">&#x2F;&#x2F;echo $obj-&gt;private; &#x2F;&#x2F; 这行也会产生一个致命错误</span><br><span class="line">$obj-&gt;printHello(); &#x2F;&#x2F; 输出 Public、Protected 和 Private</span><br><span class="line">$obj-&gt;pro_test();&#x2F;&#x2F;直接报错</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>注意 实例化对象 new 相当于外部调用</p>
+<h2 id="对象继承-extend"><a href="#对象继承-extend" class="headerlink" title="对象继承 extend"></a>对象继承 extend</h2><p>extends</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extends是继承某个类，继承之后可以使用父类的方法，也可以重写父类的方法，</span><br></pre></td></tr></table></figure>
+<p>  ==如果类被声明为final，则不能被继承==</p>
+<h2 id="静态关键字-static"><a href="#静态关键字-static" class="headerlink" title="静态关键字 static"></a>静态关键字 static</h2><p> static的作用就是能够实现值或者方法在类中不需实例化的情况下调用，同时static修饰的变量具有与值存储的功能，<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yolo-bean/p/7739265.html">link</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class class1</span><br><span class="line">&#123;</span><br><span class="line">    public static function test()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class class2</span><br><span class="line">&#123;</span><br><span class="line">    public function test()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">静态方法调用</span><br><span class="line">class1::test(); </span><br><span class="line">非静态方法调用</span><br><span class="line">$c2 &#x3D; new class2(); </span><br><span class="line">$c2-&gt;test();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>静态是随着累的加载而加载的  也就是说类只要存在了，那么静态就存在了，而静态是优先于对象存在的  ，你要访问非静态的东西，也就是非静态的成员（包括变量和方法），非静态的东西还没存在你怎么访问的到</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zealfory/article/details/78913084">https://blog.csdn.net/zealfory/article/details/78913084</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33774822/article/details/61197364">https://blog.csdn.net/qq_33774822/article/details/61197364</a></p>
+<h2 id="abstract-抽象类"><a href="#abstract-抽象类" class="headerlink" title="abstract 抽象类"></a>abstract 抽象类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">抽象方法是只有方法声明，而没有方法的实现内容。</span><br></pre></td></tr></table></figure>
+
+<p>abstract有以下的这些特征：</p>
+<ol>
+<li><p>只要类中有至少一个方法使用了abstract关键字，那么这个类是abstract，要加上相应的关键字</p>
+</li>
+<li><p>抽象方法，只有方法的声明部分，没有方法体。</p>
+</li>
+</ol>
+<p>但是在我看来，abstract在实际的应用中有这样的几种场景</p>
+<ol>
+<li><p>多人编程的时候规范公共部分的命名规则（不做任何说明，原理跟interface一样）</p>
+</li>
+<li><p>实现不让父级直接实例化使用</p>
+</li>
+</ol>
+<p>==抽象类不能被实例化==，通常是将抽象方法做为子类方法重写使用的，且要把继承的抽象类里的方法都实现</p>
+<h3 id="接口-interface"><a href="#接口-interface" class="headerlink" title="接口 interface"></a>接口 interface</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">interface即PHP接口，并用关键字implements来实现接口中方法，且必须完全实现。 否则报错 类可以实现多个接口，用逗号来分隔多个接口的名称。</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">#### 抽象类和接口的区别</span><br><span class="line">接口是一个特殊的抽象类，也可以看作是一个模型的规范，接口与抽象类大致区别如下：</span><br><span class="line"></span><br><span class="line">1，一个子类如果implements一个接口，就必须实现接口中的所有方法（不管是否需要）；如果是继承一个抽象类，只需要实现需要的方法即可</span><br><span class="line"></span><br><span class="line">2，如果一个接口中定义的方法名改变了，那么所有市县次接口的子类需要同更新方法名，而抽象类中如果方法名改变了，其子类对应的方法名将不受影响，只是变成了一个新的方法而已</span><br><span class="line"></span><br><span class="line">3，抽象类只能单继承，当一个子类需要实现的功能需要集成多个父类，就必须适用接口</span><br><span class="line">### 性状 trait （类似多继承）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">作用有两个：</span><br><span class="line">1. 表明类可以做什么（像是接口）</span><br><span class="line">2. 提供模块化实现（像是类）</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<?php
+
+
+trait Hello 
+{
+    public function getHello()
+    {
+        echo "Hello";
+    }
+}
+
+trait World 
+{
+    public function getWorld()
+    {
+        echo "World";
+    }
+}
+
+class HelloWorld 
+{
+    use Hello, World;
+
+    public function sayHelloWorld()
+    {
+        echo "!";
+    }
+}
+
+$hw = new HelloWorld();
+$hw->getHello();
+$hw->getWorld();
+$hw->sayHelloWorld();
+?>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">编写通用根类，实现基本功能，扩展根类</span><br><span class="line">DRY原则（DONNOT Repeat Yourself）</span><br><span class="line">## 匿名类和重载 可以遍历对象（php5）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<?php
+
+// PHP 7 之前的代码
+class Logger
+{
+    public function log($msg)
+    {
+        echo $msg;
+    }
+}
+
+$util->setLogger(new Logger());
+
+// 使用了 PHP 7+ 后的代码
+$util->setLogger(new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">## 魔术方法 __（两个下划线）开头的类方法保留为魔术方法</span><br><span class="line">PHP 将所有以 __（两个下划线）开头的类方法保留为魔术方法。所以在定义类方法时，除了上述魔术方法，建议不要以 __ 为前缀</span><br><span class="line">_construct()， __destruct()，</span><br><span class="line">__call()， 你调用的方法不存在的时候，会解释器会调用__call方法</span><br><span class="line">__callStatic()， 当调用的静态方法不存在或权限不足时，会自动调用__callStatic方法。</span><br><span class="line">__get()，</span><br><span class="line">__set()， </span><br><span class="line">__isset()，</span><br><span class="line">__unset()， </span><br><span class="line">__sleep()， 可以用于清理对象</span><br><span class="line">__wakeup()， 例如重新建立数据库连接，或执行其它初始化操作。</span><br><span class="line">__toString()，</span><br><span class="line">__invoke()，以调用函数的方式调用一个对象时，__invoke() 方法会被自动调用</span><br><span class="line">__set_state()， </span><br><span class="line">__clone()  克隆</span><br><span class="line">__debugInfo() 执行var_dump()方法的时候会调用__debugInfo()方法</span><br><span class="line">## final </span><br><span class="line">Final 关键字</span><br><span class="line">PHP 5 新增了一个 final 关键字。如果父类中的方法被声明为 final，则子类无法覆盖该方法。如果一个类被声明为 final，则不能被继承。</span><br><span class="line">## 对象复制 clone</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<?php
+class a{
+    public $v = 1;
+}
+$obj = new a();
+// 1. clone方式
+// $copy_obj = clone $obj;
+// 2. 标识赋值方式
+// $copy_obj = $obj;
+// 3. 引用赋值方式
+// $copy_obj = &$obj;
+$copy_obj->v = 2;
+echo '原对象的v属性等于' . $obj1->v;
+echo '<br />';
+echo '复制对象的v属性等于' . $obj2->v;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">## 类型约束 指定类型</span><br><span class="line">PHP 5 可以使用类型约束。函数的参数可以指定必须为对象（在函数原型里面指定类的名字），接口，数组（PHP 5.1 起）或者 callable（PHP 5.4 起）。不过如果使用 NULL 作为参数的默认值，那么在调用函数的时候依然可以使用 NULL 作为实参。</span><br><span class="line"></span><br><span class="line">如果一个类或接口指定了类型约束，则其所有的子类或实现也都如此。</span><br><span class="line"></span><br><span class="line">&#x3D;&#x3D;函数调用的参数与定义的参数类型不一致时，会抛出一个可捕获的致命错误。&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">类型约束不能用于标量类型如 int 或 string。Traits 也不允许。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<?php
+//如下面的类
+class MyClass
+{
+    /**
+     * 测试函数
+     * 第一个参数必须为 OtherClass 类的一个对象
+     */
+    public function test(OtherClass $otherclass) {
+        echo $otherclass->var;
+    }
+
+
+    /**
+     * 另一个测试函数
+     * 第一个参数必须为数组 
+     */
+    public function test_array(array $input_array) {
+        print_r($input_array);
+    }
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 后期静态绑定 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<?php
+class A {
+    public static function foo() {
+        static::who();
+    }
+
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+
+class B extends A {
+    public static function test() {
+        A::foo();
+        parent::foo();
+        self::foo();
+    }
+
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+class C extends B {
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+
+C::test();
+?>
+<p>以上例程会输出：<br>A<br>C<br>C</p>
+<p>```</p>
+<h2 id="对象和引用-amp-序列化和反序列化"><a href="#对象和引用-amp-序列化和反序列化" class="headerlink" title="对象和引用&amp;  序列化和反序列化"></a>对象和引用&amp;  序列化和反序列化</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0+%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/">
+    <time datetime="2020-11-19T16:00:28.859Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/huanghao.github.io/page/2/">2</a><a class="page-number" href="/huanghao.github.io/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/2/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
   
 
 </div></div>
@@ -376,13 +747,6 @@
     
   
     
-  <aside class="widget">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/huanghao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">本科操作系统</a><span class="category-list-count">4</span></li></ul></li></ul>
-    </div>
-  </aside>
-
   
     
   <aside class="widget">
@@ -391,23 +755,23 @@
       <ul>
         
           <li>
-            <a href="/huanghao.github.io/2020/11/18/googlef90e527fb0c7f230/">(no title)</a>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
           </li>
         
           <li>
-            <a href="/huanghao.github.io/2020/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/title/">入门导论</a>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
           </li>
         
           <li>
-            <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/My-First-Post/">入门导论2</a>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
           </li>
         
           <li>
-            <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">一、操作系统基本介绍</a>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
           </li>
         
           <li>
-            <a href="/huanghao.github.io/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/">二、进程线程</a>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
           </li>
         
       </ul>
@@ -416,22 +780,8 @@
 
   
     
-  <aside class="widget">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/huanghao.github.io/tags/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/" rel="tag">本科操作系统入门</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </aside>
-
   
     
-  <aside class="widget">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget-content tagcloud">
-      <a href="/huanghao.github.io/tags/%E6%9C%AC%E7%A7%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8/" style="font-size: 10px;">本科操作系统入门</a>
-    </div>
-  </aside>
-
   
 </div>
       </div>
@@ -440,9 +790,9 @@
     All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>
-    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/huanghao.github.io/js/share.js'];</script>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
 
-<script src="/huanghao.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 
 
   
@@ -457,7 +807,7 @@
 <script src="/huanghao.github.io/js/script.js"></script>
 
 
-<script src="/huanghao.github.io/js/navigation.js"></script>
+<script src="/js/navigation.js"></script>
 
 <div id="bg"></div>
 

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/4/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-001.语言/go/函数和包/函数和方法的区别" class="post-001.语言/go/函数和包/函数和方法的区别 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E5%87%BD%E6%95%B0%E5%92%8C%E5%8C%85/%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckhp0x7r20027932u4j8gdy2a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>golang中者完全是两个不同的东西。官方的解释是，方法是包含了接收者的函数</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>函数的格式是固定的，func＋函数名＋ 参数 ＋ 返回值（可选） ＋ 函数体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func main（） </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">fmt.Println(&quot;Hello go&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;乘2</span><br><span class="line">func (p *myint) mydouble() int &#123;</span><br><span class="line">	*p &#x3D; *p * 2</span><br><span class="line">	return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;平方</span><br><span class="line">func (p myint) mysquare() int &#123;</span><br><span class="line">	p &#x3D; p * p</span><br><span class="line">	fmt.Println(&quot;mysquare p &#x3D; &quot;, p)</span><br><span class="line">	return 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收者是指针和非指针的区别，我们可以看到当接收者为指针式，我们可以通过方法改变该接收者的属性，但是非指针类型缺做不到。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E5%87%BD%E6%95%B0%E5%92%8C%E5%8C%85/%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <time datetime="2020-11-19T16:00:28.848Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-001.语言/测试" class="post-001.语言/测试 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%B5%8B%E8%AF%95/" data-id="ckhp0x7py0007932ud43k2aoz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="TDD、ATDD、BDD-amp-RBE"><a href="#TDD、ATDD、BDD-amp-RBE" class="headerlink" title="TDD、ATDD、BDD&amp;RBE"></a>TDD、ATDD、BDD&amp;RBE</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%B5%8B%E8%AF%95/">
+    <time datetime="2020-11-19T16:00:28.847Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-其他/七伤拳拳谱总纲" class="post-其他/七伤拳拳谱总纲 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/%E5%85%B6%E4%BB%96/%E4%B8%83%E4%BC%A4%E6%8B%B3%E6%8B%B3%E8%B0%B1%E6%80%BB%E7%BA%B2/" data-id="ckhp0x7q6000j932u5zlu0deo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]<br>基础架构 计算机视觉 多媒体  大数据  机器学习 自然语言处理 算法 数据挖掘  </p>
+<h1 id="基本功"><a href="#基本功" class="headerlink" title="基本功"></a>基本功</h1><h2 id="计算机网络-https"><a href="#计算机网络-https" class="headerlink" title="计算机网络 https"></a>计算机网络 https</h2><h2 id="操作系统linux-centos"><a href="#操作系统linux-centos" class="headerlink" title="操作系统linux centos"></a>操作系统linux centos</h2><h2 id="熟悉一门语言"><a href="#熟悉一门语言" class="headerlink" title="熟悉一门语言"></a>熟悉一门语言</h2><h1 id="心法"><a href="#心法" class="headerlink" title="心法"></a>心法</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><h2 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h2><h1 id="掌法-LNMP"><a href="#掌法-LNMP" class="headerlink" title="掌法 LNMP"></a>掌法 LNMP</h1><h2 id="linux基础"><a href="#linux基础" class="headerlink" title="linux基础"></a>linux基础</h2><h2 id="ngnix"><a href="#ngnix" class="headerlink" title="ngnix"></a>ngnix</h2><h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h3><h4 id="mogodb"><a href="#mogodb" class="headerlink" title="mogodb"></a>mogodb</h4><h4 id="haddop"><a href="#haddop" class="headerlink" title="haddop"></a>haddop</h4><h4 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h4><h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p><img src="http://img.blog.csdn.net/20161108195435210" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/%E5%85%B6%E4%BB%96/%E4%B8%83%E4%BC%A4%E6%8B%B3%E6%8B%B3%E8%B0%B1%E6%80%BB%E7%BA%B2/">
+    <time datetime="2020-11-19T16:00:28.846Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/消息队列/rocketMQ" class="post-005.服务实现/消息队列/rocketMQ post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rocketMQ/" data-id="ckhp0x7qv001s932ubu3meg18" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>rocketMQ<br>[toc]</p>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><h2 id="持久化-amp-多副本"><a href="#持久化-amp-多副本" class="headerlink" title="持久化 &amp; 多副本"></a>持久化 &amp; 多副本</h2><h2 id="非有序消息自动重试（Requeue）"><a href="#非有序消息自动重试（Requeue）" class="headerlink" title="非有序消息自动重试（Requeue）"></a>非有序消息自动重试（Requeue）</h2><h2 id="死信队列-（Dead-Letter-Queue）"><a href="#死信队列-（Dead-Letter-Queue）" class="headerlink" title="死信队列 （Dead Letter Queue）"></a>死信队列 （Dead Letter Queue）</h2><h2 id="延迟发送"><a href="#延迟发送" class="headerlink" title="延迟发送"></a>延迟发送</h2><h2 id="写入延迟"><a href="#写入延迟" class="headerlink" title="写入延迟"></a>写入延迟</h2><h2 id="消息回查"><a href="#消息回查" class="headerlink" title="消息回查"></a>消息回查</h2><h2 id="同时支持乱序和有序"><a href="#同时支持乱序和有序" class="headerlink" title="同时支持乱序和有序"></a>同时支持乱序和有序</h2><h2 id="提供二级类型-tag"><a href="#提供二级类型-tag" class="headerlink" title="提供二级类型 tag"></a>提供二级类型 tag</h2><h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><h2 id="局部不有序"><a href="#局部不有序" class="headerlink" title="局部不有序"></a>局部不有序</h2><h2 id="不支持广播"><a href="#不支持广播" class="headerlink" title="不支持广播"></a>不支持广播</h2><h2 id="不支持事务"><a href="#不支持事务" class="headerlink" title="不支持事务"></a>不支持事务</h2><h1 id="消费特点"><a href="#消费特点" class="headerlink" title="消费特点"></a>消费特点</h1><h2 id="集群消费（Clustering）和广播消费（Broadcasting）"><a href="#集群消费（Clustering）和广播消费（Broadcasting）" class="headerlink" title="集群消费（Clustering）和广播消费（Broadcasting）"></a>集群消费（Clustering）和广播消费（Broadcasting）</h2><h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p><img src="https://youzhixueyuan.com/blog/wp-content/uploads/2019/07/20190731222946_55220.jpg" alt="image"></p>
+<h2 id="NameServer："><a href="#NameServer：" class="headerlink" title="NameServer："></a>NameServer：</h2><p>保存 Broker 相关元信息并给 Producer 和 Consumer 查找 Broker 信息  类似 consul 发现</p>
+<h2 id="NameServer：-1"><a href="#NameServer：-1" class="headerlink" title="NameServer："></a>NameServer：</h2><p>保存 Broker 相关元信息并给 Producer 和 Consumer 查找 Broker 信息</p>
+<p>Broker在启动的时候会去向NameServer注册并且定时发送心跳，Producer在启动的时候会到NameServer上去拉取Topic所属的Broker具体地址，然后向具体的Broker发送消息。具体如下图：<br><img src="https://youzhixueyuan.com/blog/wp-content/uploads/2019/07/20190731223001_96952.jpg" alt="image"></p>
+<h1 id="如何保证顺序"><a href="#如何保证顺序" class="headerlink" title="如何保证顺序"></a>如何保证顺序</h1><p>RocketMQ是通过将“相同ID的消息发送到同一个队列，而一个队列的消息只由一个消费者处理“来实现顺序消息。如下图：<br><img src="https://youzhixueyuan.com/blog/wp-content/uploads/2019/07/20190731223033_30250.jpg" alt="image"></p>
+<h1 id="rocketMQ-Broker-的集群部署方式有四种"><a href="#rocketMQ-Broker-的集群部署方式有四种" class="headerlink" title="rocketMQ  Broker 的集群部署方式有四种"></a>rocketMQ  Broker 的集群部署方式有四种</h1><ol>
+<li>单 Master</li>
+<li>多 Master<br>单master宕机 恢复前不可消费</li>
+<li>多 Master 多 Slave（异步复制）<br>缺点是 Master 宕机时在磁盘损坏情况下会丢失极少量消息。</li>
+<li>多 Master 多 Slave（同步双写）<br>能相对异步复制方式略低，发送消息的延迟会略高</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rocketMQ/">
+    <time datetime="2020-11-19T16:00:28.846Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/消息队列/NSQ" class="post-005.服务实现/消息队列/NSQ post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/NSQ/" data-id="ckhp0x7qv001t932uam5871ht" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><p>NSQ是一个基于Go语言的分布式实时消息平台，它基于MIT开源协议发布，由bitly公司开源出来的一款简单易用的消息中间件。</p>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>支持go<br>快 部署快<br>轻量<br>可扩展 水平扩展 用户自己负责负载均衡</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>不支持副本<br>无序<br>没鉴权<br>默认不持久化<br>保证消息不丢<br>落硬盘 简单<br>生产者不能动态发现nsq<br>数据缺少备份<br>无法实现顺序消费 </p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><ol>
+<li>nsqd 是接收、队列和传送消息到客户端的守护进程。</li>
+<li>nsqlookupd 是管理的拓扑信息，并提供了最终一致发现服务的守护进程。</li>
+<li>nsqadmin 是一个 Web UI 来实时监控集群(和执行各种管理任务)。</li>
+<li>utilities ：常见基础功能、数据流处理工具，如 nsq_stat、nsq_tail、nsq_to_file、nsq_to_http、nsq_to_nsq、to_nsq</li>
+<li>nsqlookup  法务发现机制 topic 和chanel<br>/lookup接口，获取拥有对应topic的nsq列表。注意看代码，里面是遍历了nsqlookup的列表，然后把所有lookup的返回结构，进行合并</li>
+</ol>
+<p>因为nsq认为一个producer，就对应一个nsq。</p>
+<p><img src="90EE51076F4E4044B31C4E68A32FB905" alt="image"></p>
+<h1 id="消息的生命周期"><a href="#消息的生命周期" class="headerlink" title="消息的生命周期"></a>消息的生命周期</h1><p>产者往本地的nsqd中发送消息.这个过程会开启一个连接, 并发送一个带有topic和消息体的PUB的命令到nsqd中. 我们假如是发送一个events的topic</p>
+<p>events topic 会对消息进行copy,并多路发送到各个channel中, 我们假设有三个channel, 那么这个流程会如下图描述所示:</p>
+<p>在channel中的每条消息会被放进队列中, 直到消息被worker所消费掉, 如果队列占用的内存超出限制, 消息会被写进硬盘</p>
+<p>nsqd节点会首先向nsqlookd节点广播它的位置信息, 一旦这些信息被nsqlookupd注册上, workers就会发现这些nsqd节点,包括这些节点的events topic<br><img src="https://lihaoquan.me/media/20160620_nsq.png" alt="image"></p>
+<p><img src="https://lihaoquan.me/media/20160620_nsq-lookups.png" alt="image"></p>
+<p><img src="https://segmentfault.com/img/remote/1460000009194611?w=420&h=281" alt="image"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-973fda23d1ae894ce73054cc404a7560_hd.jpg" alt="image"></p>
+<h1 id="服务发现（nsqlookup）"><a href="#服务发现（nsqlookup）" class="headerlink" title="服务发现（nsqlookup）"></a>服务发现（nsqlookup）</h1><p>的设计是基于最终一致性，nsqlookup并不协调状态或者应答</p>
+<h1 id="如何保证-at-least-once"><a href="#如何保证-at-least-once" class="headerlink" title="如何保证 at least once"></a>如何保证 at least once</h1><p>重试机制</p>
+<h1 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h1><p>Nsq流控的方式非常简单，当消费者和nsq建立好连接，准备好接受消息时，会给nsq回一个RDY的响应，同时带上一个rdy_count，代表准备接受消息的数量，于是nsq会给消费者推送消息，每推送一条，对应连接的rdy_count就减1(如果是批量推送，则批量减)，直到连接的rdy_count变成0，则不再继续推送消息。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/NSQ/">
+    <time datetime="2020-11-19T16:00:28.846Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/消息队列/kafka" class="post-005.服务实现/消息队列/kafka post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/" data-id="ckhp0x7qu001r932u9hnl6x1v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangzhuxing/p/10051512.html">https://www.cnblogs.com/wangzhuxing/p/10051512.html</a><br>Kafka是最初由LinkedIn公司开发，是一个分布式、支持分区的（partition）、多副本的（replica），基于zookeeper协调的分布式消息系统。</p>
+<h1 id="架构-push-pull-类型"><a href="#架构-push-pull-类型" class="headerlink" title="架构 [push pull 类型]"></a>架构 [push pull 类型]</h1><p><img src="https://typora-images.oss-cn-shenzhen.aliyuncs.com/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Kafka/20190504173245.png" alt="image"><br><img src="03F6956127824CCA9CA955D04136F3C0" alt="image"><br>Broker：Kafka集群包含一个或多个服务器，这种服务器被称为broker。</p>
+<p>Topic：每条发布到kafka集群的消息都有一个类别，这个类别被称为topic，不同topic的消息分开存储。</p>
+<p>Partition：Partition是物理上的概念，每个topic包含一个或多个partition。</p>
+<p>Record：生产和消费一条消息，或者记录，每条记录包含：a key, a value, and a timestamp。</p>
+<p>Offset：每个record发布到broker后，会分配一个offset，offset在单一partition中是有序递增的。</p>
+<p>Producer：负责发布消息到kafka broker。</p>
+<p>Consumer：消息消费者，向kafka broker读取消息的客户端。</p>
+<p>Consumer Group：管理一组consumer实例，每个consumer属于一个特定的consumer group。</p>
+<p>一个典型的kafka集群中包含若干producer，若干broker，若干consumer group；<br>Kafka有四个核心API，最常用的两种为：<br>Producer API：发布消息到一个或者多个kafka的topic<br>Consumer API：订阅一个或者多个kafka topic，并对数据进行处理</p>
+<h2 id="Topic-amp-Partition-【分区策略】"><a href="#Topic-amp-Partition-【分区策略】" class="headerlink" title="Topic&amp;Partition 【分区策略】"></a>Topic&amp;Partition 【分区策略】</h2><p><img src="2AD129C18215474DA647282C4F63A69C" alt="image"><br>个topic可以认为一个一类消息，每个topic将被分成多个partition，每个partition在存储层面是append log文件。任何发布到此partition的消息都会被追加到log文件的尾部，每条消息在文件中的位置称为offset(偏移量)，offset为一个long型的数字，它唯一标记一条消息。每条消息都被append到partition中，是顺序写磁盘，因此效率非常高(经验证，顺序写磁盘效率比随机写内存还要高，这是Kafka高吞吐率的一个很重要的保证)。</p>
+<h2 id="文件存储-segment"><a href="#文件存储-segment" class="headerlink" title="文件存储 segment"></a>文件存储 segment</h2><p>一个topic 多个partition 一个partition多个segment<br>producer不断发送消息，必然会引起partition文件的无限扩张，这样对于消息文件的维护以及已经被消费的消息的清理带来严重的影响<br>每个partition(目录)相当于一个巨型文件被平均分配到多个大小相等的segment(段)数据文件中</p>
+<p>　segment文件由两部分组成，分别为“.index”文件和“.log”文件，分别表示为segment索引文件和数据文件。这两个文件的命令规则为：partition全局的第一个segment从0开始，后续每个segment文件名为上一个segment文件最后一条消息的offset值，<br>　<img src="D51465CE8F0C4E08A5015A8D983DEFFF" alt="image"></p>
+<h1 id="优势原因"><a href="#优势原因" class="headerlink" title="优势原因"></a>优势原因</h1><h2 id="可靠性保证原因【副本策略】"><a href="#可靠性保证原因【副本策略】" class="headerlink" title="可靠性保证原因【副本策略】"></a>可靠性保证原因【副本策略】</h2><p><img src="41BC24B2EDE741F4A447B403E882F0D5" alt="image"></p>
+<ol>
+<li>Replication: 避免单机故障  parition可以有多个Replication，分布在不同broker </li>
+<li>Leader选举：每个partition会在多个replication之间选择一个leader，client读写数据都通过leader partition，其他replication为follower，负责从leader同步数据</li>
+<li>数据同步：kafka数据同步介于强同步和弱同步之间，通过两个参数控制: min.insync.replica + 发送确认acks； 即borker要保持最少replica同步，并且保证写入0-1个或者所有同步replica才成功</li>
+</ol>
+<h2 id="batch-发送-amp-高吞吐"><a href="#batch-发送-amp-高吞吐" class="headerlink" title="batch 发送&amp;高吞吐"></a>batch 发送&amp;高吞吐</h2><p><img src="8CD8394A366340AC824C508278FDFDC5" alt="image"><br>SDK提供了cache，消息由业务方先写入cache，然后当消息达到batch.size或者linger_ms之后，消息会flush到broker<br>buffer.memroy指定了cache的最大大小，buffer写满会block住client的写入，等待超时异常<br>kafka高吞吐就是通过batch来实现的，在同样qps的情况下，batch越大，吞吐越高。【是producer以batch的形式push数据，这样会极大的提高broker的性能，但是这样会增加丢失数据的风险。如果需要确保消息的可靠性，必须要将producer.type设置为sync】</p>
+<h1 id="producer"><a href="#producer" class="headerlink" title="producer"></a>producer</h1><p><img src="6A4FA295BA9B4CE49E43B5B758D49D77" alt="image"></p>
+<h2 id="分区策略"><a href="#分区策略" class="headerlink" title="分区策略"></a>分区策略</h2><p>分区策略： 数据从producer写入partition的分配规则，Producer API提供了两种默认实现，random， roundrobin和key hash</p>
+<h2 id="同步-异步发送-模式"><a href="#同步-异步发送-模式" class="headerlink" title="同步|| 异步发送 模式"></a>同步|| 异步发送 模式</h2><ol>
+<li>发送并忘记：不care发送结果，调用send接口后，直接返回，kafka内部有重试机制</li>
+<li>同步发送：调用send方法，返回future对象，调用get()方法等待，为了减少cache等待时间，可以调整linger_ms为0，或者在调用get之前调用flush</li>
+<li>异步发送：send方法指定一个回调函数，在返回相应是回调该函数，回调函数工作在kafka发送线程里面，不要做太繁重的操作，避免影响发送</li>
+</ol>
+<h2 id="ack-发送-可靠性级别"><a href="#ack-发送-可靠性级别" class="headerlink" title="ack 发送 可靠性级别"></a>ack 发送 可靠性级别</h2><p>acks参数指定了必须要有多少分区副本收到消息，生产者才确定消息写入是成功的，这个参数是client配置的</p>
+<ol>
+<li><p>0-不需要等待服务器响应，也不保证服务器收到消息</p>
+</li>
+<li><p>1-只要leader收到消息，生产者就会收到服务器发送成功的消息</p>
+</li>
+<li><p>-1 -所有参与复制的节点（in-sync）全部收到消息时，才会发送成功</p>
+</li>
+</ol>
+<h2 id="send-失败处理"><a href="#send-失败处理" class="headerlink" title="send 失败处理"></a>send 失败处理</h2><ol>
+<li>发送失败：一般发生在滚动升级，机器故障替换或者连接断开，Kafka并不保证100%成功，发送失败根据业务情况，选择丢弃或者重试</li>
+<li>重试：消息在发送失败的情况下，kafka内部会重试（默认3次），内部重试失败后，错误返回给业务<br>重试多发生在集群滚动升级过程中，client内部重试 + 业务重试即可。</li>
+<li>消息重复：broker写入成功，response丢失，client重试，会导致写入数据重复</li>
+<li>消息乱序：在消息重复发送的情况下，会导致消息乱序，比如发送了1，2，3，重试1，broker最终数据会是1，2，3，1； 通过设置发送窗口为1，可以避免乱序</li>
+<li>幂等：通过producerId+seq_id, 保证同一个producer同一个partition内部支持消息去重。正在开发</li>
+<li>事务：待补充</li>
+</ol>
+<h1 id="consumer"><a href="#consumer" class="headerlink" title="consumer"></a>consumer</h1><p>Kafka提供了两种Consumer API: low level &amp; high level</p>
+<p>某个partition的数据只会被某一个特定的consumer实例所消</p>
+<p>每一个consumer或者broker的增加或者减少都会触发consumer rebalance。</p>
+<h2 id="offset-管理"><a href="#offset-管理" class="headerlink" title="offset 管理"></a>offset 管理</h2><p>Offset管理<br>当consumer升级滚动重启，或者挂掉再拉起的时候，我们希望能够从挂起之前的消费位置 ，继续消费数据，不重不丢，那么我们就需要offset管理<br>每条record有一个唯一的offset，那么只要记录下offset，那么重启后，我们就可以seek到对应的offset继续消费。<br>offset可以由用户保存，比如spark streaming使用hdfs保存； 也可以提交到kafka保存，这里我们只讨论kakfa保存offset的情况<br>commit offset并不会改变当前consumer的消费位置</p>
+<p>#自动提交 VS 手动提交<br>用户可以设置定期自动提交offset，用户使用方便，自动提交offset会有一定延迟，如果consumer挂了，已经消费没有及时提交的offset的数据，可能会被重复消费<br>手动提交：用户控制offset提交时机，可以消费一条提交一次，也可以消费一批提交一次。对于重复消费要求严格的用户</p>
+<p>#Offset重置<br>想跳过数据，从最新位置开始消费，或者想重复消费历史数据，或者想从某个时间点开始消费，Kafka支持重置offset<br>重试offset需要停止服务再拉起，避免服务和干扰重置操作。</p>
+<h2 id="consumer-顺序性"><a href="#consumer-顺序性" class="headerlink" title="consumer 顺序性"></a>consumer 顺序性</h2><p>从多个partition读到数据，不保证数据间的顺序性，kafka只保证在一个partition上数据是有序的，但多个partition，根据你读的顺序会有不同</p>
+<h2 id="low-level-API"><a href="#low-level-API" class="headerlink" title="low level API"></a>low level API</h2><p>提供了更为灵活的消费方式，由用户指定每个consumer消费哪几个partition，不同consumer可以消费相同的partition，同时避免了reblance的劣势。<br>low level API劣势：client维护分配方案，partition扩容是不能动态调整cosumer策略</p>
+<h3 id="重复消费"><a href="#重复消费" class="headerlink" title="重复消费"></a>重复消费</h3><p>目前消费不支持事务，数据消费了，但是没有提交offset，进程重启或者rebalance的时候，会导致重复消费<br>部分业务通过自定义uuid，结合redis去重，可以减低重复消费</p>
+<h1 id="高可靠分析"><a href="#高可靠分析" class="headerlink" title="高可靠分析"></a>高可靠分析</h1><h2 id="At-most-once-消息可能会丢，但绝不会重复传输"><a href="#At-most-once-消息可能会丢，但绝不会重复传输" class="headerlink" title="At most once: 消息可能会丢，但绝不会重复传输"></a>At most once: 消息可能会丢，但绝不会重复传输</h2><h2 id="At-least-once：消息绝不会丢，但可能会重复传输"><a href="#At-least-once：消息绝不会丢，但可能会重复传输" class="headerlink" title="At least once：消息绝不会丢，但可能会重复传输"></a>At least once：消息绝不会丢，但可能会重复传输</h2><h2 id="Exactly-once：每条消息肯定会被传输一次且仅传输一次"><a href="#Exactly-once：每条消息肯定会被传输一次且仅传输一次" class="headerlink" title="Exactly once：每条消息肯定会被传输一次且仅传输一次"></a>Exactly once：每条消息肯定会被传输一次且仅传输一次</h2><ol>
+<li> producer 给broker 发消息 失败重试 at least once</li>
+<li> consumer 先处理消息再commit crash 通信失败 offset记录失败 at least once</li>
+<li> consumer 先commit crash 再处理消息 通信失败 offset记录 at most once</li>
+</ol>
+<h2 id="引入消息幂等去重"><a href="#引入消息幂等去重" class="headerlink" title="引入消息幂等去重"></a>引入消息幂等去重</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/kafka/">
+    <time datetime="2020-11-19T16:00:28.845Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/消息队列/消息队列概论" class="post-005.服务实现/消息队列/消息队列概论 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/" data-id="ckhp0x7qw001u932u07n74f5k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="主要考虑指标"><a href="#主要考虑指标" class="headerlink" title="主要考虑指标"></a>主要考虑指标</h1><h2 id="如何确保消息的精确传输"><a href="#如何确保消息的精确传输" class="headerlink" title="如何确保消息的精确传输"></a>如何确保消息的精确传输</h2><h2 id="如何确保消息的准确存储"><a href="#如何确保消息的准确存储" class="headerlink" title="如何确保消息的准确存储"></a>如何确保消息的准确存储</h2><pre><code>不丢</code></pre>
+<h2 id="如何确保消息的正确消费"><a href="#如何确保消息的正确消费" class="headerlink" title="如何确保消息的正确消费"></a>如何确保消息的正确消费</h2><pre><code>不重复消费</code></pre>
+<h1 id="解决了什么问题"><a href="#解决了什么问题" class="headerlink" title="解决了什么问题"></a>解决了什么问题</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58374824">https://zhuanlan.zhihu.com/p/58374824</a></p>
+<p> 链式调用是我们在写程序时候的一般流程，为了完成一个整体功能，会将其拆分成多个函数（或子模块），比如模块A调用模块B，模块B调用模块C，模块C调用模块D。但在大型分布式应用中，系统间的RPC交互繁杂，一个功能背后要调用上百个接口并非不可能，这种架构有如下几个劣势：</p>
+<ul>
+<li>  耦合严重，改A就要周知所有下游</li>
+<li>  每个接口吞吐有限 引起蝴蝶效应</li>
+<li>  有性能问题，木桶理论  RPC接口基本上是同步调用，整体的服务性能遵循“木桶理论”，即链路中最慢的那个接   比如A调用B/C/D都是50ms，但此时B又调用了B1，花费2000ms，那么直接就拖累了整个服务性能。</li>
+</ul>
+<h1 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h1><ul>
+<li>   系统解耦</li>
+<li> 流量削峰（秒杀常用）<pre><code> 设置流量缓冲池，流量削峰，可以让后端系统按照自身吞吐能力进行消费，不被冲垮；</code></pre>
+</li>
+<li> 异步处理<pre><code> 强弱依赖梳理，将++非关键调用链路的操作异步化++，提升整体系统的吞吐能力（比如下订单扣款发货，物流属于非关键，可以异步）</code></pre>
+</li>
+<li>   数据分发 一个上游发 多个下游消费</li>
+</ul>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>   <img src="https://pic4.zhimg.com/80/v2-3630ae95eb61e02c69b4a4a8c4d3ae27_hd.jpg" alt="image"></p>
+<pre><code>  A. Client上游如何将消息可靠投递到MQ
+
+    - 1.Client发送消息给MQ
+    - 2.MQ将消息持久化后，发送Ack消息给Client，此处有可能因为网络问题导致Ack消息无法发送到Client，那么Client在等待超时后，会重传消息；
+    - 3.Client收到Ack消息后，认为消息已经投递成功。
+
+  B. MQ如何将消息可靠投递到Client下游
+
+    - 1.MQ将消息push给Client（或Client来pull消息）
+    - 2.Client得到消息并做完业务逻辑
+    - 3.Client发送Ack消息给MQ，通知MQ删除该消息，此处有可能因为网络问题导致Ack失败，那么Client会重复消息，这里就引出消费幂（命令堵塞）等的问题；
+    - 4.MQ将已消费的消息删除</code></pre>
+<h1 id="MQ的特点"><a href="#MQ的特点" class="headerlink" title="MQ的特点"></a>MQ的特点</h1><pre><code>1.先进先出 且 数据是只有一条数据在使用中。 这也是MQ在诸多场景被使用的原因。
+2.发布订阅
+3.持久化mq
+4.分布式</code></pre>
+<h1 id="mq的两种消息模式-P2P（Point-toPoint）和Publish-Sub-Pub-Sub"><a href="#mq的两种消息模式-P2P（Point-toPoint）和Publish-Sub-Pub-Sub" class="headerlink" title="mq的两种消息模式     P2P（Point toPoint）和Publish/Sub(Pub/Sub)"></a>mq的两种消息模式     P2P（Point toPoint）和Publish/Sub(Pub/Sub)</h1><p><img src="https://pic4.zhimg.com/80/v2-508d0ca6ee99ff842612dcc669a76947_hd.jpg" alt="image"></p>
+<p>点对点，一个发，一个消费。涉及到的角色 发布者（Publisher）、消费者（Consumer）、消息队列（Queue）<br>特点</p>
+<p>一个消息只能被一个消费者消费，消费后会从队列里移除<br>发布者和消费者无关系，发布者发送消息的行为不会随消费者而改变<br>消费者消费完成消息，需要向队列Ack，消息队列发现消息消费成功即做消息移除</p>
+<p><img src="https://pic2.zhimg.com/80/v2-ea04f53e44b191875b868c02c8623861_hd.jpg" alt="image"></p>
+<p>发布订阅模式，一个发布，多方订阅。涉及到的角色有 发布者（Publisher）、主题（Topic）、订阅者（Subscriber）。</p>
+<p>特点</p>
+<p>每个消息可以有多个消费者<br>针对某个主题（Topic）的订阅者，必须创建一个订阅者之后，才能消费发布者的消息<br>为了消费消息，订阅者必须保持运行的状态</p>
+<h1 id="常见问题和解决方案"><a href="#常见问题和解决方案" class="headerlink" title="常见问题和解决方案"></a>常见问题和解决方案</h1><h2 id="消息阻塞"><a href="#消息阻塞" class="headerlink" title="消息阻塞"></a>消息阻塞</h2><p>1、消息阻塞一般都是流量激增，超过消费者消费能力（扩容）；</p>
+<p>2、或者消费者出现逻辑问题，导致不断的重试或长时间等待（紧急航线 跳过）。</p>
+<h2 id="重复消费"><a href="#重复消费" class="headerlink" title="重复消费"></a>重复消费</h2><p>   重复消费一般发生下消费端，比如消费者处理完毕，在准备进行ack的时候出现了问题，应用重启后，消息中间件以为该消息还未处理又推给了消费者，或者消费者拉取的时候重复。</p>
+<p>   一般的做法==是消费端做幂==等。</p>
+<h2 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h2><p>消息丢失一般分为生产者发送失败、消息中间件丢失、消费丢失。</p>
+<p>生产者丢失：可能以为网络问题或者消息中间处理失败导致，消息遗漏。</p>
+<p>消息中间的丢失：一般中间件可以设置丢弃策略，大部分MQ中间件产品可以保证数据不丢失，这种情况基本不用考虑。</p>
+<p>消费丢失：有的消息中间件支持自动ack，当消费者消费到消息，消息中间件也不管是否消费成功自动ack。这时候一般选择消费者主动ack比较合适。</p>
+<p>有activeMQ、rabbitMQ、rocketMQ、zeroMQ、Kafka</p>
+<h1 id="MQ的消息幂等"><a href="#MQ的消息幂等" class="headerlink" title="MQ的消息幂等"></a>MQ的消息幂等</h1><p>举个栗子：购买会员卡，上游支付系统负责给用户扣款，下游系统负责给用户发卡，通过MQ异步通知。不管是上半场的ACK丢失，导致MQ收到重复的消息，还是下半场ACK丢失，导致购卡系统收到重复的购卡通知，都可能出现，上游扣了一次钱，下游发了多张卡。消息总线的幂等性设计至关重要，是本文将要讨论的重点。</p>
+<h2 id="上游的幂等性设计"><a href="#上游的幂等性设计" class="headerlink" title="上游的幂等性设计"></a>上游的幂等性设计</h2><pre><code>![image](https://upload-images.jianshu.io/upload_images/6754857-a3979e5fde4136ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/302/format/webp)
+
+MQ系统内部必须生成一个inner-msg-id，作为去重和幂等的依据，这个内部消息ID的特性是：</code></pre>
+<p>（1）全局唯一</p>
+<p>（2）MQ生成，具备业务无关性，==对消息发送方和消息接收方==屏蔽</p>
+<h2 id="下游的幂等性设计"><a href="#下游的幂等性设计" class="headerlink" title="下游的幂等性设计"></a>下游的幂等性设计</h2><p>  业务消息体中，必须有一个biz-id，作为去重和幂等的依据，这个业务ID的特性是：</p>
+<p>（1）==对于同一个业务场景，全局唯一==</p>
+<p>（2）由业务消息发送方生成，业务相关，对MQ透明</p>
+<p>（3）由业务消息消费方负责判重，以保证幂等</p>
+<p>最常见的业务ID有：支付ID，订单ID，帖子ID等。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> MQ为了保证消息必达，消息上下半场均可能发送重复消息，如何保证消息的幂等性呢？<br>上半场<br>   MQ-client生成inner-msg-id，保证上半场幂等。这个ID全局唯一，业务无关，由MQ保证。<br>下半场<br>  业务发送方带入biz-id，业务接收方去重保证幂等。这个ID对单业务唯一，业务相关，对MQ透明。结论：幂等性，不仅对MQ有要求，对业务上下游也有要求</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A6%82%E8%AE%BA/">
+    <time datetime="2020-11-19T16:00:28.845Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/服务代理[nginx]/ngnix/ngnix.conf" class="post-005.服务实现/服务代理[nginx]/ngnix/ngnix.conf post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86[nginx]/ngnix/ngnix.conf/" data-id="ckhp0x7rd002x932udvocfel4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>作业帮的ngnix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">user  homework;</span><br><span class="line">worker_processes  2;</span><br><span class="line">worker_cpu_affinity 00000001 00000010;</span><br><span class="line">worker_rlimit_nofile 8192;</span><br><span class="line"></span><br><span class="line">error_log   &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&#x2F;error_log&quot;   notice;</span><br><span class="line">pid         &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;nginx.pid&quot;;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    use epoll;</span><br><span class="line">    worker_connections  8192; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types; </span><br><span class="line">    #include       upstream.conf;</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &quot;$http_cookie&quot; &quot;$http_user_agent&quot; &#39;</span><br><span class="line">                      &#39;$request_time $logid $remote_addr $server_addr $upstream_addr $host &#39;</span><br><span class="line">                      &#39;&quot;$http_x_forwarded_for&quot; $product $subsys $tracecode $msec&#39;;</span><br><span class="line"></span><br><span class="line">    access_log  &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&#x2F;access_log&quot;  main;</span><br><span class="line"></span><br><span class="line">    client_body_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;client_body;</span><br><span class="line">    fastcgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;fastcgi;</span><br><span class="line">    proxy_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;proxy;</span><br><span class="line">    uwsgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;uwsgi;</span><br><span class="line">    scgi_temp_path &#x2F;home&#x2F;homework&#x2F;webserver&#x2F;cache&#x2F;scgi;</span><br><span class="line"></span><br><span class="line">    server_names_hash_bucket_size 128;</span><br><span class="line">    client_header_buffer_size 16k;</span><br><span class="line">    large_client_header_buffers 4 128k;</span><br><span class="line">    client_max_body_size 50m;</span><br><span class="line">    client_body_buffer_size 1024k;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    tcp_nopush      on;</span><br><span class="line">    tcp_nodelay     on;</span><br><span class="line"></span><br><span class="line">    fastcgi_connect_timeout 5;</span><br><span class="line">    fastcgi_send_timeout 300;</span><br><span class="line">    fastcgi_read_timeout 300;</span><br><span class="line">    fastcgi_buffer_size 128k;</span><br><span class="line">    fastcgi_buffers 4 256k;</span><br><span class="line">    fastcgi_busy_buffers_size 512k;</span><br><span class="line">    fastcgi_temp_file_write_size 512k;</span><br><span class="line">    fastcgi_intercept_errors on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  0;</span><br><span class="line">    #keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 1k;</span><br><span class="line">    gzip_buffers 4 16k;</span><br><span class="line">    gzip_http_version 1.0;</span><br><span class="line">    gzip_comp_level 2;</span><br><span class="line">    gzip_types text&#x2F;plain application&#x2F;x-javascript text&#x2F;css application&#x2F;xml;</span><br><span class="line">    gzip_vary on;</span><br><span class="line"></span><br><span class="line">    policy_frame off; </span><br><span class="line">    policy_path &quot;&#x2F;home&#x2F;homework&#x2F;webserver&#x2F;conf&#x2F;&quot;;</span><br><span class="line">    policy_dtdname policy.dtd;</span><br><span class="line">    policy_docname policy.xml;</span><br><span class="line">    policy_logpath &quot;&#x2F;home&#x2F;homework&#x2F;log&#x2F;webserver&quot;;</span><br><span class="line">    policy_logfile policy.;</span><br><span class="line">    policy_logsize 1600;</span><br><span class="line">    policy_loglevel 4; </span><br><span class="line"></span><br><span class="line">    uninitialized_variable_warn off;</span><br><span class="line">    proxy_connect_timeout 15s;</span><br><span class="line">    proxy_read_timeout 10s;</span><br><span class="line">    proxy_send_timeout 10s;</span><br><span class="line">    proxy_buffer_size 64k;</span><br><span class="line">    proxy_buffers 4 64k;</span><br><span class="line">    proxy_busy_buffers_size 128k;</span><br><span class="line">    proxy_temp_file_write_size 128k;</span><br><span class="line">    proxy_set_header X_BD_LOGID $logid;</span><br><span class="line">    proxy_set_header LOGID $logid;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">    proxy_set_header CLIENTIP $remote_addr;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line"></span><br><span class="line">    port_in_redirect off;</span><br><span class="line">    set_real_ip_from 192.168.0.0&#x2F;24;</span><br><span class="line">    real_ip_header CLIENTIP;</span><br><span class="line">    underscores_in_headers on;</span><br><span class="line">    include vhost&#x2F;php.conf;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<p>开发机的ngnix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#nginx进程数，建议设置为等于CPU总核心数</span><br><span class="line">worker_rlimit_nofile 204800;</span><br><span class="line">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span><br><span class="line">error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;</span><br><span class="line">#工作模式及连接数上限</span><br><span class="line">events &#123;</span><br><span class="line">        #参考事件模型，use [ kqueue | rtsig | epoll | &#x2F;dev&#x2F;poll | select | poll ];</span><br><span class="line">        #epoll模型是Linux 2.6以上版本内核中的高性能网络I&#x2F;O模型，如果跑在FreeBSD上面，就用kqueue模型</span><br><span class="line">        worker_connections  102400;</span><br><span class="line">&#125;</span><br><span class="line">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span><br><span class="line">http &#123;</span><br><span class="line">        #文件扩展名与文件类型映射表</span><br><span class="line">        #首先，我们要了解浏览器是如何处理内容的。在浏览器中显示的内容有 HTML、有 XML、有 GIF、还有 #Flash ……那么，浏览器是如何区分它们，决定什么内容用什么形式来显示呢？答案是   #MIMEType，也就是该资源的媒体类型。</span><br><span class="line">        include       mime.types;</span><br><span class="line">        #默认文件类型</span><br><span class="line">        default_type  application&#x2F;octet-stream;</span><br><span class="line">        #设定日志格式</span><br><span class="line">        #log_format  main  &#39;$idXXXX\t$remote_addr\t$remote_user\t$time_local\t$http_host\t$request\t&#39;</span><br><span class="line">        #             &#39;$status\t$body_bytes_sent\t$http_referer\t&#39;</span><br><span class="line">        #             &#39;$http_user_agent\t$http_x_forwarded_for\t$request_time\t$upstream_response_time\t$userid&#39;;</span><br><span class="line">                        &quot;$request_time\t$status\t$body_bytes_sent\t&#39;$http_referer&#39;\t&quot;</span><br><span class="line"></span><br><span class="line">    #不可见字符分隔日志格式</span><br><span class="line">    #include other_log_format.conf;</span><br><span class="line">    #实时日志收集json格式日志</span><br><span class="line">    #include json_log_format.conf;</span><br><span class="line"></span><br><span class="line">        #日志流格式</span><br><span class="line">                      &quot;$request_time\t$status\t$body_bytes_sent\t&#39;$http_referer&#39;\t&quot;</span><br><span class="line">                      &quot;&#39;$http_user_agent&#39;\t&#39;$http_x_forwarded_for&#39;\t$upstream_addr\t$upstream_response_time\t3&quot;;</span><br><span class="line"></span><br><span class="line">        #成功日志</span><br><span class="line">        access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log  main;</span><br><span class="line"> #access_log syslog:local6:notice:log1.op.XXXXdns.org:514:nginx-main-log main;</span><br><span class="line"></span><br><span class="line">        #指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span><br><span class="line">        sendfile        on;</span><br><span class="line">        #长连接超时时间，单位是秒</span><br><span class="line">        keepalive_timeout  60;</span><br><span class="line">        #服务器名称哈希表的最大值(默认512)[hash%size]</span><br><span class="line">        server_names_hash_max_size 1024;</span><br><span class="line">        #服务器名字的hash表大小</span><br><span class="line">        server_names_hash_bucket_size 256;</span><br><span class="line">        #客户请求头缓冲大小</span><br><span class="line">        client_header_buffer_size 4k;</span><br><span class="line">        #如果header过大，它会使用large_client_header_buffers来读取</span><br><span class="line">        large_client_header_buffers 4 256k;</span><br><span class="line">        client_header_timeout  1m;</span><br><span class="line">        client_body_timeout    1m;</span><br><span class="line">        send_timeout           1m;</span><br><span class="line">        #防止网络阻塞</span><br><span class="line">        tcp_nopush     on;</span><br><span class="line">        tcp_nodelay    on;</span><br><span class="line">        #允许客户端请求的最大单文件字节数</span><br><span class="line">        client_max_body_size 50m;</span><br><span class="line"></span><br><span class="line">        #缓冲区代理缓冲用户端请求的最大字节数</span><br><span class="line">        client_body_buffer_size 50m;</span><br><span class="line"></span><br><span class="line">        #nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">        proxy_connect_timeout 5;</span><br><span class="line"></span><br><span class="line">        #后端服务器数据回传时间(代理发送超时)</span><br><span class="line">        proxy_send_timeout 15;</span><br><span class="line"></span><br><span class="line">        #连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">        proxy_read_timeout 15;</span><br><span class="line"></span><br><span class="line">        #设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">        proxy_buffer_size 4k;</span><br><span class="line"></span><br><span class="line">        #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span><br><span class="line">        proxy_buffers 8 32k;</span><br><span class="line"></span><br><span class="line">        #高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">        proxy_busy_buffers_size 64k;</span><br><span class="line">        proxy_temp_file_write_size 64k;</span><br><span class="line">        proxy_intercept_errors  on;</span><br><span class="line">        #客户端放弃请求，nginx也放弃对后端的请求</span><br><span class="line">        #proxy_ignore_client_abort on;</span><br><span class="line"></span><br><span class="line">    #代理缓存头信息最大长度[设置头部哈希表的最大值，不能小于你后端服务器设置的头部总数]</span><br><span class="line">    proxy_headers_hash_max_size 512;</span><br><span class="line">    #设置头部哈希表大小(默认64)[这将限制头部字段名称的长度大小，如果你使用超过64个字符的头部名可以加大这个值。]</span><br><span class="line">    proxy_headers_hash_bucket_size 256;</span><br><span class="line"></span><br><span class="line">    #变量哈希表的最大值(默认值)</span><br><span class="line">    variables_hash_max_size 512;</span><br><span class="line">    #为变量哈希表制定关键字栏的大小(默认64)</span><br><span class="line">    variables_hash_bucket_size 128;</span><br><span class="line"></span><br><span class="line">        #开启gzip压缩输出</span><br><span class="line">        gzip on;</span><br><span class="line">        #最小压缩文件大小</span><br><span class="line">        gzip_min_length 1k;</span><br><span class="line">        #压缩缓冲区</span><br><span class="line">        gzip_buffers     4 16k;</span><br><span class="line">        #压缩等级</span><br><span class="line">        gzip_comp_level 9;</span><br><span class="line">        #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span><br><span class="line">        gzip_http_version 1.0;</span><br><span class="line">        #压缩类型，默认就已经包含textml</span><br><span class="line">        gzip_vary on;</span><br><span class="line"></span><br><span class="line">        #map模块使用</span><br><span class="line">        map_hash_max_size 102400;</span><br><span class="line">        map_hash_bucket_size  256;</span><br><span class="line"></span><br><span class="line">        #Tengine Config</span><br><span class="line">        #concat on;</span><br><span class="line">        #trim on;</span><br><span class="line">        #trim_css off;</span><br><span class="line">        #trim_js off;</span><br><span class="line">        server_tokens off;</span><br><span class="line">        #footer &quot;&lt;!-- $remote_addr $server_addr $upstream_addr --&gt;&quot;;</span><br><span class="line"></span><br><span class="line">        #rewrite_log on;</span><br><span class="line">        fastcgi_intercept_errors on;</span><br><span class="line">    #include other config file</span><br><span class="line">        include ..&#x2F;conf.d&#x2F;*.conf;</span><br><span class="line">    #包含一些特殊站点的配置文件,此目录下文件暂时不包含在git自动管理过程中</span><br><span class="line">    include ..&#x2F;special&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">    #屏蔽不加主机域名的默认请求</span><br><span class="line">    #server &#123;</span><br><span class="line">        #   listen *:80 default;</span><br><span class="line">        #   server_name _ &quot;&quot;;</span><br><span class="line">        #   return 444;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    #ceshi by dongange 2016-01-07</span><br><span class="line"></span><br><span class="line">    #Nginx状态监测模块配置</span><br><span class="line">#    req_status_zone server &quot;$server_name,$server_addr:$server_port&quot; 10M;</span><br><span class="line"> #   req_status server;</span><br><span class="line">    server &#123;</span><br><span class="line">          listen       80 default_server;</span><br><span class="line">        server_name  39.105.184.207;</span><br><span class="line">        #root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoChat&#x2F;Applications&#x2F;Chat&#x2F;Web&#x2F;;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoMall&#x2F;shopMall&#x2F;protected&#x2F;view&#x2F;backend&#x2F;;</span><br><span class="line">        #root &#x2F;root&#x2F;hao&#x2F;haoMall&#x2F;shopMall&#x2F;;</span><br><span class="line">        root &#x2F;root&#x2F;hao;</span><br><span class="line">             location &#x2F; &#123;</span><br><span class="line">        root &#x2F;root&#x2F;hao;</span><br><span class="line">           index index.php;</span><br><span class="line">          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        &#125;</span><br><span class="line">         location ~ \.php$ &#123;</span><br><span class="line">                root &#x2F;root&#x2F;hao;</span><br><span class="line">                fastcgi_connect_timeout  180;</span><br><span class="line">                fastcgi_read_timeout    600;</span><br><span class="line">                fastcgi_send_timeout    600;</span><br><span class="line">                fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">                #fastcgi_pass   unix:&#x2F;tmp&#x2F;php-cgi.sock;</span><br><span class="line">                fastcgi_index index.php;</span><br><span class="line">                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">                include fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 404 &#x2F;404.html;</span><br><span class="line">            location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">            location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%90%86%5Bnginx%5D/ngnix/ngnix.conf/">
+    <time datetime="2020-11-19T16:00:28.844Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Hbase" class="post-005.服务实现/存储/Hbase post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Hbase/" data-id="ckhp0x7qs001n932u4x7499b6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="和hive，RDBMS区别"><a href="#和hive，RDBMS区别" class="headerlink" title="和hive，RDBMS区别"></a>和hive，RDBMS区别</h2><p><img src="B92B006942DD4457BE3813CD8D862C73" alt="image"><br>hive是离线大数据分析，实时查询慢<br>hbase大数据实时查询</p>
+<h2 id="存储模式"><a href="#存储模式" class="headerlink" title="存储模式"></a>存储模式</h2><p><img src="83A20B4653234E098BF9C1D61A07D49D" alt="image"><br> Hbase 中，Row-key 加上 CF 加上 Qulifier 再加上一个时间戳才可以定位到一个单元格数据（Hbase 中每个单元格默认有 3 个时间戳的版本数据）<br> <img src="7B30AE3569344E6EA3B078505608C612" alt="image"><br>逻辑存储顺序和逻辑顺序</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
+<li>专为海量数据计算设计</li>
+<li>缺少RDBMS特性【辅助索引，触发器，高级查询语言】</li>
+<li>高速聚合计算<h2 id="架构体系"><a href="#架构体系" class="headerlink" title="架构体系"></a>架构体系</h2><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/analytics/library/ba-cn-bigdata-hbase/index.html">https://www.ibm.com/developerworks/cn/analytics/library/ba-cn-bigdata-hbase/index.html</a><br><img src="A1AA2667B259462D99BA8FEB29CAF14E" alt="image"><br><img src="F49E15CC909F40B1BEC72755B17B960F" alt="image"></li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Hbase/">
+    <time datetime="2020-11-19T16:00:28.843Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/各类存储优缺点" class="post-005.服务实现/存储/各类存储优缺点 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/%E5%90%84%E7%B1%BB%E5%AD%98%E5%82%A8%E4%BC%98%E7%BC%BA%E7%82%B9/" data-id="ckhp0x7qt001o932u1amt2q2q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h1 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h1><h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><p>基于内存 数据量小 延迟低</p>
+<h3 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h3><ol>
+<li><p>缓存，毫无疑问这是Redis当今最为人熟知的使用场景。再提升服务器性能方面非常有效；</p>
+</li>
+<li><p>排行榜，如果使用传统的关系型数据库来做这个事儿，非常的麻烦，而利用Redis的SortSet数据结构能够非常方便搞定；</p>
+</li>
+<li><p>计算器/限速器，利用Redis中原子性的自增操作，我们可以统计类似用户点赞数、用户访问数等，这类操作如果用MySQL，频繁的读写会带来相当大的压力；限速器比较典型的使用场景是限制某个用户访问某个API的频率，常用的有抢购时，防止用户疯狂点击带来不必要的压力；<br>注：限速器也是对请求限流的一种实现方式。</p>
+</li>
+<li><p>好友关系，利用集合的一些命令，比如求交集、并集、差集等。可以方便搞定一些共同好友、共同爱好之类的功能；</p>
+</li>
+<li><p>简单消息队列，除了Redis自身的发布/订阅模式，我们也可以利用List来实现一个队列机制，比如：到货通知、邮件发送之类的需求，不需要高可靠，但是会带来非常大的DB压力，完全可以用List来完成异步解耦；</p>
+</li>
+<li><p>Session共享，默认Session是保存在服务器的文件中，即当前服务器，如果是集群服务，同一个用户过来可能落在不同机器上，这就会导致用户频繁登陆；采用Redis保存Session后，无论用户落在那台机器上都能够获取到对应的Session信息。</p>
+</li>
+</ol>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>内存贵</p>
+<ol>
+<li>滥用可能导致系统的不稳定、成本增高等问题。</li>
+<li>持久化方案并不能保证数据绝对的落地，并且还可能带来Redis性能下降【磁盘同步占用cpu内存】。</li>
+<li>数据量太大、数据访问频率非常低的业务【读少】。</li>
+<li>数据太大会增加成本</li>
+<li>缓存穿透 即黑客故意去请求缓存中不存在的数据，导致所有的请求都怼到数据库上，从而数据库连接异常。</li>
+<li>缓存雪崩 即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常</li>
+</ol>
+<p>即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常。</p>
+<h1 id="硬盘存储"><a href="#硬盘存储" class="headerlink" title="硬盘存储"></a>硬盘存储</h1><h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>免费<br>运维成本低<br>业界成熟方案多</p>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>大规模不适用 </li>
+<li>不支持在线扩容</li>
+<li>自动恢复</li>
+<li>主从宕机 数据不一致</li>
+<li>缓存雪崩</li>
+<li>热备份<h3 id="场景-一般搭配cache使用"><a href="#场景-一般搭配cache使用" class="headerlink" title="场景 一般搭配cache使用"></a>场景 一般搭配cache使用</h3></li>
+</ul>
+<h2 id="SSDB"><a href="#SSDB" class="headerlink" title="SSDB"></a>SSDB</h2><h1 id="列数据库和行数据库"><a href="#列数据库和行数据库" class="headerlink" title="列数据库和行数据库"></a>列数据库和行数据库</h1><p>加载和存储方式不一样</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/%E5%90%84%E7%B1%BB%E5%AD%98%E5%82%A8%E4%BC%98%E7%BC%BA%E7%82%B9/">
+    <time datetime="2020-11-19T16:00:28.843Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><a class="page-number" href="/huanghao.github.io/page/2/">2</a><a class="page-number" href="/huanghao.github.io/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/huanghao.github.io/page/5/">5</a><a class="page-number" href="/huanghao.github.io/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/5/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

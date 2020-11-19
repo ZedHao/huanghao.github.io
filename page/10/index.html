@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/10/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/coding" class="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/coding post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/coding/" data-id="ckhp0x7r7002k932ud8fl6s7l" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>1.bst的创建和递归遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class Node &#123;</span><br><span class="line">    public $key;</span><br><span class="line">    public $left;</span><br><span class="line">    public $right;</span><br><span class="line"></span><br><span class="line">    public function __construct($key) &#123;</span><br><span class="line">        $this-&gt;key    &#x3D; $key;</span><br><span class="line">        $this-&gt;left   &#x3D; null;</span><br><span class="line">        $this-&gt;right  &#x3D; null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Bst &#123;</span><br><span class="line">    public $root;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 初始化树结构</span><br><span class="line">     *</span><br><span class="line">     * @param $arr 初始化树结构的数组</span><br><span class="line">     *</span><br><span class="line">     * @return null</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function init($arr) &#123;</span><br><span class="line">        $this-&gt;root &#x3D; new Node($arr[0]);</span><br><span class="line">        for($i &#x3D; 1; $i &lt; count($arr); $i++) &#123;</span><br><span class="line">            $ret &#x3D; $this-&gt;Insert($arr[$i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return $ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 将$key插入树中</span><br><span class="line">     *</span><br><span class="line">     * @param $key 待插入树的数字</span><br><span class="line">     *</span><br><span class="line">     * @return null</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function Insert($key) &#123;</span><br><span class="line">        if(!is_null($this-&gt;search($key)))&#123;</span><br><span class="line">            throw new  Exception();</span><br><span class="line">        &#125;</span><br><span class="line">        $root &#x3D; $this-&gt;root;</span><br><span class="line">        $innode &#x3D; new Node($key);</span><br><span class="line">        $current &#x3D; $root;</span><br><span class="line">        $preNode &#x3D; null;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;先找到适合key插入的节点</span><br><span class="line">        while($current !&#x3D;null)&#123;</span><br><span class="line">            $preNode &#x3D; $current;</span><br><span class="line">            if($current-&gt;key&gt;$innode-&gt;key)&#123;</span><br><span class="line">                $current &#x3D; $current-&gt;left;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $current &#x3D; $current-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;将key 插入到找出的节点左右</span><br><span class="line">        if($preNode &#x3D;&#x3D; null)&#123;</span><br><span class="line">            $this-&gt;root &#x3D; $innode;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            if($preNode-&gt;key &gt; $innode-&gt;key)&#123;</span><br><span class="line">                $preNode-&gt;left &#x3D; $innode;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $preNode-&gt;right &#x3D; $innode;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $root;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 前序遍历二叉树</span><br><span class="line">     * @param $node</span><br><span class="line">     * User: huanghao@zuoyebang.com</span><br><span class="line">     * Date: 2019&#x2F;3&#x2F;7</span><br><span class="line">     * Time: 11:59</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function preTransTree($node,$string)&#123;</span><br><span class="line"></span><br><span class="line">        if(!is_null($node-&gt;left))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;preTransTree($node-&gt;left,$string);</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;key))&#123;</span><br><span class="line">            $string .&#x3D;$node-&gt;key.&quot;-&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;right))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;preTransTree($node-&gt;right,$string);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $string;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 中序遍历二叉树</span><br><span class="line">     * @param $node</span><br><span class="line">     * User: huanghao@zuoyebang.com</span><br><span class="line">     * Date: 2019&#x2F;3&#x2F;7</span><br><span class="line">     * Time: 11:59</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function midTransTree($node,$string)&#123;</span><br><span class="line">        if(!is_null($node-&gt;key))&#123;</span><br><span class="line">            $string .&#x3D;$node-&gt;key.&quot;-&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;left))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;midTransTree($node-&gt;left,$string);</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;right))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;midTransTree($node-&gt;right,$string);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $string;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 后序遍历二叉树</span><br><span class="line">     * @param $node</span><br><span class="line">     * User: huanghao@zuoyebang.com</span><br><span class="line">     * Date: 2019&#x2F;3&#x2F;7</span><br><span class="line">     * Time: 11:59</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function latTransTree($node,$string)&#123;</span><br><span class="line"></span><br><span class="line">        if(!is_null($node-&gt;left))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;latTransTree($node-&gt;left,$string);</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;right))&#123;</span><br><span class="line">            $string &#x3D; $this-&gt;latTransTree($node-&gt;right,$string);</span><br><span class="line">        &#125;</span><br><span class="line">        if(!is_null($node-&gt;key))&#123;</span><br><span class="line">            $string .&#x3D;$node-&gt;key.&quot;-&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $string;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查找树中是否存在$key对应的节点</span><br><span class="line">     *</span><br><span class="line">     * @param $key 待搜索数字</span><br><span class="line">     *</span><br><span class="line">     * @return $key对应的节点</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function search($key) &#123;</span><br><span class="line">        $current &#x3D; $this-&gt;root;</span><br><span class="line">        while($current !&#x3D; null) &#123;</span><br><span class="line">            if($current-&gt;key &#x3D;&#x3D; $key) &#123;</span><br><span class="line">                return $current;</span><br><span class="line">            &#125; elseif($current-&gt;key &gt; $key) &#123;</span><br><span class="line">                $current &#x3D; $current-&gt;left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                $current &#x3D; $current-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $current;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">$arr &#x3D; array(5, 3, 8, 2, 4, 7, 9, 1, 6);</span><br><span class="line">$obj &#x3D; new Bst();</span><br><span class="line">$ret &#x3D; $obj-&gt;init($arr);</span><br><span class="line">$string &#x3D; &quot;前序&quot;.$obj-&gt;preTransTree($obj-&gt;root,&quot;&quot;);</span><br><span class="line">var_dump($string);</span><br><span class="line">$string &#x3D; &quot;中序&quot;.$obj-&gt;midTransTree($obj-&gt;root,&quot;&quot;);</span><br><span class="line">var_dump($string);</span><br><span class="line">$string &#x3D; &quot;后序&quot;.$obj-&gt;latTransTree($obj-&gt;root,&quot;&quot;);</span><br><span class="line">var_dump($string);</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code></code></pre>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/coding/">
+    <time datetime="2020-11-19T16:00:28.818Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第一二三章：绪论 线性表 栈和队列" class="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第一二三章：绪论 线性表 栈和队列 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%80%E4%BA%8C%E4%B8%89%E7%AB%A0%EF%BC%9A%E7%BB%AA%E8%AE%BA%20%E7%BA%BF%E6%80%A7%E8%A1%A8%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" data-id="ckhp0x7r8002m932u2ivf0d2t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="递归为什么开销大-效率和开销问题是递归最大的缺点"><a href="#递归为什么开销大-效率和开销问题是递归最大的缺点" class="headerlink" title="递归为什么开销大 效率和开销问题是递归最大的缺点"></a>递归为什么开销大 效率和开销问题是递归最大的缺点</h1><p><img src="http://www.nowamagic.net/librarys/images/201210/2012_10_18_02.jpg" alt="image"><br>从上图可以看出，在计算Fib(5)的过程中，Fib(1)计算了两次、Fib(2)计算了3次，Fib(3)计算了两次，本来只需要5次计算就可以完成的任务却计算了9次。这个问题随着规模的增加会愈发凸显，以至于Fib(1000)已经无法再可接受的时间内算出</p>
+<h1 id="线性表-栈和队列"><a href="#线性表-栈和队列" class="headerlink" title="线性表 栈和队列"></a>线性表 栈和队列</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xmxkf/article/details/82465726#15-%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8">https://blog.csdn.net/xmxkf/article/details/82465726#15-%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8</a></p>
+<h1 id="栈【先进后出】"><a href="#栈【先进后出】" class="headerlink" title="栈【先进后出】"></a>栈【先进后出】</h1><p>栈是一种最常用也是最重要的数据结构质疑，用途十分广泛。==在二叉树的各种算法中大量地使用栈，将递归算法转换成非递归算法时也常常用到栈；==</p>
+<h2 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h2><h3 id="破解迷宫"><a href="#破解迷宫" class="headerlink" title="破解迷宫"></a>破解迷宫</h3><p>  给定一个M * N的迷宫图，求一条从指定入口到出口的路径。假设迷宫图如下图所示，白色表示通道，深色表示墙。所求路径必须是简单路径，即路径中不能重复出现同一通道块。为了表示迷宫，设置一个二维数组maze，其中每个元素表示一个方块的状态，0表示是通道，1表示该方块不可走<br><img src="https://img-blog.csdn.net/2018090617503481?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTAxNjM0NDI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>在求解时，通常使用“穷举求解”的方法，即从入口出发，顺某一方向向前试探，若能走通，则继续往前走，否则眼原路退回，换一个方向在继续试探，直到所有可能的通道都试探完为止。</p>
+<p>  为了保证在任何为止上都能沿原路退回，需要用一个后进先出的栈来保存从入口到当前位置的路径。每次取栈顶的方块，试探这个方块下一个可走的方向（上方、右方、下方、左方），如果找到可走的方向，则将该方向下一个方块入栈，如果没有可走的下一个方块，说明该路死了，需要将当前栈顶元素出栈。为了保证试探的可走相邻方块不是已走路径上的方块，比如（i,j）已经入栈，在试探（i+1, j)的下一可走方块时又试探到（i,j），这可能会引起死循环，为此，在一个方块入栈后，将对应数组元素值改为-1（只有0才是可走），当出栈时，再将其恢复至0。</p>
+<h3 id="用于符号匹配。"><a href="#用于符号匹配。" class="headerlink" title="用于符号匹配。"></a>用于符号匹配。</h3><p>在编译器的语法检查中，一个过程就是检查各种括号是否匹配，比如 ([]) ，这就是匹配的，而 {[}] 就不匹配了。可以用堆栈来实现括号匹配。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">while( 文件没有结束 ) &#123;</span><br><span class="line">        读取一个字符。</span><br><span class="line">        if 遇到一个左括号，把它入栈。</span><br><span class="line">        else if 遇到右括号 then 检查堆栈，&#123;</span><br><span class="line">            if 堆栈为空 then 报告错误，终止程序（括号不匹配）。</span><br><span class="line">            else if 堆栈非空 then &#123;</span><br><span class="line">                if 栈顶不是对应的左括号 then 报错，终止程序。</span><br><span class="line">                弹出栈顶。</span><br><span class="line">            &#125;</span><br><span class="line">     &#125;</span><br><span class="line">    if 栈非空 then 报错。</span><br></pre></td></tr></table></figure>
+<h3 id="用于计算代数式。-也可以用二叉树来解决"><a href="#用于计算代数式。-也可以用二叉树来解决" class="headerlink" title="用于计算代数式。( 也可以用二叉树来解决 )"></a>用于计算代数式。( 也可以用二叉树来解决 )</h3><p>如果我们要计算 6 + 4 * 8 ，要考虑到优先级的问题，这时候就可以用到堆栈了。<br>先要把代数式构造成 6 4 8 * + （构造方法也是用堆栈，在下一条会讲到）。逐个读取数据，当读到数字时， 把数字入栈，<br>读到运算符时，弹出栈中的两个元素（因为这里的是二元运算符，所以弹出两个，如果是sin等一元运算符就弹出一个），根据读取<br>的运算符执行运算，把结果压入栈中，然后继续读取数据，读取结束后栈顶元素就是结果。<br>比如读取6，4，8，由于是数字，所以依次入栈，<br>读到 “*” 时，弹出 4 和 8，相乘得到 32，把32入栈。读到 “+” 时，<br>弹出 6 和 32 ，执行运算得到 38，压入栈中，接着读取结束，栈顶的 38 就是结果。<br>复制代码</p>
+<h3 id="构造表达式。-也可以用二叉树来解决"><a href="#构造表达式。-也可以用二叉树来解决" class="headerlink" title="构造表达式。( 也可以用二叉树来解决 )"></a>构造表达式。( 也可以用二叉树来解决 )</h3><p>比如一个正常的代数式（叫他infix）, a + b * c + ( d * e + f ) * g , 转化成表达式 a b c * + d e * f + g * +, 这个表达式我们叫他 postfix。<br>把postfix按照 2 中的算法计算就能得到正确的计算顺序。</p>
+<p>先规定优先级，加减的优先级最低，左括号优先级最高</p>
+<h3 id="用于函数调用"><a href="#用于函数调用" class="headerlink" title="用于函数调用"></a>用于函数调用</h3><p>因为CPU一次只能执行一个命令，而寄存器也是公用的，<br>当前函数 current() 在运行时，数据储存在寄存器中，如果要调用另外一个函数 target()，而target() 也要求使用寄存器，为了防止数据丢失并且在执行完 target()<br>能够返回到 current() 继续执行, 这时候就要把当前函数的重要数据储存起来，压入内存中的栈中( 包括变量的值和函数地址 )。这样target()函数就可以无所顾忌的使用寄存器了。<br>target() 函数执行结束就取栈顶的返回地址继续执行 current()。如果target()中又调用另外一个函数，相应的操作也是一样的。</p>
+<p>这种机制和括号匹配有点相似，函数调用就像遇到了一个左括号，函数返回就像遇到一个右括号。</p>
+<p>这种机制就是递归的原理。递归返回地址就是自己。（这句话可能有问题，我就是这么理解的）。</p>
+<p>栈的空间有限，如果递归没有结束条件，就会不断的压栈，然后栈溢出，程序出错。</p>
+<h1 id="队列-先进后出"><a href="#队列-先进后出" class="headerlink" title="队列 先进后出"></a>队列 先进后出</h1><p>在1.5中使用栈来破解迷宫，是利用穷举的思想，尝试沿着一条路走下去，走不通回退，继续尝试下一条路，直到找到出口。通过这种方式求出的路径不一定是最短路径，这跟尝试的方向有关系（上左下右），如果向上走时能一直走到出口，则会忽略掉左下右等方向的更短的路径。<br>  这里我们使用队列来求解，假设当前点位为（x, y），在队列中的索引为front，遍历该位置的四个方位，如果方位可走则入队，并记录这个方位元素的前驱为front。如下图所示，当前点位上方的点位不可走，不入队；右方可走，入队；下方可走入队；左方可走入队；然后将front++，这时候当前点位变成（x, y+1），继续遍历它的四个方位，淘汰掉不可走的，可走的方位都会入队……。这样一层一层向外扩展可走的点，所有可走的点位各个方向都会尝试，而且机会相等，直到找到出口为止，这个方法称为“广度优先搜索方法”。然后我们从出口反向找其上一个方块的下标，直到下标为0，这个反向过程就能找到最短路径。由于此处需要通过索引获取队列元素，所以使用顺序队列来实现，因为链式存储结构查找不方便。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%80%E4%BA%8C%E4%B8%89%E7%AB%A0%EF%BC%9A%E7%BB%AA%E8%AE%BA%20%E7%BA%BF%E6%80%A7%E8%A1%A8%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+    <time datetime="2020-11-19T16:00:28.818Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第七章：图" class="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第七章：图 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%9B%BE/" data-id="ckhp0x7r8002n932uekg763pn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h1><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><p>无向</p>
+<p><img src="https://img-blog.csdn.net/20160525143156203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>有向</p>
+<p><img src="https://img-blog.csdn.net/20160525143355408?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><p>无向</p>
+<p><img src="https://img-blog.csdn.net/20160525144354062?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>有向</p>
+<p><img src="https://img-blog.csdn.net/20160525144417529?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"><br>无向<br>有向</p>
+<h2 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h2><p>无向<br>有向<br>利用二维矩阵表示</p>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><ol>
+<li>标志数组</li>
+<li>递归</li>
+<li>栈</li>
+<li><h1 id="图的算法"><a href="#图的算法" class="headerlink" title="图的算法"></a>图的算法</h1><h2 id="连接图内所有点的最小支撑树"><a href="#连接图内所有点的最小支撑树" class="headerlink" title="连接图内所有点的最小支撑树"></a>连接图内所有点的最小支撑树</h2><h3 id="prim算法【加面团】"><a href="#prim算法【加面团】" class="headerlink" title="prim算法【加面团】"></a>prim算法【加面团】</h3>可在加权连通图里搜索最小生成树。意即由此算法搜索到的边子集所构成的树中，不但包括了连通图里的所有顶点（英语：Vertex (graph theory)），且其所有边的权值之和亦为最小。</li>
+</ol>
+<p><img src="https://images0.cnblogs.com/blog/512692/201311/27190727-fcd5a5c37d424537b6bc2ec5492645bc.jpg" alt="image">Prim是最小生成树算法，即对于一个图，寻找一个能够包含所有顶点且边的权值和最小的树。</p>
+<h2 id="应用背景"><a href="#应用背景" class="headerlink" title="应用背景"></a>应用背景</h2><p>Prim是最小生成树算法，即对于一个图，寻找一个能够包含所有顶点且边的权值和最小的树。<br>修路问题</p>
+<h3 id="Kruskal算法【由小到大把所有都连上】"><a href="#Kruskal算法【由小到大把所有都连上】" class="headerlink" title="Kruskal算法【由小到大把所有都连上】"></a>Kruskal算法【由小到大把所有都连上】</h3><p><img src="https://github.com/wangkuiwu/datastructs_and_algorithm/blob/master/pictures/graph/kruskal/03.jpg?raw=true" alt="image"></p>
+<h2 id="图内两点距离最短算法"><a href="#图内两点距离最短算法" class="headerlink" title="图内两点距离最短算法"></a>图内两点距离最短算法</h2><h3 id="Dijkstra算法【贪心算法】"><a href="#Dijkstra算法【贪心算法】" class="headerlink" title="Dijkstra算法【贪心算法】"></a>Dijkstra算法【贪心算法】</h3><p><img src="https://img-blog.csdnimg.cn/20181120091000307.png" alt="image"></p>
+<p><img src="https://img-blog.csdnimg.cn/20181120091129718.png" alt="image"></p>
+<p><img src="https://img-blog.csdnimg.cn/20181120091752405.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xicGVyZmVjdDEyMw==,size_16,color_FFFFFF,t_70" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%9B%BE/">
+    <time datetime="2020-11-19T16:00:28.818Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/散列【hash】" class="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/散列【hash】 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E3%80%90hash%E3%80%91/" data-id="ckhp0x7r7002l932uccgdb7x4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><img src="https://img-blog.csdn.net/20140517233813890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWFuZ195dWxlaQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？<br>可以估计每个文件安的大小为5G×64=320G，远远大于内存限制的4G。所以不可能将其完全加载到内存中处理。考虑采取分而治之的方法。</p>
+<p> 分而治之/hash映射：</p>
+<p>遍历文件a，对每个url求取，然后根据所取得的值将url分别存储到1000个小文件（记为，这里漏写个了a1）中。这样每个小文件的大约为300M。遍历文件b，采取和a相同的方式将url分别存储到1000小文件中（记为）。这样处理后，所有可能相同的url都在对应的小文件（）中，不对应的小文件不可能有相同的url。然后我们只要求出1000对小文件中相同的url即可。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E3%80%90hash%E3%80%91/">
+    <time datetime="2020-11-19T16:00:28.817Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第六章：树（二叉树）" class="post-002.算法+数据结构/数据结构/大纲严蔚敏数据结构/第六章：树（二叉树） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E6%A0%91%EF%BC%88%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/" data-id="ckhp0x7r9002o932u81jpakdi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="树-大全"><a href="#树-大全" class="headerlink" title="树 大全"></a>树 大全</h1><p><img src="9EE86B34162E48CD8656BDBB44678C37" alt="image"></p>
+<h1 id="各树的原因场景"><a href="#各树的原因场景" class="headerlink" title="各树的原因场景"></a>各树的原因场景</h1><ol>
+<li>B B+则运用在file system database这类持续存储结构</li>
+<li>TRIE树：搜索引擎提示</li>
+<li>红黑树应用比较广泛：</li>
+<li>广泛用在C++的STL中。map和set都是用红黑树实现的。</li>
+<li>著名的linux进程调度Completely Fair Scheduler,用红黑树管理进程控制块。</li>
+<li>epoll在内核中的实现，用红黑树管理事件块</li>
+<li> nginx中，用红黑树管理timer等</li>
+<li>Java的TreeMap实现</li>
+</ol>
+<h1 id="初级树"><a href="#初级树" class="headerlink" title="初级树"></a>初级树</h1><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="非递归遍历二叉树"><a href="#非递归遍历二叉树" class="headerlink" title="非递归遍历二叉树"></a>非递归遍历二叉树</h3><h3 id="递归-BST（-二叉查找树-左子树小右子树大-中序成升序-求k大数）"><a href="#递归-BST（-二叉查找树-左子树小右子树大-中序成升序-求k大数）" class="headerlink" title="递归 BST（==二叉查找树 左子树小右子树大 中序成升序==求k大数）"></a>递归 BST（==二叉查找树 左子树小右子树大 中序成升序==求k大数）</h3><p>劣势：全是偏左的树 近似线性</p>
+<h3 id="哈夫曼huffMan-编码树"><a href="#哈夫曼huffMan-编码树" class="headerlink" title="哈夫曼huffMan 编码树"></a>哈夫曼huffMan 编码树</h3><p><img src="https://images2017.cnblogs.com/blog/1322530/201802/1322530-20180203172647750-609170444.png" alt="image"></p>
+<h4 id="哈夫曼树的应用"><a href="#哈夫曼树的应用" class="headerlink" title="哈夫曼树的应用"></a>哈夫曼树的应用</h4><p>最少前缀  学生成绩分布 if else 写法</p>
+<h3 id="二叉树应用-编译器四则运算"><a href="#二叉树应用-编译器四则运算" class="headerlink" title="二叉树应用 编译器四则运算"></a>二叉树应用 编译器四则运算</h3><h2 id="多叉树"><a href="#多叉树" class="headerlink" title="多叉树"></a>多叉树</h2><p>多叉树的等价表示<br><img src="AEA71E99933B4673B64EDE60A85B5A73" alt="image"></p>
+<h3 id="多叉树转二叉树"><a href="#多叉树转二叉树" class="headerlink" title="多叉树转二叉树"></a>多叉树转二叉树</h3><h2 id="K叉树"><a href="#K叉树" class="headerlink" title="K叉树"></a>K叉树</h2><h1 id="高级树"><a href="#高级树" class="headerlink" title="高级树"></a>高级树</h1><h2 id="2-3树-B树特例"><a href="#2-3树-B树特例" class="headerlink" title="2-3树[B树特例]"></a>2-3树[B树特例]</h2><h2 id="B和B-树"><a href="#B和B-树" class="headerlink" title="B和B+树"></a>B和B+树</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="https://img-blog.csdn.net/20170920132504569?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1YW56aGUxMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"><br>B 树可以看作是对2-3查找树的一种扩展，即他允许每个节点有M-1个子节点。</p>
+<p>根节点至少有两个子节点<br>每个节点有M-1个key，并且以升序排列<br>位于M-1和M key的子节点的值位于M-1 和M key对应的Value之间<br>其它节点至少有M/2个子节点<br><img src="https://img-blog.csdn.net/20170920132523536?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1YW56aGUxMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>B+树是对B树的一种变形树，它与B树的差异在于：</p>
+<p>有k个子结点的结点必然有k个关键码；<br>非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。<br>树的所有叶结点构成一个有序链表，可以按照关键码排序的次序遍历全部记录。</p>
+<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37519490/article/details/80957602">https://blog.csdn.net/m0_37519490/article/details/80957602</a></p>
+<h2 id="Trie树-字典树"><a href="#Trie树-字典树" class="headerlink" title="Trie树(字典树)"></a>Trie树(字典树)</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Trie_example.svg" alt="image"></p>
+<h2 id="avl和-红黑树比较"><a href="#avl和-红黑树比较" class="headerlink" title="avl和 红黑树比较"></a>avl和 红黑树比较</h2><p>红黑树的查询性能略微逊色于AVL树，因为他比avl树会稍微不平衡最多一层，也就是说红黑树的查询性能只比相同内容的avl树最多多一次比较，但是，红黑树在插入和删除上完爆avl树，avl树每次插入删除会进行大量的平衡度计算，而红黑树为了维持红黑性质所做的红黑变换和旋转的开销，相较于avl树为了维持平衡的开销要小得多</p>
+<p>红黑树能够以O(log2 n) 的时间复杂度进行搜索、插入、删除操作。此外，由于它的设计，任何不平衡都会在三次旋转之内解决。当然，还有一些更好的，但实现起来更复杂的数据结构 能够做到一步旋转之内达到平衡，但红黑树能够给我们一个比较“便宜”的解决方案</p>
+<p>搜索的次数远远大于插入和删除，那么选择AVL，如果搜索，插入删除次数几乎差不多，应该选择RB。</p>
+<h3 id="AVL树-二叉平衡树"><a href="#AVL树-二叉平衡树" class="headerlink" title="AVL树 (二叉平衡树)"></a>AVL树 (二叉平衡树)</h3><p>它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。在AVL树中任何节点的两个子树的高度最大差别为一，所以它也被称为平衡二叉树</p>
+<p><img src="https://images0.cnblogs.com/i/566545/201403/311739112822613.png" alt="image"><br> 记住旋转方法：必须是 123 高度或者是321高度 递减递增 然后秤砣位移<br> 如果不是  就采用 ll lr rl rr 变为这样<br><a target="_blank" rel="noopener" href="http://www.sohu.com/a/270452030_478315">http://www.sohu.com/a/270452030_478315</a><br>AVL的左旋和右旋<br><img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Tree_Rebalancing.png" alt="image"><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/collonn/article/details/20128205">https://blog.csdn.net/collonn/article/details/20128205</a><br><img src="https://img-blog.csdn.net/20141201123218032?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29sbG9ubg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<h3 id="红黑树【实现关联数组】"><a href="#红黑树【实现关联数组】" class="headerlink" title="红黑树【实现关联数组】"></a>红黑树【实现关联数组】</h3><p>（1）简介</p>
+<p>一种二叉查找树，但在每个节点增加一个存储位表示节点的颜色，可以是红或黑（非红即黑）。通过对任何一条从根到叶子的路径上各个节点着色的方式的限制，==红黑树确保没有一条路径会比其它路径长出两倍==，因此，红黑树是一种弱平衡二叉树（由于是弱平衡，可以看到，==在相同的节点情况下，AVL树的高度低于红黑树==），相对于要求严格的AVL树来说，它的旋转次数少，所以对于搜索，插入，删除操作较多的情况下，我们就用红黑树。</p>
+<p>==（2）性质==</p>
+<ul>
+<li><ol>
+<li>每个节点非红即黑</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>根节点是黑的; </li>
+</ol>
+</li>
+<li><ol start="3">
+<li>每个叶节点（叶节点即树尾端NULL指针或NULL节点）都是黑的; </li>
+</ol>
+</li>
+<li><ol start="4">
+<li>如图所示，如果一个节点是红的，那么它的两儿子都是黑的; </li>
+</ol>
+</li>
+<li><ol start="5">
+<li>对于任意节点而言，其到叶子点树NULL指针的每条路径都包含相同数目的黑节点;</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>每条路径都包含相同的黑节点;</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://img-blog.csdn.net/20180710095739968?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA4OTk5ODU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>当我们在对红黑树进行插入和删除等操作时，对树做了修改，那么可能会违背红黑树的性<br>树的左旋<br>树的左旋(2张)<br> 质。<br>为了保持红黑树的性质，我们可以通过对树进行旋转，即修改树中某些结点的颜色及指针结构，以达到对红黑树进行插入、删除结点等操作时，红黑树依然能保持它特有的性质（五点性质）。<br>如右图</p>
+<h4 id="红黑树用处"><a href="#红黑树用处" class="headerlink" title="红黑树用处"></a>红黑树用处</h4><p>1，广泛用于C ++的STL中，地图和集都是用红黑树实现的; </p>
+<p>2，着名的Linux的的进程调度完全公平调度程序，用红黑树管理进程控制块，进程的虚拟内存区域都存储在一颗红黑树上，每个虚拟地址区域都对应红黑树的一个节点，左指针指向相邻的地址虚拟存储区域，右指针指向相邻的高地址虚拟地址空间; </p>
+<p>3，IO多路复用的epoll的的的实现采用红黑树组织管理的的的sockfd，以支持快速的增删改查; </p>
+<p>4，Nginx的的的中用红黑树管理定时器，因为红黑树是有序的，可以很快的得到距离当前最小的定时器; </p>
+<p>5，Java的的的中TreeMap中的中的实现;</p>
+<h2 id="伸展树【缓存】"><a href="#伸展树【缓存】" class="headerlink" title="伸展树【缓存】"></a>伸展树【缓存】</h2><p>在伸展树上的一般操作都基于伸展操作：假设想要对一个二叉查找树执行一系列的查找操作，为了使整个查找时间更小，被查频率高的那些条目就应当经常处于靠近树根的位置。</p>
+<p><img src="https://img-blog.csdn.net/20180416230301124?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Nhbm90/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h2 id="k-d树【空间搜索】"><a href="#k-d树【空间搜索】" class="headerlink" title="k-d树【空间搜索】"></a>k-d树【空间搜索】</h2><p>　k-d树（k-dimensional树的简称），是一种分割k维数据空间的数据结构。主要应用于多维空间关键数据的搜索（如：范围搜索和最近邻搜索）。<br>　<br><img src="F463237B9DD44A78A00519318AC83939" alt="image">
+　</p>
+<h2 id="PR-四分树【图像传输用到】"><a href="#PR-四分树【图像传输用到】" class="headerlink" title="PR 四分树【图像传输用到】"></a>PR 四分树【图像传输用到】</h2><p><img src="http://media.openjudge.cn/images/1610_1.jpg" alt="image"></p>
+<p>递归拆成1/4</p>
+<p>我们一般都将二进制图片存成图2(d)这样的四分树的形式，这棵树是通过图2(c)里面的划分得到的。图2(d)里面的每一个结点都代表图2(c)里面的矩阵，而树的根结点代表整个大的矩阵。如果树中一个结点的值为1，则代表这个结点对应的矩阵需要划分成4个小矩阵。否则，这个结点将包含两个数。第一个数为0，表示不用再划分，第二个数为0或者1，表示整个矩阵都是这个值。整棵树可以用它的宽度优先遍历得到的结果来表示，如图2(d)中的树可以表示成(1)(0,0)(1)(0,1)(1)(0,0)(0,1)(1)(0,0)(0,0)(0,0)(0,1)(0,1)(0,0)(0,1)(0,0)(0,1)。删掉括号和逗号，我们可以得到一个更简短的纯二进制编码100101100011000000010100010001来编码这张图片，它的16进制形式为258C0511。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/002.%E7%AE%97%E6%B3%95+%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A4%A7%E7%BA%B2%E4%B8%A5%E8%94%9A%E6%95%8F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E6%A0%91%EF%BC%88%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.817Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-011.开发技巧/phpstrom fisp git 使用教程/fisp.note/fis-conf(1)" class="post-011.开发技巧/phpstrom fisp git 使用教程/fisp.note/fis-conf(1) post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/phpstrom%20fisp%20git%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/fisp.note/fis-conf(1)/" data-id="ckhp0x7rg0032932u685vh3ox" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        // Fisplus 模块配置
+// fisp release -wd test100
+
+
+// 基本配置
+fis.config.merge({
+    namespace: 'phplib'
+});
+
+// 部署配置。
+var deployTargets = {
+    test114: {
+        host: '192.168.240.137',
+        port: 8020
+    }
+};
+
+var deployConfig = [{
+    from: '/ds',
+    to: '/home/homework/php/phplib/kunpeng/ds',
+    subOnly: true
+},{
+    from: '/util',
+    to: '/home/homework/php/phplib/kunpeng/util',
+    subOnly: true
+},{
+    from: '/conf',
+    to: '/home/homework/php/phplib/kunpeng/conf',
+    subOnly: true
+},{
+    from: '/dao',
+    to: '/home/homework/php/phplib/kunpeng/dao',
+    subOnly: true
+}
+];
+
+fis.util.map(deployTargets, function (serverName, serverConfig) {
+    var _deployConfig = serverConfig.deploy || [].concat(deployConfig);
+    for (var i = 0; i < _deployConfig.length; ++i) {
+        fis.util.merge(_deployConfig[i], {
+            receiver: 'http://' + serverConfig.host + ':' + (serverConfig.port || '8080') + '/fisreceiver.php',
+            exclude: /\/page\/demo\//
+        });
+    }
+    fis.config.set('deploy.' + serverName, _deployConfig);
+});
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/phpstrom%20fisp%20git%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/fisp.note/fis-conf(1)/">
+    <time datetime="2020-11-19T16:00:28.816Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-011.开发技巧/phpstrom fisp git 使用教程/fisp.note/fis-conf" class="post-011.开发技巧/phpstrom fisp git 使用教程/fisp.note/fis-conf post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/phpstrom%20fisp%20git%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/fisp.note/fis-conf/" data-id="ckhp0x7rh0033932uhlch3562" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        // Fisplus 模块配置
+// fisp release -wd test100
+
+
+// 基本配置
+fis.config.merge({
+    namespace: 'kunpeng'
+});
+
+// 部署配置。
+var deployTargets = {
+    test100: {
+        host: '192.168.240.125',
+        port: 8020
+    }
+};
+
+var deployConfig = [{
+    from: '/actions',
+    to: '/home/homework/app/kunpeng/actions',
+    subOnly: true
+}, {
+    from: '/controllers',
+    to: '/home/homework/app/kunpeng/controllers',
+    subOnly: true
+}, {
+    from: '/library',
+    to: '/home/homework/app/kunpeng/library',
+    subOnly: true
+}, {
+    from: '/models',
+    to: '/home/homework/app/kunpeng/models',
+    subOnly: true
+}, {
+    from: '/script',
+    to: '/home/homework/app/kunpeng/script',
+    subOnly: true
+}, {
+    from: '/template',
+    to: '/home/homework/template',
+    subOnly: true
+}, {
+    from: '/conf',
+    to: '/home/homework/conf/app/kunpeng',
+    subOnly: true
+}
+];
+
+fis.util.map(deployTargets, function (serverName, serverConfig) {
+    var _deployConfig = serverConfig.deploy || [].concat(deployConfig);
+    for (var i = 0; i < _deployConfig.length; ++i) {
+        fis.util.merge(_deployConfig[i], {
+            receiver: 'http://' + serverConfig.host + ':' + (serverConfig.port || '8080') + '/fisreceiver.php',
+            exclude: /\/page\/demo\//
+        });
+    }
+    fis.config.set('deploy.' + serverName, _deployConfig);
+});
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/phpstrom%20fisp%20git%20%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/fisp.note/fis-conf/">
+    <time datetime="2020-11-19T16:00:28.816Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-011.开发技巧/Makefile" class="post-011.开发技巧/Makefile post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/Makefile/" data-id="ckhp0x7q4000h932u5yapf5w8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="MakeFile概念"><a href="#MakeFile概念" class="headerlink" title="MakeFile概念"></a>MakeFile概念</h1><p>一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/011.%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/Makefile/">
+    <time datetime="2020-11-19T16:00:28.814Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-000.软实力/如何写文档" class="post-000.软实力/如何写文档 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/000.%E8%BD%AF%E5%AE%9E%E5%8A%9B/%E5%A6%82%E4%BD%95%E5%86%99%E6%96%87%E6%A1%A3/" data-id="ckhp0x7px0005932ubliug7bx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/000.%E8%BD%AF%E5%AE%9E%E5%8A%9B/%E5%A6%82%E4%BD%95%E5%86%99%E6%96%87%E6%A1%A3/">
+    <time datetime="2020-11-19T16:00:28.813Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-004.网络/互联网协议入门" class="post-004.网络/互联网协议入门 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/004.%E7%BD%91%E7%BB%9C/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%85%A5%E9%97%A8/" data-id="ckhp0x7q2000d932uf2v9gj4x" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="互联网协议（Internet-Protocol-Suite）"><a href="#互联网协议（Internet-Protocol-Suite）" class="headerlink" title="互联网协议（Internet Protocol Suite）"></a>互联网协议（Internet Protocol Suite）</h1><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html">http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html</a></p>
+<p>全世界几十亿台电脑，连接在一起，两两通信。上海的某一块网卡送出信号，洛杉矶的另一块网卡居然就收到了，两者实际上根本不知道对方的物理位置，你不觉得这是很神奇的事情吗？</p>
+<p>互联网的核心是一系列协议，总称为”互联网协议”（Internet Protocol Suite）。它们对电脑如何连接和组网，做出了详尽的规定。理解了这些协议，就理解了互联网的原理。</p>
+<h1 id="自下而上理解OSI"><a href="#自下而上理解OSI" class="headerlink" title="自下而上理解OSI"></a>自下而上理解OSI</h1><h2 id="连接层的由来"><a href="#连接层的由来" class="headerlink" title="连接层的由来"></a>连接层的由来</h2><p>上面提到，以太网数据包的”标头”，包含了发送者和接受者的信息。那么，发送者和接受者是如何标识呢？<br>以太网规定，连入网络的所有设备，都必须具有”网卡”接口。数据包必须是从一块网卡，传送到另一块网卡。网卡的地址，就是数据包的发送地址和接收地址，这叫做MAC地址。</p>
+<p>首先，一块网卡怎么会知道另一块网卡的MAC地址？</p>
+<p>==回答是有一种ARP协议，可以解决这个问题。这个留到后面介绍，这里只需要知道，以太网数据包必须知道接收方的MAC地址，然后才能发送。==</p>
+<h2 id="网络层的由来"><a href="#网络层的由来" class="headerlink" title="网络层的由来"></a>网络层的由来</h2><p>以太网协议，依靠MAC地址发送数据。理论上，单单依靠MAC地址，上海的网卡就可以找到洛杉矶的网卡了，技术上是可以实现的。</p>
+<p>但是，这样做有一个重大的缺点。以太网采用广播方式发送数据包，所有成员人手一”包”，不仅效率低，而且局限在发送者所在的子网络。也就是说，如果两台计算机不在同一个子网络，广播是传不过去的。这种设计是合理的，否则互联网上每一台计算机都会收到所有包，那会引起灾难。</p>
+<p>因此，必须找到一种方法，能够区分哪些MAC地址属于同一个子网络，哪些不是。如果是同一个子网络，就采用广播方式发送，否则就采用”路由”方式发送。（”路由”的意思，就是指如何向不同的子网络分发数据包，这是一个很大的主题，本文不涉及。）遗憾的是，MAC地址本身无法做到这一点。它只与厂商有关，与所处网络无关。</p>
+<p>==网络层出现以后，每台计算机有了两种地址，一种是MAC地址，另一种是网络地址。两种地址之间没有任何联系，MAC地址是绑定在网卡上的，网络地址则是管理员分配的，它们只是随机组合在一起。网络地址帮助我们确定计算机所在的子网络，MAC地址则将数据包送到该子网络中的目标网卡。因此，从逻辑上可以推断，必定是先处理网络地址，然后再处理MAC地址==</p>
+<h2 id="ip-协议"><a href="#ip-协议" class="headerlink" title="ip 协议"></a>ip 协议</h2><p>那么，怎样才能从IP地址，判断两台计算机是否属于同一个子网络呢？这就要用到另一个参数”子网掩码”（subnet mask）。</p>
+<p>所谓”子网掩码”，就是表示子网络特征的一个参数。它在形式上等同于IP地址，也是一个32位二进制数字，它的网络部分全部为1，主机部分全部为0。比如，IP地址172.16.254.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0。</p>
+<p>==总结一下，IP协议的作用主要有两个，一个是为每一台计算机分配IP地址，另一个是确定哪些地址在同一个子网络。==</p>
+<p>根据IP协议发送的数据，就叫做IP数据包。不难想象，其中必定包括IP地址信息。</p>
+<p>但是前面说过，以太网数据包只包含MAC地址，并没有IP地址的栏位。那么是否需要修改数据定义，再添加一个栏位呢？</p>
+<p>回答是不需要，我们可以把IP数据包直接放进以太网数据包的”数据”部分，因此完全不用修改以太网的规格。这就是互联网分层结构的好处：上层的变动完全不涉及下层的结构。</p>
+<h3 id="一种机制，能够从IP地址得到MAC地址。"><a href="#一种机制，能够从IP地址得到MAC地址。" class="headerlink" title="一种机制，能够从IP地址得到MAC地址。"></a>一种机制，能够从IP地址得到MAC地址。</h3><p>这里又可以分成两种情况。第一种情况，如果两台主机不在同一个子网络，那么事实上没有办法得到对方的MAC地址，只能把数据包传送到两个子网络连接处的”网关”（gateway），让网关去处理。</p>
+<p>第二种情况，如果两台主机在同一个子网络，那么我们可以用ARP协议，得到对方的MAC地址。ARP协议也是发出一个数据包（包含在以太网数据包中），其中包含它所要查询主机的IP地址，在对方的MAC地址这一栏，填的是FF:FF:FF:FF:FF:FF，表示这是一个”广播”地址。它所在子网络的每一台主机，都会收到这个数据包，从中取出IP地址，与自身的IP地址进行比较。如果两者相同，都做出回复，向对方报告自己的MAC地址，否则就丢弃这个包。</p>
+<p>总之，有了ARP协议之后，我们就可以得到同一个子网络内的主机MAC地址，可以把数据包发送到任意一台主机之上了。</p>
+<h2 id="传输层的由来"><a href="#传输层的由来" class="headerlink" title="传输层的由来"></a>传输层的由来</h2><p>有了MAC地址和IP地址，我们已经可以在互联网上任意两台主机上建立通信。</p>
+<p>接下来的问题是，同一台主机上有许多程序都需要用到网络，比如，你一边浏览网页，一边与朋友在线聊天。当一个数据包从互联网上发来的时候，你怎么知道，它是表示网页的内容，还是表示在线聊天的内容？</p>
+<p>也就是说，我们还需要一个参数，表示这个数据包到底供哪个程序（进程）使用。这个参数就叫做”端口”（port），它其实是每一个使用网卡的程序的编号。每个数据包都发到主机的特定端口，所以不同的程序就能取到自己所需要的数据。</p>
+<p>“端口”是0到65535之间的一个整数，正好16个二进制位。0到1023的端口被系统占用，用户只能选用大于1023的端口。不管是浏览网页还是在线聊天，应用程序会随机选用一个端口，然后与服务器的相应端口联系。</p>
+<p>==”传输层”的功能，就是建立”端口到端口”的通信==。相比之下，”网络层”的功能是建立”主机到主机”的通信。只要确定主机和端口，我们就能实现程序之间的交流。因此，Unix系统就把主机+端口，叫做”套接字”（socket）。有了它，就可以进行网络应用程序开发了。</p>
+<p>因而 </p>
+<p>==整个UDP数据包放入IP数据包的”数据”部分，而==前面说过，IP数据包又是放在以太网数据包之中的，所以整个以太网数据包现在变成了下面这样：</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201205/bg2012052912.png" alt="image"></p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用程序收到”传输层”的数据，接下来就要进行解读。由于互联网是开放架构，数据来源五花八门，必须事先规定好格式，否则根本无法解读。</p>
+<p>“应用层”的作用，就是规定应用程序的数据格式。</p>
+<p>举例来说，TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP等等。那么，必须有不同协议规定电子邮件、网页、FTP数据的格式，这些应用程序协议就构成了”应用层”。</p>
+<p>这是最高的一层，直接面对用户。它的数据就放在TCP数据包的”数据”部分。因此，现在的以太网的数据包就变成下面这样。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201205/bg2012052913.png" alt="image"></p>
+<h1 id="自上而下理解"><a href="#自上而下理解" class="headerlink" title="自上而下理解"></a>自上而下理解</h1><p><img src="http://www.ruanyifeng.com/blogimg/asset/201206/bg2012061101.jpg" alt="image"></p>
+<p>上图中，1号电脑要向4号电脑发送一个数据包。它先判断4号电脑是否在同一个子网络，结果发现不是（后文介绍判断方法），于是就把这个数据包发到网关A。网关A通过路由协议，发现4号电脑位于子网络B，又把数据包发给网关B，网关B再转发到4号电脑。</p>
+<p>1号电脑把数据包发到网关A，必须知道网关A的MAC地址。所以，数据包的目标地址，实际上分成两种情况：</p>
+<p>场景    数据包地址<br>同一个子网络    对方的MAC地址，对方的IP地址<br>非同一个子网络    网关的MAC地址，对方的IP地址<br>发送数据包之前，电脑必须判断对方是否在同一个子网络，然后选择相应的MAC地址。接下来，我们就来看，实际使用中，这个过程是怎么完成的。</p>
+<p>所谓”动态IP地址”，指计算机开机后，会自动分配到一个IP地址，不用人为设定。它使用的协议叫做DHCP协议。</p>
+<p>这个协议规定，每一个子网络中，有一台计算机负责管理本网络的所有IP地址，它叫做”DHCP服务器”。新的计算机加入网络，必须向”DHCP服务器”发送一个”DHCP请求”数据包，申请IP地址和相关的网络参数。</p>
+<h1 id="一个实例：访问网页"><a href="#一个实例：访问网页" class="headerlink" title="一个实例：访问网页"></a>一个实例：访问网页</h1><p>1.想要访问Google，在地址栏输入了网址：<a target="_blank" rel="noopener" href="http://www.google.com./">www.google.com。</a></p>
+<p>这意味着，浏览器要向Google发送一个网页请求的数据包。</p>
+<p>2。 DNS协议</p>
+<p>我们知道，发送数据包，必须要知道对方的IP地址。但是，现在，我们只知道网址<a target="_blank" rel="noopener" href="http://www.google.com,不知道它的ip地址./">www.google.com，不知道它的IP地址。</a></p>
+<p> DNS协议可以帮助我们，将这个网址转换成IP地址。已知DNS服务器为8.8.8.8，于是我们向这个地址发送一个DNS数据包（53端口）。<br> 然后，DNS服务器做出响应，告诉我们Google的IP地址是172.194.72.105。于是，我们知道了对方的IP地址。</p>
+<p> 3.子网掩码</p>
+<p> 接下来，我们要判断，这个IP地址是不是在同一个子网络，这就要用到子网掩码。</p>
+<p>已知子网掩码是255.255.255.0，本机用它对自己的IP地址192.168.1.100，做一个二进制的AND运算（两个数位都为1，结果为1，否则为0），计算结果为192.168.1.0；然后对Google的IP地址172.194.72.105也做一个AND运算，计算结果为172.194.72.0。这两个结果不相等，所以结论是，Google与本机不在同一个子网络。</p>
+<p>因此，我们要向Google发送数据包，必须通过网关192.168.1.1转发，也就是说，接收方的MAC地址将是网关的MAC地址。</p>
+<p>我们假定这个部分的长度为4960字节，它会被嵌在TCP数据包之中。</p>
+<p>9.5 TCP协议</p>
+<p>TCP数据包需要设置端口，接收方（Google）的HTTP端口默认是80，发送方（本机）的端口是一个随机生成的1024-65535之间的整数，假定为51775。</p>
+<p>TCP数据包的标头长度为20字节，加上嵌入HTTP的数据包，总长度变为4980字节。</p>
+<p>9.6 IP协议</p>
+<p>然后，TCP数据包再嵌入IP数据包。IP数据包需要设置双方的IP地址，这是已知的，发送方是192.168.1.100（本机），接收方是172.194.72.105（Google）。</p>
+<p>IP数据包的标头长度为20字节，加上嵌入的TCP数据包，总长度变为5000字节。</p>
+<p>9.7 以太网协议</p>
+<p>最后，IP数据包嵌入以太网数据包。以太网数据包需要设置双方的MAC地址，发送方为本机的网卡MAC地址，接收方为网关192.168.1.1的MAC地址（通过ARP协议得到）。</p>
+<p>以太网数据包的数据部分，最大长度为1500字节，而现在的IP数据包长度为5000字节。因此，IP数据包必须分割成四个包。因为每个包都有自己的IP标头（20字节），所以四个包的IP数据包的长度分别为1500、1500、1500、560。</p>
+<ol start="5">
+<li>服务器端响应</li>
+</ol>
+<p>经过多个网关的转发，Google的服务器172.194.72.105，收到了这四个以太网数据包。</p>
+<p>根据IP标头的序号，Google将四个包拼起来，取出完整的TCP数据包，然后读出里面的”HTTP请求”，接着做出”HTTP响应”，再用TCP协议发回来。</p>
+<p>本机收到HTTP响应以后，就可以将网页显示出来，完成一次网络通信。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoming100001/article/details/81109617">https://blog.csdn.net/xiaoming100001/article/details/81109617</a></p>
+<p><img src="https://img-blog.csdn.net/20180719094756330?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW9taW5nMTAwMDAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/004.%E7%BD%91%E7%BB%9C/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%85%A5%E9%97%A8/">
+    <time datetime="2020-11-19T16:00:28.812Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/page/9/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/8/">8</a><a class="page-number" href="/huanghao.github.io/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/huanghao.github.io/page/11/">11</a><a class="page-number" href="/huanghao.github.io/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/11/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 关于大小写如果一个名字是在函数内部定义，那么它的就只在函数内部有效。如果是在函数外部定义，那么将在当前包的所有文件中都可以访问。名字的开头字母的大小写决定了名字在包外的可见性。如果一个名字是大写字母开头的（译注：必须是在函数外部定义的包级名字；包级函数名本身也是包级名字），那么它将是导出的，也就是说可以被外部的包访问，例如fmt包的Printf函数就是导出的，可以在fmt包外部访问。包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 关于大小写如果一个名字是在函数内部定义，那么它的就只在函数内部有效。如果是在函数外部定义，那么将在当前包的所有文件中都可以访问。名字的开头字母的大小写决定了名字在包外的可见性。如果一个名字是大写字母开头的（译注：必须是在函数外部定义的包级名字；包级函数名本身也是包级名字），那么它将是导出的，也就是说可以被外部的包访问，例如fmt包的Printf函数就是导出的，可以在fmt包外部访问。包">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.849Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.849Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-001.语言/go/数据类型/数据类型 " class="post-001.语言/go/数据类型/数据类型  post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20/" data-id="ckhp0x7r20028932uffvr7tm4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="关于大小写"><a href="#关于大小写" class="headerlink" title="关于大小写"></a>关于大小写</h1><p>如果一个名字是在函数内部定义，那么它的就只在函数内部有效。如果是在函数外部定义，那么将在当前包的所有文件中都可以访问。名字的开头字母的大小写决定了名字在包外的可见性。如果一个名字是大写字母开头的（译注：必须是在函数外部定义的包级名字；包级函数名本身也是包级名字），那么它将是导出的，也就是说可以被外部的包访问，例如fmt包的Printf函数就是导出的，可以在fmt包外部访问。包本身的名字一般总是用小写字母</p>
+<h1 id="判断为空"><a href="#判断为空" class="headerlink" title="判断为空"></a>判断为空</h1><p>任何类型在未初始化时都对应一个零值</p>
+<h1 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h1><p>nil只能赋值给指针、channel、func、interface、map和slice类型的变量。即（通道，函数，接口，切片，映射五大引用类型+指针）如果将nil赋值给其他变量的时候将会引发panic，对于其它的变量，也不能判断其是否为nil</p>
+<ul>
+<li>bool false ，整型是 0 ，字符串是 “” </li>
+<li>nil    指针，函数，interface，slice，channel和map的零值都是 nil</li>
+<li>len(s)  用于求数组、切片和字典的长度。 </li>
+</ul>
+<p>在包级别声明的变量会在main入口函数执行前完成初始化（§2.6.2），局部变量将在声明语句被执行到的时候完成初始化。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="基本类型【值副本传递】"><a href="#基本类型【值副本传递】" class="headerlink" title="基本类型【值副本传递】"></a>基本类型【值副本传递】</h2><h3 id="bool"><a href="#bool" class="headerlink" title="bool"></a>bool</h3><h3 id="整型-int-float"><a href="#整型-int-float" class="headerlink" title="整型 int float"></a>整型 int float</h3><h3 id="Byte-string"><a href="#Byte-string" class="headerlink" title="Byte || string"></a>Byte || string</h3><p>Go 语言中的字符串是不可变的，也就是说 str[index] 这样的表达式是不可以被放在等号左侧的。</p>
+<p>因此，必须先++将字符串转换成字节数组++ 然后再通过修改数组中的元素值来达到修改字符串的目的，最后将字节数组转换回字符串格式</p>
+<h3 id="数组类型-array"><a href="#数组类型-array" class="headerlink" title="数组类型 array"></a>数组类型 array</h3><p> 函数间传递是值的方式【复制】<br> 所以百万数组建议指针<br>同样类型的数组呢？Go语言规定，必须是长度一样，并且每个元素的类型也一样的数组，才是同样类型的数组</p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><h3 id="切片类型-slice"><a href="#切片类型-slice" class="headerlink" title="切片类型 slice"></a>切片类型 slice</h3><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5a9f543a6fb9a028cb2d2b91">https://juejin.im/post/5a9f543a6fb9a028cb2d2b91</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	slice :&#x3D; []int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">	fmt.Printf(&quot;%p\n&quot;, &amp;slice)</span><br><span class="line">	modify(slice)</span><br><span class="line">	fmt.Println(slice)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func modify(slice []int) &#123;</span><br><span class="line">	fmt.Printf(&quot;%p\n&quot;, &amp;slice)</span><br><span class="line">	slice[1] &#x3D; 10</span><br><span class="line">&#125;</span><br><span class="line">0xc420082060</span><br><span class="line">0xc420082080</span><br><span class="line">[1 10 3 4 5]</span><br></pre></td></tr></table></figure>
+<p>这两个切片的地址不一样，所以可以确认切片在函数间传递是复制的。而我们修改一个索引的值后，发现原切片的值也被修改了，说明它们共用一个底层数组</p>
+<p>==只有3个字段的数据结构==：一个是指向底层数组的指针，一个是切片的长度，一个是切片的容量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice:&#x3D;make([]int,5,10)</span><br></pre></td></tr></table></figure>
+
+<p>这时，我们创建的切片长度是5，容量是10,需要注意的这个容量10其实对应的是切片底层数组的。</p>
+<p>切片还有nil切片和空切片，它们的长度和容量都是0，但是它们指向底层数组的指针不一样，nil切片意味着指向底层数组的指针为nil，而空切片对应的指针是个地址。</p>
+<p>//nil切片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var nilSlice []int</span><br></pre></td></tr></table></figure>
+<p>//空切片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice:&#x3D;[]int&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-类型-无序"><a href="#Map-类型-无序" class="headerlink" title="Map 类型 无序"></a>Map 类型 无序</h3><blockquote>
+<p>底层实现【Hash表】无序的键值对集合<br> 每次迭代Map的时候，打印的Key和Value是无序的</p>
+</blockquote>
+<p> Map的散列表包含一组桶，每次存储和查找键值对的时候，都要先选择一个桶。如何选择桶呢？就是把指定的键传给散列函数，就可以索引到相应的桶了，进而找到对应的键值。</p>
+<blockquote>
+<p> 好处</p>
+</blockquote>
+<p> 储的数据越多，索引分布越均匀，所以我们访问键值对的速度也就越快，当然存储的细节还有很多</p>
+<blockquote>
+<p>删除 </p>
+</blockquote>
+<p>delete(dict,”张三”)  delete函数删除不存在的键也是可以的，只是没有任何作用。</p>
+<blockquote>
+<p>断言 </p>
+</blockquote>
+<p>获取一个不存在的键的值，也是可以的，返回的是值类型的零值，这样就会导致我们不知道是真的存在一个为零值的键值对呢，还是说这个键值对就不存在</p>
+<h3 id="接口类型（interface）"><a href="#接口类型（interface）" class="headerlink" title="接口类型（interface）"></a>接口类型（interface）</h3><h3 id="Channel-类型"><a href="#Channel-类型" class="headerlink" title="Channel 类型"></a>Channel 类型</h3><h3 id="函数类型-注意函数和方法的区别"><a href="#函数类型-注意函数和方法的区别" class="headerlink" title="函数类型  [注意函数和方法的区别]"></a>函数类型  [注意函数和方法的区别]</h3><h2 id="结构类型"><a href="#结构类型" class="headerlink" title="结构类型"></a>结构类型</h2><h3 id="结构化类型-struct-函数传递-值传递-amp-引用传递"><a href="#结构化类型-struct-函数传递-值传递-amp-引用传递" class="headerlink" title="结构化类型(struct) 函数传递 值传递 &amp; 引用传递"></a>结构化类型(struct) 函数传递 值传递 &amp; 引用传递</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	jim :&#x3D; person&#123;10,&quot;Jim&quot;&#125;</span><br><span class="line">	fmt.Println(jim)</span><br><span class="line">	&#x2F;&#x2F; jim &amp;jim 区别</span><br><span class="line">	modify(&amp;jim)</span><br><span class="line">	fmt.Println(jim)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func modify(p *person) &#123;</span><br><span class="line">	p.age &#x3D;p.age+10</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type person struct &#123;</span><br><span class="line">	age int</span><br><span class="line">	name string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="struct的拷贝："><a href="#struct的拷贝：" class="headerlink" title="struct的拷贝："></a>struct的拷贝：</h3><p>原理是使用反射，但我们可以直接用json,其实它里面也是用的reflection</p>
+<pre><code>type A struct &#123;
+    A int
+    B string
+    C int
+&#125;
+a := A&#123;1, &quot;a&quot;, 1&#125;
+aj, _ := json.Marshal(a)
+b := new(A)
+_ = json.Unmarshal(aj, b)
+fmt.Printf(&quot;%+v&quot;, b)</code></pre>
+<h2 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h2><p>本质上，他们并不是同一种类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Duration int64</span><br><span class="line"></span><br><span class="line">var dur Duration</span><br><span class="line">dur&#x3D;int64(100)</span><br><span class="line">fmt.Println(dur)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="指针类型（Pointer）"><a href="#指针类型（Pointer）" class="headerlink" title="指针类型（Pointer）"></a>指针类型（Pointer）</h2><h1 id="基本的变量类型转换"><a href="#基本的变量类型转换" class="headerlink" title="基本的变量类型转换"></a>基本的变量类型转换</h1><h2 id="string-转-int"><a href="#string-转-int" class="headerlink" title="string 转 int"></a>string 转 int</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20/">
+    <time datetime="2020-11-19T16:00:28.849Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/Goroutine%20%E9%94%81%20%E5%B9%B6%E5%8F%91/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/go/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/%E7%BB%93%E6%9E%84%E4%BD%93%20%E6%8C%87%E9%92%88%20type%20interface/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

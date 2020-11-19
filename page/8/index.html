@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一剑光寒十九州">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/page/8/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="一剑光寒十九州">
+<meta property="og:locale">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql基础语法/mysql常见应用" class="post-005.服务实现/存储/Mysql+数据库原理/mysql基础语法/mysql常见应用 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/mysql%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8/" data-id="ckhp0x7rj0038932udrsw9yrz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="MySQL服务端实用工具："><a href="#MySQL服务端实用工具：" class="headerlink" title="MySQL服务端实用工具："></a>MySQL服务端实用工具：</h1><ol>
+<li><p>mysqld：SQL的后台程序（MySQL服务器进程）。改程序必须运行之后，客户端才能连接服务器访问数据库。</p>
+</li>
+<li><p>mysqld_safe:服务器启动脚本，在Unix推荐使用mysqld_safe来启动mysqld服务器。mysqld_safe增加了一些安全特性。</p>
+</li>
+<li><p>msq.server:服务器启动脚本，用于使用包含为特定级别的、运行启动服务的脚本的、运行目录的系统。它调用mysqld_safe来启动MySQL服务器。</p>
+</li>
+<li><p>mysqld_multi:服务器启动脚本，可以启动或者停止系统上安装的多个服务器。</p>
+</li>
+<li><p>myisamchk：用来描述、检查、优化和维护MyISAM表的实用工具。</p>
+</li>
+</ol>
+<ol>
+<li>mysqlbug：MySQL缺陷报告脚本。他可以用来向MySQL邮件系统发送缺陷报告。</li>
+<li>mysql_install_db：该脚本用默认权限创建MySQL授权表，通常只有在系统上首次安装MySQL执行一次。</li>
+<li></li>
+<li>MySQL客户端实用工具：</li>
+<li>myisampack：压缩MyISAM表以产生一个更小的只读表的一个工具。</li>
+<li>mysql：交互式输入SQL语句或从文件以批处理模式执行他们的命令行工具。</li>
+<li>mysqlaccess：检查主机名、用户名和数据库组合的权限脚本。</li>
+<li></li>
+<li>mysqladmin:执行管理操作的客户程序，例如创建删除数据库，重载授权表，将表刷新到硬盘，以及重新打开日志文件。mysqladmin还可以用来检索版本、进程，以及服务器的状态信息。</li>
+<li>mysqlbinlog：从二进制日志读取语句的工具。在二进制日志文件中包含执行过的语句，可用来帮助系统从崩溃中恢复。</li>
+<li>mysqlcheck：检查、修复、分析以及优化表的表维护客户程序</li>
+<li></li>
+<li>mysqldump：将MySQL数据库转储到一个文件的客户程序。</li>
+<li>mysqlhotcopy：当服务器运行中，快速备份MyISAM或ISAM表的工具。</li>
+<li>mysql import：使用LOAD DATA INFILE将文本文件导入相关表的客户程序。</li>
+<li></li>
+<li>mysqlshow：显示数据库、表、列、索引相关信息的客户程序。</li>
+<li>perror：显示系统或者MySQL错误代码含义的工具。</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/mysql%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8/">
+    <time datetime="2020-11-19T16:00:28.829Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql基准测试【压测】" class="post-005.服务实现/存储/Mysql+数据库原理/mysql基准测试【压测】 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E3%80%90%E5%8E%8B%E6%B5%8B%E3%80%91/" data-id="ckhp0x7rc002v932u0yit26u7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="为什么要基准测试"><a href="#为什么要基准测试" class="headerlink" title="为什么要基准测试"></a>为什么要基准测试</h1><p>基准测试是唯一方便有效的、可以学习系统在给丁的工作负载下会发生什么的方法。</p>
+<blockquote>
+<p>一个完善的基准测试可以：</p>
+<p>验证基于系统的一些假设，确认该假设是否符合实际情况</p>
+<p>重现一些异常行为，有备无患的得到解决方法</p>
+<p>获取当前系统性能和运行情况，为系统优化提供先决条件</p>
+<p>模拟比当前系统更高的负载，找到系统的扩展瓶颈</p>
+<p>规划未来业务增长，包括硬件、网络容量、服务类型、及其他相关资源</p>
+<p>测试应用使用可变环境的能力</p>
+<p>测试硬件，包括硬件设备是否适合当前服务，配置是否正确等</p>
+</blockquote>
+<h1 id="基准测试策略"><a href="#基准测试策略" class="headerlink" title="基准测试策略"></a>基准测试策略</h1><p>基准测试主要有两种策略：</p>
+<p>集成式    单组件式<br>对整个系统    单独测试Mysql<br>针对整体性能    针对mysql本身性能<br>难建立、难基准    相对简单</p>
+<h1 id="测试目标-测试对象"><a href="#测试目标-测试对象" class="headerlink" title="测试目标 测试对象"></a>测试目标 测试对象</h1><ol>
+<li>吞吐量    单位时间内的事务处理</li>
+<li>响应时间    测试任务所需要的时间</li>
+<li>并发性    任意时间内同时发生的并发请求</li>
+<li>可扩展性    业务压力发生变化时，系统工作量增加或者系统资源增加</li>
+<li>基准测试工具<h1 id="测试工具"><a href="#测试工具" class="headerlink" title="测试工具"></a>测试工具</h1>ab<br>ab是一个Apache HTTP服务器基准测试工具。可以测试HTTP服务器每秒最多处理多少请求。如果测试的是Web服务，可以转换成整个应用每秒满足多少请求。但是用途有限，只能针对单个URL进行尽可能快的压力测试。</li>
+</ol>
+<p>http_load<br>对web服务器进行测试，比ab更加强大。可以通过输入文件提供多个URL，按照一定规则进行压力测试。</p>
+<p>Mysql基准测试套件<br>sql-bench<br>在Mysql的发行包中提供了自己的基准测试套件，可以用于在不同数据库服务器上进行比较测试。它是单线程的，主要用于测试服务器执行查询的速度。结果会显示那些操作在服务器上执行更快。</p>
+<p>sysbench<br>sysbench是一款多线程系统测压工具(不仅仅是针对mysql)，可以根据影响数据库服务器性能的各个因素来评估系统的性能。如：文件IO、操作系统调度器、内存分配、传输线程、POSIX线程、等</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E3%80%90%E5%8E%8B%E6%B5%8B%E3%80%91/">
+    <time datetime="2020-11-19T16:00:28.828Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/mysql设计/第四章：数据类型和运算符" class="post-005.服务实现/存储/Mysql+数据库原理/mysql设计/第四章：数据类型和运算符 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E8%AE%BE%E8%AE%A1/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="ckhp0x7rj0039932udvbd0d1j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[TOC]</p>
+<h1 id="mysql支持三种数据类型（数值类型，日期时间类型，字符串类型）"><a href="#mysql支持三种数据类型（数值类型，日期时间类型，字符串类型）" class="headerlink" title="mysql支持三种数据类型（数值类型，日期时间类型，字符串类型）"></a>mysql支持三种数据类型（数值类型，日期时间类型，字符串类型）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">整数类型：TINYINT、SMALLINT、MEDIUMINT、INT、BIGINT，浮点数类型有FLOAT和DOUBLE，定点小数类型DECIMAL。</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">日期&#x2F;时间类型：包括YEAR、TIME、DATE、DATATIME和TIMESTAMP。</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串类型：CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET等。字符串类型又分为文本字符串和二进制字符串。</span><br></pre></td></tr></table></figure>
+<p>set  多选字符串数据类型，适合存储表单界面的“多选值”。<br>enum 单选字符串数据类型，适合存储表单界面中的“单选值”。</p>
+<ol>
+<li>mysql&gt; create table enum_set_table(</li>
+<li><pre><code>-&gt; id int auto_increment primary key,</code></pre>
+</li>
+<li><pre><code>-&gt; gender enum(&#39;M&#39;,&#39;F&#39;),</code></pre>
+</li>
+<li><pre><code>-&gt; hobby set(&#39;music&#39;,&#39;movie&#39;,&#39;swimming&#39;,&#39;footbal&#39;)</code></pre>
+</li>
+<li><pre><code>-&gt; );</code></pre>
+char（浪费空间） 和 varchar<br>myisam 最好char  整个表静态化 以空间换时间<br>innodb </li>
+</ol>
+<p>其他数据类型：BINARY、VARBINARY、ENUM、SET、Geometry、Point、MultiPoint、LineString、MultiLineString、Polygon、GeometryCollection等</p>
+<p>==uid int(10) 显示宽度和数据取值范围无关==</p>
+<h1 id="常见运算符-算术运算符-比较-逻辑-位"><a href="#常见运算符-算术运算符-比较-逻辑-位" class="headerlink" title="常见运算符 算术运算符 比较 逻辑 位"></a>常见运算符 算术运算符 比较 逻辑 位</h1><p>select * from tblStaff where staff_uid  between 1234565 and 9999999; </p>
+<p>select least(staff_uid,create_time) from tblStaff ;</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/mysql%E8%AE%BE%E8%AE%A1/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/">
+    <time datetime="2020-11-19T16:00:28.828Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/mysql备份与恢复" class="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/mysql备份与恢复 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" data-id="ckhp0x7rk003a932u4r39b2uj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="备份恢复分类"><a href="#备份恢复分类" class="headerlink" title="备份恢复分类"></a>备份恢复分类</h1><h2 id="按备份方法分"><a href="#按备份方法分" class="headerlink" title="按备份方法分"></a>按备份方法分</h2><h3 id="热备（hot-BackUp-Online-BackUp）"><a href="#热备（hot-BackUp-Online-BackUp）" class="headerlink" title="热备（hot BackUp/Online BackUp）"></a>热备（hot BackUp/Online BackUp）</h3><h3 id="冷备（cold-BackUp-offLine-BackUp）"><a href="#冷备（cold-BackUp-offLine-BackUp）" class="headerlink" title="冷备（cold BackUp/offLine BackUp）"></a>冷备（cold BackUp/offLine BackUp）</h3><pre><code>备份FRM 文件 共享表空间文件 独立表空间文件 重做日志文件
+
+共享表空间： Innodb的所有数据保存在一个单独的表空间里面，而这个表空间可以由很多个文件组成，一个表可以跨多个文件存在，所以其大小限制不再是文件大小的限制，而是其自身的限制。从Innodb的官方文档中可以看到，其表空间的最大限制为64TB，也就是说，Innodb的单表限制基本上也在64TB左右了，当然这个大小是包括这个表的所有索引等其他相关数据。</code></pre>
+<h3 id="温备"><a href="#温备" class="headerlink" title="温备"></a>温备</h3><h2 id="按备份后文件内容类型分"><a href="#按备份后文件内容类型分" class="headerlink" title="按备份后文件内容类型分"></a>按备份后文件内容类型分</h2><h3 id="逻辑备份"><a href="#逻辑备份" class="headerlink" title="逻辑备份"></a>逻辑备份</h3><pre><code>里面是sql语句  mysqldump select* from into OUTFILE 出来的 insert等语句
+能看 到具体内容但是 恢复时间长</code></pre>
+<h3 id="裸文件备份"><a href="#裸文件备份" class="headerlink" title="裸文件备份"></a>裸文件备份</h3><pre><code>copy 数据库物理文件</code></pre>
+<h2 id="按要备份的数据库内容分"><a href="#按要备份的数据库内容分" class="headerlink" title="按要备份的数据库内容分"></a>按要备份的数据库内容分</h2><h3 id="完全备份（全拷贝库）"><a href="#完全备份（全拷贝库）" class="headerlink" title="完全备份（全拷贝库）"></a>完全备份（全拷贝库）</h3><h3 id="增量备份（从上次备份的点开始）"><a href="#增量备份（从上次备份的点开始）" class="headerlink" title="增量备份（从上次备份的点开始）"></a>增量备份（从上次备份的点开始）</h3><h3 id="日志备份（mysql二进制日志备份）"><a href="#日志备份（mysql二进制日志备份）" class="headerlink" title="日志备份（mysql二进制日志备份）"></a>日志备份（mysql二进制日志备份）</h3><h2 id="备份的一致性"><a href="#备份的一致性" class="headerlink" title="备份的一致性"></a>备份的一致性</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/">
+    <time datetime="2020-11-19T16:00:28.828Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/主从复制与读写分离" class="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/主从复制与读写分离 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" data-id="ckhp0x7rk003b932ud8uv2932" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>MySQL主从复制(Master-Slave)与读写分离(MySQL-Proxy)实践</p>
+<p>因此，一般来说都是通过 主从复制（Master-Slave）的方式来同步数据，再通过读写分离（MySQL-Proxy）来提升数据库的并发负载能力 这样的方案来进行部署与实施的。</p>
+<p><img src="http://heylinux.com/wp-content/uploads/2011/06/mysql-master-salve-proxy.jpg" alt="image"></p>
+<h1 id="MySQL-主从复制概念"><a href="#MySQL-主从复制概念" class="headerlink" title="MySQL 主从复制概念"></a>MySQL 主从复制概念</h1><p>MySQL 主从复制是指数据可以从一个MySQL数据库服务器主节点复制到一个或多个从节点。MySQL 默认采用异步复制方式，这样从节点不用一直访问主服务器来更新自己的数据，数据的更新可以在远程连接上进行，从节点可以复制主数据库中的所有数据库或者特定的数据库，或者特定的表。</p>
+<h1 id="MySQL-主从复制主要用途"><a href="#MySQL-主从复制主要用途" class="headerlink" title="MySQL 主从复制主要用途"></a>MySQL 主从复制主要用途</h1><h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><p>在开发工作中，有时候会遇见某个sql 语句需要锁表，导致暂时不能使用读的服务，这样就会影响现有业务，使用主从复制，让主库负责写，从库负责读，这样，即使主库出现了锁表的情景，通过读从库也可以保证业务的正常运作。</p>
+<h2 id="数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换"><a href="#数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换" class="headerlink" title="数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换"></a>数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换</h2><p>做数据的热备，作为后备数据库，主数据库服务器故障后，可切换到从数据库继续工作，避免数据丢失。</p>
+<h2 id="高可用HA"><a href="#高可用HA" class="headerlink" title="高可用HA"></a>高可用HA</h2><h2 id="架构扩展"><a href="#架构扩展" class="headerlink" title="架构扩展"></a>架构扩展</h2><p>随着系统中业务访问量的增大，如果是单机部署数据库，就会导致I/O访问频率过高。有了主从复制，增加多个数据存储节点，将负载分布在多个从节点上，降低单机磁盘I/O访问的频率，提高单个机器的I/O性能</p>
+<h1 id="mysql的主从形式"><a href="#mysql的主从形式" class="headerlink" title="mysql的主从形式"></a>mysql的主从形式</h1><h2 id="一主一从"><a href="#一主一从" class="headerlink" title="一主一从"></a>一主一从</h2><h2 id="一主多从"><a href="#一主多从" class="headerlink" title="一主多从"></a>一主多从</h2><p><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=914542170,462716588&fm=173&app=49&f=JPEG?w=244&h=264&s=09235D32415355CC445DB0DF0200C0B2" alt="image"><br>一主一从和一主多从是最常见的主从架构，实施起来简单并且有效，不仅可以实现HA，而且还能读写分离，进而提升集群的并发能力。</p>
+<h2 id="多住一从"><a href="#多住一从" class="headerlink" title="多住一从"></a>多住一从</h2><p>多主一从可以将多个mysql数据库备份到一台存储性能比较好的服务器上。</p>
+<h2 id="双主复制"><a href="#双主复制" class="headerlink" title="双主复制"></a>双主复制</h2><p>双主复制，也就是互做主从复制，每个master既是master，又是另外一台服务器的slave。这样任何一方所做的变更，都会通过复制应用到另外一方的数据库中。</p>
+<h2 id="级联复制"><a href="#级联复制" class="headerlink" title="级联复制"></a>级联复制</h2><p>级联复制模式下，部分slave的数据同步不连接主节点，而是连接从节点。因为如果主节点有太多的从节点，就会损耗一部分性能用于replication，那么我们可以让3~5个从节点连接主节点，其它从节点作为二级或者三级与从节点连接，这样不仅可以缓解主节点的压力，并且对数据一致性没有负面影响。<br><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3446109496,3435852387&fm=173&app=49&f=JPEG?w=302&h=106&s=89235D3285357823485D49DB020080B2" alt="image"></p>
+<h1 id="mysql主从复制原理"><a href="#mysql主从复制原理" class="headerlink" title="mysql主从复制原理"></a>mysql主从复制原理</h1><h2 id="MysqlProxy【读写分离，负载均衡】"><a href="#MysqlProxy【读写分离，负载均衡】" class="headerlink" title="MysqlProxy【读写分离，负载均衡】"></a>MysqlProxy【读写分离，负载均衡】</h2><p>MySQL Proxy有一项强大功能是实现“读写分离”，基本原理是让主数据库处理写方面事务，让从库处理SELECT查询。</p>
+<ul>
+<li>1.数据库有个bin-log二进制文件，记录了所有sql语句。</li>
+<li>2.我们的目标就是把主数据库的bin-log文件的sql语句复制过来。</li>
+<li>3.让其在从数据的relay-log重做日志文件中再执行一次这些sql语句即可。<br><img src="https://img-blog.csdn.net/2018041911065697?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RhcmtBbmdlbDEyMjg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>MySQL主从复制涉及到三个线程，一个运行在主节点（log dump thread），其余两个(I/O thread, SQL thread)运行在从节点，如下图所示:<br><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3616190683,3608800796&fm=173&app=49&f=JPEG?w=640&h=251&s=01704730B3307423404091CA030070B3" alt="image"></li>
+</ul>
+<h2 id="主节点-binary-log-dump-线程"><a href="#主节点-binary-log-dump-线程" class="headerlink" title="主节点 binary log dump 线程"></a>主节点 binary log dump 线程</h2><p>当从节点连接主节点时，主节点会创建一个log dump 线程，用于发送bin-log的内容。在读取bin-log中的操作时，此线程会对主节点上的bin-log加锁，当读取完成，甚至在发动给从节点之前，锁会被释放。</p>
+<h2 id="从节点I-O线程"><a href="#从节点I-O线程" class="headerlink" title="从节点I/O线程"></a>从节点I/O线程</h2><p>当从节点上执行<code>start slave</code>命令之后，从节点会创建一个I/O线程用来连接主节点，请求主库中更新的bin-log。I/O线程接收到主节点binlog dump 进程发来的更新之后，保存在本地relay-log中。</p>
+<h2 id="从节点SQL线程"><a href="#从节点SQL线程" class="headerlink" title="从节点SQL线程"></a>从节点SQL线程</h2><p>SQL线程负责读取relay log中的内容，解析成具体的操作并执行，最终保证主从数据的一致性。</p>
+<h1 id="整个复制过程"><a href="#整个复制过程" class="headerlink" title="整个复制过程"></a>整个复制过程</h1><p> 实际上就是Slave 从Master 端获取该日志然后再在自己身上完全顺序的执行日志中所记录的各种操作。如下图所示：<br><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=682895023,3828721615&fm=173&app=49&f=JPEG?w=640&h=255&s=09225D32412A45220AF065DA0000C0B2" alt="image"></p>
+<h1 id="MySQL-主从复制模式"><a href="#MySQL-主从复制模式" class="headerlink" title="MySQL 主从复制模式"></a>MySQL 主从复制模式</h1><h2 id="异步模式（mysql-async-mode）"><a href="#异步模式（mysql-async-mode）" class="headerlink" title="异步模式（mysql async-mode）"></a>异步模式（mysql async-mode）</h2><h2 id="半同步模式-mysql-semi-sync"><a href="#半同步模式-mysql-semi-sync" class="headerlink" title="半同步模式(mysql semi-sync)"></a>半同步模式(mysql semi-sync)</h2><h2 id="全同步模式-GTID复制模式"><a href="#全同步模式-GTID复制模式" class="headerlink" title="全同步模式 GTID复制模式"></a>全同步模式 GTID复制模式</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+    <time datetime="2020-11-19T16:00:28.827Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/快照" class="post-005.服务实现/存储/Mysql+数据库原理/备份回复+快照+主从/快照 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/%E5%BF%AB%E7%85%A7/" data-id="ckhp0x7rk003c932ucopaf26m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>ysql 基于LVM快照的备份<br><img src="https://images2015.cnblogs.com/blog/807333/201512/807333-20151217170546584-1404104546.png" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/Mysql+%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%A4%87%E4%BB%BD%E5%9B%9E%E5%A4%8D+%E5%BF%AB%E7%85%A7+%E4%B8%BB%E4%BB%8E/%E5%BF%AB%E7%85%A7/">
+    <time datetime="2020-11-19T16:00:28.827Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-005.服务实现/存储/存储通用理论" class="post-005.服务实现/存储/存储通用理论 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/%E5%AD%98%E5%82%A8%E9%80%9A%E7%94%A8%E7%90%86%E8%AE%BA/" data-id="ckhp0x7qt001p932ub2v8dtm9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h1><h2 id="关系型存储-MYSQL-ORACLE"><a href="#关系型存储-MYSQL-ORACLE" class="headerlink" title="关系型存储 MYSQL ORACLE"></a>关系型存储 MYSQL ORACLE</h2><h2 id="内存高速存储【Cache】-Redis-Memcahe"><a href="#内存高速存储【Cache】-Redis-Memcahe" class="headerlink" title="内存高速存储【Cache】 Redis Memcahe"></a>内存高速存储【Cache】 Redis Memcahe</h2><h2 id="对象存储TOS-【多媒体上传下载】"><a href="#对象存储TOS-【多媒体上传下载】" class="headerlink" title="对象存储TOS 【多媒体上传下载】"></a>对象存储TOS 【多媒体上传下载】</h2><h2 id="块存储"><a href="#块存储" class="headerlink" title="块存储"></a>块存储</h2><h2 id="大数据存储"><a href="#大数据存储" class="headerlink" title="大数据存储"></a>大数据存储</h2><h2 id="KV-存储"><a href="#KV-存储" class="headerlink" title="KV 存储"></a>KV 存储</h2><h2 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h2><h1 id="存储与存储引擎"><a href="#存储与存储引擎" class="headerlink" title="存储与存储引擎"></a>存储与存储引擎</h1><h1 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h1><h2 id="事物一致性【ACID】"><a href="#事物一致性【ACID】" class="headerlink" title="事物一致性【ACID】"></a>事物一致性【ACID】</h2><h2 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67949045">https://zhuanlan.zhihu.com/p/67949045</a></p>
+<p>复制是导致出现数据一致性问题的唯一原因<br>一台数据库处理所有的写入和读取请求，就一定不存在数据一致性的问题</p>
+<h2 id="强一致性-【同步复制】与-弱一致性-【异步复制】"><a href="#强一致性-【同步复制】与-弱一致性-【异步复制】" class="headerlink" title="强一致性 【同步复制】与 弱一致性 【异步复制】"></a>强一致性 【同步复制】与 弱一致性 【异步复制】</h2><p> 更新头像 需要从库确认 对所有人可见 则是强一致性<br> 不需要从库确认 则是弱一致性</p>
+<h2 id="最终一致性"><a href="#最终一致性" class="headerlink" title="最终一致性"></a>最终一致性</h2><p>此异步从库落后，他可能会看到过时的信息。等待一段时间，从库最终会赶上并与主库保持一致。这称为最终一致性。</p>
+<h2 id="读写一致性"><a href="#读写一致性" class="headerlink" title="读写一致性"></a>读写一致性</h2><p>比如自己回复需要立马可见 别人会延迟 【主库读自己 从库读他人】</p>
+<h2 id="单调读"><a href="#单调读" class="headerlink" title="单调读"></a>单调读</h2><p>多次刷新结果一致</p>
+<p>单调读比强一致性更弱，比最终一致性更强。</p>
+<h3 id="因果一致性-【帖子盖楼】"><a href="#因果一致性-【帖子盖楼】" class="headerlink" title="因果一致性 【帖子盖楼】"></a>因果一致性 【帖子盖楼】</h3><h1 id="cache-基本理论"><a href="#cache-基本理论" class="headerlink" title="cache 基本理论"></a>cache 基本理论</h1><h2 id="cache写入策略"><a href="#cache写入策略" class="headerlink" title="cache写入策略"></a>cache写入策略</h2><p>失效缓存后更新DB 并发读写脏数据持续存在</p>
+<h3 id="Cache-Aside"><a href="#Cache-Aside" class="headerlink" title="Cache Aside"></a>Cache Aside</h3><p>更新DB成功后失效缓存，有短暂的不一致，写会阻塞，持久不一致比较难</p>
+<h3 id="write-read-through-缓存代理了更新DB"><a href="#write-read-through-缓存代理了更新DB" class="headerlink" title="write/read through 缓存代理了更新DB"></a>write/read through 缓存代理了更新DB</h3><p>更新/查询 缓存更新DB</p>
+<h3 id="Write-Behind"><a href="#Write-Behind" class="headerlink" title="Write Behind"></a>Write Behind</h3><p>缓存被替换出去更新DB 非强一致性，掉电无法恢复</p>
+<h1 id="数据量选择"><a href="#数据量选择" class="headerlink" title="数据量选择"></a>数据量选择</h1><p>百万级的数据，无论侧重OLTP还是OLAP，当然就是MySql了。过亿级的数据，侧重OLTP可以继续Mysql，侧重OLAP，就要分场景考虑了。</p>
+<ol>
+<li>实时计算场景：强调实时性，常用于实时性要求较高的地方，可以选择Storm;</li>
+<li>批处理计算场景：强调批处理，常用于数据挖掘、分析，可以选择Hadoop;</li>
+<li>实时查询场景：强调查询实时响应，常用于把DB里的数据转化索引文件，通过搜索引擎来查询，可以选择solr/elasticsearch;</li>
+<li>企业级ODS/EDW/数据集市场景：强调基于关系性数据库的大数据实时分析，常用于业务数据集成，可以选择Greenplum；</li>
+</ol>
+<h1 id="OLAP和OLTP"><a href="#OLAP和OLTP" class="headerlink" title="OLAP和OLTP"></a>OLAP和OLTP</h1><p>OLTP与OLAP的介绍</p>
+<pre><code>数据处理大致可以分成两大类：联机事务处理OLTP（on-line transaction processing）、联机分析处理OLAP（On-Line Analytical Processing）。OLTP是传统的关系型数据库的主要应用，主要是基本的、日常的事务处理，例如银行交易。OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。 </code></pre>
+<p>OLTP 系统强调数据库内存效率，强调内存各种指标的命令率，强调绑定变量，强调并发操作；<br>OLAP 系统则强调数据分析，强调SQL执行市场，强调磁盘I/O，强调分区等。<br><img src="564226322CFF40C4A8FF87CDAD50C9CA" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/005.%E6%9C%8D%E5%8A%A1%E5%AE%9E%E7%8E%B0/%E5%AD%98%E5%82%A8/%E5%AD%98%E5%82%A8%E9%80%9A%E7%94%A8%E7%90%86%E8%AE%BA/">
+    <time datetime="2020-11-19T16:00:28.826Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-009.大数据/推荐/推荐入门" class="post-009.大数据/推荐/推荐入门 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%8E%A8%E8%8D%90/%E6%8E%A8%E8%8D%90%E5%85%A5%E9%97%A8/" data-id="ckhp0x7r00023932ugb899u1n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><img src="https://pic1.zhimg.com/80/v2-281eb65854fb408b429c43b50b75efdd_1440w.jpg" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%8E%A8%E8%8D%90/%E6%8E%A8%E8%8D%90%E5%85%A5%E9%97%A8/">
+    <time datetime="2020-11-19T16:00:28.826Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-009.大数据/分布式/分布式原子性" class="post-009.大数据/分布式/分布式原子性 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8E%9F%E5%AD%90%E6%80%A7/" data-id="ckhp0x7qy0020932u79sedwew" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><h2 id="刚性事务-XA协议-2pc-JTA-JTS-3pc"><a href="#刚性事务-XA协议-2pc-JTA-JTS-3pc" class="headerlink" title="刚性事务 [XA协议(2pc,JTA,JTS)] 3pc"></a>刚性事务 [XA协议(2pc,JTA,JTS)] 3pc</h2><p>。XA规模型包括应用程序（ AP ）、事务管理器（ TM ）、资源管理器（ RM ）、通信资源管理器（ CRM ）四部分</p>
+<h3 id="2pc"><a href="#2pc" class="headerlink" title="2pc"></a>2pc</h3><ol>
+<li><p>过程</p>
+<ol>
+<li>请求阶段[voting phcase]<ol>
+<li>事务协调者给参与者发preapre 消息,写入redo和undo日志成功,并回复ok,如果不ok回复abort            </li>
+</ol>
+</li>
+<li>提交阶段[commit phcase]<ol>
+<li>如果都回复suceess,发给参与者commit请求,参与者释放资源,参与者返回完成,协调者完成事务</li>
+<li>如果任一abort,给参与者返回callback,参与者利用undo回滚,发给协调者回滚消息,协调者完整回滚</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>问题 </p>
+<ol>
+<li>强一致性,失败率很高 并发低</li>
+<li>voting phcase 参与者预写入的是啥, 参与者没收到询问 ,返回消息失败 </li>
+<li>上锁期间对外的读是怎么样的<br><img src="https://ask.qcloudimg.com/http-save/6986415/9mslcr3hep.jpeg?imageView2/2/w/1620" alt="image"><br><img src="http://baidu.com/pic/doge.png" alt="avatar"><h2 id="柔性事务-TCC-FMT-Soga"><a href="#柔性事务-TCC-FMT-Soga" class="headerlink" title="柔性事务 TCC/FMT Soga"></a>柔性事务 TCC/FMT Soga</h2></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8E%9F%E5%AD%90%E6%80%A7/">
+    <time datetime="2020-11-19T16:00:28.825Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-009.大数据/推荐/推荐算法" class="post-009.大数据/推荐/推荐算法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%8E%A8%E8%8D%90/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/" data-id="ckhp0x7r00024932u9zishgox" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><img src="https://pic1.zhimg.com/80/v2-281eb65854fb408b429c43b50b75efdd_720w.jpg" alt="image"></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/009.%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%8E%A8%E8%8D%90/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/">
+    <time datetime="2020-11-19T16:00:28.825Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="pagination">
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/huanghao.github.io/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/huanghao.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/6/">6</a><a class="page-number" href="/huanghao.github.io/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/huanghao.github.io/page/9/">9</a><a class="page-number" href="/huanghao.github.io/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/huanghao.github.io/page/15/">15</a><a class="extend next" rel="next" href="/huanghao.github.io/page/9/">Next &amp;raquo;</a>
+      </nav>
+    </nav>
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

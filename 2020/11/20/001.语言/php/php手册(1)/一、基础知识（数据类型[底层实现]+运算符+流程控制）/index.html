@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="一剑光寒十九州" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NK一哥黄大脸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 数据类型PHP是弱语言类型，主要分为三类： 1、标量类型：integer、string、float、boolean2、复合类型：array、object3、特殊类型：resource、nullResource 资源类型资源数据类型是PHP4引进的。资源是一种特殊的变量类型，保存了到外部资源的一个引用：如打开文件、数据库连接、图形画布区域等。$fp &#x3D; fopen(“test.txt”,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NK一哥黄大脸">
+<meta property="og:url" content="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B[%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0]+%E8%BF%90%E7%AE%97%E7%AC%A6+%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%89/index.html">
+<meta property="og:site_name" content="NK一哥黄大脸">
+<meta property="og:description" content="[toc] 数据类型PHP是弱语言类型，主要分为三类： 1、标量类型：integer、string、float、boolean2、复合类型：array、object3、特殊类型：resource、nullResource 资源类型资源数据类型是PHP4引进的。资源是一种特殊的变量类型，保存了到外部资源的一个引用：如打开文件、数据库连接、图形画布区域等。$fp &#x3D; fopen(“test.txt”,">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-11-19T16:00:28.859Z">
+<meta property="article:modified_time" content="2020-11-19T16:00:28.859Z">
+<meta property="article:author" content="huanghao">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/huanghao.github.io/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/huanghao.github.io/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/huanghao.github.io/atom.xml" title="NK一哥黄大脸" type="application/atom+xml">
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/huanghao.github.io/" title="NK一哥黄大脸" rel="home">NK一哥黄大脸</a>
+      </h1>
+      
+        <h2 <title>谦谦君子 温润如玉</title></h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/huanghao.github.io/guestbook">guestbook</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-001.语言/php/php手册(1)/一、基础知识（数据类型[底层实现]+运算符+流程控制）" class="post-001.语言/php/php手册(1)/一、基础知识（数据类型[底层实现]+运算符+流程控制） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="https://zedhao.github.io/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B[%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0]+%E8%BF%90%E7%AE%97%E7%AC%A6+%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%89/" data-id="ckhp0x7r4002d932ue0tmcwzr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>[toc]</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>PHP是弱语言类型，主要分为三类：</p>
+<h3 id="1、标量类型：integer、string、float、boolean"><a href="#1、标量类型：integer、string、float、boolean" class="headerlink" title="1、标量类型：integer、string、float、boolean"></a>1、标量类型：integer、string、float、boolean</h3><h3 id="2、复合类型：array、object"><a href="#2、复合类型：array、object" class="headerlink" title="2、复合类型：array、object"></a>2、复合类型：array、object</h3><h3 id="3、特殊类型：resource、null"><a href="#3、特殊类型：resource、null" class="headerlink" title="3、特殊类型：resource、null"></a>3、特殊类型：resource、null</h3><h2 id="Resource-资源类型"><a href="#Resource-资源类型" class="headerlink" title="Resource 资源类型"></a>Resource 资源类型</h2><p>资源数据类型是PHP4引进的。资源是一种特殊的变量类型，保存了到外部资源的一个引用：如打开文件、数据库连接、图形画布区域等。<br>$fp = fopen(“test.txt”, “rw”);<br>var_dump($fp);<br>fclose($fp);<br>打印结果：resource(5) of type (stream)</p>
+<p>资源ID</p>
+<p>内核中将注册的资源变量存储在一个HashTable中，并把资源所在HashTable中的key作为资源ID。</p>
+<p>所以，实际上PHP中的资源变量实际存储的是一个整型，通过这个ID找到HashTable中对应的资源。</p>
+<p>由于 PHP4 Zend 引擎引进了资源计数系统，可以自动检测到一个资源不再被引用了（和 Java 一样）。这种情况下此资源使用的所有外部资源都会被垃圾回收系统释放。因此，很少需要用某些 free-result 函数来手工释放内存。</p>
+<p>注意: 持久数据库连接比较特殊，它们不会被垃圾回收系统破坏。</p>
+<h2 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h2><p>被赋值为 NULL。</p>
+<p>尚未被赋值。</p>
+<p>被 unset()。</p>
+<p>因而 无法区分 $a; $b=NULL;<br>也就是说 变量未初始化 就是NULL</p>
+<h2 id="Callback-Callable-类型"><a href="#Callback-Callable-类型" class="headerlink" title="Callback / Callable 类型"></a>Callback / Callable 类型</h2><p>一些函数如 call_user_func() 或 usort() 可以接受用户自定义的回调函数作为参数。回调函数不止可以是简单函数，还可以是对象的方法，包括静态类方法。</p>
+<p>传递</p>
+<p>一个 PHP 的函数以 string 类型传递其名称。可以使用任何内置或用户自定义函数，但除了语言结构例如： array() ， echo ， empty() ， eval() ， exit() ， isset() ， list() ， print 或 unset() 。</p>
+<p>==一个已实例化的对象的方法被作为数组传递，下标 0 包含该对象，下标 1 包含方法名。==</p>
+<p>==静态类方法也可不经实例化该类的对象而传递，只要在下标 0 中包含类名而不是对象。自 PHP 5.2.3 起，也可以传递 ‘ClassName::methodName’。==</p>
+<p>除了普通的用户自定义函数外， create_function() 可以用来创建一个匿名回调函数。自 PHP 5.3.0 起也可传递 closure 给回调参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">&#x2F;&#x2F; An example callback function</span><br><span class="line">function  my_callback_function () &#123;</span><br><span class="line">    echo  &#39;hello world!&#39; ;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; An example callback method</span><br><span class="line">class  MyClass  &#123;</span><br><span class="line">    static function  myCallbackMethod () &#123;</span><br><span class="line">        echo  &#39;Hello World!&#39; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; Type 1: Simple callback</span><br><span class="line">call_user_func ( &#39;my_callback_function&#39; ); </span><br><span class="line">&#x2F;&#x2F; Type 2: Static class method call</span><br><span class="line">call_user_func (array( &#39;MyClass&#39; ,  &#39;myCallbackMethod&#39; )); </span><br><span class="line">&#x2F;&#x2F; Type 3: Object method call</span><br><span class="line">$obj  &#x3D; new  MyClass ();</span><br><span class="line">call_user_func (array( $obj ,  &#39;myCallbackMethod&#39; ));</span><br><span class="line">&#x2F;&#x2F; Type 4: Static class method call (As of PHP 5.2.3)</span><br><span class="line">call_user_func ( &#39;MyClass::myCallbackMethod&#39; );</span><br><span class="line">&#x2F;&#x2F; Type 5: Relative static class method call (As of PHP 5.3.0)</span><br><span class="line">class  A  &#123;</span><br><span class="line">    public static function  who () &#123;</span><br><span class="line">        echo  &quot;A\n&quot; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class  B  extends  A  &#123;</span><br><span class="line">    public static function  who () &#123;</span><br><span class="line">        echo  &quot;B\n&quot; ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">call_user_func (array( &#39;B&#39; ,  &#39;parent::who&#39; ));  &#x2F;&#x2F; A</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="本文档中使用的伪类型与变量"><a href="#本文档中使用的伪类型与变量" class="headerlink" title="本文档中使用的伪类型与变量"></a>本文档中使用的伪类型与变量</h2><p>本文档中使用的伪类型与变量</p>
+<p>伪类型（pseudo -types）是PHP文档里用于指示参数可以使用的类型和值，<br>请注意，它们不是PHP语言里原生类型，<br>所以不能把伪类型用于自定义函数里面的类型约束（typehint）。</p>
+<p>==mixed==</p>
+<p>mixed说明一个参数可以接受多种不同的（但不一定是所有的）类型。</p>
+<p>例如：gettype()可以接受所有的PHP类型，str_replace()可以接受字符串和数组，</p>
+<p>==number==</p>
+<p>number说明一个参数可以是integer或者float。</p>
+<p>==callback==</p>
+<p>本文档中在PHP5.4引入callable类型之前使用了callback伪类型，二者涵义完全相同，</p>
+<p>==array|object==</p>
+<p>array|object意思是参数既可以是array也可以是object，</p>
+<p>==void==<br>void作为返回类型意味着函数的返回值是无用的，<br>void作为参数列表意味着函数不接受任何参数，</p>
+<h2 id="类型转换的判别"><a href="#类型转换的判别" class="headerlink" title="类型转换的判别"></a>类型转换的判别</h2><h1 id="php中弱语言类型的底层实现"><a href="#php中弱语言类型的底层实现" class="headerlink" title="php中弱语言类型的底层实现"></a>php中弱语言类型的底层实现</h1><h2 id="变量存储结构"><a href="#变量存储结构" class="headerlink" title="变量存储结构"></a>变量存储结构</h2><p>变量的值存储到以下所示zval结构体中。 zval结构体定义在Zend/zend.h文件，其结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _zval_struct zval;</span><br><span class="line">...</span><br><span class="line">struct _zval_struct &#123;</span><br><span class="line">    &#x2F;* Variable information *&#x2F;</span><br><span class="line">    zvalue_value value;     &#x2F;* value *&#x2F;</span><br><span class="line">    zend_uint refcount__gc;</span><br><span class="line">    zend_uchar type;    &#x2F;* active type *&#x2F;</span><br><span class="line">    zend_uchar is_ref__gc;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>PHP使用这个结构来存储变量的所有数据。和其他编译性静态语言不同， PHP在存储变量时将PHP用户空间的变量类型也保存在同一个结构体中。这样我们就能通过这些信息获取到变量的类型。</p>
+<p>zval结构体中有四个字段，其含义分别为：</p>
+<p>属性名    含义    默认值<br>refcount__gc    表示引用计数    1<br>is_ref__gc    表示是否为引用    0<br>value    存储变量的值<br>type    变量具体的类型     </p>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型:"></a>变量类型:</h2><p>zval结构体的type字段就是实现弱类型最关键的字段了，type的值可以为： IS_NULL、IS_BOOL、IS_LONG、IS_DOUBLE、IS_STRING、IS_ARRAY、IS_OBJECT和IS_RESOURCE 之一。 从字面上就很好理解，他们只是类型的唯一标示，根据类型的不同将不同的值存储到value字段。 除此之外，和他们定义在一起的类型还有IS_CONSTANT和IS_CONSTANT_ARRAY。</p>
+<p>这和我们设计数据库时的做法类似，为了避免重复设计类似的表，使用一个标示字段来记录不同类型的数据。</p>
+<h2 id="变量的值存储"><a href="#变量的值存储" class="headerlink" title="变量的值存储"></a>变量的值存储</h2><p>前面提到变量的值存储在zvalue_value联合体中，结构体定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typedef union _zvalue_value &#123;</span><br><span class="line">    long lval;                  &#x2F;* long value *&#x2F;</span><br><span class="line">    double dval;                &#x2F;* double value *&#x2F;</span><br><span class="line">    struct &#123;</span><br><span class="line">        char *val;</span><br><span class="line">        int len;</span><br><span class="line">    &#125; str;</span><br><span class="line">    HashTable *ht;              &#x2F;* hash table value *&#x2F;</span><br><span class="line">    zend_object_value obj;</span><br><span class="line">&#125; zvalue_value;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串的类型"><a href="#字符串的类型" class="headerlink" title="字符串的类型"></a>字符串的类型</h3><p>标示和其他数据类型一样，不过在存储字符串时多了一个字符串长度的字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;</span><br><span class="line">    char *val;</span><br><span class="line">    int len;</span><br><span class="line">&#125; str;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组Array"><a href="#数组Array" class="headerlink" title="数组Array"></a>数组Array</h3><p>数组是PHP中最常用，也是最强大变量类型，它可以存储其他类型的数据，而且提供各种内置操作函数。数组的存储相对于其他变量要复杂一些， 数组的值存储在zvalue_value.ht字段中，它是一个HashTable类型的数据。 PHP的数组使用哈希表来存储关联数据。哈希表是一种高效的键值对存储结构。PHP的哈希表实现中使用了两个数据结构HashTable和Bucket。 PHP所有的工作都由哈希表实现，在下节HashTable中将进行哈希表基本概念的介绍以及PHP的哈希表实现。</p>
+<h3 id="对象Object"><a href="#对象Object" class="headerlink" title="对象Object"></a>对象Object</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _zend_object_value &#123;</span><br><span class="line">    zend_object_handle handle;  &#x2F;&#x2F;  unsigned int类型，EG(objects_store).object_buckets的索引</span><br><span class="line">    zend_object_handlers *handlers;</span><br><span class="line">&#125; zend_object_value;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%5B%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%5D+%E8%BF%90%E7%AE%97%E7%AC%A6+%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%89/">
+    <time datetime="2020-11-19T16:00:28.859Z" class="entry-date">
+        2020-11-20
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E7%9A%84%E5%BA%95%E5%B1%82+OpCache/" rel="prev"><span class="meta-nav">←</span> (no title)</a></span>
+    
+    
+        <span class="nav-next"><a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%89%8B%E5%86%8C(1)/%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0+%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E6%89%80%E8%B0%93%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/%E8%AF%AD%E8%A8%80%E7%B1%BB%E6%A6%82%E8%AE%BA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E8%81%94%E5%90%88%E4%BD%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/huanghao.github.io/2020/11/20/001.%E8%AF%AD%E8%A8%80/php/php%E6%80%A7%E8%83%BD%E8%B0%83%E6%A0%91+%E9%83%A8%E7%BD%B2+%E6%B5%8B%E8%AF%95/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 huanghao
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/huanghao.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/huanghao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/huanghao.github.io/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
